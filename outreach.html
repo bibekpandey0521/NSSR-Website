@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outreach | NSSR</title>
+    <link rel="icon" type="image/png" href="photos/bluelogonobg.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@300;400;700;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --nssr-blue: #004AAD; }
+        body { font-family: 'Inter', sans-serif; color: #1e293b; overflow-x: hidden; }
+        h1, h2 { font-family: 'Merriweather', serif; }
+        .font-oswald { font-family: 'Oswald', sans-serif; }
+        #nav-placeholder { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; min-height: 80px; background: white; }
+        .outreach-card { transition: transform .3s ease, box-shadow .3s ease; }
+        .outreach-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -12px rgba(15, 23, 42, .2); }
+    </style>
+</head>
+<body class="bg-white">
+    <div id="nav-placeholder"></div>
+    <header class="pt-36 pb-24 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-25"><img src="photos/SEI/out1.png" class="w-full h-full object-cover" alt="NSSR outreach program"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-900"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <span class="font-oswald text-blue-400 uppercase tracking-[.35em] text-xs font-bold">Next-Generation Initiatives</span>
+            <h1 class="text-4xl md:text-7xl font-black mt-5 mb-6">Science in <span class="italic font-light text-blue-300">community.</span></h1>
+            <p class="max-w-2xl mx-auto text-slate-300 leading-relaxed">NSSR believes in a model that is by students, for students. Through outreach, we help students, especially those in high school and below, encounter science in an accessible and meaningful way.</p>
+            <p class="max-w-2xl mx-auto text-slate-400 text-sm leading-relaxed mt-5">Our aim is to promote science education, build curiosity, encourage students to ask questions, and develop the critical thinking they need to understand and explore the world around them.</p>
+        </div>
+    </header>
+    <main class="py-20 md:py-28">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-8">
+                <a href="science-beyond-classroom.html" class="outreach-card group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                    <div class="aspect-[16/9] bg-slate-100 overflow-hidden"><img src="photos/SBC/IMG_2497.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Science Beyond the Classroom"></div>
+                    <div class="p-8 md:p-10">
+                        <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Talk Session Series</span>
+                        <h2 class="text-3xl font-black text-slate-900 mt-3 mb-4">Science Beyond the Classroom</h2>
+                        <p class="text-slate-600 leading-relaxed mb-7">A nationwide series bringing young researchers into schools to show students that curiosity, questions, and research extend beyond the syllabus.</p>
+                        <span class="font-oswald text-xs uppercase tracking-widest text-blue-700">Explore the Initiative <i class="fa-solid fa-arrow-right ml-2"></i></span>
+                    </div>
+                </a>
+                <a href="student-empowerment.html" class="outreach-card group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                    <div class="aspect-[16/9] bg-slate-100 overflow-hidden"><img src="photos/SEI/out1.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Student Empowerment Initiative"></div>
+                    <div class="p-8 md:p-10">
+                        <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Rural Outreach Program</span>
+                        <h2 class="text-3xl font-black text-slate-900 mt-3 mb-4">Student Empowerment Initiative</h2>
+                        <p class="text-slate-600 leading-relaxed mb-7">Hands-on science learning and sustained near-peer mentorship for underserved schools across Nepal.</p>
+                        <span class="font-oswald text-xs uppercase tracking-widest text-blue-700">Explore the Initiative <i class="fa-solid fa-arrow-right ml-2"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+    <section class="py-16 bg-slate-900 text-white text-center"><div class="container mx-auto px-6"><p class="max-w-2xl mx-auto text-slate-300 italic">Making scientific curiosity accessible, practical, and lasting for students across Nepal.</p></div></section>
+    <div id="footer-placeholder"></div>
+    <script src="nav.js"></script>
+</body>
+</html>

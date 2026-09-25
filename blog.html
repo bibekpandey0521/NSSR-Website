@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dispatch | NSSR Blog</title>
+	<!-- Favicon / Logo in Tab -->
+    <link rel="icon" type="image/png" href="photos/bluelogonobg.png">
+    <!-- Optional: For Apple Devices -->
+    <link rel="apple-touch-icon" href="bluelogonobg.png">
+    
+    <!-- Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Merriweather:ital,wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --nssr-blue: #004AAD; --nssr-dark: #0f172a; }   
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #1e293b; }
+        h1, h2, h3 { font-family: 'Merriweather', serif; }
+        .font-oswald { font-family: 'Oswald', sans-serif; }
+
+        /* Reading Progress Bar - Placed above Nav */
+        #progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: transparent; z-index: 1100; }
+        #progress-bar { height: 100%; background: var(--nssr-blue); width: 0%; transition: width 0.1s; }
+
+        /* Journal List Styling */
+        .blog-card { transition: all 0.4s ease; border-bottom: 1px solid #f1f5f9; }
+        .blog-card:hover { background-color: #fafafa; padding-left: 0.5rem; border-bottom-color: var(--nssr-blue); }
+
+        /* Detailed Article View Styling */
+        .reading-container { max-width: 760px; margin: 0 auto; }
+        #detail-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; color: #334155; }
+        #detail-content h3 { font-size: 1.75rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--nssr-dark); }
+        #detail-content blockquote { border-left: 4px solid var(--nssr-blue); padding-left: 1.5rem; font-style: italic; margin: 2rem 0; font-size: 1.25rem; color: #475569; }
+
+        .fade-in { animation: fadeIn 0.6s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Padding for the fixed nav */
+        #blog-hero { pt-32 md:pt-48 pb-16 md:pb-24; }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Progress Bar -->
+    <div id="progress-container"><div id="progress-bar"></div></div>
+    
+    <!-- Navigation (Injected by nav.js) -->
+    <div id="nav-placeholder"></div>
+
+    <!-- 1. EDITORIAL HERO -->
+    <header id="blog-hero" class="pt-32 md:pt-48 pb-16 border-b">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+                <div class="max-w-3xl">
+                    <span class="font-oswald text-blue-600 uppercase tracking-[0.4em] text-[10px] md:text-xs font-bold mb-4 block">NSSR Thought Leadership</span>
+                    <h1 class="text-4xl md:text-8xl font-bold text-slate-900 leading-tight">The <span class="italic font-light">Dispatch.</span></h1>
+                </div>
+                <div class="text-left md:text-right border-l md:border-l-0 pl-4 md:pl-0">
+                    <p class="font-oswald text-[10px] uppercase tracking-widest text-slate-400">Scientific Journal</p>
+                    <p class="text-xs text-gray-500 italic">Insights from Student Researchers</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. BLOG CONTENT AREA -->
+    <main class="py-12 md:py-20">
+        <div class="container mx-auto px-6">
+            
+            <!-- LIST VIEW -->
+            <div id="blog-list-view" class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                <!-- Main Feed -->
+                <div class="lg:col-span-8 space-y-2" id="blog-feed">
+                    <!-- JS Injected Articles -->
+                </div>
+
+                <!-- Sidebar (Hidden on Mobile) -->
+                <aside class="lg:col-span-4 hidden lg:block border-l pl-10">
+                    <div class="sticky top-32">
+                        <h4 class="font-oswald text-[10px] font-bold uppercase tracking-widest mb-8 border-b pb-4 text-slate-400">Editor's Choice</h4>
+                        <div id="featured-sidebar" class="space-y-10">
+                            <!-- JS Injected Featured -->
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- DETAIL VIEW (Reading Mode) -->
+            <div id="blog-detail-view" class="fade-in hidden">
+                <div class="reading-container">
+                    <button onclick="window.location.hash = ''" class="mb-10 flex items-center text-[10px] font-oswald font-bold uppercase tracking-widest text-blue-600 transition-all hover:gap-2">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Back to Dispatch
+                    </button>
+                    
+                    <header class="mb-12">
+                        <div id="detail-header"></div>
+                    </header>
+
+                    <div id="detail-content" class="text-slate-700">
+                        <!-- JS Injected Body -->
+                    </div>
+
+                    <!-- Author Footer -->
+                    <div class="mt-20 pt-10 border-t flex items-center gap-6" id="detail-footer">
+                        <!-- JS Injected Author Info -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer (Injected by nav.js) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="nav.js"></script> <!-- THIS HANDLES YOUR NAV/FOOTER LOADING -->
+
+    <script>
+        // 1. BLOG DATA
+        const blogs = {
+            'quantum-mechanics-2025': {
+                title: "Quantum Mechanics: 2025 Retrospective",
+                author: "Research Committee",
+                role: "NSSR Secretariat",
+                date: "Jan 02, 2026",
+                category: "Physics",
+                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80",
+                excerpt: "Looking back at the International Year of Quantum Science and Technology breakthroughs.",
+                content: `<h3>A Year of Quantum Leap</h3><p>2025 was designated as the International Year of Quantum Science and Technology. It lived up to the title with breakthroughs that pushed the boundaries of the known universe.</p><blockquote>"Quantum effects were shown in systems large enough to hold in your hand."</blockquote>`
+            },
+            'plasma-physics-2025': {
+                title: "Plasma Physics Nutshell",
+                author: "Manish Pandey",
+                role: "President, NSSR",
+                date: "Nov 10, 2025",
+                category: "Physics",
+                image: "photos/plasma.jpg",
+                excerpt: "Revolutionary whole-device modeling for fusion energy and star birth simulations.",
+                content: `<h3>The 4th State of Matter</h3><p>Research advanced our ability to model, experiment with, and stabilize plasmas under extreme conditions.</p>`
+            }
+        };
+
+        // 2. UI RENDERER
+        function renderBlogUI() {
+            const feed = document.getElementById('blog-feed');
+            const sidebar = document.getElementById('featured-sidebar');
+            feed.innerHTML = '';
+            sidebar.innerHTML = '';
+
+            Object.keys(blogs).forEach(key => {
+                const post = blogs[key];
+                const displayImg = post.image || 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80';
+                
+                feed.innerHTML += `
+                    <article class="blog-card py-8 cursor-pointer group" onclick="window.location.hash='${key}'">
+                        <div class="flex flex-col md:flex-row gap-8 items-center">
+                            <div class="w-full md:w-1/3 aspect-video overflow-hidden rounded-sm bg-slate-100">
+                                <img src="${displayImg}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
+                            </div>
+                            <div class="w-full md:w-2/3">
+                                <span class="text-[10px] font-oswald font-bold text-blue-600 tracking-widest uppercase mb-2 block">${post.category} // ${post.date}</span>
+                                <h2 class="text-2xl font-bold mb-3 group-hover:text-blue-900 transition leading-tight">${post.title}</h2>
+                                <p class="text-gray-500 text-sm leading-relaxed line-clamp-2">${post.excerpt}</p>
+                            </div>
+                        </div>
+                    </article>`;
+
+                sidebar.innerHTML += `
+                    <div class="cursor-pointer group" onclick="window.location.hash='${key}'">
+                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">${post.date}</span>
+                        <h5 class="font-bold text-sm group-hover:text-blue-600 transition mt-1 leading-snug">${post.title}</h5>
+                    </div>`;
+            });
+        }
+
+        // 3. ROUTER
+        function handleRouting() {
+            const hash = window.location.hash.replace('#', '');
+            const listView = document.getElementById('blog-list-view');
+            const heroView = document.getElementById('blog-hero');
+            const detailView = document.getElementById('blog-detail-view');
+
+            if (hash && blogs[hash]) {
+                const post = blogs[hash];
+                listView.classList.add('hidden');
+                heroView.classList.add('hidden');
+                detailView.classList.remove('hidden');
+
+                const displayImg = post.image || 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80';
+
+                document.getElementById('detail-header').innerHTML = `
+                    <span class="font-oswald text-blue-600 font-bold tracking-[0.3em] uppercase text-[10px] mb-6 block">${post.category}</span>
+                    <h1 class="text-3xl md:text-5xl font-bold text-slate-900 mb-8 leading-tight">${post.title}</h1>
+                    <div class="flex items-center gap-4 text-xs text-gray-500 uppercase font-oswald tracking-widest">
+                        <span class="font-bold text-slate-900">${post.author}</span>
+                        <span class="opacity-20">|</span>
+                        <span>${post.date}</span>
+                    </div>`;
+
+                document.getElementById('detail-content').innerHTML = `
+                    <img src="${displayImg}" class="w-full aspect-video object-cover rounded-lg mb-12 shadow-xl">
+                    ${post.content}`;
+
+                document.getElementById('detail-footer').innerHTML = `
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">${post.author.charAt(0)}</div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm">${post.author}</h4>
+                        <p class="text-[10px] text-gray-400 font-oswald uppercase tracking-widest">${post.role}</p>
+                    </div>`;
+
+                window.scrollTo(0, 0);
+            } else {
+                listView.classList.remove('hidden');
+                heroView.classList.remove('hidden');
+                detailView.classList.add('hidden');
+                renderBlogUI();
+            }
+        }
+
+        // 4. PROGRESS BAR LOGIC
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        };
+
+        // 5. INITIALIZE
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('DOMContentLoaded', () => {
+            handleRouting();
+            // Note: Components like nav.html are loaded by nav.js automatically
+        });
+    </script>
+</body>
+</html>

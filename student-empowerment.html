@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Empowerment Initiative | NSSR</title>
+    <link rel="icon" type="image/png" href="photos/bluelogonobg.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@300;400;700;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --nssr-blue: #004AAD; }
+        body { font-family: 'Inter', sans-serif; color: #1e293b; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Merriweather', serif; }
+        .font-oswald { font-family: 'Oswald', sans-serif; }
+        .text-amber-400, .text-amber-500, .text-amber-600 { color: #2563eb !important; }
+        .bg-amber-50 { background-color: #eff6ff !important; }
+        .bg-amber-500 { background-color: #2563eb !important; color: white !important; }
+        .hover\:bg-amber-400:hover { background-color: #3b82f6 !important; }
+        #nav-placeholder { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; min-height: 80px; background: white; }
+        .initiative-card { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+        .initiative-card:hover { transform: translateY(-5px); border-color: var(--nssr-blue); box-shadow: 0 18px 25px -12px rgba(15, 23, 42, .2); }
+    </style>
+</head>
+<body class="bg-white">
+    <div id="nav-placeholder"></div>
+
+    <header class="pt-28 md:pt-32 bg-slate-900 text-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="relative overflow-hidden rounded-2xl aspect-[16/8] md:aspect-[21/9]">
+                <img src="photos/SEI/out1.png" class="w-full h-full object-cover" alt="Students taking part in an NSSR outreach session">
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/55 to-slate-900/20"></div>
+                <div class="absolute inset-0 flex items-end p-7 md:p-14">
+                    <div class="max-w-3xl">
+                        <span class="font-oswald text-amber-400 uppercase tracking-[.3em] text-xs font-bold">Rural Outreach Program &middot; By Students, For Students</span>
+                        <h1 class="text-4xl md:text-7xl font-black mt-4 mb-5">Student Empowerment <span class="italic font-light text-blue-300">Initiative</span></h1>
+                        <p class="text-slate-200 text-sm md:text-lg leading-relaxed">A planned one-year science and digital learning program designed to help around 3,000 students in rural areas of Nepal learn, practice, and keep progressing beyond a single outreach visit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-20 md:py-28">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-12 items-start mb-20">
+                    <div>
+                        <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Why SEI exists</span>
+                        <h2 class="text-3xl md:text-5xl font-black mt-4 mb-6">The spark should not end when the team leaves.</h2>
+                        <p class="text-slate-600 leading-relaxed mb-5">The Student Empowerment Initiative responds to a practical gap in rural science education: students are curious, but many schools have limited laboratory access, few qualified science teachers, and very little opportunity to practice what they learn.</p>
+                        <p class="text-slate-600 leading-relaxed">Over its planned one-year period, SEI will combine one-day hands-on launches at rural schools with a deeper pilot model. The proposed pilot includes projectors, a curated learning library, monthly near-peer mentorship, and a reference library across the 2026-27 academic year.</p>
+                    </div>
+                    <div class="bg-slate-900 text-white rounded-2xl p-8 md:p-10">
+                        <span class="font-oswald text-amber-400 uppercase tracking-widest text-xs font-bold">Program at a glance</span>
+                        <dl class="mt-6 space-y-5 text-sm"><div class="flex justify-between gap-4 border-b border-white/10 pb-4"><dt class="text-slate-400">Planned reach</dt><dd class="font-bold text-right">3,000+ students</dd></div><div class="flex justify-between gap-4 border-b border-white/10 pb-4"><dt class="text-slate-400">Planned launch sites</dt><dd class="font-bold text-right">2-3 schools</dd></div><div class="flex justify-between gap-4 border-b border-white/10 pb-4"><dt class="text-slate-400">Pilot mentorship</dt><dd class="font-bold text-right">Monthly for ~9 months</dd></div><div class="flex justify-between gap-4"><dt class="text-slate-400">Primary cohort</dt><dd class="font-bold text-right">Grades 9-12</dd></div></dl>
+                    </div>
+                </div>
+
+                <div class="mb-20">
+                    <div class="text-center mb-10"><span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">The two-layer model</span><h2 class="text-3xl md:text-5xl font-black mt-3">Reach first. Stay connected.</h2></div>
+                    <div class="grid md:grid-cols-2 gap-6"><div class="initiative-card border border-slate-200 rounded-2xl p-8"><div class="text-amber-500 font-oswald text-4xl font-bold mb-4">01</div><h3 class="text-2xl font-black mb-3">One-day science launch</h3><p class="text-sm text-slate-600 leading-relaxed">Students in Physics, Chemistry, and Biology take part in experiments, meet facilitators, and explore STEM pathways. Lab equipment and teaching materials are handed over to each host school for continued use.</p></div><div class="initiative-card border border-slate-200 rounded-2xl p-8"><div class="text-blue-600 font-oswald text-4xl font-bold mb-4">02</div><h3 class="text-2xl font-black mb-3">Year-long pilot</h3><p class="text-sm text-slate-600 leading-relaxed">One school receives a digital learning setup, a curated syllabus-matched video library, monthly teacher-guided mentorship, and books selected for Grades 9-12 or Grades 9-10 where no +2 program exists.</p></div></div>
+                </div>
+
+                <div class="mb-20"><div class="text-center mb-10"><span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">How the program works</span><h2 class="text-3xl md:text-5xl font-black mt-3">Five practical supports</h2></div><div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-5"><div class="initiative-card bg-slate-50 p-6 rounded-xl border border-slate-100"><i class="fa-solid fa-flask text-blue-600 text-xl mb-4"></i><h3 class="font-bold text-sm mb-2">Hands-on launch</h3><p class="text-xs text-slate-600 leading-relaxed">Experiments across Physics, Chemistry, and Biology, plus STEM career awareness.</p></div><div class="initiative-card bg-slate-50 p-6 rounded-xl border border-slate-100"><i class="fa-solid fa-video text-blue-600 text-xl mb-4"></i><h3 class="font-bold text-sm mb-2">Digital learning</h3><p class="text-xs text-slate-600 leading-relaxed">Projectors, connectivity, and a shared learning library for ordinary lessons.</p></div><div class="initiative-card bg-slate-50 p-6 rounded-xl border border-slate-100"><i class="fa-solid fa-people-arrows text-blue-600 text-xl mb-4"></i><h3 class="font-bold text-sm mb-2">Near-peer mentorship</h3><p class="text-xs text-slate-600 leading-relaxed">Monthly concept clinics led by NSSR student researchers and advisors.</p></div><div class="initiative-card bg-slate-50 p-6 rounded-xl border border-slate-100"><i class="fa-solid fa-photo-film text-blue-600 text-xl mb-4"></i><h3 class="font-bold text-sm mb-2">Content library</h3><p class="text-xs text-slate-600 leading-relaxed">Syllabus-aligned videos organized by topic for teachers and students.</p></div><div class="initiative-card bg-slate-50 p-6 rounded-xl border border-slate-100"><i class="fa-solid fa-book-open-reader text-blue-600 text-xl mb-4"></i><h3 class="font-bold text-sm mb-2">Reference library</h3><p class="text-xs text-slate-600 leading-relaxed">Guide books, model questions, past papers, and entrance preparation materials.</p></div></div></div>
+
+                <section class="bg-slate-900 text-white rounded-2xl p-8 md:p-12 mb-20"><div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-center"><div><span class="font-oswald text-amber-400 uppercase tracking-widest text-xs font-bold">Impact we are planning</span><h2 class="text-3xl md:text-5xl font-black mt-4">A one-year plan for lasting reach.</h2></div><div class="grid sm:grid-cols-2 gap-8"><div><div class="text-4xl font-black font-oswald text-blue-300">3,000+</div><p class="text-xs text-slate-400 mt-2">students targeted across rural Nepal</p></div><div><div class="text-4xl font-black font-oswald text-blue-300">5</div><p class="text-xs text-slate-400 mt-2">pilot classrooms proposed for digital learning</p></div><div><div class="text-4xl font-black font-oswald text-blue-300">9 mo.</div><p class="text-xs text-slate-400 mt-2">of planned monthly contact at the pilot school</p></div><div><div class="text-4xl font-black font-oswald text-amber-400">2-3</div><p class="text-xs text-slate-400 mt-2">planned rural launch locations</p></div></div></div></section>
+
+                <div class="grid lg:grid-cols-2 gap-10 mb-16"><div><h2 class="text-2xl md:text-3xl font-black mb-5">What success looks like</h2><ul class="space-y-4 text-sm text-slate-600"><li><i class="fa-solid fa-check text-blue-600 mr-3"></i>Every launch participant takes part in at least one experiment.</li><li><i class="fa-solid fa-check text-blue-600 mr-3"></i>Host schools retain usable lab equipment and teaching materials.</li><li><i class="fa-solid fa-check text-blue-600 mr-3"></i>A Grade 9-12 or 9-10 mentee cohort receives monthly academic support.</li><li><i class="fa-solid fa-check text-blue-600 mr-3"></i>Term-test comparisons and short topic quizzes document learning progress.</li><li><i class="fa-solid fa-check text-blue-600 mr-3"></i>The book and video libraries continue after the funding cycle.</li></ul></div><div class="bg-blue-50 rounded-2xl p-8"><h2 class="text-2xl font-black mb-4">Built to grow</h2><p class="text-sm text-slate-600 leading-relaxed">Each component can stand alone or be combined into a complete program. This lets schools and partners begin with a launch event, then extend support to the digital pilot, mentorship, and library as resources allow.</p></div></div>
+                <div class="text-center"><a href="mailto:info@nssrnepal.org?subject=Partner With the Student Empowerment Initiative" class="inline-block bg-blue-600 text-white font-oswald text-xs px-8 py-4 tracking-widest hover:bg-blue-700 transition uppercase rounded-md">Partner With Us</a></div>
+            </div>
+        </section>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Pathways | NSSR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="nssr-design-system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@300;400;700;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --nssr-blue: #004AAD; }
+        body { font-family: 'Inter', sans-serif; color: #1e293b; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Merriweather', serif; }
+        .font-oswald { font-family: 'Oswald', sans-serif; }
+        #nav-placeholder { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; min-height: 80px; background: white; }
+        .step-card { border: 1px solid #e2e8f0; transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+        .step-card:hover { transform: translateY(-5px); border-color: var(--nssr-blue); box-shadow: 0 18px 25px -12px rgba(15, 23, 42, .2); }
+    </style>
+</head>
+<body class="bg-white">
+    <div id="nav-placeholder"></div>
+    <header class="pt-36 pb-24 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(37,99,235,.35),_transparent_48%),linear-gradient(135deg,#0f172a,#172554)]"></div>
+        <div class="container mx-auto px-6 relative z-10 max-w-5xl">
+            <span class="font-oswald text-blue-400 uppercase tracking-[.35em] text-xs font-bold">Discover &middot; Connect &middot; Research</span>
+            <h1 class="text-4xl md:text-7xl font-black mt-5 mb-6">Research <span class="italic font-light text-blue-300">Pathways</span></h1>
+            <p class="max-w-3xl text-slate-300 text-sm md:text-lg leading-relaxed">Each month, NSSR spotlights one research field and creates a guided route from first curiosity to meaningful conversation, a developing idea, and potential collaboration.</p>
+        </div>
+    </header>
+    <main class="py-20 md:py-28">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-12 items-start mb-16"><div><span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">One field, every month</span><h2 class="text-3xl md:text-5xl font-black mt-3 mb-6">A monthly doorway into research.</h2><p class="text-slate-600 leading-relaxed mb-5">Research Pathways includes a multidisciplinary range of research areas, bringing together natural sciences, social sciences, technology, mathematics, health, humanities, economics, design, and other fields of inquiry.</p><p class="text-slate-600 leading-relaxed">Each month, NSSR will feature one field or interdisciplinary theme. Students can join to learn, ask questions, share an early idea, meet people working in the field, or discover a direction they had not considered before.</p></div><div class="bg-blue-50 rounded-2xl p-8"><p class="font-oswald text-xs uppercase tracking-widest text-blue-700 font-bold mb-4">Every month includes</p><ul class="space-y-4 text-sm text-slate-700"><li><i class="fa-solid fa-circle-check text-blue-600 mr-2"></i>A new research field or interdisciplinary theme</li><li><i class="fa-solid fa-circle-check text-blue-600 mr-2"></i>An online talk with a researcher or expert</li><li><i class="fa-solid fa-circle-check text-blue-600 mr-2"></i>An offline meetup for discussion and connection</li><li><i class="fa-solid fa-circle-check text-blue-600 mr-2"></i>A chance to present and improve research ideas</li></ul></div></div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="step-card p-7 rounded-2xl"><div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-5 font-oswald font-bold">1</div><h2 class="font-oswald text-base font-bold mb-2">Monthly Field Spotlight</h2><p class="text-xs text-slate-600 leading-relaxed">A new discipline or interdisciplinary theme is introduced each month, across science and beyond.</p></div>
+                <div class="step-card p-7 rounded-2xl"><div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-5 font-oswald font-bold">2</div><h2 class="font-oswald text-base font-bold mb-2">Online Research Talk</h2><p class="text-xs text-slate-600 leading-relaxed">Students meet a researcher or expert online to learn how the field works and how to begin exploring it.</p></div>
+                <div class="step-card p-7 rounded-2xl"><div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-5 font-oswald font-bold">3</div><h2 class="font-oswald text-base font-bold mb-2">Share Your Idea</h2><p class="text-xs text-slate-600 leading-relaxed">Students or teams can submit an early research idea, question, short video, or developing proposal.</p></div>
+                <div class="step-card p-7 rounded-2xl"><div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-5 font-oswald font-bold">4</div><h2 class="font-oswald text-base font-bold mb-2">Offline Research Meetup</h2><p class="text-xs text-slate-600 leading-relaxed">Participants meet researchers and fellow students in person, discuss possibilities, and find potential collaborators.</p></div>
+                <div class="step-card p-7 rounded-2xl"><div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-5 font-oswald font-bold">5</div><h2 class="font-oswald text-base font-bold mb-2">Present to the Room</h2><p class="text-xs text-slate-600 leading-relaxed">Selected participants give a short presentation about their idea to researchers and other participants.</p></div>
+                <div class="step-card p-7 rounded-2xl"><div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-5 font-oswald font-bold">6</div><h2 class="font-oswald text-base font-bold mb-2">Receive Feedback</h2><p class="text-xs text-slate-600 leading-relaxed">The audience and researchers respond with questions, suggestions, and perspectives that help sharpen the idea.</p></div>
+                <div class="step-card p-7 rounded-2xl"><div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-5 font-oswald font-bold">7</div><h2 class="font-oswald text-base font-bold mb-2">Connect and Collaborate</h2><p class="text-xs text-slate-600 leading-relaxed">Students can meet people with shared interests, form teams, and identify potential mentors or collaborators.</p></div>
+                <div class="p-7 rounded-2xl bg-slate-900 text-white"><p class="font-oswald text-xs uppercase tracking-widest text-blue-400 font-bold mb-3">The pathway</p><p class="text-xs text-slate-300 leading-loose">Discover &rarr; Learn &rarr; Question &rarr; Share &rarr; Present &rarr; Receive feedback &rarr; Collaborate &rarr; Pursue research</p></div>
+            </div>
+            <div class="mt-12 flex flex-wrap gap-4"><a href="mailto:info@nssrnepal.org?subject=Research Pathways Interest" class="inline-block bg-blue-600 text-white font-oswald text-xs px-8 py-4 tracking-widest hover:bg-blue-700 transition uppercase rounded-md">Submit Your Research Interest</a><a href="nsrf.html" class="inline-block border border-slate-300 text-slate-700 font-oswald text-xs px-8 py-4 tracking-widest hover:bg-slate-50 transition uppercase rounded-md">Explore NSRF</a></div>
+        </div>
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="nav.js"></script>
+</body>
+</html>
