@@ -10,13 +10,12 @@
     <link rel="apple-touch-icon" href="bluelogonobg.png">
     <!-- Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Merriweather:ital,wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         :root { --nssr-blue: #004AAD; --nssr-dark: #0f172a; }
-        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #1e293b; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1e293b; overflow-x: hidden; }
         h1, h2, h3 { font-family: 'Merriweather', serif; }
         .font-oswald { font-family: 'Oswald', sans-serif; }
 
@@ -30,112 +29,99 @@
             min-height: 80px;
         }
 
-        /* Responsive Card Hover Effects */
-        .team-card { transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1); }
+        /* Responsive Card Transitions */
+        .team-card { transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1); }
+        .team-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
         
-        /* Grayscale to Color */
-        .grayscale-img {
-            filter: grayscale(0%);
-            transition: filter 0.5s ease;
-        }
-        .group:hover .grayscale-img { filter: grayscale(0%); }
-
-        /* Social Link Transitions */
         .social-link { transition: all 0.3s ease; }
         .social-link:hover { color: var(--nssr-blue); transform: scale(1.1); }
-
-        @media (max-width: 768px) {
-            /* Make social links visible on mobile since there is no hover */
-            .mobile-social-visible { transform: translateY(0) !important; opacity: 1 !important; }
-            .grayscale-img { filter: grayscale(0%); } /* Optional: show color on mobile */
-        }
     </style>
 </head>
 
-<body class="bg-white">
-
-    <!-- LIGHTBOX MODAL -->
-    <div id="lightbox" onclick="closeLightbox()" class="fixed inset-0 z-[2000] hidden bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer">
-        <button class="absolute top-6 right-6 text-white text-3xl hover:text-blue-400 transition z-50">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <img id="lightbox-img" onclick="event.stopPropagation()" src="" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl transform scale-95 transition-transform duration-300">
-    </div>
+<body class="bg-[#fcfcfc]">
 
     <div id="nav-placeholder"></div>
 
     <!-- 1. HERO SECTION -->
-    <header class="pt-32 pb-16 md:pt-48 md:pb-24 bg-slate-900 text-white relative overflow-hidden">
+    <header class="pt-32 pb-12 md:pt-40 md:pb-16 bg-slate-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div class="container mx-auto px-6 relative z-10 text-center">
-            <span class="font-oswald text-blue-400 uppercase tracking-widest text-[10px] md:text-xs font-bold mb-4 block">The Faces Behind NSSR</span>
-            <h1 class="text-3xl md:text-7xl font-bold mb-6">Our <span class="text-blue-400 italic font-light">Visionary Team</span></h1>
+            <h1 class="text-3xl md:text-5xl font-bold mb-4">Our <span class="text-blue-400 italic font-light">Team</span></h1>
             <p class="max-w-2xl mx-auto text-gray-400 text-sm md:text-base font-light leading-relaxed">Meet the dedicated researchers working to bridge the gap between academic curiosity and scientific excellence in Nepal.</p>
         </div>
     </header>
 
-    <!-- 2. EXECUTIVE BOARD GRID -->
-    <section class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12 md:mb-16">
-                <h3 class="font-oswald uppercase tracking-widest text-xs font-bold text-blue-600">Leadership</h3>
-                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-slate-900">Executive Board</h2>
-                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4"></div>
-            </div>
+    <!-- 2. SPLIT VIEW LAYOUT -->
+    <div class="container mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row gap-10">
+        
+        <!-- Left Sidebar Navigation -->
+        <aside class="w-full md:w-1/4 shrink-0">
+            <h2 class="text-4xl font-bold text-slate-900 mb-8 font-merriweather">Team</h2>
+            <nav class="flex flex-col gap-2 border-l border-slate-200" id="team-nav">
+                <button onclick="showSection('leadership')" id="btn-leadership" class="text-left px-6 py-3 -ml-[1px] border-l-4 border-blue-900 bg-blue-50/50 text-blue-900 font-bold rounded-r-lg transition-all">
+                    Leadership
+                </button>
+                <button onclick="showSection('advisory')" id="btn-advisory" class="text-left px-6 py-3 -ml-[1px] border-l-4 border-transparent text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-r-lg transition-all">
+                    Advisory Board
+                </button>
+                <button onclick="showSection('representatives')" id="btn-representatives" class="text-left px-6 py-3 -ml-[1px] border-l-4 border-transparent text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-r-lg transition-all">
+                    College Representatives
+                </button>
+            </nav>
+        </aside>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10" id="exec-board-grid">
+        <!-- Right Content Area -->
+        <main class="w-full md:w-3/4">
+            <!-- Leadership Grid -->
+            <div id="content-leadership" class="team-section grid grid-cols-1 xl:grid-cols-2 gap-6">
                 <!-- JS Injected Cards -->
             </div>
-        </div>
-    </section>
 
-    <!-- 3. ADVISORS SECTION -->
-    <section class="py-16 md:py-20 bg-slate-50 border-y border-slate-200 overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 gap-4">
-                <div>
-                    <h3 class="font-oswald uppercase tracking-widest text-xs font-bold text-blue-600">Guidance</h3>
-                    <h2 class="text-2xl md:text-3xl font-bold mt-2">Board of Advisors</h2>
-                </div>
-                <div class="flex gap-2">
-                    <button class="adv-prev-btn p-3 md:p-4 border rounded-full hover:bg-white transition"><i class="fa-solid fa-chevron-left text-xs"></i></button>
-                    <button class="adv-next-btn p-3 md:p-4 border rounded-full hover:bg-white transition"><i class="fa-solid fa-chevron-right text-xs"></i></button>
-                </div>
+            <!-- Advisory Grid -->
+            <div id="content-advisory" class="team-section hidden grid grid-cols-1 xl:grid-cols-2 gap-6">
+                <!-- JS Injected Cards -->
             </div>
 
-            <div class="swiper advisorSwiper">
-                <div class="swiper-wrapper" id="advisor-wrapper">
-                    <!-- JS Injected Advisors -->
+            <!-- College Representatives Section -->
+            <div id="content-representatives" class="team-section hidden">
+                <div id="reps-grid" class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                    <!-- JS Injected Cards -->
+                </div>
+                
+                <!-- Join Community Link (Below College Reps) -->
+                <div class="mt-8 flex justify-start">
+                    <a href="https://forms.gle/csSUtYrEL4mw6QnJ8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-slate-900 px-6 py-3.5 text-center font-oswald text-xs uppercase tracking-widest text-white hover:bg-blue-700 transition rounded shadow-md">
+                        Be a College Representative
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </main>
+    </div>
 
     <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="nav.js"></script>
     <script>
         // 1. TEAM DATA
         const executiveBoard = [
             {
                 name: "Manish Pandey",
-                role: "President/FOunder",
+                role: "President/Founder",
                 dept: "Physics, St. Xavier's College",
-                image: "photos/pp/manish_pandey.jpg", // Replace with actual path
+                image: "photos/pp/manish_pandey.jpg",
                 linkedin: "https://www.linkedin.com/in/manish-pandey-24864m/",
                 email: "manish24864pandey@gmail.com"
             },
             {
                 name: "Sudiksha Bhattarai",
                 role: "Vice President/Founder",
-                dept: "Microbiology,Tri-Chandra Multiple Campus",
+                dept: "Microbiology, Tri-Chandra Multiple Campus",
                 image: "photos/pp/sudiksha.jpg",
                 linkedin: "https://www.linkedin.com/in/sudiksha-bhattarai-035191231/",
                 email: "bhattaraisudiksha1@gmail.com"
             },
-
             {
                 name: "Om Jha",
                 role: "Treasurer",
@@ -144,7 +130,7 @@
                 linkedin: "https://www.linkedin.com/in/om-jha-1913b6279/",
                 email: "omzha24680@gmail.com"
             },
-             {
+            {
                 name: "Sugyani Bishwokarma",
                 role: "Secretary",
                 dept: "Physics, Tri-Chandra Multiple Campus",
@@ -152,7 +138,7 @@
                 linkedin: "https://www.linkedin.com/in/sugyani-biswokarma-9566102b7/",
                 email: "biswokarmasugyani62@gmail.com"
             },
-             {
+            {
                 name: "Shaleen Kumar Dhital",
                 role: "Research Head/Founder",
                 dept: "Physics, Tri-Chandra Multiple Campus",
@@ -160,7 +146,7 @@
                 linkedin: "https://www.linkedin.com/in/shaleen-dhital-097636255/",
                 email: "dronadhital@gmail.com"
             },
-             {
+            {
                 name: "Dhirendra Prasad Upadhyay",
                 role: "Event Head",
                 dept: "Physics, Tri-Chandra Multiple Campus",
@@ -168,111 +154,154 @@
                 linkedin: "https://www.linkedin.com/in/dhirendra-prasad-upadhyay-311a28316/",
                 email: "dhirendraup07@gmail.com"
             },
-             {
+            {
                 name: "Dikshya Sharma",
                 role: "HR Manager",
                 dept: "Physics, Tri-Chandra Multiple Campus",
                 image: "photos/pp/Dikshya_sharma.jpg",
                 linkedin: "https://www.linkedin.com/in/dikshyasharma2004/",
                 email: "Kandeldikshya398@gmail.com"
-            },
-            
+            }
         ];
 
-        const advisors = [
-           
-			{
+        let advisors = [
+            {
                 name: "Asst. Prof. Dr. Basu Dev Ghimire",
                 role: "Advisor",
                 inst: "Head of Department, Physics, St.Xavier's College",
                 image: "photos/pp/bdg.png"
             },
-			 {
+            {
                 name: "Asst. Prof. Dr. Bishnu Hari Subedi",
                 role: "Advisor",
                 inst: "Cental Department of Mathematics,Tribhuvan University",
                 image: "photos/pp/bishnu.webp"
             },
-
             {
                 name: "Asst. Prof. Dr. Drabindra Pandit",
                 role: "Advisor",
                 inst: "Head of Research, St.Xavier's College",
                 image: "photos/pp/DP.png"
             },
-			            {
+            {
                 name: "Prof. Dr. Raju Bhai Tyata",
                 role: "Advisor",
                 inst: "R & D unit Head, Professor, Khwopa College of Engineering",
                 image: "photos/profdr.jpeg"
             },
-			{
+            {
                 name: "Asst. Prof. Dr. Arjun Acharya",
                 role: "Advisor",
                 inst: "Assistant Professor, Tribhuvan University",
                 image: "photos/pp/AA.webp"
             }
-			
         ];
 
-        // 2. RENDERER
+        let collegeRepresentatives = [
+            {
+                name: "Dhurbaraj Singh",
+                role: "College Representative",
+                college: "Graduate School of Engineering, Mid-West University",
+                image: "photos/college_representative/dhruv.jpeg"
+            },
+            {
+                name: "Bikash Kadayat",
+                role: "College Representative",
+                college: "Tech AI College",
+                image: "photos/college_representative/bikash.jpeg"
+            },
+            {
+                name: "Raunak Regmi",
+                role: "College Representative",
+                college: "Sunway College Kathmandu",
+                image: "photos/college_representative/raunak.jpeg"
+            }
+        ];
+
+        // --- SORTING LOGIC ---
+        
+        // 1. Sort Advisors: Professor first, then Assistant Professor, then alphabetically
+        advisors.sort((a, b) => {
+            const rankA = a.name.startsWith("Prof.") ? 1 : (a.name.startsWith("Asst. Prof.") ? 2 : 3);
+            const rankB = b.name.startsWith("Prof.") ? 1 : (b.name.startsWith("Asst. Prof.") ? 2 : 3);
+            
+            if (rankA !== rankB) {
+                return rankA - rankB; // Lower number (higher rank) comes first
+            }
+            // If ranks are the same, sort alphabetically
+            return a.name.localeCompare(b.name);
+        });
+
+        // 2. Sort College Representatives alphabetically
+        collegeRepresentatives.sort((a, b) => a.name.localeCompare(b.name));
+
+
+        // 2. HORIZONTAL CARD GENERATOR
+        function generateHorizontalCard(member) {
+            const subtitle = member.dept || member.inst || member.college || '';
+            const isExec = member.email || member.linkedin;
+            
+            const socialLinks = isExec ? `
+                <div class="mt-3 flex gap-3">
+                    ${member.linkedin ? `<a href="${member.linkedin}" target="_blank" class="social-link text-slate-400 hover:text-blue-700 text-sm"><i class="fa-brands fa-linkedin-in"></i></a>` : ''}
+                    ${member.email ? `<a href="mailto:${member.email}" class="social-link text-slate-400 hover:text-blue-700 text-sm"><i class="fa-solid fa-envelope"></i></a>` : ''}
+                </div>
+            ` : '';
+
+            return `
+            <div class="team-card bg-white rounded-lg p-5 flex items-center gap-5 border border-slate-100 border-t-4 border-t-blue-800 shadow-sm">
+                <div class="w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-full overflow-hidden bg-slate-100 border-2 border-slate-50">
+                    <img src="${member.image}" alt="${member.name}" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h4 class="font-bold text-base md:text-lg text-slate-900">${member.name}</h4>
+                    <p class="text-blue-700 text-xs md:text-sm mt-0.5">${member.role}</p>
+                    <p class="text-slate-500 text-xs mt-1.5 leading-snug">${subtitle}</p>
+                    ${socialLinks}
+                </div>
+            </div>`;
+        }
+
+        // 3. RENDERER
         function renderTeam() {
-            const execGrid = document.getElementById('exec-board-grid');
-            const advWrapper = document.getElementById('advisor-wrapper');
-
-            if (execGrid) {
-                execGrid.innerHTML = executiveBoard.map(member => `
-                    <div class="team-card group">
-                        <div class="relative overflow-hidden bg-slate-100 aspect-square rounded-lg shadow-sm">
-                            <img src="${member.image}" class="grayscale-img w-full h-full object-cover">
-                            <!-- Mobile-Social-Visible class ensures icons show on touch screens -->
-                            <div class="absolute bottom-4 left-4 right-4 flex justify-center gap-4 translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 md:translate-y-20 md:opacity-0 transition-all duration-500 mobile-social-visible">
-                                <a href="${member.linkedin}" target="_blank" class="social-link bg-white w-10 h-10 flex items-center justify-center rounded-full shadow-lg text-slate-900"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="mailto:${member.email}" class="social-link bg-white w-10 h-10 flex items-center justify-center rounded-full shadow-lg text-slate-900"><i class="fa-solid fa-envelope"></i></a>
-                            </div>
-                        </div>
-                        <div class="mt-6 text-center">
-                            <h4 class="font-bold text-lg md:text-xl text-slate-900 leading-tight">${member.name}</h4>
-                            <p class="text-blue-600 font-oswald uppercase text-[10px] md:text-xs tracking-widest mt-1">${member.role}</p>
-                            <p class="text-gray-500 text-[11px] mt-2 italic px-2">${member.dept}</p>
-                        </div>
-                    </div>`).join('');
-            }
-
-            if (advWrapper) {
-                advWrapper.innerHTML = advisors.map(adv => `
-                    <div class="swiper-slide h-auto">
-                        <div class="team-card group bg-white border border-slate-200 rounded-xl p-6 md:p-10 flex flex-col items-center h-full text-center">
-                            <div class="w-24 h-24 md:w-32 md:h-32 overflow-hidden bg-slate-100 rounded-full mb-6 border-4 border-white shadow-md">
-                                <img src="${adv.image}" class="grayscale-img w-full h-full object-cover">
-                            </div>
-                            <h4 class="font-bold text-lg text-slate-900">${adv.name}</h4>
-                            <p class="text-blue-600 font-oswald uppercase text-[10px] tracking-widest mt-1">${adv.role}</p>
-                            <div class="w-8 h-px bg-slate-200 my-4"></div>
-                            <p class="text-slate-500 text-xs italic leading-relaxed">${adv.inst}</p>
-                        </div>
-                    </div>`).join('');
-
-                new Swiper(".advisorSwiper", {
-                    slidesPerView: 1, spaceBetween: 24, loop: true,
-                    navigation: { nextEl: ".adv-next-btn", prevEl: ".adv-prev-btn" },
-                    breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
-                });
+            document.getElementById('content-leadership').innerHTML = executiveBoard.map(generateHorizontalCard).join('');
+            document.getElementById('content-advisory').innerHTML = advisors.map(generateHorizontalCard).join('');
+            
+            // Render Representatives into the inner grid, leaving the button below it untouched
+            const repsGrid = document.getElementById('reps-grid');
+            if (collegeRepresentatives.length > 0) {
+                repsGrid.innerHTML = collegeRepresentatives.map(generateHorizontalCard).join('');
+            } else {
+                repsGrid.innerHTML = `
+                    <div class="xl:col-span-2 border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center rounded-lg">
+                        <i class="fa-solid fa-building-columns text-2xl text-blue-600 mb-4"></i>
+                        <h4 class="font-bold text-lg text-slate-900">Representative directory coming soon</h4>
+                        <p class="text-slate-500 text-sm mt-2">College representatives will be listed here as the NSSR network grows.</p>
+                    </div>`;
             }
         }
 
-        // 3. LIGHTBOX & ROUTING
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.add('hidden');
-            document.body.style.overflow = 'auto';
+        // 4. TAB NAVIGATION LOGIC
+        function showSection(sectionId) {
+            // Hide all content sections
+            document.querySelectorAll('.team-section').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Reset all sidebar buttons styling
+            document.querySelectorAll('#team-nav button').forEach(btn => {
+                btn.className = "text-left px-6 py-3 -ml-[1px] border-l-4 border-transparent text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-r-lg transition-all";
+            });
+
+            // Show selected content
+            document.getElementById(`content-${sectionId}`).classList.remove('hidden');
+            
+            // Highlight active button
+            const activeBtn = document.getElementById(`btn-${sectionId}`);
+            activeBtn.className = "text-left px-6 py-3 -ml-[1px] border-l-4 border-blue-900 bg-blue-50/50 text-blue-900 font-bold rounded-r-lg transition-all";
         }
 
-        // 4. INITIAL LOAD
+        // 5. INITIAL LOAD
         window.addEventListener('load', renderTeam);
     </script>
 </body>
