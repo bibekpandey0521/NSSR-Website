@@ -1,0 +1,2668 @@
+/* ==========================================================================
+   NSSR Design System — main.css
+   ---------------------------------------------------------------------------
+   The single stylesheet for the whole site. Every page loads exactly this one
+   file:
+
+       <link rel="stylesheet" href="assets/css/main.css">
+
+   It is deliberately a single, self-contained file with no @import rules.
+   Browsers apply the same cross-origin policy to @import as to fetch(), so a
+   stylesheet that imports its own partials is blocked when the page is opened
+   straight from disk (file://) — the site would lose its entire design system.
+   Flattening the cascade here is what makes file:// work.
+
+   Section order matters:
+     1. Design tokens        — colour, type, spacing, radius, shadow, motion
+     2. Base                 — reset, global typography, focus, print
+     3. Layout               — containers, section rhythm, grids
+     4. Components           — header, nav, buttons, cards, badges, footer
+     5. Page styles          — per-page refinements, appended at the bottom
+
+   Design principles: Apple Human Interface Guidelines (hierarchy, depth,
+   translucent vibrancy, high-contrast legibility) and the Meta Design System
+   (systematic spacing scale, hairline borders, restraint).
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. DESIGN TOKENS
+   ========================================================================== */
+
+:root {
+  /* --- Brand ------------------------------------------------------------ */
+  --nssr-blue: #004aad;
+  --nssr-blue-strong: #00357d;
+  --nssr-blue-soft: #2563eb;
+  --nssr-dark: #0f172a;
+  --nssr-dark-2: #172554;
+
+  /* --- Neutral surfaces ------------------------------------------------- */
+  --bg-primary: #fbfbfd;
+  --bg-surface: #ffffff;
+  --bg-surface-sunken: #f5f5f7;
+  --bg-surface-inverse: var(--nssr-dark);
+  --bg-glass: rgba(255, 255, 255, 0.72);
+  --bg-glass-strong: rgba(255, 255, 255, 0.86);
+  --bg-overlay: rgba(15, 23, 42, 0.55);
+
+  /* --- Text ------------------------------------------------------------- */
+  --text-primary: #1d1d1f;
+  --text-secondary: #515154;
+  --text-tertiary: #6e6e73;
+  --text-quaternary: #86868b;
+  --text-on-accent: #ffffff;
+  --text-on-inverse: #f5f5f7;
+  --text-inverse-muted: rgba(245, 245, 247, 0.68);
+
+  /* --- Accent ----------------------------------------------------------- */
+  --accent-primary: var(--nssr-blue);
+  --accent-primary-hover: #0a5cc0;
+  --accent-primary-pressed: var(--nssr-blue-strong);
+  --accent-subtle-bg: #eef4ff;
+  --accent-subtle-bg-strong: #dbe8ff;
+  --accent-subtle-text: #0b3f8f;
+
+  /* --- Feedback --------------------------------------------------------- */
+  --color-success: #147a52;
+  --color-warning: #8a5a00;
+  --color-danger: #b3261e;
+  --color-info: var(--nssr-blue);
+
+  /* --- Borders (Meta: subtle hairline) ---------------------------------- */
+  --border-hairline: rgba(0, 0, 0, 0.08);
+  --border-hairline-strong: rgba(0, 0, 0, 0.14);
+  --border-hairline-inverse: rgba(255, 255, 255, 0.14);
+  --border-accent: rgba(0, 74, 173, 0.28);
+
+  /* --- Focus ring (accessibility) --------------------------------------- */
+  --focus-ring-color: var(--nssr-blue);
+  --focus-ring-offset: 2px;
+  --focus-ring-width: 2px;
+
+  /* --- Typography ------------------------------------------------------- */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter',
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  /* Editorial serif accent retained for brand/hero display type. */
+  --font-serif-brand: 'Merriweather', Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  --font-size-2xs: 0.6875rem;  /* 11px */
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.8125rem;   /* 13px */
+  --font-size-md: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 1.875rem;   /* 30px */
+  --font-size-4xl: 2.25rem;    /* 36px */
+  --font-size-5xl: 3rem;       /* 48px */
+  --font-size-6xl: 3.75rem;    /* 60px */
+  --font-size-7xl: 4.5rem;     /* 72px */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* Headings get tight, Apple-like tracking. */
+  --heading-tracking-tight: -0.025em;
+  --heading-tracking-snug: -0.015em;
+  --heading-tracking-wide: 0.3em;   /* existing eyebrow/caps convention */
+  --body-tracking-normal: -0.003em;
+  --body-tracking-caps: 0.05em;
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.6;
+  --leading-loose: 1.8;
+
+  /* --- Spacing: 8px spatial grid ---------------------------------------- */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px  — hairline nudges only */
+  --space-2: 0.5rem;    /* 8px  */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.5rem;    /* 24px */
+  --space-6: 2rem;      /* 32px */
+  --space-7: 2.5rem;    /* 40px */
+  --space-8: 3rem;      /* 48px */
+  --space-9: 4rem;      /* 64px */
+  --space-10: 5rem;     /* 80px */
+  --space-11: 6rem;     /* 96px */
+  --space-12: 8rem;     /* 128px */
+
+  /* --- Radius ----------------------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;    /* default card radius per HIG */
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-pill: 9999px;
+  --radius-circle: 50%;
+
+  /* --- Elevation: multi-layer soft ambient shadows ---------------------- */
+  --shadow-none: none;
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.07);
+  --shadow-lg: 0 18px 40px -12px rgba(15, 23, 42, 0.16);
+  --shadow-xl: 0 32px 64px -20px rgba(15, 23, 42, 0.22);
+  --shadow-accent: 0 12px 28px -10px rgba(0, 74, 173, 0.4);
+  --shadow-nav: 0 1px 0 var(--border-hairline), 0 8px 24px -18px rgba(15, 23, 42, 0.4);
+
+  /* --- Vibrancy (Apple glassmorphism) ---------------------------------- */
+  --blur-nav: 20px;
+  --blur-saturation: 180%;
+  --blur-overlay: 8px;
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.19, 1, 0.22, 1);
+  --transition-fast: 120ms var(--ease-standard);
+  --transition-base: 220ms var(--ease-standard);
+  --transition-smooth: 220ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-slow: 400ms var(--ease-out-quart);
+  --transition-reveal: 700ms var(--ease-spring);
+
+  /* --- Layout ----------------------------------------------------------- */
+  --nav-height: 64px;
+  --nav-height-compact: 56px;
+  --container-max: 1160px;
+  --container-max-wide: 1280px;
+  --container-gutter: var(--space-5);
+  --content-measure: 68ch;   /* readable line length for body copy */
+
+  --z-base: 1;
+  --z-sticky: 100;
+  --z-nav: 1000;
+  --z-progress: 1001;
+  --z-drawer: 1002;
+  --z-scrim: 1500;
+  --z-modal: 2000;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --nav-height: 60px;
+    --container-gutter: var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --nav-height: 56px;
+  }
+}
+
+
+/* ==========================================================================
+   2. BASE — reset, global typography, shared defaults
+   --------------------------------------------------------------------------
+   NOTE ON SPECIFICITY: the Tailwind Play CDN injects its preflight at runtime,
+   which lands *after* this stylesheet in the cascade. Preflight resets headings
+   to `font-size: inherit` with element-level specificity, so base typography is
+   declared one step higher (`html body`, `body h1`, ...) to survive it. Tailwind
+   utilities are class-level and still win, so existing utility classes on page
+   content keep working exactly as before.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* Keep anchored sections clear of the sticky header. */
+  scroll-padding-top: calc(var(--nav-height) + var(--space-4));
+  scrollbar-gutter: stable;
+  height: 100%;
+}
+
+html body {
+  min-height: 100%;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--body-tracking-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body h1, body h2, body h3, body h4, body h5, body h6 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--heading-tracking-tight);
+  text-wrap: balance;
+  /* NO `color` HERE, DELIBERATELY.
+     A declaration on the element itself always beats inheritance, so pinning
+     the heading colour here silently overrode the `text-white` that every dark
+     hero puts on its wrapper. The result was near-black #1d1d1f headings on a
+     #0f172a background — nine of them across eight pages, all effectively
+     invisible while the accent `<span>` inside stayed bright sky-blue and made
+     it look like only part of the line had rendered.
+
+     Colour is now inherited: `html body` supplies the default for light
+     surfaces, and a hero's own `text-white` reaches the heading as intended.
+     A belt-and-braces rule further down re-asserts white on known dark
+     surfaces, so the invariant does not rest on a wrapper class being present. */
+}
+
+body h1 { font-size: var(--font-size-4xl); }
+body h2 { font-size: var(--font-size-3xl); }
+body h3 { font-size: var(--font-size-2xl); }
+body h4 { font-size: var(--font-size-xl); }
+body h5 { font-size: var(--font-size-lg); }
+body h6 { font-size: var(--font-size-base); }
+
+@media (min-width: 768px) {
+  body h1 { font-size: var(--font-size-6xl); }
+  body h2 { font-size: var(--font-size-4xl); }
+}
+
+p {
+  margin: 0;
+  max-width: var(--content-measure);
+  text-wrap: pretty;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+figure { margin: 0; }
+
+img, svg, video, canvas, picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+html body a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+html body a:hover { color: var(--accent-primary-hover); }
+
+body button, body input, body select, body textarea {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+body button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul[class], ol[class] { list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th { text-align: left; }
+
+hr {
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background-color: var(--border-hairline);
+}
+
+::selection {
+  background-color: var(--accent-subtle-bg-strong);
+  color: var(--accent-subtle-text);
+}
+
+/* --- Focus visibility (keyboard only) ----------------------------------- */
+:focus { outline: none; }
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-xs);
+}
+
+/* --- Skip link ---------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: var(--z-modal);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-on-accent);
+  background: var(--accent-primary);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-160%);
+  transition: transform var(--transition-base);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  color: var(--text-on-accent);
+}
+
+/* --- Shared typography utilities ---------------------------------------- */
+
+/* Uppercase eyebrow / kicker label used across hero + section headers. */
+.academic-caps {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-2xs);
+  line-height: var(--leading-snug);
+  text-transform: uppercase;
+  letter-spacing: var(--heading-tracking-wide);
+}
+
+/* Oswald-backed label class preserved for existing markup. */
+.font-oswald {
+  font-family: 'Oswald', var(--font-sans);
+  font-weight: var(--font-weight-regular);
+}
+
+/* Editorial serif headings preserved for brand/hero display type. */
+.font-serif {
+  font-family: var(--font-serif-brand);
+}
+
+/* --- Heading colour on dark surfaces ---------------------------------------
+   Belt to the braces described above. `html body <dark-surface> h1` is
+   (0,2,3), which outranks both `body h1` and every single-class Tailwind
+   colour utility, and `!important` also outranks the Tailwind Play CDN's
+   runtime-injected preflight. The dark surfaces listed are the ones this site
+   actually uses; the selector is a list so adding another is a one-word change. */
+html body :is(.bg-slate-900, .bg-slate-950, .bg-slate-800, .bg-nssrDark, .bg-nssrDark2) :is(h1, h2, h3) {
+  color: #ffffff !important;
+}
+
+/* The italicised half of a split hero heading, e.g.
+   "Curiosity into <em>contribution.</em>". */
+.heading-accent {
+  color: #7dd3fc;
+  font-style: italic;
+}
+
+html body :is(.bg-slate-900, .bg-slate-950, .bg-slate-800, .bg-nssrDark, .bg-nssrDark2) .heading-accent {
+  color: #7dd3fc !important;
+  font-style: italic !important;
+}
+
+
+/* ==========================================================================
+   3. LAYOUT — containers, section rhythm, grids
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+.container-narrow { max-width: 820px; }
+.container-wide { max-width: var(--container-max-wide); }
+
+/* --- Section rhythm (8px grid) --------------------------------------------- */
+.section { padding-block: var(--space-9); }
+.section-sm { padding-block: var(--space-7); }
+.section-lg { padding-block: var(--space-11); }
+
+@media (min-width: 768px) {
+  .section { padding-block: var(--space-10); }
+  .section-lg { padding-block: var(--space-12); }
+}
+
+/* --- Editorial grids -------------------------------------------------------- */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.grid-auto {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+@media (max-width: 1024px) {
+  .section-lg { padding-block: var(--space-10); }
+}
+
+@media (max-width: 480px) {
+  .section,
+  .section-sm,
+  .section-lg { padding-block: var(--space-8); }
+
+  .cluster { gap: var(--space-2); }
+}
+
+/* --- Scroll lock while the mobile drawer is open --------------------------- */
+body.nav-open { overflow: hidden; }
+
+
+/* ==========================================================================
+   4. COMPONENTS
+   ========================================================================== */
+
+/* ==========================================================================
+   Header — sticky, translucent, Apple-style vibrancy
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  height: var(--nav-height);
+  background: var(--bg-glass);
+  -webkit-backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-nav));
+  backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-nav));
+  border-bottom: 1px solid var(--border-hairline);
+  transition: background-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+/* Fallback for engines without backdrop-filter. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header { background: var(--bg-glass-strong); }
+}
+
+/* Depth is added only once the page scrolls, keeping the top state airy. */
+.site-header[data-nav-state='scrolled'] {
+  background: var(--bg-glass-strong);
+  box-shadow: var(--shadow-nav);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: var(--container-max-wide);
+  height: 100%;
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+/* --- Brand ----------------------------------------------------------------- */
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.nav-brand-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.brand-text {
+  font-family: var(--font-serif-brand);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--heading-tracking-snug);
+  color: var(--nssr-blue);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Primary menu ---------------------------------------------------------- */
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  letter-spacing: var(--body-tracking-caps);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-secondary);
+  background: none;
+  border: 0;
+  border-radius: var(--radius-pill);
+  transition: color var(--transition-base), background-color var(--transition-base);
+}
+
+.nav-link:hover {
+  color: var(--nssr-blue);
+  background: var(--accent-subtle-bg);
+}
+
+/* Active route: weight + fill, plus a Meta-style underline affordance. */
+.nav-link.is-active {
+  color: var(--nssr-blue);
+  font-weight: var(--font-weight-bold);
+  background: var(--accent-subtle-bg);
+}
+
+.nav-link.is-active::after {
+  content: '';
+  position: absolute;
+  left: var(--space-3);
+  right: var(--space-3);
+  bottom: 2px;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--nssr-blue);
+}
+
+.nav-cta {
+  margin-left: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  color: var(--text-on-accent);
+  background: var(--accent-primary);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-accent);
+  transition: background-color var(--transition-base), transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.nav-cta:hover {
+  color: var(--text-on-accent);
+  background: var(--accent-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px -12px rgba(0, 74, 173, 0.55);
+}
+
+.nav-cta.is-active {
+  color: var(--text-on-accent);
+  background: var(--accent-primary-pressed);
+}
+
+.nav-cta.is-active::after { display: none; }
+
+/* --- Dropdowns ------------------------------------------------------------- */
+.nav-dropdown-item { position: relative; }
+
+.dropdown-trigger-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-arrow-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-left: -2px;
+  color: var(--text-tertiary);
+  background: none;
+  border: 0;
+  border-radius: var(--radius-circle);
+  transition: color var(--transition-base), background-color var(--transition-base);
+}
+
+.dropdown-arrow-btn:hover {
+  color: var(--nssr-blue);
+  background: var(--accent-subtle-bg);
+}
+
+.dropdown-caret {
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform var(--transition-base);
+}
+
+.nav-dropdown-item.is-open .dropdown-caret { transform: translateY(1px) rotate(225deg); }
+.nav-dropdown-item.is-open .dropdown-arrow-btn { color: var(--nssr-blue); }
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  z-index: var(--z-drawer);
+  min-width: 250px;
+  margin: 0;
+  padding: var(--space-2);
+  list-style: none;
+  background: var(--bg-glass-strong);
+  -webkit-backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-overlay));
+  backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-overlay));
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity var(--transition-base), transform var(--transition-base),
+    visibility var(--transition-base);
+}
+
+/* Desktop: hover + keyboard focus open the menu. */
+@media (min-width: 1025px) {
+  .nav-dropdown-item:hover .nav-dropdown-menu,
+  .nav-dropdown-item:focus-within .nav-dropdown-menu,
+  .nav-dropdown-item.is-open .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile: explicit toggle only, so hover does not trap the drawer open. */
+@media (max-width: 1024px) {
+  .nav-dropdown-menu {
+    position: static;
+    min-width: 0;
+    display: none;
+    margin-top: var(--space-2);
+    background: var(--bg-surface-sunken);
+    border: 1px solid var(--border-hairline);
+    box-shadow: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .nav-dropdown-item.is-open .nav-dropdown-menu { display: block; }
+}
+
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.dropdown-link:hover {
+  color: var(--nssr-blue);
+  background: var(--accent-subtle-bg);
+}
+
+.dropdown-link.is-active {
+  color: var(--nssr-blue);
+  font-weight: var(--font-weight-semibold);
+  background: var(--accent-subtle-bg);
+}
+
+/* --- Hamburger ------------------------------------------------------------- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  margin-right: -8px;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+}
+
+.hamburger-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-fast);
+}
+
+.nav-toggle.is-active .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.is-active .hamburger-line:nth-child(2) { opacity: 0; }
+
+.nav-toggle.is-active .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Mobile drawer --------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .nav-toggle { display: flex; }
+
+  .brand-text {
+    font-size: var(--font-size-sm);
+    white-space: normal;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    z-index: var(--z-drawer);
+    max-height: calc(100vh - var(--nav-height));
+    max-height: calc(100dvh - var(--nav-height));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: var(--space-4) var(--container-gutter) var(--space-6);
+    background: var(--bg-glass-strong);
+    -webkit-backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-nav));
+    backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-nav));
+    border-bottom: 1px solid var(--border-hairline);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity var(--transition-base), transform var(--transition-base),
+      visibility var(--transition-base);
+  }
+
+  .nav-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-1);
+  }
+
+  .nav-item { width: 100%; }
+
+  .nav-link {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-base);
+    text-transform: none;
+    letter-spacing: var(--body-tracking-normal);
+    border-radius: var(--radius-sm);
+  }
+
+  .nav-link.is-active::after { display: none; }
+
+  .dropdown-trigger-wrapper { width: 100%; }
+  .nav-dropdown-item .nav-link { flex: 1 1 auto; }
+
+  .dropdown-arrow-btn {
+    width: 44px;
+    height: 44px;
+    margin: 0 -8px 0 0;
+  }
+
+  .dropdown-link { font-size: var(--font-size-base); }
+
+  .nav-cta {
+    justify-content: center;
+    width: 100%;
+    margin: var(--space-3) 0 0;
+    padding: var(--space-4);
+    font-size: var(--font-size-base);
+    text-transform: none;
+    letter-spacing: var(--body-tracking-normal);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-brand-logo { width: 30px; height: 30px; }
+
+  .brand-text {
+    font-size: var(--font-size-xs);
+    line-height: var(--leading-snug);
+  }
+}
+
+
+/* ==========================================================================
+   Buttons — enforced high-contrast Apple / Meta treatment
+   --------------------------------------------------------------------------
+   WHY THE `!important` HERE IS LOAD-BEARING, NOT COSMETIC:
+
+   `html body a { color: var(--accent-primary) }` in section 2 has specificity
+   (0,0,3) — three type selectors. Tailwind's `.text-white` is only (0,1,0).
+   A class selector cannot outrank a three-element selector, so every solid
+   blue button was being repainted with the *brand blue link colour* on top of
+   its blue background. The result was the "blank blue button": a filled blue
+   pill with invisible blue-on-blue text.
+
+   `!important` is the correct tool here because it outranks the element rule
+   from any origin, including the Tailwind Play CDN preflight that this site
+   injects at runtime and which no author stylesheet can otherwise out-specify.
+   These classes are the one place where a *guaranteed* colour contrast is
+   required for legibility, so the guarantee is worth the specificity cost.
+   ========================================================================== */
+
+/* --- Shared button box ------------------------------------------------------ */
+.btn-primary,
+.btn-secondary,
+.cta-btn,
+.btn-outline,
+.btn-ghost,
+a.btn-blue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition-base), color var(--transition-base),
+    border-color var(--transition-base), transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+/* --- Primary: solid blue, white label --------------------------------------- */
+.btn-primary,
+.cta-btn,
+a.btn-blue {
+  padding: 14px 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #ffffff !important;
+  background-color: #1d4ed8;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px -10px rgba(29, 78, 216, 0.65);
+}
+
+/* Children must not fall back to the inherited link blue. */
+.btn-primary *,
+.cta-btn *,
+a.btn-blue * {
+  color: #ffffff !important;
+}
+
+.btn-primary svg,
+.cta-btn svg,
+a.btn-blue svg {
+  fill: currentColor;
+  color: #ffffff !important;
+  flex: 0 0 auto;
+}
+
+.btn-primary:hover,
+.cta-btn:hover,
+a.btn-blue:hover {
+  color: #ffffff !important;
+  background-color: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px -12px rgba(29, 78, 216, 0.75);
+}
+
+.btn-primary:active,
+.cta-btn:active,
+a.btn-blue:active {
+  background-color: #1e3a8a;
+  transform: translateY(0);
+}
+
+/* Keyboard focus must stay visible on top of the saturated fill. */
+.btn-primary:focus-visible,
+.cta-btn:focus-visible,
+a.btn-blue:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.55);
+}
+
+/* --- Secondary: white outline ----------------------------------------------- */
+.btn-secondary,
+.btn-outline {
+  padding: 14px 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #1d1d1f !important;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.btn-secondary *,
+.btn-outline * { color: #1d1d1f !important; }
+
+.btn-secondary:hover,
+.btn-outline:hover {
+  color: #1d1d1f !important;
+  background-color: #f5f5f7;
+  border-color: rgba(0, 0, 0, 0.28);
+}
+
+.btn-secondary:focus-visible,
+.btn-outline:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* --- Ghost: low-emphasis tertiary action ------------------------------------ */
+.btn-ghost {
+  padding: 14px 28px;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  color: var(--text-secondary);
+  background-color: transparent;
+  border: 1px solid var(--border-hairline-strong);
+  border-radius: 10px;
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-surface-sunken);
+}
+
+/* --- Size & shape modifiers ------------------------------------------------- */
+/* Written as compound selectors (0,2,0) on purpose. The Tailwind Play CDN
+   injects its utilities at runtime, after this stylesheet, so a single-class
+   modifier would lose to `.px-8` / `.rounded-full` purely on source order.
+   Pairing each modifier with its base class makes the override deterministic
+   instead of accidental. */
+.btn-primary.btn-lg,
+.cta-btn.btn-lg,
+a.btn-blue.btn-lg,
+.btn-secondary.btn-lg,
+.btn-outline.btn-lg,
+.btn-ghost.btn-lg {
+  padding: 18px 36px;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.btn-primary.btn-sm,
+.cta-btn.btn-sm,
+a.btn-blue.btn-sm,
+.btn-secondary.btn-sm,
+.btn-outline.btn-sm,
+.btn-ghost.btn-sm {
+  padding: 10px 18px;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.05em;
+}
+
+/* Pill-shaped buttons, used by the compact "Apply Now" calls to action. */
+.btn-primary.btn-pill,
+.cta-btn.btn-pill,
+a.btn-blue.btn-pill,
+.btn-secondary.btn-pill,
+.btn-outline.btn-pill,
+.btn-ghost.btn-pill { border-radius: var(--radius-pill); }
+
+/* Softer-square buttons, used by the large hero calls to action. */
+.btn-primary.btn-sharp,
+.cta-btn.btn-sharp,
+a.btn-blue.btn-sharp,
+.btn-secondary.btn-sharp,
+.btn-outline.btn-sharp,
+.btn-ghost.btn-sharp { border-radius: var(--radius-sm); }
+
+
+/* ==========================================================================
+   Cards & surfaces — 16px radius, hairline border, layered ambient shadow
+   ========================================================================== */
+
+.card {
+  padding: var(--space-6);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-md);
+}
+
+.card-elevated { box-shadow: var(--shadow-md); }
+.card-elevated:hover { box-shadow: var(--shadow-lg); }
+
+.card-glass {
+  background: var(--bg-glass);
+  -webkit-backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-overlay));
+  backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-overlay));
+  box-shadow: var(--shadow-sm);
+}
+
+/* --- Icon tiles (shared by feature/gain cards) ------------------------------ */
+/* Inline-SVG stand-in for a Font Awesome glyph.
+   The site pins Font Awesome 6.0.0-beta3 from cdnjs, which is old enough that
+   several glyphs (fa-people-group, fa-shield-halved) simply do not exist in
+   it. Those slots are filled with an inline SVG instead.
+
+   The box model below deliberately mirrors Font Awesome's own webfont metrics
+   (`.fa-solid { display: inline-block }`, `svg { height: 1em; vertical-align:
+   -0.125em }`) so an inline SVG lines up pixel-for-pixel with the `<i>` glyphs
+   sitting next to it in the same card row. */
+.icon-inline {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+  flex: 0 0 auto;
+}
+
+/* Blue team/collaboration pictogram, #2563eb, matching the .text-blue-600 icons
+   it sits beside. Three figures — two behind, one in front. */
+.icon-team { color: #2563eb; }
+
+/* Hidden definition host for the <symbol> sprite. */
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Fixed 22x22 slot for a card icon.
+   `display: block` is deliberate: it takes the icon out of the inline line box,
+   so the box is exactly the size declared here and cannot be stretched by
+   surrounding line-height the way an inline-block Font Awesome <i> is. Every
+   icon in a card row therefore starts at the same y offset and leaves the same
+   gap to the text beneath it. */
+.icon-box {
+  display: block;
+  width: 22px;
+  height: 22px;
+  margin-bottom: 16px;
+  color: #2563eb;
+  flex: 0 0 auto;
+}
+
+/* A <use> shadow tree has no intrinsic box, so the host must supply one. */
+.icon-box use { color: inherit; }
+
+.icon-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--space-3);
+  color: #2563eb;
+  background: #eef4ff;
+  border-radius: var(--radius-sm);
+}
+
+.icon-tile svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Font Awesome equivalents inside the same tiles keep the box aligned. */
+.icon-tile > i {
+  color: #2563eb;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+
+/* ==========================================================================
+   Badges / chips
+   ========================================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-snug);
+  text-transform: uppercase;
+  letter-spacing: var(--heading-tracking-wide);
+  color: var(--accent-subtle-text);
+  background: var(--accent-subtle-bg);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-pill);
+}
+
+.badge-neutral {
+  color: var(--text-secondary);
+  background: var(--bg-surface-sunken);
+  border-color: var(--border-hairline);
+}
+
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  padding-block: var(--space-9);
+  color: var(--text-on-inverse);
+  background: var(--nssr-dark);
+  border-top: 1px solid var(--border-hairline-inverse);
+}
+
+.site-footer a {
+  color: var(--text-on-inverse);
+  text-decoration: none;
+  transition: color var(--transition-base), opacity var(--transition-base);
+}
+
+.site-footer a:hover {
+  color: var(--accent-subtle-bg-strong);
+  text-decoration: underline;
+}
+
+.site-footer h3 {
+  color: var(--text-on-inverse);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--heading-tracking-snug);
+}
+
+.site-footer img {
+  /* The logo is a light-on-dark mark; dim it back to sit on the dark panel. */
+  opacity: 0.92;
+  filter: brightness(0) invert(1);
+}
+
+.site-footer .text-gray-400 { color: var(--text-inverse-muted); }
+
+/* The newsletter submit button sits on the dark footer and shares one row with a
+   text input, so it uses the compact box. The doubled selector (0,2,0) both
+   beats the base .btn-primary rule and outranks the Tailwind Play CDN utilities
+   the CDN injects at runtime. */
+.site-footer .btn-primary,
+.site-footer .cta-btn {
+  padding: 10px 18px;
+  /* Keep the compact box but never drop below the 44px touch minimum. */
+  min-height: 44px;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.02em;
+  color: #ffffff !important;
+  background-color: #1d4ed8;
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+
+.site-footer .btn-primary *,
+.site-footer .cta-btn * { color: #ffffff !important; }
+
+.site-footer .btn-primary:hover,
+.site-footer .cta-btn:hover { background-color: #1e40af; }
+
+/* --- Newsletter form --------------------------------------------------------
+   Lives in a four-column footer grid, so between the lg breakpoint (1024px)
+   and ~1200px each column is only ~230px wide. A flex input defaults to
+   `min-width: auto`, i.e. its intrinsic size attribute, so the row refuses to
+   shrink and pushes the whole document into horizontal scroll. `min-width: 0`
+   is what actually lets the field give way; `width: 100%` alone does not. */
+.newsletter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.newsletter-form__input {
+  flex: 1 1 160px;
+  min-width: 0;
+  width: 100%;
+  padding: 10px 12px;
+  font-size: var(--font-size-md);
+  color: #1d1d1f;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline-strong);
+  border-radius: 8px;
+}
+
+.newsletter-form__input::placeholder { color: var(--text-quaternary); }
+
+.newsletter-form__submit {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+
+/* ==========================================================================
+   Motion preferences
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .site-header,
+  .nav-menu,
+  .nav-link,
+  .btn-primary,
+  .cta-btn,
+  a.btn-blue {
+    transition: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   Print
+   ========================================================================== */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .skip-link { display: none !important; }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+}
+
+
+/* ==========================================================================
+   5. PAGE STYLES
+   --------------------------------------------------------------------------
+   Refinements extracted from the former per-page inline <style> blocks, all
+   folded into this single file. Class names are page-specific (phase-card,
+   step-card, mentor-card, ...) and are grouped by the page that owns them.
+   ========================================================================== */
+
+/* --- index.html --------------------------------------------------------- */
+@keyframes nssrDotFade {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Mission bullet marker: simple dot, subtle fade-in on scroll-into-view. */
+.nssr-draw-line {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  min-height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--nssr-blue, #004AAD);
+  opacity: 0;
+}
+
+.nssr-draw-line.is-visible { animation: nssrDotFade 0.4s ease forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nssr-draw-line.is-visible { animation: none; opacity: 1; transform: scale(1); }
+}
+
+/* Image motion without desaturating the photography. */
+.hover-color-img { transition: transform 0.5s ease; }
+.group:hover .hover-color-img { transform: scale(1.05); }
+
+/* Animation: Ken Burns (subtle zoom). */
+@keyframes ken-burns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 25s ease-out infinite alternate;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Animation: fade in up. */
+@keyframes fade-in-up {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.delay-300 { animation-delay: 0.3s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* Only the hero slides get the dark background. */
+.mainSwiper .swiper-slide {
+  background-color: #0f172a;
+  overflow: hidden;
+}
+
+/* Partner/collaborator slides stay white/transparent. */
+.partnerSwiper .swiper-slide { background-color: transparent !important; }
+.partnerSwiper .swiper-wrapper { transition-timing-function: linear !important; }
+
+/* Swiper pagination styling. */
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.2) !important;
+  opacity: 1 !important;
+  width: 30px !important;
+  height: 2px !important;
+  border-radius: 0 !important;
+  transition: all 0.4s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #60a5fa !important;
+  width: 60px !important;
+}
+
+
+/* --- nsrf.html ------------------------------------------------------------ */
+.phase-card {
+  border: 1px solid #e2e8f0;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.phase-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--nssr-blue);
+  box-shadow: 0 18px 25px -12px rgba(15, 23, 42, 0.2);
+}
+
+.mentor-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mentor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 22px -12px rgba(15, 23, 42, 0.25);
+}
+
+
+/* --- research-pathways.html ------------------------------------------------ */
+.step-card {
+  border: 1px solid #e2e8f0;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--nssr-blue);
+  box-shadow: 0 18px 25px -12px rgba(15, 23, 42, 0.2);
+}
+
+
+/* --- research.html --------------------------------------------------------- */
+.research-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.research-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -12px rgba(15, 23, 42, 0.2);
+}
+
+
+/* --- outreach.html --------------------------------------------------------- */
+.outreach-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.outreach-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -12px rgba(15, 23, 42, 0.2);
+}
+
+
+/* --- science-beyond-classroom.html & student-empowerment.html --------------- */
+/* The brief for these two pages maps the amber accent onto the brand blue, so
+   the Tailwind amber utilities are overridden to keep the palette consistent. */
+.text-amber-400, .text-amber-500, .text-amber-600 { color: #2563eb !important; }
+.bg-amber-50 { background-color: #eff6ff !important; }
+.bg-amber-500 { background-color: #2563eb !important; color: #ffffff !important; }
+.hover\:bg-amber-400:hover { background-color: #3b82f6 !important; }
+
+.story-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 25px -12px rgba(15, 23, 42, 0.2);
+}
+
+.initiative-card {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.initiative-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--nssr-blue);
+  box-shadow: 0 18px 25px -12px rgba(15, 23, 42, 0.2);
+}
+
+
+/* --- membership.html ------------------------------------------------------- */
+.pathway-card {
+  transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  border: 1px solid #e2e8f0;
+}
+
+.pathway-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--nssr-blue);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+.benefit-icon {
+  color: var(--nssr-blue);
+  background: rgba(0, 74, 173, 0.1);
+}
+
+
+/* --- team.html ------------------------------------------------------------- */
+.team-card { transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1); }
+
+.grayscale-img {
+  filter: grayscale(0%);
+  transition: filter 0.5s ease;
+}
+
+.group:hover .grayscale-img { filter: grayscale(0%); }
+
+.social-link { transition: all 0.3s ease; }
+.social-link:hover { color: var(--nssr-blue); transform: scale(1.1); }
+
+@media (max-width: 768px) {
+  /* Make social links visible on mobile since there is no hover. */
+  .mobile-social-visible { transform: translateY(0) !important; opacity: 1 !important; }
+  .grayscale-img { filter: grayscale(0%); }
+}
+
+
+/* --- blog.html ------------------------------------------------------------- */
+/* Reading progress bar, pinned above the header. */
+#progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  z-index: 1100;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--nssr-blue);
+  transition: width 0.1s;
+}
+
+.blog-card {
+  transition: all 0.4s ease;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.blog-card:hover {
+  background-color: #fafafa;
+  padding-left: 0.5rem;
+  border-bottom-color: var(--nssr-blue);
+}
+
+.reading-container { max-width: 760px; margin: 0 auto; }
+#detail-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; color: #334155; }
+#detail-content h3 { font-size: 1.75rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--nssr-dark); }
+
+#detail-content blockquote {
+  border-left: 4px solid var(--nssr-blue);
+  padding-left: 1.5rem;
+  font-style: italic;
+  margin: 2rem 0;
+  font-size: 1.25rem;
+  color: #475569;
+}
+
+.fade-in { animation: fadeIn 0.6s ease forwards; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- event.html ------------------------------------------------------------ */
+.hero-pt { padding-top: 8rem; }
+@media (min-width: 768px) { .hero-pt { padding-top: 10rem; } }
+
+#event-detail-view { display: none; }
+.fade-up { animation: fadeUp 0.6s forwards; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-content { display: none; animation: fadeIn 0.4s; }
+.tab-content.active { display: block; }
+
+
+/* ==========================================================================
+   6. BLUE-SURFACE LINK LOCK  —  MUST REMAIN THE LAST BLOCK IN THIS FILE
+   --------------------------------------------------------------------------
+   THE BUG THIS FIXES
+   --------------------
+   Section 2 of this file contains:
+
+       html body a        { color: var(--accent-primary) }   /* (0,0,3) */
+       html body a:hover  { color: var(--accent-primary-hover) }
+
+   Specificity is compared as (inline, CLASS, TYPE) and the first non-zero
+   column decides. `html body a` has zero classes and three type selectors, so
+   it beats every single-class rule a stylesheet or utility framework can
+   write — including Tailwind's `.text-white` (0,1,0) and our own
+   `.nav-cta { color: white }` (0,1,0).
+
+   Consequence: every link rendered on a blue surface had its label repainted
+   in brand blue on top of that blue background, i.e. a filled blue pill with
+   completely invisible text. The nav "JOIN US" pill, the hero CTA beside
+   "VIEW REPOSITORY", and the primary button above "INQUIRE ABOUT NSRF" were
+   all affected. The hover state was broken too, so the label could not be
+   recovered by pointing at it.
+
+   THE FIX
+   -------
+   Two belts, no braces:
+
+     1. Specificity — every selector below is `html body <tag>.<class>`, giving
+        at least (0,1,3) and therefore a strict win over `html body a`.
+     2. `!important` — an author `!important` declaration outranks the Tailwind
+        Play CDN's preflight and utilities regardless of specificity, so the
+        white label cannot be lost even if the CDN reorders its injection.
+
+   The blue surface is matched by class so this stays a targeted rule rather
+   than a blanket `a { color: white }`, which would wreck every ordinary text
+   link in the footer and in body copy.
+
+   Every interactive state is listed explicitly. Relying on the cascade to
+   carry colour across :hover was the second half of the original bug: a
+   :hover rule that loses specificity silently drops the label colour and the
+   button "loses" its text the moment the cursor lands on it.
+   ========================================================================== */
+
+/* --- Shared surface selector ------------------------------------------------
+   Repeated per state so the four state blocks below can never drift apart.
+   `.nav-cta` is the nav "JOIN US" pill; the [class~=] selectors catch raw
+   Tailwind blue utilities written straight into markup. */
+html body a.btn-primary,
+html body a.cta-btn,
+html body a.btn-blue,
+html body a.nav-cta,
+html body a.btn-ghost-blue,
+html body a[class~="bg-blue-500"],
+html body a[class~="bg-blue-600"],
+html body a[class~="bg-blue-700"],
+html body a[class~="bg-blue-800"],
+html body a[class~="bg-blue-900"],
+html body a[class~="bg-nssrBlue"],
+html body button.btn-primary,
+html body button.cta-btn,
+html body button.btn-blue {
+  color: #ffffff !important;
+}
+
+/* Child label/icon wrappers must inherit, not revert to the link blue. */
+html body a.btn-primary :is(span, svg, i, b, strong, em, small),
+html body a.cta-btn :is(span, svg, i, b, strong, em, small),
+html body a.btn-blue :is(span, svg, i, b, strong, em, small),
+html body a.nav-cta :is(span, svg, i, b, strong, em, small),
+html body a.btn-ghost-blue :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-blue-500"] :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-blue-600"] :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-blue-700"] :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-blue-800"] :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-blue-900"] :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-nssrBlue"] :is(span, svg, i, b, strong, em, small),
+html body button.btn-primary :is(span, svg, i, b, strong, em, small),
+html body button.cta-btn :is(span, svg, i, b, strong, em, small),
+html body button.btn-blue :is(span, svg, i, b, strong, em, small) {
+  color: #ffffff !important;
+}
+
+/* Glyphs that are drawn rather than typeset. */
+html body a.btn-primary svg,
+html body a.cta-btn svg,
+html body a.btn-blue svg,
+html body a.nav-cta svg,
+html body a.btn-ghost-blue svg,
+html body button.btn-primary svg,
+html body button.cta-btn svg,
+html body button.btn-blue svg {
+  fill: currentColor;
+  color: #ffffff !important;
+}
+
+/* --- Hover: darker fill, 2px lift, soft blue glow --------------------------- */
+html body a.btn-primary:hover,
+html body a.cta-btn:hover,
+html body a.btn-blue:hover,
+html body a.nav-cta:hover,
+html body a.btn-ghost-blue:hover,
+html body a[class~="bg-blue-500"]:hover,
+html body a[class~="bg-blue-600"]:hover,
+html body a[class~="bg-blue-700"]:hover,
+html body a[class~="bg-blue-800"]:hover,
+html body a[class~="bg-blue-900"]:hover,
+html body a[class~="bg-nssrBlue"]:hover,
+html body button.btn-primary:hover,
+html body button.cta-btn:hover,
+html body button.btn-blue:hover {
+  color: #ffffff !important;
+  background-color: #1e40af;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(29, 78, 216, 0.28);
+}
+
+html body a.btn-primary:hover :is(span, svg, i, b, strong, em, small),
+html body a.cta-btn:hover :is(span, svg, i, b, strong, em, small),
+html body a.btn-blue:hover :is(span, svg, i, b, strong, em, small),
+html body a.nav-cta:hover :is(span, svg, i, b, strong, em, small),
+html body a.btn-ghost-blue:hover :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-blue-500"]:hover :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-blue-600"]:hover :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-blue-700"]:hover :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-blue-800"]:hover :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-blue-900"]:hover :is(span, svg, i, b, strong, em, small),
+html body a[class~="bg-nssrBlue"]:hover :is(span, svg, i, b, strong, em, small),
+html body button.btn-primary:hover :is(span, svg, i, b, strong, em, small),
+html body button.cta-btn:hover :is(span, svg, i, b, strong, em, small),
+html body button.btn-blue:hover :is(span, svg, i, b, strong, em, small) {
+  color: #ffffff !important;
+}
+
+html body a.btn-primary:hover svg,
+html body a.cta-btn:hover svg,
+html body a.btn-blue:hover svg,
+html body a.nav-cta:hover svg,
+html body a.btn-ghost-blue:hover svg,
+html body button.btn-primary:hover svg,
+html body button.cta-btn:hover svg,
+html body button.btn-blue:hover svg {
+  fill: currentColor;
+  color: #ffffff !important;
+}
+
+/* --- Focus-visible: keep the ring readable against the blue fill ------------ */
+html body a.btn-primary:focus-visible,
+html body a.cta-btn:focus-visible,
+html body a.btn-blue:focus-visible,
+html body a.nav-cta:focus-visible,
+html body a.btn-ghost-blue:focus-visible,
+html body a[class~="bg-blue-500"]:focus-visible,
+html body a[class~="bg-blue-600"]:focus-visible,
+html body a[class~="bg-blue-700"]:focus-visible,
+html body a[class~="bg-blue-800"]:focus-visible,
+html body a[class~="bg-blue-900"]:focus-visible,
+html body a[class~="bg-nssrBlue"]:focus-visible,
+html body button.btn-primary:focus-visible,
+html body button.cta-btn:focus-visible,
+html body button.btn-blue:focus-visible {
+  color: #ffffff !important;
+  background-color: #1e40af;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.45);
+}
+
+html body a.btn-primary:focus-visible :is(span, svg, i, b, strong, em, small),
+html body a.cta-btn:focus-visible :is(span, svg, i, b, strong, em, small),
+html body a.btn-blue:focus-visible :is(span, svg, i, b, strong, em, small),
+html body a.nav-cta:focus-visible :is(span, svg, i, b, strong, em, small),
+html body a.btn-ghost-blue:focus-visible :is(span, svg, i, b, strong, em, small),
+html body button.btn-primary:focus-visible :is(span, svg, i, b, strong, em, small),
+html body button.cta-btn:focus-visible :is(span, svg, i, b, strong, em, small),
+html body button.btn-blue:focus-visible :is(span, svg, i, b, strong, em, small) {
+  color: #ffffff !important;
+}
+
+/* --- Active: pressed in, no lift, deepest fill ------------------------------ */
+html body a.btn-primary:active,
+html body a.cta-btn:active,
+html body a.btn-blue:active,
+html body a.nav-cta:active,
+html body a.btn-ghost-blue:active,
+html body a[class~="bg-blue-500"]:active,
+html body a[class~="bg-blue-600"]:active,
+html body a[class~="bg-blue-700"]:active,
+html body a[class~="bg-blue-800"]:active,
+html body a[class~="bg-blue-900"]:active,
+html body a[class~="bg-nssrBlue"]:active,
+html body button.btn-primary:active,
+html body button.cta-btn:active,
+html body button.btn-blue:active {
+  color: #ffffff !important;
+  background-color: #1e3a8a;
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.24);
+}
+
+html body a.btn-primary:active :is(span, svg, i, b, strong, em, small),
+html body a.cta-btn:active :is(span, svg, i, b, strong, em, small),
+html body a.btn-blue:active :is(span, svg, i, b, strong, em, small),
+html body a.nav-cta:active :is(span, svg, i, b, strong, em, small),
+html body a.btn-ghost-blue:active :is(span, svg, i, b, strong, em, small),
+html body button.btn-primary:active :is(span, svg, i, b, strong, em, small),
+html body button.cta-btn:active :is(span, svg, i, b, strong, em, small),
+html body button.btn-blue:active :is(span, svg, i, b, strong, em, small) {
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   7. DARK-HERO OUTLINE BUTTON
+   --------------------------------------------------------------------------
+   For a call to action that sits on a dark hero or dark panel and must stay
+   legible. This replaces the old `hover:bg-white hover:text-nssrDark` pattern,
+   which only worked by accident: `.hover\:text-nssrDark:hover` beat
+   `html body a:hover` on class count, so the day anyone added a competing
+   utility the label would vanish into the white hover fill.
+
+   The hover state is a translucent white veil rather than a solid white fill,
+   so the label is white in every state and the hero image stays visible.
+   ========================================================================== */
+html body a.btn-hero-outline,
+html body button.btn-hero-outline {
+  color: #ffffff !important;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: var(--radius-sm);
+  padding: 16px 34px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-base), border-color var(--transition-base),
+    color var(--transition-base), transform var(--transition-base);
+}
+
+html body a.btn-hero-outline :is(span, svg, i, b, strong, em, small),
+html body button.btn-hero-outline :is(span, svg, i, b, strong, em, small) {
+  color: #ffffff !important;
+}
+
+html body a.btn-hero-outline:hover,
+html body button.btn-hero-outline:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+html body a.btn-hero-outline:focus-visible,
+html body button.btn-hero-outline:focus-visible {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+html body a.btn-hero-outline:active,
+html body button.btn-hero-outline:active {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #ffffff;
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   8. HERO CLEARANCE
+   --------------------------------------------------------------------------
+   The unified header is `position: sticky`, so it occupies flow space and a
+   hero can never be scrolled underneath it. What it CAN still do is clip the
+   top of a hero heading on a short viewport: the header eats the first
+   --nav-height of visible area, and a hero that only carries a small
+   `padding-top` ends up with its eyebrow clipped against the glass.
+
+   `.hero-clear` reserves the header height plus a full breathing band above the
+   first line of hero content. The band is 76px, which puts the total at 140px
+   on a 64px desktop header — comfortably more than the 64px the header
+   occupies. The `80px` fallback matters: if this file is ever loaded without
+   the token layer the hero still clears a generously sized header rather than
+   collapsing to zero.
+   ========================================================================== */
+.hero-clear {
+  padding-top: calc(var(--nav-height, 80px) + 76px);
+}
+
+/* Sticky sub-navigation inside a page needs the same clearance. */
+.sticky-clear {
+  top: calc(var(--nav-height, 80px) + 24px);
+}
+
+/* --- Overlay media hero (science-beyond-classroom, student-empowerment) ---
+   THE BUG THIS COMPONENT REPLACES
+   --------------------------------
+   These two heroes pinned their media box to a fixed aspect ratio
+   (`aspect-[16/8] md:aspect-[21/9]`) while anchoring the copy to the box
+   BOTTOM with an absolutely positioned `inset-0 flex items-end` overlay.
+   A fixed ratio sizes the box from its width alone, so it silently assumes the
+   copy is short. Measured at 390px wide: box 327x164px, copy 321px plus 56px
+   of padding = 377px needed. The overlay therefore overflowed UPWARD out of an
+   `overflow: hidden` box, and the eyebrow rode up under the sticky header
+   (clearance -65px) rather than being clipped cleanly. It broke at every width
+   up to 768px, and again at 768px exactly, where the 21/9 ratio still yields
+   only 302px of box for 474px of copy.
+
+   THE FIX
+   -------
+   The overlay returns to normal flow and carries a min-height. A flow child
+   can never be shorter than its own content, so the box is now
+   `max(min-height, content height)` at every viewport width and the copy can
+   no longer escape upwards. The image is absolutely positioned to fill, so it
+   still covers the box at whatever height results.
+
+   The min-heights come from the measured worst case per breakpoint: 430px
+   covers the 425px needed at 320px wide, and 490px covers the 474px needed at
+   768px, where the copy wraps to its maximum number of lines. */
+.hero-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.hero-media__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-media__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg,
+    rgba(2, 6, 23, 0.9) 0%,
+    rgba(15, 23, 42, 0.55) 52%,
+    rgba(15, 23, 42, 0.2) 100%);
+}
+
+/* In normal flow: this is what gives the box its height. */
+.hero-media__overlay {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 430px;
+  padding: 28px;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .hero-media__overlay { min-height: 490px; padding: 56px; }
+}
+
+/* --- index.html hero -------------------------------------------------------
+   This hero is the one page whose first element is a full-bleed swiper whose
+   content is VERTICALLY CENTRED rather than padded from the top, so
+   `.hero-clear` does not apply to it: adding padding-top here would shift the
+   two hero CTAs downward at every viewport size, pushing them below the fold
+   without improving the badge's position at all.
+
+   The clearance therefore has to be derived from the hero's height. The
+   centred content block measures ~442px (eyebrow, h1, paragraph, two CTAs) at
+   the widest breakpoint, and a vertically centred child of height C inside a
+   hero of height H sits (H - C) / 2 below the top edge. Reserving 600px
+   therefore guarantees ~79px above the first line — more than the 64px the
+   header occupies — at ANY viewport height, including the short ones where
+   `h-screen` collapses and this minimum is what actually applies.
+
+   Stating the number here (rather than leaving it to `min-h-[600px]` in the
+   markup) makes the invariant explicit and keeps it auditable if the hero
+   copy or the type scale ever changes. */
+.nssr-hero {
+  min-height: 600px;
+}
+
+
+/* ==========================================================================
+   9. EVENTS DIRECTORY
+   ========================================================================== */
+
+/* --- Hero banner ------------------------------------------------------------ */
+.events-hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(var(--nav-height, 80px) + 88px);
+  padding-bottom: 72px;
+  color: #ffffff;
+}
+
+.events-hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+/* Clean pill badge above the title. */
+.events-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 7px 16px;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-overlay));
+  backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-overlay));
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--radius-pill);
+}
+
+.events-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.28);
+}
+
+.events-hero__title {
+  margin: var(--space-5) 0 var(--space-4);
+  font-family: var(--font-serif-brand);
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+.events-hero__title em {
+  font-style: italic;
+  font-weight: 300;
+  color: #93c5fd;
+}
+
+.events-hero__lede {
+  max-width: 62ch;
+  margin: 0;
+  font-size: var(--font-size-lg);
+  line-height: var(--leading-relaxed);
+  color: rgba(226, 232, 240, 0.86);
+}
+
+@media (min-width: 768px) {
+  .events-hero { padding-bottom: 96px; }
+}
+
+/* --- Section heading shared by the grid and timeline ------------------------- */
+.events-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.events-section-head h2 {
+  font-family: var(--font-serif-brand);
+  font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.events-section-head p {
+  margin-top: var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--font-size-md);
+  line-height: var(--leading-relaxed);
+}
+
+/* --- Grid ------------------------------------------------------------------
+   auto-fit + minmax(320px, 1fr) means the column count is a function of the
+   available width rather than a stack of hard-coded breakpoints: 1 column on
+   phones, 2 on tablets, 3 from ~1040px, 4 on very wide screens. */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+/* --- Card ------------------------------------------------------------------ */
+.event-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: transform var(--transition-base), box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.event-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-surface-sunken);
+}
+
+.event-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.event-card:hover .event-card__media img { transform: scale(1.05); }
+
+/* Category tag, overlaid so it never competes with the title for space. */
+.event-card__tag {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-subtle-text);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-pill);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.event-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  gap: var(--space-3);
+  padding: 22px 24px 20px;
+}
+
+.event-card__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.28;
+  letter-spacing: var(--heading-tracking-snug);
+  color: var(--text-primary);
+  transition: color var(--transition-base);
+}
+
+.event-card:hover .event-card__title { color: var(--accent-primary); }
+
+.event-card__excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: var(--font-size-md);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+/* Date / time metadata row. */
+.event-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-hairline);
+}
+
+.event-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-tertiary);
+}
+
+.event-meta-item .icon-inline { width: 14px; height: 14px; color: #2563eb; }
+
+/* --- Card footer ------------------------------------------------------------ */
+.event-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 14px 24px;
+  background: var(--bg-surface-sunken);
+  border-top: 1px solid var(--border-hairline);
+}
+
+.event-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+}
+
+.event-card__cta .icon-inline { width: 13px; height: 13px; transition: transform var(--transition-base); }
+.event-card:hover .event-card__cta .icon-inline { transform: translateX(3px); }
+
+/* --- Status pills ----------------------------------------------------------- */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  border-radius: var(--radius-pill);
+}
+
+.status-pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-pill--open {
+  color: #147a52;
+  background: #e6f5ee;
+  border: 1px solid rgba(20, 122, 82, 0.24);
+}
+
+.status-pill--soon {
+  color: #1d4ed8;
+  background: #eaf0ff;
+  border: 1px solid rgba(29, 78, 216, 0.24);
+}
+
+.status-pill--done {
+  color: #6e6e73;
+  background: var(--bg-surface-sunken);
+  border: 1px solid var(--border-hairline);
+}
+
+/* --- Featured / upcoming split card ------------------------------------------ */
+.event-featured {
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.event-featured:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+}
+
+@media (min-width: 900px) {
+  .event-featured { grid-template-columns: 1.05fr 1fr; }
+}
+
+.event-featured__media {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+  background: var(--nssr-dark);
+}
+
+.event-featured__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Date badge, bottom-left over the image. */
+.event-date-badge {
+  position: absolute;
+  bottom: var(--space-5);
+  left: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 78px;
+  padding: 10px 0;
+  color: var(--nssr-blue);
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: saturate(var(--blur-saturation)) blur(8px);
+  backdrop-filter: saturate(var(--blur-saturation)) blur(8px);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.event-date-badge__month {
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-tertiary);
+}
+
+.event-date-badge__day {
+  font-family: var(--font-serif-brand);
+  font-size: 1.75rem;
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--nssr-blue);
+}
+
+.event-date-badge__year {
+  font-size: 10px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-quaternary);
+}
+
+.event-featured__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: 32px;
+}
+
+@media (min-width: 900px) { .event-featured__body { padding: 44px 40px; } }
+
+.event-featured__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 5px 12px;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent-subtle-text);
+  background: var(--accent-subtle-bg);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-pill);
+}
+
+.event-featured__title {
+  font-family: var(--font-serif-brand);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 900;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.event-featured__excerpt {
+  font-size: var(--font-size-base);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.event-featured__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-hairline);
+}
+
+.location-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  background: var(--bg-surface-sunken);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-pill);
+}
+
+.location-pill .icon-inline { width: 13px; height: 13px; color: #2563eb; }
+
+.event-featured__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+/* --- Tabs: segmented control ------------------------------------------------ */
+.events-tabs {
+  display: inline-flex;
+  gap: var(--space-1);
+  padding: 5px;
+  margin-bottom: var(--space-8);
+  background: var(--bg-surface-sunken);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-pill);
+}
+
+.events-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  /* 44px is the minimum comfortable touch target (Apple HIG / WCAG 2.5.5).
+     Content-derived padding alone lands at 41px, which is below it. */
+  min-height: 44px;
+  padding: 11px 24px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: color var(--transition-base), background-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.events-tab:hover { color: var(--text-primary); }
+
+.events-tab[aria-selected='true'] {
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.events-tab .icon-inline { width: 15px; height: 15px; color: #2563eb; }
+.events-tab[aria-selected='true'] .icon-inline { color: var(--accent-primary); }
+
+
+/* ==========================================================================
+   10. INSTITUTIONAL FRAMEWORK — editorial values grid (index.html)
+   ========================================================================== */
+.framework-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 28px;
+}
+
+@media (min-width: 768px) {
+  .framework-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Sticky left column. offset via .sticky-clear so it parks below the header. */
+.framework-aside {
+  position: sticky;
+  top: calc(var(--nav-height, 80px) + 48px);
+}
+
+@media (max-width: 1023px) {
+  .framework-aside { position: static; }
+}
+
+.framework-aside__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #2563eb;
+}
+
+.framework-aside__eyebrow::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: rgba(37, 99, 235, 0.4);
+}
+
+/* Serif display over a sans body — the contrast the section is built around. */
+.framework-aside__title {
+  font-family: var(--font-serif-brand);
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+
+.framework-aside__title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent-primary);
+}
+
+.framework-aside__lede {
+  max-width: 46ch;
+  margin-top: var(--space-5);
+  font-size: var(--font-size-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+/* --- Value card ------------------------------------------------------------- */
+.framework-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-top: 3px solid #1d4ed8;
+  border-radius: 16px;
+  transition: transform var(--transition-base), box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.framework-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(29, 78, 216, 0.22);
+  border-top-color: #1d4ed8;
+}
+
+.framework-card__kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #2563eb;
+}
+
+.framework-card__kicker .icon-inline { width: 15px; height: 15px; }
+
+.framework-card__title {
+  margin: var(--space-3) 0 var(--space-3);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--heading-tracking-snug);
+  color: var(--text-primary);
+}
+
+.framework-card__body {
+  font-size: var(--font-size-md);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+/* The dark ethics card keeps the same geometry but inverts the surface. */
+.framework-card--dark {
+  color: #ffffff;
+  background: #0f172a;
+  border-color: rgba(255, 255, 255, 0.12);
+  border-top-color: #60a5fa;
+}
+
+.framework-card--dark:hover {
+  border-color: rgba(96, 165, 250, 0.4);
+  border-top-color: #60a5fa;
+}
+
+.framework-card--dark .framework-card__kicker { color: #93c5fd; }
+.framework-card--dark .framework-card__title { color: #ffffff; }
+.framework-card--dark .framework-card__body { color: rgba(226, 232, 240, 0.72); }
+.framework-card--dark .icon-inline { color: #60a5fa; width: 22px; height: 22px; }
+
+/* ==========================================================================
+   11. PROCEEDING DIALOG
+   --------------------------------------------------------------------------
+   Tones the SweetAlert2 popup on event.html into the NSSR design system.
+   SweetAlert2 ships its own theme, so without this the dialog reads as a
+   third-party overlay dropped onto an Apple/Meta page. The class names are
+   wired up by the `customClass` option in assets/js/main.js.
+   ========================================================================== */
+.nssr-report-popup {
+  border-radius: 20px !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 32px 64px -20px rgba(15, 23, 42, 0.28) !important;
+  font-family: var(--font-sans) !important;
+}
+
+.nssr-report-popup .swal2-title {
+  font-family: var(--font-serif-brand) !important;
+  font-size: 1.4rem !important;
+  font-weight: 900 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--text-primary) !important;
+}
+
+.nssr-report-popup .swal2-html-container {
+  font-size: 0.95rem !important;
+  line-height: 1.65 !important;
+  color: var(--text-secondary) !important;
+}
+
+.nssr-report-popup .swal2-icon-info {
+  color: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+/* High-contrast primary, matching every other call to action on the site. */
+.nssr-report-popup .nssr-report-confirm,
+.nssr-report-popup .nssr-report-confirm:focus {
+  background: #1d4ed8 !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.03em !important;
+  padding: 14px 28px !important;
+  margin: 0.25rem !important;
+  box-shadow: none !important;
+}
+
+.nssr-report-popup .nssr-report-confirm:hover {
+  background: #1e40af !important;
+  color: #ffffff !important;
+}
+
+.nssr-report-popup .nssr-report-confirm:focus-visible {
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.45) !important;
+}
+
+.nssr-report-popup .nssr-report-cancel,
+.nssr-report-popup .nssr-report-cancel:focus {
+  background: #ffffff !important;
+  color: #1d1d1f !important;
+  border: 1px solid rgba(0, 0, 0, 0.16) !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.03em !important;
+  padding: 14px 28px !important;
+  margin: 0.25rem !important;
+  box-shadow: none !important;
+}
+
+.nssr-report-popup .nssr-report-cancel:hover {
+  background: #f5f5f7 !important;
+  color: #1d1d1f !important;
+}

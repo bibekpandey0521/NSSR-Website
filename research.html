@@ -4,29 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research | NSSR</title>
-    <link rel="icon" type="image/png" href="photos/bluelogonobg.png">
+    <link rel="icon" type="image/png" href="assets/images/bluelogonobg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="nssr-design-system.css">
+    <!-- Unified NSSR design system -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- End design system -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@300;400;700;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
-    <style>
-        :root { --nssr-blue: #004AAD; }
-        body { font-family: 'Inter', sans-serif; color: #1e293b; overflow-x: hidden; }
-        h1, h2, h3 { font-family: 'Merriweather', serif; }
-        .font-oswald { font-family: 'Oswald', sans-serif; }
-        #nav-placeholder { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; min-height: 80px; background: white; }
-        .research-card { transition: transform .3s ease, box-shadow .3s ease; }
-        .research-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -12px rgba(15, 23, 42, .2); }
-    </style>
 </head>
 <body class="bg-white">
     <div id="nav-placeholder"></div>
 
-    <header class="pt-36 pb-24 bg-slate-900 text-white relative overflow-hidden">
+    <header class="hero-clear pb-24 bg-slate-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(37,99,235,.35),_transparent_48%),linear-gradient(135deg,#0f172a,#172554)]"></div>
         <div class="container mx-auto px-6 relative z-10 text-center">
             <span class="font-oswald text-blue-400 uppercase tracking-[.35em] text-xs font-bold">NSSR Research</span>
-            <h1 class="text-4xl md:text-7xl font-black mt-5 mb-6">Curiosity into <span class="italic font-light text-blue-300">contribution.</span></h1>
+            <h1 class="text-4xl md:text-7xl font-black mt-5 mb-6">Curiosity into <span class="heading-accent italic font-light text-blue-300">contribution.</span></h1>
             <p class="max-w-2xl mx-auto text-slate-300 leading-relaxed">NSSR believes research should be open to everyone. We stand with students by helping them find the guidance, mentorship, skills, and support they need to pursue meaningful research.</p>
             <p class="max-w-2xl mx-auto text-slate-400 text-sm leading-relaxed mt-5">We support students in two ways: Research Pathways offers a recurring, multidisciplinary route for exploring ideas and meeting researchers, while the NSSR Summer Research Fellowship provides a structured program for developing research from question to presentation and publication.</p>
         </div>
@@ -45,7 +38,7 @@
                     </div>
                 </a>
                 <a href="nsrf.html" class="research-card group border border-slate-200 rounded-2xl bg-white">
-                    <div class="aspect-[16/8] overflow-hidden bg-slate-100"><img src="photos/nsr.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="NSSR Summer Research Fellowship"></div>
+                    <div class="aspect-[16/8] overflow-hidden bg-slate-100"><img src="assets/images/nsr.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="NSSR Summer Research Fellowship"></div>
                     <div class="p-8 md:p-10">
                         <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">12 Weeks &middot; Training &middot; Research &middot; Publication</span>
                         <h2 class="text-3xl font-black text-slate-900 mt-3 mb-4">NSSR Summer Research Fellowship</h2>
@@ -61,6 +54,6 @@
         <div class="container mx-auto px-6"><p class="max-w-2xl mx-auto text-slate-300 italic">Research is the bridge between what we know and what we must discover to build a better Nepal.</p></div>
     </section>
     <div id="footer-placeholder"></div>
-    <script src="nav.js"></script>
+    <script src="assets/js/main.js" defer></script>
 </body>
 </html>

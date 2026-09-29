@@ -5,35 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events Directory | NSSR</title>
     <!-- Favicon / Logo in Tab -->
-    <link rel="icon" type="image/png" href="photos/bluelogonobg.png">
+    <link rel="icon" type="image/png" href="assets/images/bluelogonobg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="nssr-design-system.css">
+    <!-- Unified NSSR design system -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- End design system -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Merriweather:ital,wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Proceeding dialog. Loaded here because this page owns every `report:`
+         link; assets/js/main.js reuses window.Swal when present and lazily
+         fetches the same CDN on the pages that have no such link. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js" defer></script>
 
-    <style>
-        :root { --nssr-blue: #004AAD; --nssr-dark: #0f172a; }
-        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #1e293b; overflow-x: hidden; }
-        h1, h2, h3, h4 { font-family: 'Merriweather', serif; }
-        .font-oswald { font-family: 'Oswald', sans-serif; }
-
-        .hover-color-img { transition: transform 0.5s ease; }
-        .group:hover .hover-color-img { transform: scale(1.05); }
-
-        .hero-pt { padding-top: 8rem; }
-        @media (min-width: 768px) { .hero-pt { padding-top: 10rem; } }
-
-        #event-detail-view { display: none; }
-        .fade-up { animation: fadeUp 0.6s forwards; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Tabs styling */
-        .tab-btn { transition: all 0.2s ease; }
-        .tab-btn.active { background-color: var(--nssr-blue); color: white; border-color: var(--nssr-blue); }
-        .tab-content { display: none; animation: fadeIn 0.4s; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    </style>
 </head>
 
 <body class="bg-white">
@@ -47,58 +31,79 @@
     <!-- NAVIGATION -->
     <div id="nav-placeholder"></div>
 
-    <!-- 1. HERO SECTION -->
-    <header class="hero-pt pb-16 md:pb-24 text-white relative overflow-hidden">
+    <!-- 1. EVENTS HERO BANNER -->
+    <header class="events-hero">
         <div class="absolute inset-0">
-            <img src="photos/IMG_20260902_144525.jpg"
+            <img src="assets/images/IMG_20260902_144525.jpg"
                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80';"
-                 class="w-full h-full object-cover scale-110 fade-in-up" style="animation-duration:8s;" alt="NSSR Event">
-            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/80 to-slate-900/95"></div>
+                 class="w-full h-full object-cover scale-110 fade-in-up" style="animation-duration:8s;" alt="NSSR event">
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/92 via-slate-900/86 to-slate-900/96"></div>
             <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         </div>
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <span class="font-oswald text-blue-400 uppercase tracking-widest text-[10px] md:text-xs font-bold mb-4 block">Knowledge Exchange Network</span>
-            <h1 class="text-3xl md:text-7xl font-bold mb-6 px-2 text-white">Events <span class="text-blue-400 italic font-light">Directory</span></h1>
-            <p class="max-w-3xl mx-auto text-gray-300 text-sm md:text-base font-light leading-relaxed px-4">
-                Welcome to the NSSR Events Directory, the central hub for our community of student researchers, mentors, and scholars to connect, collaborate, and learn. Explore our dynamic calendar across hands-on technical <strong>Workshops</strong> and accessible virtual <strong>Online Talks</strong> connecting Nepali researchers with global pioneers.
+        <div class="events-hero__inner">
+            <span class="events-badge">NSSR Events &amp; Symposia</span>
+            <h1 class="events-hero__title">The Events <em>Directory</em></h1>
+            <p class="events-hero__lede">
+                The central hub for our community of student researchers, mentors, and scholars to connect,
+                collaborate, and learn &mdash; hands-on technical <strong>Workshops</strong> and accessible
+                virtual <strong>Online Talks</strong> connecting Nepali researchers with global pioneers.
             </p>
         </div>
     </header>
 
-    <!-- 2. MAIN HUB (CATEGORIZED) -->
+    <!-- 2. FEATURED / UPCOMING EVENT HIGHLIGHT -->
+    <section class="pb-6 md:pb-10 bg-slate-50 border-b border-slate-100" aria-labelledby="featured-heading">
+        <div class="container mx-auto px-6">
+            <h2 id="featured-heading" class="sr-only">Featured event</h2>
+            <div id="featured-slot"></div>
+        </div>
+    </section>
+
+    <!-- 3. MAIN HUB (CATEGORIZED) -->
     <main class="py-12 md:py-20 border-t border-slate-100" id="main-archive">
         <div class="container mx-auto px-6">
 
             <div id="event-list-view">
 
                 <!-- Category Descriptions -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 text-center lg:text-left">
-                    <div class="p-6 bg-slate-50 border border-slate-100 rounded-lg">
-                        <i class="fa-solid fa-laptop-code text-2xl text-blue-600 mb-3"></i>
-                        <h4 class="font-bold text-slate-800 mb-2 font-oswald text-lg">Workshops</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Immersive, hands-on masterclasses designed to build essential technical capabilities, from scientific LaTeX formatting and MATLAB simulations to machine learning pipelines, laboratory techniques, and rigorous research methodology.</p>
+                <div class="events-grid mb-16">
+                    <div class="framework-card">
+                        <i class="fa-solid fa-laptop-code icon-inline text-2xl mb-3"></i>
+                        <h4 class="framework-card__title font-oswald">Workshops</h4>
+                        <p class="framework-card__body">Immersive, hands-on masterclasses designed to build essential technical capabilities, from scientific LaTeX formatting and MATLAB simulations to machine learning pipelines, laboratory techniques, and rigorous research methodology.</p>
                     </div>
-                    <div class="p-6 bg-slate-50 border border-slate-100 rounded-lg">
-                        <i class="fa-solid fa-satellite-dish text-2xl text-blue-600 mb-3"></i>
-                        <h4 class="font-bold text-slate-800 mb-2 font-oswald text-lg">Online Talks</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">Accessible virtual dialogues and international speaker sessions bridging geographic divides to connect Nepali student researchers directly with global scholars, cutting-edge discoveries, and overseas academic opportunities.</p>
+                    <div class="framework-card">
+                        <i class="fa-solid fa-satellite-dish icon-inline text-2xl mb-3"></i>
+                        <h4 class="framework-card__title font-oswald">Online Talks</h4>
+                        <p class="framework-card__body">Accessible virtual dialogues and international speaker sessions bridging geographic divides to connect Nepali student researchers directly with global scholars, cutting-edge discoveries, and overseas academic opportunities.</p>
                     </div>
                 </div>
 
                 <!-- Tabs Navigation -->
-                <div class="flex flex-wrap border-b border-slate-200 mb-10 gap-2" id="tabs-container">
-                    <button class="tab-btn active px-6 py-3 font-oswald uppercase text-xs font-bold tracking-wider rounded-t-md text-slate-600 border border-transparent hover:bg-slate-100" data-target="workshops-grid">Workshops</button>
-                    <button class="tab-btn px-6 py-3 font-oswald uppercase text-xs font-bold tracking-wider rounded-t-md text-slate-600 border border-transparent hover:bg-slate-100" data-target="online-grid">Online Talks</button>
+                <div class="events-tabs" id="tabs-container" role="tablist" aria-label="Event categories">
+                    <button class="events-tab" type="button" role="tab" aria-selected="true" aria-controls="workshops-grid" data-target="workshops-grid">
+                        <i class="fa-solid fa-laptop-code icon-inline" aria-hidden="true"></i>Workshops
+                    </button>
+                    <button class="events-tab" type="button" role="tab" aria-selected="false" aria-controls="online-grid" data-target="online-grid">
+                        <i class="fa-solid fa-satellite-dish icon-inline" aria-hidden="true"></i>Online Talks
+                    </button>
+                </div>
+
+                <div class="events-section-head">
+                    <div>
+                        <h2>Browse the archive</h2>
+                        <p>Every session NSSR has run, with proceedings and photo documentation.</p>
+                    </div>
                 </div>
 
                 <!-- Tabs Content: WORKSHOPS -->
                 <div id="workshops-grid" class="tab-content active">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10" id="workshops-container"></div>
+                    <div class="events-grid" id="workshops-container"></div>
                 </div>
 
                 <!-- Tabs Content: ONLINE TALKS -->
                 <div id="online-grid" class="tab-content">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10" id="online-container"></div>
+                    <div class="events-grid" id="online-container"></div>
                 </div>
 
             </div>
@@ -130,282 +135,8 @@
 
     <div id="footer-placeholder"></div>
 
-    <script src="events-feed.js"></script>
-    <script src="nav.js"></script>
+    <script src="assets/js/main.js" defer></script>
 
-     <script>
-        // 1. DATA CATEGORIZED
-        // Note: 'outreach' was removed and migrated to Outreach AI.
-        const eventsData = {
-            'aspire': {
-                title: "Pathways: Research, Leadership and Global Opportunities",
-                id: "NSSR-012",
-                date: "30 March 2026",
-                categoryType: "Workshops", // Custom Field for Filtering
-                category: "Physics",
-                image: "photos/events/aspire.png",
-                excerpt: "Foundational concepts in quantum mechanics,quibits, superposition, entanglement and measurement",
-                report: "report/.pdf",
-                status:"Completed",
-                Mentor:"Dr. Pukar Malla, Dr. Arjun Acharya, Meena Sonea",
-                Venue:"Tri-chandra College, Ghantaghar",
-                gallery: ["photos/aspire/asp1.jpeg", "photos/aspire/asp2.jpeg", "photos/aspire/asp4.jpeg", "photos/aspire/asp5.jpeg","photos/aspire/asp6.jpeg"],
-                body: `
-        <p class="mb-4">The Nepalese Society of Student Researchers (NSSR), in collaboration with Aspire Institute and Tri-Chandra Multiple Campus, successfully organized the national-level event entitled Pathways: Research, Leadership, & Global Opportunities, Connecting Local Potential to Global Possibilities on March 30, 2026 with approximatedly 65 students.
-			The program aimed to inspire undergraduate and graduate students by providing insights into research opportunities in Nepal, leadership development, innovation, and international fellowships.
-			Through interactive talks, mentorship sessions, and networking opportunities, participants gained valuable knowledge for their academic and professional development.</p>
-
-        <h4 class="text-xl font-bold mb-2 mt-6">Objectives Achieved:</h4>
-        <ul class="list-disc ml-6 mb-6 space-y-2">
-            <li>Increased awareness of research opportunities available in Nepal.</li>
-            <li>Introduced students to leadership principles and innovation.</li>
-            <li>Connected students with experienced mentors and professionals.</li>
-        </ul>
-
-        <p>The Pathways program was successfully completed and fulfilled its intended objectives.
-			The event created an engaging platform where students explored research pathways, strengthened leadership skills, and learned about international academic opportunities.</p>
-    `
-            },
-            'FWU-26': {
-                title: "Scientific Writing & LaTeX Workshop",
-                id: "NSSR-04",
-                date: "29 Jan - 3 Feb, 2026",
-                categoryType: "Workshops",
-                category: "Research Methodology",
-                status:"Complete",
-                Venue: "School of Engineering, Far Western University",
-                Mentor:"Manish Pandey, Shaleen Kumar Dhital, Mahesh Prasad Awasthi",
-                image: "photos/events/6.png",
-                excerpt: "5-Day intensive writing and formatting workshop for academic research.",
-                report: "report/MAT.pdf",
-                gallery: ["photos/events/1.jpeg", "photos/events/2.jpeg", "photos/events/5.jpeg", "photos/events/22.jpeg"],
-                body: `
-        <p class="mb-4">The Scientific Writing with LATEX training program is designed to equip undergraduate and early-stage graduate students with essential skills in academic research, scientific writing, and professional document preparation using LATEX. The program integrates theoretical foundations of research methodology with practical hands-on sessions to ensure participants develop both conceptual clarity and technical competence.</p>
-
-        <h4 class="text-xl font-bold mb-2 mt-6">Objectives:</h4>
-        <ul class="list-disc ml-6 mb-6 space-y-2">
-            <li>To introduce participants to the fundamentals of scientific research and academic writing.</li>
-            <li>To develop skills in identifying research problems, objectives, and research questions.</li>
-            <li>To familiarize participants with ethical research practices and publication standards.</li>
-            <li>To provide hands-on training in LATEX for preparing research papers, reports, and presentations.</li>
-        </ul>
-        <h4 class="text-xl font-bold mb-2 mt-6"> Outcomes:</h4>
-        <p>By the end of the program, participants demonstrated a clear understanding of the structure and essential components of scientific research papers. They developed the ability to conduct effective literature reviews, while consistently applying ethics in citation. Participants also acquired practical skills in preparing professionally formatted research documents using LaTeX.</p>
-             `
-            },
-            'Matlab-25': {
-                title: "MATLAB Workshop for Researchers: Symbolic Math and Simulink",
-                id: "NSSR-01",
-                date: "6-10 September 2025",
-                categoryType: "Workshops",
-                category: "Data Analysis",
-                status:"Complete",
-                Venue: "Online",
-                Mentor:"Manish Pandey, Janak Singh Dhami",
-                image: "photos/Mat/Mat1.png",
-                excerpt: "A 5-Day Online MATLAB Workshop on Symbolic Math and Simulink Basics.",
-                report: "report/MAT.pdf",
-                gallery: ["photos/Mat/Mat2.png", "photos/Mat/Mat3.png", "photos/Mat/Mat4.png", "photos/Mat/Mat5.png"],
-                body: `
-        <p class="mb-4">The Nepalese Society of Student Researchers (NSSR) successfully conducted a 5-Day Online MATLAB Workshop for Researchers: Symbolic Math and Simulink Basics. The workshop aimed to strengthen computational and research skills among students and early-career researchers by providing hands-on training in MATLAB, Symbolic Math Toolbox, and Simulink.</p>
-
-        <h4 class="text-xl font-bold mb-2 mt-6">Outcomes:</h4>
-        <ul class="list-disc ml-6 mb-6 space-y-2">
-            <li>Introduced participants to MATLAB environment, Symbolic Math Toolbox, and Simulink.</li>
-            <li>Developed skills in numerical computation, symbolic mathematics, visualization, and simulations.</li>
-            <li>Applied computational techniques to physics, engineering, mathematics, and interdisciplinary research.</li>
-            <li>Fostered collaboration and knowledge sharing among young researchers.</li>
-        </ul>
-             `
-            },
-            'quantum-25': {
-                title: "Crash Course on Quantum Computing",
-                id: "NSSR-02",
-                date: "28 Nov - 14 Dec 2025",
-                categoryType: "Workshops",
-                category: "Physics",
-                image: "photos/events/crash.png",
-                excerpt: "Foundational concepts: qubits, superposition, entanglement, and measurement.",
-                report: "report/.pdf",
-                status:"Completed",
-                Mentor:"Yuechi-Pata Magar, Tara Bhadur Rana, Om Jha, Manish Pandey",
-                Venue:"St. Xavier's College, Maitighar",
-                gallery: ["photos/Qc/image1.JPG", "photos/Qc/image6.JPG", "photos/Qc/image7.JPG", "photos/Qc/image4.JPG"],
-                body: `
-        <p class="mb-4">The United Nations (UN) designated the year 2025 as the International Year of Quantum Science and Technology. The centenary celebration aims to raise awareness among students about the profound contributions and future possibilities in quantum mechanics.</p>
-        <p class="mb-4">With this goal, this crash course seeks to inspire and ignite young minds by introducing the basics of quantum mechanics and quantum computing.</p>
-
-        <h4 class="text-xl font-bold mb-2 mt-6">Objectives:</h4>
-        <ul class="list-disc ml-6 mb-6 space-y-2">
-            <li>Introduce foundational quantum mechanics concepts relevant to quantum computing.</li>
-            <li>Teach practical quantum programming using Qiskit.</li>
-            <li>Provide hands-on experience through lab sessions.</li>
-        </ul>
-        <p>The workshop concluded with a hands-on session using IBM QISKIT.</p>
-    `
-            },
-            'experimental': {
-                title: "Online Talk: Frontier Experimental Physics",
-                id: "NSSR-014",
-                date: "31 May 2026",
-                categoryType: "Online Talks",
-                category: "Physics",
-                image: "photos/events/exp.png",
-                excerpt: "How Large Research Facilities Advance Science and Create Global Research Opportunities.",
-                report: "report/.pdf",
-                status:"Completed",
-                Mentor:"Pashupati Dhakal",
-                Venue:"Online",
-                gallery: ["photos/expe/exp1.jpg", "photos/expe/exp2.jpg", "photos/expe/exp3.jpg", "photos/expe/exp4.jpg"],
-                body: `
-        <p class="mb-4">The Nepalese Society of Student Researchers organized an interactive virtual session titled “Frontier Experimental Physics: How Large Research Facilities Advance Science and Create Global Research Opportunities.” The webinar aimed to bridge the gap between aspiring Nepali student researchers and cutting-edge global physics research.</p>
-
-        <h4 class="text-xl font-bold mb-2 mt-6">Large Experimental Physics Facilities & Scientific Impact</h4>
-        <p class="mb-4">The session detailed how facilities like particle colliders, neutrino detectors, gravitational wave observatories, and nuclear fusion reactors operate.</p>
-
-		<h4 class="text-xl font-bold mb-2 mt-6">Opportunities for Students</h4>
-        <p>The speaker outlined step-by-step guidance on identifying student fellowships, summer student programs at major labs, master’s/Ph.D. assistantships, and funding avenues available for physics students.</p>
-    `
-            },
-            'geo-25': {
-                title: "Water Chemistry and Hydrogeochemical Processes in the Central Himalayas",
-                id: "NSSR-03",
-                date: "28 Nov 2025",
-                categoryType: "Online Talks",
-                category: "Geo-Chemistry",
-                image: "photos/chemistry1.jpeg",
-                excerpt: "Himalayan ecology and active data discussion.",
-                report: "report/WC.pdf",
-                status: "Completed",
-                Venue:"Online Microsoft Teams",
-                Mentor: "Dr. Ramesh Raj Pant",
-                gallery: ["photos/chemistry1.jpeg", "photos/chemistry2.jpeg", "photos/chemistry3.jpeg", "photos/chemistry4.jpeg"],
-                body: `
-        <p class="mb-4">The Nepalese Society of Student Researchers (NSSR) successfully organized an online academic talk titled “Water Chemistry and Hydrogeochemical Processes in the Central Himalayas.” The session focused on key aspects of water chemistry and contemporary research challenges in the Himalayan region.</p>
-
-        <h4 class="text-xl font-bold mb-2 mt-6">Outcomes:</h4>
-        <ul class="list-disc ml-6 mb-6 space-y-2">
-            <li>Enhanced understanding of water chemistry and hydrogeochemical processes.</li>
-            <li>Exposure to research methodologies, analytical techniques, and data interpretation.</li>
-            <li>Academic networking among participants from different colleges and universities.</li>
-        </ul>
-    `
-            },
-            'computational-25': {
-                title: "Getting Started with Research: Biology",
-                id: "NSSR-05",
-                date: "5 Oct 2025",
-                categoryType: "Online Talks",
-                category: "Methodology",
-                status:"Completed",
-                Venue: "Online",
-                Mentor:"Pratishna KC",
-                image: "photos/bio/pc6.jpeg",
-                excerpt: "Solving methodology and finding early biology literature.",
-                report: "report/MAT",
-                gallery: ["photos/bio/pc6.jpeg", "photos/bio/pc6.jpeg"],
-                body: `
-        <p class="mb-4">The Nepalese Society of Student Researchers (NSSR) successfully organized an insightful online session titled “Getting Into Research” with the objective of encouraging and guiding students toward academic research and scientific inquiry. The session was delivered by Ms. Pratishna KC, a student researcher from Caldwell University, USA.</p>
-        <p>Ms. KC discussed key aspects of research development, including understanding research methodology, improving academic writing skills, seeking mentorship, and exploring research opportunities at national and international levels.</p>
-                     `
-            }
-        };
-
-        // UI RENDERER
-        function generateHTMLForGrid(keys) {
-            if (keys.length === 0) return `<p class="col-span-full text-slate-400 italic">No proceedings available in this category yet.</p>`;
-            return keys.map(key => `
-                <div class="group bg-white border border-slate-200 cursor-pointer overflow-hidden flex flex-col rounded-lg hover:shadow-lg transition-all" onclick="window.location.hash='${key}'">
-                    <div class="aspect-[16/10] overflow-hidden bg-slate-100">
-                        <img src="${eventsData[key].image}" class="hover-color-img w-full h-full object-cover">
-                    </div>
-                    <div class="p-5 flex-grow">
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="bg-blue-50 text-blue-700 text-[10px] font-bold px-3 py-1 uppercase tracking-widest rounded-md">${eventsData[key].category}</span>
-                            <span class="text-slate-400 text-[10px] font-semibold"><i class="fa-regular fa-calendar mr-1"></i>${eventsData[key].date}</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-700 transition leading-tight mt-2">${eventsData[key].title}</h3>
-                    </div>
-                </div>`).join('');
-        }
-
-        function renderUI() {
-            const feedOrder = new Map(NSSR_EVENT_FEED.map((event, index) => [event.id, index]));
-            const keys = Object.keys(eventsData).sort((first, second) => (feedOrder.get(first) ?? Number.MAX_SAFE_INTEGER) - (feedOrder.get(second) ?? Number.MAX_SAFE_INTEGER));
-
-            const workshops = keys.filter(k => eventsData[k].categoryType === "Workshops");
-            const onlineTalks = keys.filter(k => eventsData[k].categoryType === "Online Talks");
-
-            document.getElementById('workshops-container').innerHTML = generateHTMLForGrid(workshops);
-            document.getElementById('online-container').innerHTML = generateHTMLForGrid(onlineTalks);
-        }
-
-        // TABS LOGIC
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active from all
-                tabBtns.forEach(b => b.classList.remove('active', 'bg-blue-600', 'text-white'));
-                tabContents.forEach(c => c.classList.remove('active'));
-
-                // Set active to clicked
-                btn.classList.add('active', 'bg-blue-600', 'text-white');
-                document.getElementById(btn.dataset.target).classList.add('active');
-            });
-        });
-
-        // ROUTER & LIGHTBOX
-        function handleRouting() {
-            const hash = window.location.hash.replace('#', '');
-            const listView = document.getElementById('event-list-view');
-            const detailView = document.getElementById('event-detail-view');
-
-            if (hash && eventsData[hash]) {
-                const data = eventsData[hash];
-                listView.style.display = 'none';
-                detailView.style.display = 'block';
-
-                document.getElementById('detail-body').innerHTML = `
-                    <span class="font-oswald text-blue-600 font-bold tracking-[0.2em] uppercase text-xs">${data.categoryType} // ${data.category}</span>
-                    <h2 class="text-3xl md:text-5xl font-bold mt-4 mb-8 text-slate-900 leading-tight">${data.title}</h2>
-                    <div class="prose prose-slate max-w-none text-slate-600 text-sm md:text-base leading-relaxed">${data.body}</div>`;
-
-                document.getElementById('detail-meta').innerHTML = `
-                    <div><h5 class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Venue</h5><p class="font-bold text-xs text-slate-800">${data.Venue}</p></div>
-                    <div><h5 class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Date</h5><p class="font-bold text-xs text-slate-800">${data.date}</p></div>
-                    <div><h5 class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Speaker/Mentor</h5><p class="font-bold text-xs text-slate-800">${data.Mentor}</p></div>
-                    <div><h5 class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Status</h5><p class="font-bold text-xs text-green-600 uppercase font-bold">${data.status}</p></div>`;
-
-                document.getElementById('detail-gallery').innerHTML = data.gallery.map(img => `
-                    <div class="aspect-square bg-slate-100 overflow-hidden cursor-zoom-in rounded-md shadow-sm border border-slate-200" onclick="openLightbox('${img}')">
-                        <img src="${img}" class="w-full h-full object-cover hover:scale-110 transition duration-500">
-                    </div>`).join('');
-
-                document.getElementById('report-download-area').innerHTML = `
-                    <a href="${data.report}" class="block w-full text-center bg-blue-600 text-white font-oswald text-xs py-4 tracking-widest hover:bg-slate-900 transition uppercase rounded shadow-lg">Download Proceeding</a>`;
-
-                window.scrollTo(0, 0);
-            } else {
-                listView.style.display = 'block';
-                detailView.style.display = 'none';
-                renderUI();
-            }
-        }
-
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        window.addEventListener('hashchange', handleRouting);
-        window.addEventListener('load', handleRouting);
-    </script>
+    <script src="assets/js/pages/event.js" defer></script>
 </body>
 </html>

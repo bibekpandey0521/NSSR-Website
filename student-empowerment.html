@@ -4,33 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Empowerment Initiative | NSSR</title>
-    <link rel="icon" type="image/png" href="photos/bluelogonobg.png">
+    <link rel="icon" type="image/png" href="assets/images/bluelogonobg.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Unified NSSR design system -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- End design system -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@300;400;700;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
-    <style>
-        :root { --nssr-blue: #004AAD; }
-        body { font-family: 'Inter', sans-serif; color: #1e293b; overflow-x: hidden; }
-        h1, h2, h3, h4 { font-family: 'Merriweather', serif; }
-        .font-oswald { font-family: 'Oswald', sans-serif; }
-        .text-amber-400, .text-amber-500, .text-amber-600 { color: #2563eb !important; }
-        .bg-amber-50 { background-color: #eff6ff !important; }
-        .bg-amber-500 { background-color: #2563eb !important; color: white !important; }
-        .hover\:bg-amber-400:hover { background-color: #3b82f6 !important; }
-        #nav-placeholder { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; min-height: 80px; background: white; }
-        .initiative-card { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
-        .initiative-card:hover { transform: translateY(-5px); border-color: var(--nssr-blue); box-shadow: 0 18px 25px -12px rgba(15, 23, 42, .2); }
-    </style>
 </head>
 <body class="bg-white">
     <div id="nav-placeholder"></div>
 
-    <header class="pt-28 md:pt-32 bg-slate-900 text-white">
+    <header class="hero-clear bg-slate-900 text-white">
         <div class="container mx-auto px-6 max-w-6xl">
-            <div class="relative overflow-hidden rounded-2xl aspect-[16/8] md:aspect-[21/9]">
-                <img src="photos/SEI/out1.png" class="w-full h-full object-cover" alt="Students taking part in an NSSR outreach session">
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/55 to-slate-900/20"></div>
-                <div class="absolute inset-0 flex items-end p-7 md:p-14">
+            <div class="hero-media">
+                <img src="assets/images/SEI/out1.png" class="hero-media__img" alt="Students taking part in an NSSR outreach session">
+                <div class="hero-media__scrim"></div>
+                <div class="hero-media__overlay">
                     <div class="max-w-3xl">
                         <span class="font-oswald text-amber-400 uppercase tracking-[.3em] text-xs font-bold">Rural Outreach Program &middot; By Students, For Students</span>
                         <h1 class="text-4xl md:text-7xl font-black mt-4 mb-5">Student Empowerment <span class="italic font-light text-blue-300">Initiative</span></h1>
@@ -67,11 +57,11 @@
                 <section class="bg-slate-900 text-white rounded-2xl p-8 md:p-12 mb-20"><div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-center"><div><span class="font-oswald text-amber-400 uppercase tracking-widest text-xs font-bold">Impact we are planning</span><h2 class="text-3xl md:text-5xl font-black mt-4">A one-year plan for lasting reach.</h2></div><div class="grid sm:grid-cols-2 gap-8"><div><div class="text-4xl font-black font-oswald text-blue-300">3,000+</div><p class="text-xs text-slate-400 mt-2">students targeted across rural Nepal</p></div><div><div class="text-4xl font-black font-oswald text-blue-300">5</div><p class="text-xs text-slate-400 mt-2">pilot classrooms proposed for digital learning</p></div><div><div class="text-4xl font-black font-oswald text-blue-300">9 mo.</div><p class="text-xs text-slate-400 mt-2">of planned monthly contact at the pilot school</p></div><div><div class="text-4xl font-black font-oswald text-amber-400">2-3</div><p class="text-xs text-slate-400 mt-2">planned rural launch locations</p></div></div></div></section>
 
                 <div class="grid lg:grid-cols-2 gap-10 mb-16"><div><h2 class="text-2xl md:text-3xl font-black mb-5">What success looks like</h2><ul class="space-y-4 text-sm text-slate-600"><li><i class="fa-solid fa-check text-blue-600 mr-3"></i>Every launch participant takes part in at least one experiment.</li><li><i class="fa-solid fa-check text-blue-600 mr-3"></i>Host schools retain usable lab equipment and teaching materials.</li><li><i class="fa-solid fa-check text-blue-600 mr-3"></i>A Grade 9-12 or 9-10 mentee cohort receives monthly academic support.</li><li><i class="fa-solid fa-check text-blue-600 mr-3"></i>Term-test comparisons and short topic quizzes document learning progress.</li><li><i class="fa-solid fa-check text-blue-600 mr-3"></i>The book and video libraries continue after the funding cycle.</li></ul></div><div class="bg-blue-50 rounded-2xl p-8"><h2 class="text-2xl font-black mb-4">Built to grow</h2><p class="text-sm text-slate-600 leading-relaxed">Each component can stand alone or be combined into a complete program. This lets schools and partners begin with a launch event, then extend support to the digital pilot, mentorship, and library as resources allow.</p></div></div>
-                <div class="text-center"><a href="mailto:info@nssrnepal.org?subject=Partner With the Student Empowerment Initiative" class="inline-block bg-blue-600 text-white font-oswald text-xs px-8 py-4 tracking-widest hover:bg-blue-700 transition uppercase rounded-md">Partner With Us</a></div>
+                <div class="text-center"><a href="mailto:info@nssrnepal.org?subject=Partner With the Student Empowerment Initiative" class="btn-primary">Partner With Us</a></div>
             </div>
         </section>
     </main>
     <div id="footer-placeholder"></div>
-    <script src="nav.js"></script>
+    <script src="assets/js/main.js" defer></script>
 </body>
 </html>

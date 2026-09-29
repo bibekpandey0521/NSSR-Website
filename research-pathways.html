@@ -6,21 +6,14 @@
     <title>Research Pathways | NSSR</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="nssr-design-system.css">
+    <!-- Unified NSSR design system -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- End design system -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@300;400;700;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
-    <style>
-        :root { --nssr-blue: #004AAD; }
-        body { font-family: 'Inter', sans-serif; color: #1e293b; overflow-x: hidden; }
-        h1, h2, h3, h4 { font-family: 'Merriweather', serif; }
-        .font-oswald { font-family: 'Oswald', sans-serif; }
-        #nav-placeholder { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; min-height: 80px; background: white; }
-        .step-card { border: 1px solid #e2e8f0; transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
-        .step-card:hover { transform: translateY(-5px); border-color: var(--nssr-blue); box-shadow: 0 18px 25px -12px rgba(15, 23, 42, .2); }
-    </style>
 </head>
 <body class="bg-white">
     <div id="nav-placeholder"></div>
-    <header class="pt-36 pb-24 bg-slate-900 text-white relative overflow-hidden">
+    <header class="hero-clear pb-24 bg-slate-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(37,99,235,.35),_transparent_48%),linear-gradient(135deg,#0f172a,#172554)]"></div>
         <div class="container mx-auto px-6 relative z-10 max-w-5xl">
             <span class="font-oswald text-blue-400 uppercase tracking-[.35em] text-xs font-bold">Discover &middot; Connect &middot; Research</span>
@@ -41,10 +34,10 @@
                 <div class="step-card p-7 rounded-2xl"><div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-5 font-oswald font-bold">7</div><h2 class="font-oswald text-base font-bold mb-2">Connect and Collaborate</h2><p class="text-xs text-slate-600 leading-relaxed">Students can meet people with shared interests, form teams, and identify potential mentors or collaborators.</p></div>
                 <div class="p-7 rounded-2xl bg-slate-900 text-white"><p class="font-oswald text-xs uppercase tracking-widest text-blue-400 font-bold mb-3">The pathway</p><p class="text-xs text-slate-300 leading-loose">Discover &rarr; Learn &rarr; Question &rarr; Share &rarr; Present &rarr; Receive feedback &rarr; Collaborate &rarr; Pursue research</p></div>
             </div>
-            <div class="mt-12 flex flex-wrap gap-4"><a href="mailto:info@nssrnepal.org?subject=Research Pathways Interest" class="inline-block bg-blue-600 text-white font-oswald text-xs px-8 py-4 tracking-widest hover:bg-blue-700 transition uppercase rounded-md">Submit Your Research Interest</a><a href="nsrf.html" class="inline-block border border-slate-300 text-slate-700 font-oswald text-xs px-8 py-4 tracking-widest hover:bg-slate-50 transition uppercase rounded-md">Explore NSRF</a></div>
+            <div class="mt-12 flex flex-wrap gap-4"><a href="mailto:info@nssrnepal.org?subject=Research Pathways Interest" class="btn-primary">Submit Your Research Interest</a><a href="nsrf.html" class="btn-secondary">Explore NSRF</a></div>
         </div>
     </main>
     <div id="footer-placeholder"></div>
-    <script src="nav.js"></script>
+    <script src="assets/js/main.js" defer></script>
 </body>
 </html>
