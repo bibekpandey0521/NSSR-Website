@@ -262,7 +262,7 @@
         }
 
         // ---------------------------------------------------------------
-        // FEATURED / UPCOMING HIGHLIGHT CARD
+        // FEATURED / UPCOMING HIGHLIGHT CARD (COMPACT)
         // ---------------------------------------------------------------
         function renderFeatured(key) {
             const slot = document.getElementById('featured-slot');
@@ -274,19 +274,18 @@
             const status = statusMeta(data.status);
 
             slot.innerHTML = `
-                <div class="event-featured">
+                <div class="event-featured event-featured--compact">
                     <div class="event-featured__media">
                         <img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}">
                         ${dateBadgeHtml(key)}
                     </div>
                     <div class="event-featured__body">
-                        <span class="event-featured__eyebrow">${escapeHtml(data.categoryType || 'Event')}</span>
                         <h3 class="event-featured__title">${escapeHtml(data.title)}</h3>
                         <p class="event-featured__excerpt">${escapeHtml(data.excerpt || '')}</p>
                         <div class="event-featured__meta">
-                            <span class="status-pill ${status.cls}">${escapeHtml(status.label)}</span>
-                            <span class="location-pill">${icon('pin')}${escapeHtml(data.Venue || 'Online')}</span>
                             <span class="event-meta-item">${icon('calendar')}${escapeHtml(data.date || '')}</span>
+                            <span class="event-meta-item">${icon('pin')}${escapeHtml(data.Venue || 'Online')}</span>
+                            <span class="status-pill ${status.cls}">${escapeHtml(status.label)}</span>
                         </div>
                         <div class="event-featured__actions">
                             <a class="btn-primary" href="#${escapeHtml(key)}">View event details</a>
@@ -312,7 +311,6 @@
                          onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.location.hash='${escapeHtml(key)}'; }">
                     <div class="event-card__media">
                         <img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}" loading="lazy">
-                        <span class="event-card__tag">${escapeHtml(data.category || '')}</span>
                     </div>
                     <div class="event-card__body">
                         <h3 class="event-card__title">${escapeHtml(data.title)}</h3>
@@ -320,7 +318,6 @@
                         <div class="event-card__meta">
                             <span class="event-meta-item">${icon('calendar')}${escapeHtml(data.date || '')}</span>
                             <span class="event-meta-item">${icon('pin')}${escapeHtml(data.Venue || 'Online')}</span>
-                            <span class="event-meta-item">${icon('tag')}${escapeHtml(data.id || '')}</span>
                         </div>
                     </div>
                     <div class="event-card__footer">
