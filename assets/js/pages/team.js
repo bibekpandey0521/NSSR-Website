@@ -23,7 +23,7 @@
                 name: "Manish Pandey",
                 role: "President/Founder",
                 dept: "Physics, St. Xavier's College",
-                image: "photos/pp/manish_pandey.jpg",
+                image: "assets/images/pp/manish_pandey.jpg",
                 linkedin: "https://www.linkedin.com/in/manish-pandey-24864m/",
                 email: "manish24864pandey@gmail.com"
             },
@@ -31,7 +31,7 @@
                 name: "Sudiksha Bhattarai",
                 role: "Vice President/Founder",
                 dept: "Microbiology, Tri-Chandra Multiple Campus",
-                image: "photos/pp/sudiksha.jpg",
+                image: "assets/images/pp/sudiksha.jpg",
                 linkedin: "https://www.linkedin.com/in/sudiksha-bhattarai-035191231/",
                 email: "bhattaraisudiksha1@gmail.com"
             },
@@ -39,7 +39,7 @@
                 name: "Om Jha",
                 role: "Treasurer",
                 dept: "Physics, St. Xavier's College",
-                image: "photos/pp/om jha.jpg",
+                image: "assets/images/pp/om jha.jpg",
                 linkedin: "https://www.linkedin.com/in/om-jha-1913b6279/",
                 email: "omzha24680@gmail.com"
             },
@@ -47,7 +47,7 @@
                 name: "Sugyani Bishwokarma",
                 role: "Secretary",
                 dept: "Physics, Tri-Chandra Multiple Campus",
-                image: "photos/pp/Sugyani.jpg",
+                image: "assets/images/pp/Sugyani.jpg",
                 linkedin: "https://www.linkedin.com/in/sugyani-biswokarma-9566102b7/",
                 email: "biswokarmasugyani62@gmail.com"
             },
@@ -55,7 +55,7 @@
                 name: "Shaleen Kumar Dhital",
                 role: "Research Head/Founder",
                 dept: "Physics, Tri-Chandra Multiple Campus",
-                image: "photos/pp/Shaleen.jpg",
+                image: "assets/images/pp/Shaleen.jpg",
                 linkedin: "https://www.linkedin.com/in/shaleen-dhital-097636255/",
                 email: "dronadhital@gmail.com"
             },
@@ -63,7 +63,7 @@
                 name: "Dhirendra Prasad Upadhyay",
                 role: "Event Head",
                 dept: "Physics, Tri-Chandra Multiple Campus",
-                image: "photos/pp/Dhirendra.jpg",
+                image: "assets/images/pp/Dhirendra.jpg",
                 linkedin: "https://www.linkedin.com/in/dhirendra-prasad-upadhyay-311a28316/",
                 email: "dhirendraup07@gmail.com"
             },
@@ -71,7 +71,7 @@
                 name: "Dikshya Sharma",
                 role: "HR Manager",
                 dept: "Physics, Tri-Chandra Multiple Campus",
-                image: "photos/pp/Dikshya_sharma.jpg",
+                image: "assets/images/pp/Dikshya_sharma.jpg",
                 linkedin: "https://www.linkedin.com/in/dikshyasharma2004/",
                 email: "Kandeldikshya398@gmail.com"
             }
@@ -82,55 +82,55 @@
                 name: "Asst. Prof. Dr. Basu Dev Ghimire",
                 role: "Advisor",
                 inst: "Head of Department, Physics, St.Xavier's College",
-                image: "photos/pp/bdg.png"
+                image: "assets/images/pp/bdg.png"
             },
             {
                 name: "Asst. Prof. Dr. Bishnu Hari Subedi",
                 role: "Advisor",
                 inst: "Cental Department of Mathematics,Tribhuvan University",
-                image: "photos/pp/bishnu.webp"
+                image: "assets/images/pp/bishnu.webp"
             },
             {
                 name: "Asst. Prof. Dr. Drabindra Pandit",
                 role: "Advisor",
                 inst: "Head of Research, St.Xavier's College",
-                image: "photos/pp/DP.png"
+                image: "assets/images/pp/DP.png"
             },
             {
                 name: "Prof. Dr. Raju Bhai Tyata",
                 role: "Advisor",
                 inst: "R & D unit Head, Khwopa College of Engineering",
-                image: "photos/profdr.jpeg"
+                image: "assets/images/profdr.jpeg"
             },
             {
                 name: "Asst. Prof. Dr. Arjun Acharya",
                 role: "Advisor",
                 inst: "Tri-Chandra Multiple Campus, Tribhuvan University",
-                image: "photos/pp/AA.webp"
+                image: "assets/images/pp/AA.webp"
             },
             {
                 name: "Asst. Prof. Dr. Sanju Shrestha",
                 role: "Advisor",
                 inst: "Central Department of Physics, Tribhuvan University",
-                image: "photos/pp/sanju_shrestha.jpg"
+                image: "assets/images/pp/sanju_shrestha.jpg"
             },
             {
                 name: "Prof. Dr. Rameshwar Adhikari",
                 role: "Advisor",
                 inst: "Central Department of Chemistry, Tribhuvan University",
-                image: "photos/pp/rameshwar.jpeg"
+                image: "assets/images/pp/rameshwar.jpeg"
             },
             {
                 name: "Prof. Dr. Hari Prasad Lamichhane",
                 role: "Advisor",
                 inst: "Central Department of Physics, Tribhuvan University",
-                image: "photos/pp/hari_p_lamichhane.jpeg"
+                image: "assets/images/pp/hari_p_lamichhane.jpeg"
             },
             {
                 name: "Dr. Manoj Kumar Yadav",
                 role: "Advisor",
                 inst: "Rajarshi Janak University, Janakpurdham, Nepal",
-                image: "photos/pp/Manoj_Kumar_Yadav.webp"
+                image: "assets/images/pp/Manoj_Kumar_Yadav.webp"
             }
 
         ];
@@ -140,25 +140,25 @@
                 name: "Dhurbaraj Singh",
                 role: "College Representative",
                 college: "Graduate School of Engineering, Mid-West University",
-                image: "photos/college_representative/dhruv.jpeg"
+                image: "assets/images/college_representative/dhruv.jpeg"
             },
             {
                 name: "Bikash Kadayat",
                 role: "College Representative",
                 college: "Tech AI College, Kathmandu",
-                image: "photos/college_representative/bikash.jpeg"
+                image: "assets/images/college_representative/bikash.jpeg"
             },
             {
                 name: "Raunak Regmi",
                 role: "College Representative",
                 college: "Sunway College Kathmandu",
-                image: "photos/college_representative/raunak.jpeg"
+                image: "assets/images/college_representative/raunak.jpeg"
             },
             {
                 name: "Puja Bhatt",
                 role: "College Representative",
                 college: "Brixton College, Mahendranagar",
-                image: "photos/college_representative/puja.jpeg"
+                image: "assets/images/college_representative/puja.jpeg"
             }
         ];
 

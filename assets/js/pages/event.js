@@ -28,7 +28,7 @@
                 category: "Physics",
                 image: "assets/images/events/aspire.png",
                 excerpt: "Foundational concepts in quantum mechanics,quibits, superposition, entanglement and measurement",
-                report: "report/.pdf",
+                report: "report/Research_Pathways.pdf",
                 status:"Completed",
                 Mentor:"Dr. Pukar Malla, Dr. Arjun Acharya, Meena Sonea",
                 Venue:"Tri-chandra College, Ghantaghar",
@@ -109,7 +109,7 @@
                 category: "Physics",
                 image: "assets/images/events/crash.png",
                 excerpt: "Foundational concepts: qubits, superposition, entanglement, and measurement.",
-                report: "report/.pdf",
+                report: "report/NSRF_Proceedings.pdf",
                 status:"Completed",
                 Mentor:"Yuechi-Pata Magar, Tara Bhadur Rana, Om Jha, Manish Pandey",
                 Venue:"St. Xavier's College, Maitighar",
@@ -135,7 +135,7 @@
                 category: "Physics",
                 image: "assets/images/events/exp.png",
                 excerpt: "How Large Research Facilities Advance Science and Create Global Research Opportunities.",
-                report: "report/.pdf",
+                report: "report/NSRF_Schedule.pdf",
                 status:"Completed",
                 Mentor:"Pashupati Dhakal",
                 Venue:"Online",
@@ -185,7 +185,7 @@
                 Mentor:"Pratishna KC",
                 image: "assets/images/bio/pc6.jpeg",
                 excerpt: "Solving methodology and finding early biology literature.",
-                report: "report/MAT",
+                report: "report/MAT.pdf",
                 gallery: ["assets/images/bio/pc6.jpeg", "assets/images/bio/pc6.jpeg"],
                 body: `
         <p class="mb-4">The Nepalese Society of Student Researchers (NSSR) successfully organized an insightful online session titled “Getting Into Research” with the objective of encouraging and guiding students toward academic research and scientific inquiry. The session was delivered by Ms. Pratishna KC, a student researcher from Caldwell University, USA.</p>
@@ -389,7 +389,7 @@
                     </div>`).join('');
 
                 document.getElementById('report-download-area').innerHTML = `
-                    <a href="${data.report}" class="btn-primary btn-sm w-full">Download Proceeding</a>`;
+                    <a href="${data.report}" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm w-full">Download Proceeding</a>`;
 
                 window.scrollTo(0, 0);
             } else {

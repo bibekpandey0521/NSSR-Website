@@ -795,12 +795,10 @@ body.nav-open { overflow: hidden; }
     max-height: calc(100dvh - var(--nav-height));
     overflow-y: auto;
     overscroll-behavior: contain;
-    padding: var(--space-4) var(--container-gutter) var(--space-6);
-    background: var(--bg-glass-strong);
-    -webkit-backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-nav));
-    backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-nav));
+    padding: var(--space-5) var(--container-gutter) var(--space-8);
+    background: #ffffff !important;
     border-bottom: 1px solid var(--border-hairline);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
@@ -824,43 +822,115 @@ body.nav-open { overflow: hidden; }
 
   .nav-link {
     width: 100%;
-    padding: var(--space-3) var(--space-4);
+    padding: 16px 20px;
     font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
     text-transform: none;
     letter-spacing: var(--body-tracking-normal);
     border-radius: var(--radius-sm);
+    border-bottom: 1px solid var(--border-hairline);
   }
+
+  .nav-link:last-child { border-bottom: none; }
 
   .nav-link.is-active::after { display: none; }
 
-  .dropdown-trigger-wrapper { width: 100%; }
-  .nav-dropdown-item .nav-link { flex: 1 1 auto; }
-
-  .dropdown-arrow-btn {
-    width: 44px;
-    height: 44px;
-    margin: 0 -8px 0 0;
+  .dropdown-trigger-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .dropdown-link { font-size: var(--font-size-base); }
+  .nav-dropdown-item .nav-link {
+    flex: 1 1 auto;
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .dropdown-arrow-btn {
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .dropdown-link {
+    font-size: var(--font-size-base);
+    padding: 12px 16px 12px 24px;
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+  }
+
+  .dropdown-link:hover,
+  .dropdown-link.is-active {
+    background: var(--accent-subtle-bg);
+    color: var(--nssr-blue);
+  }
 
   .nav-cta {
     justify-content: center;
     width: 100%;
-    margin: var(--space-3) 0 0;
-    padding: var(--space-4);
+    margin: var(--space-4) 0 0;
+    padding: 16px 24px;
     font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
     text-transform: none;
     letter-spacing: var(--body-tracking-normal);
+    border-radius: var(--radius-sm);
+    border: none;
   }
 }
 
 @media (max-width: 480px) {
-  .nav-brand-logo { width: 30px; height: 30px; }
+  .nav-brand-logo { width: 28px; height: 28px; }
 
   .brand-text {
     font-size: var(--font-size-xs);
     line-height: var(--leading-snug);
+  }
+
+  .nav-menu {
+    padding: var(--space-4) var(--space-4) var(--space-6);
+  }
+
+  .nav-link {
+    padding: 14px 16px;
+    font-size: var(--font-size-sm);
+  }
+
+  .dropdown-link {
+    padding: 10px 14px 10px 20px;
+    font-size: var(--font-size-sm);
+  }
+
+  .nav-cta {
+    padding: 14px 20px;
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Mobile dropdown accordion styling */
+@media (max-width: 1024px) {
+  .nav-dropdown-menu {
+    position: static !important;
+    min-width: 0 !important;
+    display: none !important;
+    margin-top: 8px !important;
+    background: #f8fafc !important;
+    border: 1px solid var(--border-hairline) !important;
+    border-radius: var(--radius-md) !important;
+    box-shadow: none !important;
+    padding: var(--space-2) !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .nav-dropdown-item.is-open .nav-dropdown-menu {
+    display: block !important;
+  }
+
+  .nav-dropdown-item.is-open .dropdown-caret {
+    transform: translateY(1px) rotate(225deg) !important;
   }
 }
 
@@ -1985,8 +2055,39 @@ html body button.btn-hero-outline:active {
 
 
 /* ==========================================================================
-   9. EVENTS DIRECTORY
-   ========================================================================== */
+    9. BUTTON FIXES — pseudo-element z-index guards
+    ========================================================================== */
+.btn-primary,
+.cta-btn,
+a.btn-blue,
+.btn-hero-outline {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.btn-primary::before,
+.btn-primary::after,
+.cta-btn::before,
+.cta-btn::after,
+a.btn-blue::before,
+a.btn-blue::after,
+.btn-hero-outline::before,
+.btn-hero-outline::after {
+  z-index: -1;
+}
+
+.btn-primary > *,
+.cta-btn > *,
+a.btn-blue > *,
+.btn-hero-outline > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+    10. EVENTS DIRECTORY
+    ========================================================================== */
 
 /* --- Hero banner ------------------------------------------------------------ */
 .events-hero {
@@ -2665,4 +2766,222 @@ html body button.btn-hero-outline:active {
 .nssr-report-popup .nssr-report-cancel:hover {
   background: #f5f5f7 !important;
   color: #1d1d1f !important;
+}
+
+/* ==========================================================================
+   12. UNIVERSAL BLUE BUTTON TEXT FIX
+   ---------------------------------------------------------------------------
+   Ensures ALL solid-blue buttons and forms.gle CTA links keep #ffffff text
+   in default, :hover, :focus, :active states — even when using arbitrary
+   Tailwind utilities (bg-blue-*, hover:bg-blue-*) that don't match the
+   .btn-primary / [class~="bg-blue-*"] selectors above.
+   ========================================================================== */
+
+html body a[href*="forms.gle"],
+html body a[href*="forms.gle"]:hover,
+html body a[href*="forms.gle"]:focus,
+html body a[href*="forms.gle"]:active,
+html body a[href*="forms.gle"]:focus-visible,
+html body a[href*="forms.gle"] *,
+html body a[href*="forms.gle"]:hover *,
+html body a[href*="forms.gle"]:focus *,
+html body a[href*="forms.gle"]:active *,
+html body a[href*="forms.gle"]:focus-visible * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html body a[href*="forms.gle"] svg,
+html body a[href*="forms.gle"]:hover svg {
+  fill: currentColor;
+  color: #ffffff !important;
+}
+
+/* Catch-all for any element with a solid blue bg utility that turns blue on hover */
+html body a[class*="bg-blue-500"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue),
+html body a[class*="bg-blue-600"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue),
+html body a[class*="bg-blue-700"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue),
+html body a[class*="bg-blue-800"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue),
+html body a[class*="bg-blue-900"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue),
+html body a[class*="hover:bg-blue-500"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue),
+html body a[class*="hover:bg-blue-600"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue),
+html body a[class*="hover:bg-blue-700"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue),
+html body a[class*="hover:bg-blue-800"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue),
+html body a[class*="hover:bg-blue-900"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue),
+html body button[class*="bg-blue-500"]:not(.btn-primary):not(.cta-btn):not(.btn-blue),
+html body button[class*="bg-blue-600"]:not(.btn-primary):not(.cta-btn):not(.btn-blue),
+html body button[class*="bg-blue-700"]:not(.btn-primary):not(.cta-btn):not(.btn-blue),
+html body button[class*="bg-blue-800"]:not(.btn-primary):not(.cta-btn):not(.btn-blue),
+html body button[class*="bg-blue-900"]:not(.btn-primary):not(.cta-btn):not(.btn-blue),
+html body button[class*="hover:bg-blue-500"]:not(.btn-primary):not(.cta-btn):not(.btn-blue),
+html body button[class*="hover:bg-blue-600"]:not(.btn-primary):not(.cta-btn):not(.btn-blue),
+html body button[class*="hover:bg-blue-700"]:not(.btn-primary):not(.cta-btn):not(.btn-blue),
+html body button[class*="hover:bg-blue-800"]:not(.btn-primary):not(.cta-btn):not(.btn-blue),
+html body button[class*="hover:bg-blue-900"]:not(.btn-primary):not(.cta-btn):not(.btn-blue) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html body a[class*="hover:bg-blue-500"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover,
+html body a[class*="hover:bg-blue-600"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover,
+html body a[class*="hover:bg-blue-700"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover,
+html body a[class*="hover:bg-blue-800"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover,
+html body a[class*="hover:bg-blue-900"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover,
+html body button[class*="hover:bg-blue-500"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover,
+html body button[class*="hover:bg-blue-600"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover,
+html body button[class*="hover:bg-blue-700"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover,
+html body button[class*="hover:bg-blue-800"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover,
+html body button[class*="hover:bg-blue-900"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html body a[class*="hover:bg-blue-500"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover *,
+html body a[class*="hover:bg-blue-600"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover *,
+html body a[class*="hover:bg-blue-700"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover *,
+html body a[class*="hover:bg-blue-800"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover *,
+html body a[class*="hover:bg-blue-900"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover *,
+html body button[class*="hover:bg-blue-500"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover *,
+html body button[class*="hover:bg-blue-600"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover *,
+html body button[class*="hover:bg-blue-700"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover *,
+html body button[class*="hover:bg-blue-800"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover *,
+html body button[class*="hover:bg-blue-900"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+html body a[class*="hover:bg-blue-500"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover svg,
+html body a[class*="hover:bg-blue-600"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover svg,
+html body a[class*="hover:bg-blue-700"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover svg,
+html body a[class*="hover:bg-blue-800"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover svg,
+html body a[class*="hover:bg-blue-900"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):not(.nav-cta):not(.btn-ghost-blue):hover svg,
+html body button[class*="hover:bg-blue-500"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover svg,
+html body button[class*="hover:bg-blue-600"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover svg,
+html body button[class*="hover:bg-blue-700"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover svg,
+html body button[class*="hover:bg-blue-800"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover svg,
+html body button[class*="hover:bg-blue-900"]:not(.btn-primary):not(.cta-btn):not(.btn-blue):hover svg {
+  fill: currentColor;
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   13. RESPONSIVE PAGE SECTIONS
+   ========================================================================== */
+
+/* --- Global overflow prevention --- */
+html, body { overflow-x: hidden; width: 100%; }
+
+/* --- Hero sections responsive --- */
+@media (max-width: 992px) {
+  .hero-clear { padding-top: calc(var(--nav-height, 80px) + 48px) !important; }
+  .nssr-hero { min-height: auto; padding: 120px 20px 80px; }
+}
+
+@media (max-width: 640px) {
+  .hero-clear { padding-top: calc(var(--nav-height, 80px) + 32px) !important; }
+  .nssr-hero { padding: 100px 16px 64px; }
+  .nssr-hero .flex { flex-direction: column; width: 100%; gap: 12px; }
+  .nssr-hero .btn-primary,
+  .nssr-hero .btn-hero-outline { width: 100%; }
+}
+
+/* --- index.html: Institutional Framework (sticky aside + cards) --- */
+@media (max-width: 1024px) {
+  .framework-aside { position: static; margin-bottom: var(--space-8); }
+  .framework-grid { grid-template-columns: 1fr; }
+}
+
+/* --- nsrf.html: What fellows gain + right illustration --- */
+@media (max-width: 992px) {
+  .nsrf-fellows-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 640px) {
+  .nsrf-fellows-grid .grid { grid-template-columns: 1fr !important; }
+}
+
+/* --- event.html: Featured event card (poster + details) --- */
+@media (max-width: 992px) {
+  .event-featured { grid-template-columns: 1fr !important; }
+  .event-featured__media { min-height: 240px; }
+}
+
+/* --- team.html: Sidebar tabs -> horizontal scroll on mobile --- */
+@media (max-width: 992px) {
+  #team-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    gap: 8px !important;
+    border-left: none !important;
+    border-bottom: 1px solid var(--border-hairline) !important;
+    padding-bottom: var(--space-4) !important;
+    margin-bottom: var(--space-6) !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  #team-nav::-webkit-scrollbar { display: none; }
+  #team-nav button {
+    flex-shrink: 0 !important;
+    border-left: none !important;
+    border-bottom: 3px solid transparent !important;
+    border-radius: 0 !important;
+    padding: 8px 16px !important;
+    font-size: var(--font-size-sm) !important;
+  }
+  #team-nav button.active,
+  #team-nav button[style*="border-blue-900"] {
+    border-bottom-color: var(--nssr-blue) !important;
+    background: var(--accent-subtle-bg) !important;
+    color: var(--nssr-blue) !important;
+  }
+  #team-nav button:not(.active) {
+    color: var(--text-secondary) !important;
+  }
+  .team-section { grid-template-columns: 1fr !important; }
+}
+
+/* --- Footer responsive --- */
+@media (max-width: 992px) {
+  .site-footer .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .site-footer .md\:col-span-2 { grid-column: span 2 !important; }
+}
+@media (max-width: 640px) {
+  .site-footer .grid {
+    grid-template-columns: 1fr !important;
+  }
+  .site-footer .md\:col-span-2 { grid-column: span 1 !important; }
+  .site-footer .flex { flex-wrap: wrap; }
+  .site-footer .newsletter-form { flex-direction: column; }
+  .site-footer .newsletter-form__input,
+  .site-footer .newsletter-form__submit { width: 100%; }
+}
+
+/* --- Event detail view responsive --- */
+@media (max-width: 992px) {
+  #event-detail-view .flex { flex-direction: column; }
+  #event-detail-view aside { position: static !important; width: 100% !important; }
+}
+
+/* --- Card grids responsive --- */
+@media (max-width: 992px) {
+  .grid-auto { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+}
+@media (max-width: 640px) {
+  .grid-auto { grid-template-columns: 1fr; }
+  .events-grid { grid-template-columns: 1fr; }
+  .framework-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Section padding responsive --- */
+@media (max-width: 992px) {
+  .section { padding-block: var(--space-8); }
+  .section-lg { padding-block: var(--space-10); }
+}
+@media (max-width: 640px) {
+  .section { padding-block: var(--space-7); }
+  .section-lg { padding-block: var(--space-8); }
+  .container { padding-inline: var(--space-4); }
 }
