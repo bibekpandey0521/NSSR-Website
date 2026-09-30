@@ -804,6 +804,9 @@ body.nav-open { overflow: hidden; }
     transform: translateY(-8px);
     transition: opacity var(--transition-base), transform var(--transition-base),
       visibility var(--transition-base);
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .nav-menu.is-open {
@@ -816,12 +819,19 @@ body.nav-open { overflow: hidden; }
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-1);
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
-  .nav-item { width: 100%; }
+  .nav-item { width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
 
   .nav-link {
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     padding: 16px 20px;
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-medium);
@@ -829,6 +839,7 @@ body.nav-open { overflow: hidden; }
     letter-spacing: var(--body-tracking-normal);
     border-radius: var(--radius-sm);
     border-bottom: 1px solid var(--border-hairline);
+    box-sizing: border-box !important;
   }
 
   .nav-link:last-child { border-bottom: none; }
@@ -836,15 +847,20 @@ body.nav-open { overflow: hidden; }
   .nav-link.is-active::after { display: none; }
 
   .dropdown-trigger-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
   }
 
   .nav-dropdown-item .nav-link {
     flex: 1 1 auto;
     border-bottom: 1px solid var(--border-hairline);
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .dropdown-arrow-btn {
@@ -859,6 +875,9 @@ body.nav-open { overflow: hidden; }
     padding: 12px 16px 12px 24px;
     color: var(--text-secondary);
     border-radius: var(--radius-sm);
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .dropdown-link:hover,
@@ -868,9 +887,10 @@ body.nav-open { overflow: hidden; }
   }
 
   .nav-cta {
-    justify-content: center;
-    width: 100%;
-    margin: var(--space-4) 0 0;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: var(--space-4) 0 0 !important;
     padding: 16px 24px;
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
@@ -878,6 +898,9 @@ body.nav-open { overflow: hidden; }
     letter-spacing: var(--body-tracking-normal);
     border-radius: var(--radius-sm);
     border: none;
+    display: flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
   }
 }
 
@@ -909,19 +932,63 @@ body.nav-open { overflow: hidden; }
   }
 }
 
-/* Mobile dropdown accordion styling */
-@media (max-width: 1024px) {
+/* Aggressive full-width mobile nav rules for 992px breakpoint as requested */
+@media (max-width: 992px) {
+  header nav,
+  .nav-menu,
+  .nav-links,
+  header nav ul,
+  .nav-menu ul,
+  header nav li,
+  .nav-menu li,
+  .dropdown,
+  .nav-item,
+  .nav-dropdown-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: stretch !important;
+    box-sizing: border-box !important;
+  }
+
+  header nav a,
+  header nav button,
+  .nav-menu a,
+  .nav-menu button,
+  .dropdown-toggle,
+  .nav-link,
+  .dropdown-trigger-wrapper {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 14px 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Full-width "Join Us" button centered at the bottom of the mobile drawer */
+  header nav a[href*="membership"],
+  header nav .btn,
+  header nav .btn-primary,
+  .nav-menu .btn-primary,
+  .nav-cta,
+  .nav-cta a {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 15px 24px !important;
+    margin-top: 12px !important;
+    box-sizing: border-box !important;
+  }
+
   .nav-dropdown-menu {
-    position: static !important;
-    min-width: 0 !important;
-    display: none !important;
-    margin-top: 8px !important;
-    background: #f8fafc !important;
-    border: 1px solid var(--border-hairline) !important;
-    border-radius: var(--radius-md) !important;
-    box-shadow: none !important;
-    padding: var(--space-2) !important;
-    opacity: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
     transform: none !important;
   }
 
