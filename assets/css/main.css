@@ -924,33 +924,7 @@ body.nav-open { overflow: hidden; }
   .dropdown-link {
     padding: 10px 14px 10px 20px;
     font-size: var(--font-size-sm);
-  }
-
-  .nav-cta {
-    padding: 14px 20px;
-    font-size: var(--font-size-sm);
-  }
-}
-@media (max-width: 480px) {
-  .nav-brand-logo { width: 28px; height: 28px; }
-
-  .brand-text {
-    font-size: var(--font-size-xs);
-    line-height: var(--leading-snug);
-  }
-
-  .nav-menu {
-    padding: var(--space-4) var(--space-4) var(--space-6);
-  }
-
-  .nav-link {
-    padding: 14px 16px;
-    font-size: var(--font-size-sm);
-  }
-
-  .dropdown-link {
-    padding: 10px 14px 10px 20px;
-    font-size: var(--font-size-sm);
+    color: var(--text-secondary) !important;
   }
 
   .nav-cta {
