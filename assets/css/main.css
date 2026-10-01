@@ -3267,6 +3267,26 @@ html, body { overflow-x: hidden; width: 100%; }
   }
 }
 
+/* --- Process Steps Grid (science-beyond-classroom.html) ---
+   Responsive wrapping grid with minimum column width to prevent text overlap. */
+.process-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 24px 16px;
+  width: 100%;
+}
+
+.process-steps-grid .deboxed-card {
+  padding: var(--space-5) var(--space-3);
+  word-wrap: break-word;
+}
+
+/* Timeline strip grid - safe minimum width */
+.editorial-strip__item .grid {
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important;
+  gap: 16px 12px !important;
+}
+
 /* --- Stanford-Style Borderless Event Cards --- */
 .event-card-stanford {
   background: var(--bg-surface);
