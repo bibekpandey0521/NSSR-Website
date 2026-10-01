@@ -180,44 +180,45 @@
         collegeRepresentatives.sort((a, b) => a.name.localeCompare(b.name));
 
 
-        // 2. HORIZONTAL CARD GENERATOR
-        function generateHorizontalCard(member) {
+        // 2. PREMIUM CARD GENERATOR (Stanford-style)
+        function generatePremiumCard(member) {
             const subtitle = member.dept || member.inst || member.college || '';
             const isExec = member.email || member.linkedin;
+            const isAdvisor = !isExec;
             
             const socialLinks = isExec ? `
-                <div class="mt-3 flex gap-3">
-                    ${member.linkedin ? `<a href="${member.linkedin}" target="_blank" class="social-link text-slate-400 hover:text-blue-700 text-sm"><i class="fa-brands fa-linkedin-in"></i></a>` : ''}
-                    ${member.email ? `<a href="mailto:${member.email}" class="social-link text-slate-400 hover:text-blue-700 text-sm"><i class="fa-solid fa-envelope"></i></a>` : ''}
+                <div class="team-card__social flex gap-3 pt-3 border-t border-slate-100">
+                    ${member.linkedin ? `<a href="${member.linkedin}" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="${member.name} on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>` : ''}
+                    ${member.email ? `<a href="mailto:${member.email}" class="team-card__social-link" aria-label="Email ${member.name}"><i class="fa-solid fa-envelope"></i></a>` : ''}
                 </div>
             ` : '';
 
             return `
-            <div class="team-card bg-white rounded-lg p-5 flex items-center gap-5 border border-slate-100 border-t-4 border-t-blue-800 shadow-sm">
-                <div class="w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-full overflow-hidden bg-slate-100 border-2 border-slate-50">
-                    <img src="${member.image}" alt="${member.name}" class="w-full h-full object-cover">
+            <article class="team-card">
+                <div class="team-card__avatar">
+                    <img src="${member.image}" alt="${member.name}" loading="lazy">
                 </div>
-                <div>
-                    <h4 class="font-bold text-base md:text-lg text-slate-900">${member.name}</h4>
-                    <p class="text-blue-700 text-xs md:text-sm mt-0.5">${member.role}</p>
-                    <p class="text-slate-500 text-xs mt-1.5 leading-snug">${subtitle}</p>
+                <div class="team-card__content">
+                    <h4 class="team-card__name" style="font-family: 'Source Serif 4', serif;">${member.name}</h4>
+                    <p class="team-card__role">${member.role}</p>
+                    <p class="team-card__affiliation">${subtitle}</p>
                     ${socialLinks}
                 </div>
-            </div>`;
+            </article>`;
         }
 
         // 3. RENDERER
         function renderTeam() {
-            document.getElementById('content-leadership').innerHTML = executiveBoard.map(generateHorizontalCard).join('');
-            document.getElementById('content-advisory').innerHTML = advisors.map(generateHorizontalCard).join('');
+            document.getElementById('content-leadership').innerHTML = executiveBoard.map(generatePremiumCard).join('');
+            document.getElementById('content-advisory').innerHTML = advisors.map(generatePremiumCard).join('');
             
             // Render Representatives into the inner grid, leaving the button below it untouched
             const repsGrid = document.getElementById('reps-grid');
             if (collegeRepresentatives.length > 0) {
-                repsGrid.innerHTML = collegeRepresentatives.map(generateHorizontalCard).join('');
+                repsGrid.innerHTML = collegeRepresentatives.map(generatePremiumCard).join('');
             } else {
                 repsGrid.innerHTML = `
-                    <div class="xl:col-span-2 border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center rounded-lg">
+                    <div class="md:col-span-2 border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center rounded-lg">
                         <i class="fa-solid fa-building-columns text-2xl text-blue-600 mb-4"></i>
                         <h4 class="font-bold text-lg text-slate-900">Representative directory coming soon</h4>
                         <p class="text-slate-500 text-sm mt-2">College representatives will be listed here as the NSSR network grows.</p>
@@ -234,7 +235,7 @@
             
             // Reset all sidebar buttons styling
             document.querySelectorAll('#team-nav button').forEach(btn => {
-                btn.className = "text-left px-6 py-3 -ml-[1px] border-l-4 border-transparent text-slate-500 hover:text-slate-900 hover:bg-slate-50 rounded-r-lg transition-all";
+                btn.classList.remove('active');
             });
 
             // Show selected content
@@ -242,7 +243,7 @@
             
             // Highlight active button
             const activeBtn = document.getElementById(`btn-${sectionId}`);
-            activeBtn.className = "text-left px-6 py-3 -ml-[1px] border-l-4 border-blue-900 bg-blue-50/50 text-blue-900 font-bold rounded-r-lg transition-all";
+            activeBtn.classList.add('active');
         }
 
         // 5. INITIAL LOAD
