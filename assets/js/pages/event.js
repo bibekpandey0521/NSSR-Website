@@ -274,22 +274,21 @@
             const status = statusMeta(data.status);
 
             slot.innerHTML = `
-                <div class="event-featured event-featured--compact">
-                    <div class="event-featured__media">
+                <div class="event-featured--compact-row" style="max-width: 900px; margin: 0 auto 32px; display: flex; border: 1px solid rgba(15, 23, 42, 0.08); border-radius: 12px; overflow: hidden;">
+                    <div class="event-featured__media" style="flex: 0 0 240px; height: 180px; background: var(--bg-surface-sunken);">
                         <img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}">
-                        ${dateBadgeHtml(key)}
                     </div>
-                    <div class="event-featured__body">
-                        <h3 class="event-featured__title">${escapeHtml(data.title)}</h3>
-                        <p class="event-featured__excerpt">${escapeHtml(data.excerpt || '')}</p>
-                        <div class="event-featured__meta">
-                            <span class="event-meta-item">${icon('calendar')}${escapeHtml(data.date || '')}</span>
-                            <span class="event-meta-item">${icon('pin')}${escapeHtml(data.Venue || 'Online')}</span>
-                            <span class="status-pill ${status.cls}">${escapeHtml(status.label)}</span>
+                    <div class="event-featured__body" style="padding: 32px; flex: 1;">
+                        <h3 class="text-slate-900 font-black text-2xl mb-2">${escapeHtml(data.title)}</h3>
+                        <p class="text-slate-600 text-sm mb-6">${escapeHtml(data.excerpt || '')}</p>
+                        <div class="event-featured__meta-compat" style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;">
+                            <span class="text-xs font-semibold text-nssrBlue uppercase tracking-widest">${escapeHtml(status.label)}</span>
+                            <span class="text-xs font-semibold text-nssrBlue uppercase tracking-widest">${escapeHtml(data.categoryType || '')}</span>
+                            <span class="text-xs font-semibold text-nssrBlue uppercase tracking-widest">${escapeHtml(data.date || '')}</span>
                         </div>
-                        <div class="event-featured__actions">
-                            <a class="btn-primary" href="#${escapeHtml(key)}">View event details</a>
-                            <a class="btn-secondary" href="${escapeHtml(data.report || '#')}">Download proceeding</a>
+                        <div class="event-featured__actions" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <a href="${escapeHtml(data.report || '#')}" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm">View Event Details</a>
+                            <a href="${escapeHtml(data.report || '#')}" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-sm">Download Proceeding</a>
                         </div>
                     </div>
                 </div>`;
@@ -317,12 +316,12 @@
                         <p class="event-card__excerpt">${escapeHtml(data.excerpt || '')}</p>
                         <div class="event-card__meta">
                             <span class="event-meta-item">${icon('calendar')}${escapeHtml(data.date || '')}</span>
-                            <span class="event-meta-item">${icon('pin')}${escapeHtml(data.Venue || 'Online')}</span>
+                            <span class="event-meta-item">${escapeHtml(data.Venue || 'Online')}</span>
                         </div>
                     </div>
                     <div class="event-card__footer">
                         <span class="status-pill ${status.cls}">${escapeHtml(status.label)}</span>
-                        <span class="event-card__cta">View ${icon('arrow')}</span>
+                        <span class="event-card__cta">View Details</span>
                     </div>
                 </article>`;
             }).join('');

@@ -2399,14 +2399,15 @@ a.btn-blue > *,
 
 /* --- Featured / upcoming split card ------------------------------------------ */
 .event-featured {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
   overflow: hidden;
   background: var(--bg-surface);
   border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 20px;
-  box-shadow: var(--shadow-md);
+  border-radius: 12px;
+  box-shadow: none;
   transition: box-shadow var(--transition-base), transform var(--transition-base);
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .event-featured:hover {
@@ -2414,15 +2415,12 @@ a.btn-blue > *,
   box-shadow: var(--shadow-xl);
 }
 
-@media (min-width: 900px) {
-  .event-featured { grid-template-columns: 1.05fr 1fr; }
-}
-
 .event-featured__media {
-  position: relative;
-  min-height: 280px;
-  overflow: hidden;
-  background: var(--nssr-dark);
+  flex-shrink: 0;
+  min-width: 240px;
+  max-width: 240px;
+  height: 180px;
+  background: var(--bg-surface-sunken);
 }
 
 .event-featured__media img {
@@ -2431,69 +2429,12 @@ a.btn-blue > *,
   object-fit: cover;
 }
 
-/* Date badge, bottom-left over the image. */
-.event-date-badge {
-  position: absolute;
-  bottom: var(--space-5);
-  left: var(--space-5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 78px;
-  padding: 10px 0;
-  color: var(--nssr-blue);
-  background: rgba(255, 255, 255, 0.95);
-  -webkit-backdrop-filter: saturate(var(--blur-saturation)) blur(8px);
-  backdrop-filter: saturate(var(--blur-saturation)) blur(8px);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-}
-
-.event-date-badge__month {
-  font-size: var(--font-size-2xs);
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--text-tertiary);
-}
-
-.event-date-badge__day {
-  font-family: var(--font-serif-brand);
-  font-size: 1.75rem;
-  font-weight: 900;
-  line-height: 1.05;
-  color: var(--nssr-blue);
-}
-
-.event-date-badge__year {
-  font-size: 10px;
-  font-weight: var(--font-weight-medium);
-  color: var(--text-quaternary);
-}
-
 .event-featured__body {
+  padding: 32px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  padding: 32px;
-}
-
-@media (min-width: 900px) { .event-featured__body { padding: 44px 40px; } }
-
-.event-featured__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
-  padding: 5px 12px;
-  font-size: var(--font-size-2xs);
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--accent-subtle-text);
-  background: var(--accent-subtle-bg);
-  border: 1px solid var(--border-accent);
-  border-radius: var(--radius-pill);
+  gap: 16px;
 }
 
 .event-featured__title {
@@ -2511,38 +2452,79 @@ a.btn-blue > *,
   color: var(--text-secondary);
 }
 
-.event-featured__meta {
+/* Compact featured row - shown on archive page */
+.event-featured--compact-row {
+  max-width: 900px;
+  margin: 0 auto 32px;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--border-hairline);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-.location-pill {
-  display: inline-flex;
+.event-featured--compact-row .event-featured__media {
+  flex: 0 0 240px;
+  height: 180px;
+  background: var(--bg-surface-sunken);
+}
+
+.event-featured--compact-row .event-featured__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-featured--compact-row .event-featured__body {
+  padding: 32px;
+  flex: 1;
+}
+
+.event-featured__meta-compat {
+  display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 6px 13px;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   color: var(--text-secondary);
-  background: var(--bg-surface-sunken);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radius-pill);
 }
-
-.location-pill .icon-inline { width: 13px; height: 13px; color: #2563eb; }
 
 .event-featured__actions {
   display: flex;
+  gap: 8px;
   flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-top: var(--space-2);
 }
 
-/* --- Tabs: segmented control ------------------------------------------------ */
+.event-featured__actions .btn-primary,
+.event-featured__actions .btn-secondary {
+  font-size: var(--font-size-sm);
+  padding: 8px 16px;
+}
+
+/* Mobile: stack thumbnail above content, full-width buttons */
+@media (max-width: 768px) {
+  .event-featured--compact-row {
+    flex-direction: column-reverse;
+  }
+  .event-featured--compact-row .event-featured__media {
+    flex: 0 0 100%;
+    max-width: 100%;
+    height: 200px;
+  }
+  .event-featured--compact-row .event-featured__body {
+    padding: 24px 20px;
+  }
+  .event-featured__actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .event-featured__actions .btn-primary,
+  .event-featured__actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
 .events-tabs {
   display: inline-flex;
   gap: var(--space-1);
@@ -2933,7 +2915,7 @@ html, body { overflow-x: hidden; width: 100%; }
 .pillars-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 36px 32px;
+  gap: 36px 40px;
   width: 100%;
 }
 
@@ -2943,7 +2925,7 @@ html, body { overflow-x: hidden; width: 100%; }
   border-radius: 0 !important;
   box-shadow: none !important;
   padding: 20px 0 0 0 !important;
-  border-top: 1px solid var(--border-hairline);
+  border-top: 1px solid rgba(15, 23, 42, 0.12) !important;
 }
 
 .pillar-item:first-child,
@@ -2957,14 +2939,14 @@ html, body { overflow-x: hidden; width: 100%; }
 }
 
 .pillar-item .framework-card__title {
-  color: var(--nssr-dark);
+  color: #0f172a !important;
 }
 
 .pillar-item .framework-card__body {
-  color: var(--text-secondary);
+  color: #475569 !important;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
   .institutional-framework .grid {
     grid-template-columns: 1fr !important;
   }
@@ -3140,7 +3122,13 @@ html, body { overflow-x: hidden; width: 100%; }
   border: none !important;
   box-shadow: none !important;
   border-radius: 0 !important;
-  padding: var(--space-4) 0 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.1) !important;
+  padding: 24px 0 0 0 !important;
+}
+
+.deboxed-card:first-child {
+  border-top: none !important;
+  padding-top: 0 !important;
 }
 
 .deboxed-card:hover {
