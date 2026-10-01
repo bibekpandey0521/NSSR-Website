@@ -305,23 +305,23 @@
                 const data = eventsData[key];
                 const status = statusMeta(data.status);
                 return `
-                <article class="event-card" tabindex="0" role="link"
+                <article class="event-card-stanford" tabindex="0" role="link"
                          onclick="window.location.hash='${escapeHtml(key)}'"
                          onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.location.hash='${escapeHtml(key)}'; }">
-                    <div class="event-card__media">
-                        <img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}" loading="lazy">
-                    </div>
-                    <div class="event-card__body">
-                        <h3 class="event-card__title">${escapeHtml(data.title)}</h3>
-                        <p class="event-card__excerpt">${escapeHtml(data.excerpt || '')}</p>
-                        <div class="event-card__meta">
-                            <span class="event-meta-item">${icon('calendar')}${escapeHtml(data.date || '')}</span>
-                            <span class="event-meta-item">${escapeHtml(data.Venue || 'Online')}</span>
+                    <a href="#${escapeHtml(key)}" class="event-card-stanford__link">
+                        <div class="event-card-stanford__media">
+                            <img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}" loading="lazy">
                         </div>
-                    </div>
-                    <div class="event-card__footer">
+                        <div class="event-card-stanford__content">
+                            <div class="event-card-stanford__meta">
+                                <span class="event-card-stanford__category">${escapeHtml(data.categoryType || '')}</span>
+                                <span class="event-card-stanford__date">${escapeHtml(data.date || '')}</span>
+                            </div>
+                            <h3 class="event-card-stanford__title">${escapeHtml(data.title)}</h3>
+                        </div>
+                    </a>
+                    <div class="event-card-stanford__footer">
                         <span class="status-pill ${status.cls}">${escapeHtml(status.label)}</span>
-                        <span class="event-card__cta">View Details</span>
                     </div>
                 </article>`;
             }).join('');

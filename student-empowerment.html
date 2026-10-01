@@ -13,6 +13,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@300;400;700;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
 </head>
 <body class="bg-white">
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="closeLightbox()" class="fixed inset-0 z-[2000] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer">
+        <button class="absolute top-6 right-6 text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+        <img id="lightbox-img" onclick="event.stopPropagation()" src="" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl transform scale-95 transition-transform duration-300">
+    </div>
+
     <div id="nav-placeholder"></div>
 
     <header class="hero-clear bg-slate-900 text-white">

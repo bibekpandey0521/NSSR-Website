@@ -812,6 +812,25 @@
     });
   }
 
+  /* ==========================================================================
+   Global Lightbox (shared by event.html, science-beyond-classroom.html, etc.)
+   ========================================================================== */
+  window.openLightbox = function (src) {
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lightbox-img');
+    if (!lb || !lbImg) return;
+    lbImg.src = src;
+    lb.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeLightbox = function () {
+    var lb = document.getElementById('lightbox');
+    if (!lb) return;
+    lb.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  };
+
   function initReportGuard() {
     document.addEventListener('click', function (event) {
       var target = event.target;
