@@ -22,7 +22,6 @@
 	
     <!-- Dependencies -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Unified NSSR design system -->
     <link rel="stylesheet" href="assets/css/main.css">
@@ -44,87 +43,56 @@
 <body class="bg-white text-slate-900">
 
     <div id="nav-placeholder"></div>
-	<header class="nssr-hero relative h-[85vh] md:h-screen overflow-hidden bg-nssrDark">
-    <div class="swiper mainSwiper h-full w-full">
-        <div class="swiper-wrapper">
-            
-            <!-- Slide 1 -->
-            <div class="swiper-slide relative overflow-hidden" data-swiper-autoplay="7000">
-                <!-- Image handles mobile crop via object-center -->
-                <img src="assets/images/aspire/asp4.jpeg" 
-                     class="absolute inset-0 w-full h-full object-cover object-center animate-ken-burns" 
-                     alt="NSSR Research">
-                
-                <div class="absolute inset-0 bg-gradient-to-r from-nssrDark via-nssrDark/80 md:via-nssrDark/60 to-transparent z-10"></div>
-                
-                <div class="container mx-auto px-6 h-full flex items-center relative z-20">
-                    <div class="max-w-4xl pt-12 md:pt-0">
-                        <span class="academic-caps text-blue-400 mb-4 md:mb-6 block animate-fade-in-up text-[10px]">
-                            <i class="fa-solid fa-microscope mr-2"></i> Scientific Inquiry • Kathmandu
-                        </span>
-                        
-                        <h1 class="text-white text-4xl md:text-8xl font-serif font-black leading-tight md:leading-none mb-6 md:mb-8 animate-fade-in-up delay-300">
-                            Towards an <br class="hidden md:block">
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400 italic font-light">Informed Society.</span>
-                        </h1>
-                        
-                        <p class="text-gray-300 text-sm md:text-xl max-w-xl mb-8 md:mb-10 font-light leading-relaxed animate-fade-in-up delay-600">
-                            The Nepalese Society of Student Researchers is a catalyst for academic excellence, fostering a culture where inquiry meets integrity.
-                        </p>
-                        
-                        <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-600">
-                            <a href="membership.html" class="btn-primary btn-lg btn-sharp">
-                                Join the Society
-                            </a>
-                            <a href="research.html" class="btn-hero-outline">
-                                View Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="swiper-slide relative overflow-hidden" data-swiper-autoplay="12000">
-                <img src="assets/images/Qc/image9.JPG" class="absolute inset-0 w-full h-full object-cover object-center animate-ken-burns" alt="Quantum Physics">
-                <div class="absolute inset-0 bg-gradient-to-r from-nssrDark via-nssrDark/80 md:via-nssrDark/60 to-transparent z-10"></div>
-                
-                <div class="container mx-auto px-6 h-full flex items-center relative z-20">
-                    <div class="max-w-4xl pt-12 md:pt-0">
-                        <span class="academic-caps text-blue-400 mb-4 md:mb-6 block animate-fade-in-up text-[10px]">Centenary Celebration 1925 - 2025</span>
-                        
-                        <h1 class="text-white text-4xl md:text-8xl font-serif font-black leading-tight md:leading-none mb-6 md:mb-8 animate-fade-in-up delay-300">
-                            The Quantum <br><span class="italic font-light">Frontier.</span>
-                        </h1>
-                        
-                        <div class="animate-fade-in-up delay-600">
-                            <a href="event.html" class="btn-secondary btn-lg btn-sharp">
-                                Explore Workshops
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+    
+    <!-- STANFORD-STYLE FULL-BLEED HERO -->
+    <header class="nssr-hero relative min-h-[85vh] md:min-h-screen overflow-hidden bg-nssrDark">
+        <div class="absolute inset-0 z-0">
+            <img src="assets/images/aspire/asp4.jpeg" 
+                 class="w-full h-full object-cover object-center" 
+                 alt="NSSR Research">
+            <!-- Stanford-style dark gradient overlay: transparent at top, opaque at bottom -->
+            <div class="absolute inset-0 bg-gradient-to-t from-nssrDark/95 via-nssrDark/60 to-transparent z-10"></div>
         </div>
-
-        <!-- Custom Pagination -->
-        <div class="swiper-pagination !bottom-8 md:!bottom-12 !left-6 !text-left !w-auto"></div>
         
-        <!-- Scroll indicator (hidden on mobile for space) -->
-        <div class="absolute bottom-10 right-10 z-20 hidden md:block">
-            <div class="flex flex-col items-center gap-2">
-                <span class="academic-caps text-white/40 text-[8px]">Scroll</span>
-                <div class="w-[1px] h-12 bg-gradient-to-b from-blue-400 to-transparent"></div>
+        <div class="container mx-auto px-6 relative z-20 h-full flex items-end pb-16 md:pb-24">
+            <div class="max-w-4xl w-full animate-fade-in-up">
+                <span class="academic-caps text-blue-400 mb-4 md:mb-6 block text-[10px]">
+                    <i class="fa-solid fa-microscope mr-2"></i> Scientific Inquiry • Kathmandu
+                </span>
+                
+                <h1 class="text-white text-4xl md:text-7xl lg:text-8xl font-serif font-black leading-tight mb-6 md:mb-8">
+                    Towards an <br class="hidden md:block">
+                    <span class="italic font-light">Informed Society.</span>
+                </h1>
+                
+                <p class="text-gray-300 text-base md:text-xl max-w-xl mb-8 md:mb-10 font-light leading-relaxed">
+                    The Nepalese Society of Student Researchers is a catalyst for academic excellence, fostering a culture where inquiry meets integrity.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="membership.html" class="btn-primary btn-lg btn-sharp">
+                        Join the Society
+                    </a>
+                    <a href="research.html" class="btn-hero-outline">
+                        View Repository
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</header>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-6 z-20 hidden md:block">
+            <div class="flex flex-col items-start gap-2">
+                <span class="academic-caps text-white/40 text-[8px]">Scroll</span>
+                <div class="w-[1px] h-12 bg-gradient-to-t from-blue-400 to-transparent"></div>
+            </div>
+        </div>
+    </header>
 
     <!-- MISSION, VALUES & ETHICS (INSTITUTIONAL EDITION) -->
-    <section class="py-24 md:py-32 bg-white border-b border-slate-100 institutional-framework">
+    <section class="institutional-framework">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.25fr] gap-12 lg:gap-16 items-start">
 
                 <!-- Left: editorial header column -->
                 <div>
@@ -204,6 +172,30 @@
                     project, ensuring that science remains a force for progress and public good.&rdquo;
                 </p>
             </blockquote>
+        </div>
+    </section>
+
+    <!-- STANFORD-STYLE IMPACT STATS STRIP -->
+    <section class="impact-stats bg-white border-y border-slate-100">
+        <div class="container mx-auto px-6">
+            <div class="impact-stats__grid">
+                <div class="impact-stat">
+                    <div class="impact-stat__number font-serif font-black text-nssrDark">40+</div>
+                    <div class="impact-stat__label academic-caps text-slate-500">Active Researchers</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat__number font-serif font-black text-nssrDark">5+</div>
+                    <div class="impact-stat__label academic-caps text-slate-500">Uni-Collaborations</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat__number font-serif font-black text-nssrDark">20+</div>
+                    <div class="impact-stat__label academic-caps text-slate-500">Conducted Sessions</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-stat__number font-serif font-black text-nssrDark">2025</div>
+                    <div class="impact-stat__label academic-caps text-slate-500">Foundation Year</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -298,7 +290,6 @@
     <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="assets/js/main.js" defer></script>
 
     <script src="assets/js/pages/index.js" defer></script>

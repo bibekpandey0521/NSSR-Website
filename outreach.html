@@ -13,6 +13,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@300;400;700;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
 </head>
 <body class="bg-white">
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="closeLightbox()" class="fixed inset-0 z-[2000] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer">
+        <button class="absolute top-6 right-6 text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+        <img id="lightbox-img" onclick="event.stopPropagation()" src="" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl transform scale-95 transition-transform duration-300">
+    </div>
+
     <div id="nav-placeholder"></div>
     <header class="hero-clear pb-24 bg-slate-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-25"><img src="assets/images/SEI/out1.png" class="w-full h-full object-cover" alt="NSSR outreach program"></div>
@@ -40,9 +46,26 @@
                     <a href="student-empowerment.html" class="font-oswald text-xs uppercase tracking-widest text-blue-700 inline-flex items-center gap-1">Explore the Initiative <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
+
+            <div class="editorial-row">
+                <div>
+                    <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Our Commitment</span>
+                    <h2 class="text-3xl md:text-4xl font-black mt-3 mb-4">Science for every student, everywhere.</h2>
+                    <p class="text-slate-600 leading-relaxed">NSSR's outreach model is built on sustained presence, not one-off visits. We work with schools over time to build capacity, transfer resources, and create lasting pathways into research for students who would otherwise never encounter them.</p>
+                </div>
+                <div class="border-l border-slate-200 pl-8">
+                    <h2 class="text-2xl font-black mb-4">How we measure impact</h2>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li><i class="fa-solid fa-check text-blue-600 mr-3"></i>Students reached across provinces</li>
+                        <li><i class="fa-solid fa-check text-blue-600 mr-3"></i>Schools retaining lab equipment & libraries</li>
+                        <li><i class="fa-solid fa-check text-blue-600 mr-3"></i>Mentees continuing into research pathways</li>
+                        <li><i class="fa-solid fa-check text-blue-600 mr-3"></i>Teachers reporting improved engagement</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </main>
-    <section class="py-16 bg-slate-900 text-white text-center"><div class="container mx-auto px-6"><p class="max-w-2xl mx-auto text-slate-300 italic">Making scientific curiosity accessible, practical, and lasting for students across Nepal.</p></div></section>
+    <section class="py-16 border-t border-slate-100"><div class="container mx-auto px-6 text-center"><p class="max-w-2xl mx-auto text-slate-500 italic">Making scientific curiosity accessible, practical, and lasting for students across Nepal.</p></div></section>
     <div id="footer-placeholder"></div>
     <script src="assets/js/main.js" defer></script>
 </body>

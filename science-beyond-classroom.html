@@ -13,6 +13,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@300;400;700;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
 </head>
 <body class="bg-white">
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="closeLightbox()" class="fixed inset-0 z-[2000] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer">
+        <button class="absolute top-6 right-6 text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+        <img id="lightbox-img" onclick="event.stopPropagation()" src="" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl transform scale-95 transition-transform duration-300">
+    </div>
+
     <div id="nav-placeholder"></div>
 
     <header class="hero-clear bg-slate-900 text-white">
@@ -116,7 +122,22 @@
                 </div>
             </div>
 
-            <section class="bg-slate-900 text-white rounded-2xl p-8 md:p-12 mb-20"><div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-center"><div><span class="font-oswald text-amber-400 uppercase tracking-widest text-xs font-bold">One hour, real rooms</span><h2 class="text-3xl md:text-5xl font-black mt-4">Open with a question. Leave with curiosity.</h2><p class="text-slate-300 text-sm leading-relaxed mt-5">The session begins with a simple question that students can relate to. From there, the speaker builds scientific thinking through stories, examples, discussion, and questions.</p></div><div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center"><div class="bg-blue-800 p-4 rounded-l-lg"><b class="font-oswald text-xl">10</b><p class="text-[10px] uppercase mt-2">Opening question</p></div><div class="bg-blue-700 p-4"><b class="font-oswald text-xl">25</b><p class="text-[10px] uppercase mt-2">The talk</p></div><div class="bg-blue-600 p-4"><b class="font-oswald text-xl">15</b><p class="text-[10px] uppercase mt-2">Open Q&A</p></div><div class="bg-amber-500 text-slate-950 p-4 rounded-r-lg"><b class="font-oswald text-xl">10</b><p class="text-[10px] uppercase mt-2">Curiosity to action</p></div></div></div><p class="text-center text-slate-400 text-sm mt-8">60 minutes. Free for the school. Every material funded and prepared by NSSR.</p></section>
+            <div class="editorial-strip mb-20">
+                <div class="editorial-strip__item">
+                    <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">One hour, real rooms</span>
+                    <h2 class="text-3xl md:text-5xl font-black mt-4">Open with a question. Leave with curiosity.</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed mt-5">The session begins with a simple question that students can relate to. From there, the speaker builds scientific thinking through stories, examples, discussion, and questions.</p>
+                </div>
+                <div class="editorial-strip__item">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+                        <div class="p-4 border-t border-slate-200 pt-6"><b class="font-oswald text-xl text-blue-700">10</b><p class="text-[10px] uppercase mt-2 text-slate-600">Opening question</p></div>
+                        <div class="p-4 border-t border-slate-200 pt-6"><b class="font-oswald text-xl text-blue-600">25</b><p class="text-[10px] uppercase mt-2 text-slate-600">The talk</p></div>
+                        <div class="p-4 border-t border-slate-200 pt-6"><b class="font-oswald text-xl text-blue-500">15</b><p class="text-[10px] uppercase mt-2 text-slate-600">Open Q&A</p></div>
+                        <div class="p-4 border-t border-amber-200 pt-6"><b class="font-oswald text-xl text-amber-600">10</b><p class="text-[10px] uppercase mt-2 text-slate-600">Curiosity to action</p></div>
+                    </div>
+                    <p class="text-center text-slate-500 text-sm mt-8">60 minutes. Free for the school. Every material funded and prepared by NSSR.</p>
+                </div>
+            </div>
 
             <div class="editorial-row mb-20">
                 <div class="text-center mb-10 md:text-left">
@@ -124,12 +145,77 @@
                     <h2 class="text-3xl md:text-5xl font-black mt-3">One hour, real rooms.</h2>
                     <p class="text-slate-500 mt-4">Sessions have already reached Bagishwori Secondary School, Apex Life School, and Kanya Mandir Secondary School.</p>
                 </div>
-                <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-5">
-                    <figure><img src="assets/images/SBC/IMG-20260811-WA0001.jpg" class="w-full aspect-[4/3] object-cover rounded-xl" alt="Students attending a Science Beyond the Classroom session"><figcaption class="font-oswald text-center text-sm uppercase tracking-widest mt-3">Students in the room</figcaption></figure>
-                    <figure><img src="assets/images/SBC/IMG-20260811-WA0005.jpg" class="w-full aspect-[4/3] object-cover rounded-xl" alt="NSSR speaker presenting to students"><figcaption class="font-oswald text-center text-sm uppercase tracking-widest mt-3">The talk itself</figcaption></figure>
-                    <figure><img src="assets/images/SBC/IMG_2497.jpg" class="w-full aspect-[4/3] object-cover rounded-xl" alt="Science Beyond the Classroom audience"><figcaption class="font-oswald text-center text-sm uppercase tracking-widest mt-3">A full house</figcaption></figure>
-                    <figure><img src="assets/images/SBC/IMG_2498.jpg" class="w-full aspect-[4/3] object-cover rounded-xl" alt="NSSR science session with students"><figcaption class="font-oswald text-center text-sm uppercase tracking-widest mt-3">Questions in the room</figcaption></figure>
-                    <figure><img src="assets/images/SBC/IMG_2499.jpg" class="w-full aspect-[4/3] object-cover rounded-xl" alt="Students engaging with a science talk"><figcaption class="font-oswald text-center text-sm uppercase tracking-widest mt-3">Curiosity in action</figcaption></figure>
+                <div class="events-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                    <article class="event-card-stanford">
+                        <a href="assets/images/SBC/IMG-20260811-WA0001.jpg" class="event-card-stanford__link" onclick="openLightbox(this.href); return false;">
+                            <div class="event-card-stanford__media">
+                                <img src="assets/images/SBC/IMG-20260811-WA0001.jpg" alt="Students attending a Science Beyond the Classroom session" loading="lazy">
+                            </div>
+                            <div class="event-card-stanford__content">
+                                <div class="event-card-stanford__meta">
+                                    <span class="event-card-stanford__category">Gallery</span>
+                                    <span class="event-card-stanford__date">Bagishwori Secondary</span>
+                                </div>
+                                <h3 class="event-card-stanford__title">Students in the room</h3>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="event-card-stanford">
+                        <a href="assets/images/SBC/IMG-20260811-WA0005.jpg" class="event-card-stanford__link" onclick="openLightbox(this.href); return false;">
+                            <div class="event-card-stanford__media">
+                                <img src="assets/images/SBC/IMG-20260811-WA0005.jpg" alt="NSSR speaker presenting to students" loading="lazy">
+                            </div>
+                            <div class="event-card-stanford__content">
+                                <div class="event-card-stanford__meta">
+                                    <span class="event-card-stanford__category">Gallery</span>
+                                    <span class="event-card-stanford__date">Apex Life School</span>
+                                </div>
+                                <h3 class="event-card-stanford__title">The talk itself</h3>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="event-card-stanford">
+                        <a href="assets/images/SBC/IMG_2497.jpg" class="event-card-stanford__link" onclick="openLightbox(this.href); return false;">
+                            <div class="event-card-stanford__media">
+                                <img src="assets/images/SBC/IMG_2497.jpg" alt="Science Beyond the Classroom audience" loading="lazy">
+                            </div>
+                            <div class="event-card-stanford__content">
+                                <div class="event-card-stanford__meta">
+                                    <span class="event-card-stanford__category">Gallery</span>
+                                    <span class="event-card-stanford__date">Kanya Mandir Secondary</span>
+                                </div>
+                                <h3 class="event-card-stanford__title">A full house</h3>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="event-card-stanford">
+                        <a href="assets/images/SBC/IMG_2498.jpg" class="event-card-stanford__link" onclick="openLightbox(this.href); return false;">
+                            <div class="event-card-stanford__media">
+                                <img src="assets/images/SBC/IMG_2498.jpg" alt="NSSR science session with students" loading="lazy">
+                            </div>
+                            <div class="event-card-stanford__content">
+                                <div class="event-card-stanford__meta">
+                                    <span class="event-card-stanford__category">Gallery</span>
+                                    <span class="event-card-stanford__date">Session in action</span>
+                                </div>
+                                <h3 class="event-card-stanford__title">Questions in the room</h3>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="event-card-stanford">
+                        <a href="assets/images/SBC/IMG_2499.jpg" class="event-card-stanford__link" onclick="openLightbox(this.href); return false;">
+                            <div class="event-card-stanford__media">
+                                <img src="assets/images/SBC/IMG_2499.jpg" alt="Students engaging with a science talk" loading="lazy">
+                            </div>
+                            <div class="event-card-stanford__content">
+                                <div class="event-card-stanford__meta">
+                                    <span class="event-card-stanford__category">Gallery</span>
+                                    <span class="event-card-stanford__date">Curiosity in action</span>
+                                </div>
+                                <h3 class="event-card-stanford__title">Curiosity in action</h3>
+                            </div>
+                        </a>
+                    </article>
                 </div>
             </div>
 
