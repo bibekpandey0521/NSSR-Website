@@ -430,38 +430,91 @@
 
     return '' +
       '    <footer class="site-footer">' +
-      '        <div class="container mx-auto px-4 text-sm">' +
-      '            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">' +
-      '                <div class="flex flex-col items-center md:items-start text-center md:text-left">' +
-      '                    <img src="assets/images/logonobg.png" alt="NSSR Logo" class="h-32 mb-4 -ml-4">' +
-      '                    <h3 class="text-xl font-semibold mb-4">Follow Us</h3>' +
-      '                    <div class="flex space-x-4 justify-center md:justify-start">' + socials + '</div>' +
-      '                </div>' +
-      '                <div class="text-center md:text-left">' +
-      '                    <h3 class="text-xl font-semibold mb-4">Contact Us</h3>' +
-      '                    <p class="mb-2"><i class="fas fa-envelope mr-3" aria-hidden="true"></i>Email: ' +
-      '                        <a href="mailto:nssrnepal@gmail.com" class="hover:underline">info@nssrnepal.org</a></p>' +
-      '                    <p class="mb-2"><i class="fas fa-phone-alt mr-3" aria-hidden="true"></i>Phone: +977-9761444329</p>' +
-      '                    <p class="mb-2"><i class="fas fa-map-marker-alt mr-3" aria-hidden="true"></i>Address: Kathmandu, Nepal</p>' +
-      '                </div>' +
-      '                <div class="text-center md:text-left">' +
-      '                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>' +
-      '                    <ul class="space-y-2">' + links + '</ul>' +
-      '                </div>' +
-      '                <div class="text-center md:text-left md:col-span-2 lg:col-span-1">' +
-      '                    <h3 class="text-xl font-semibold mb-4">Our Newsletter</h3>' +
-      '                    <p class="mb-4">Stay up-to-date with the latest news and insights delivered straight to your inbox.</p>' +
-      '                    <form id="newsletter-form" class="newsletter-form">' +
-      '                        <input type="email" name="_replyto" placeholder="Your Email" aria-label="Your Email"' +
-      '                            class="newsletter-form__input focus:outline-none focus:ring-2 focus:ring-[#004AAD]"' +
-      '                            required>' +
-      '                        <button type="submit" class="btn-primary newsletter-form__submit">Subscribe</button>' +
-      '                    </form>' +
-      '                    <p id="newsletter-success" class="text-green-600 mt-4 hidden" role="status">' +
-      '                        Successfully subscribed to our newsletter!</p>' +
+      '        <!-- Left Panel: Blue (55%) -->' +
+      '        <div class="footer-left">' +
+      '            <div class="container mx-auto px-6 py-16 lg:px-12 lg:py-24">' +
+      '                <div class="footer-left-grid">' +
+      '                    <!-- Brand Column -->' +
+      '                    <div class="footer-brand">' +
+      '                        <img src="assets/images/bluelogonobg.png" alt="NSSR Logo" class="footer-logo">' +
+      '                        <address class="footer-address">' +
+      '                            Kathmandu, Nepal<br>' +
+      '                            info@nssrnepal.org' +
+      '                        </address>' +
+      '                        <div class="footer-socials" aria-label="Social media links">' +
+      '                            <a href="https://www.linkedin.com/company/nssrnepal/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>' +
+      '                            <a href="https://twitter.com/nssrnepal" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>' +
+      '                            <a href="https://www.facebook.com/nssrnepal" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>' +
+      '                            <a href="https://www.instagram.com/nssrnepal/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>' +
+      '                        </div>' +
+      '                    </div>' +
+      '                    <!-- Navigation Column -->' +
+      '                    <nav class="footer-nav" aria-label="Footer navigation">' +
+      '                        <div class="footer-nav-group">' +
+      '                            <h3 class="footer-nav-title">Our Actions</h3>' +
+      '                            <ul class="footer-nav-list">' +
+      '                                <li><a href="research.html">Research</a></li>' +
+      '                                <li><a href="nsrf.html">Summer Research Fellowship</a></li>' +
+      '                                <li><a href="research-pathways.html">Research Pathways</a></li>' +
+      '                                <li><a href="membership.html">Participation Pathways</a></li>' +
+      '                            </ul>' +
+      '                        </div>' +
+      '                        <div class="footer-nav-group">' +
+      '                            <h3 class="footer-nav-title">News</h3>' +
+      '                            <ul class="footer-nav-list">' +
+      '                                <li><a href="blog.html">The Dispatch</a></li>' +
+      '                                <li><a href="event.html">Events Archive</a></li>' +
+      '                            </ul>' +
+      '                        </div>' +
+      '                        <div class="footer-nav-group">' +
+      '                            <h3 class="footer-nav-title">Events</h3>' +
+      '                            <ul class="footer-nav-list">' +
+      '                                <li><a href="science-beyond-classroom.html">Science Beyond the Classroom</a></li>' +
+      '                                <li><a href="student-empowerment.html">Student Empowerment Initiative</a></li>' +
+      '                                <li><a href="outreach.html">Outreach Programs</a></li>' +
+      '                            </ul>' +
+      '                        </div>' +
+      '                    </nav>' +
       '                </div>' +
       '            </div>' +
-      '            <p class="mt-8 text-center text-gray-400">&copy; 2026 Nepalese Society of Student Researchers. All rights reserved.</p>' +
+      '        </div>' +
+      '        <!-- Right Panel: White (45%) with Curve -->' +
+      '        <div class="footer-right">' +
+      '            <div class="container mx-auto px-6 py-16 lg:px-12 lg:py-24">' +
+      '                <div class="footer-right-content">' +
+      '                    <h2 class="footer-newsletter-title">Subscribe to our newsletter</h2>' +
+      '                    <p class="footer-newsletter-description">Stay up-to-date with the latest research opportunities, events, and insights from NSSR.</p>' +
+      '                    <form id="newsletter-form" class="footer-newsletter-form" novalidate>' +
+      '                        <div class="footer-form-row">' +
+      '                            <div class="footer-form-group">' +
+      '                                <label for="first-name" class="footer-form-label">First name</label>' +
+      '                                <input type="text" id="first-name" name="first_name" class="footer-form-input" placeholder="First name" required>' +
+      '                            </div>' +
+      '                            <div class="footer-form-group">' +
+      '                                <label for="last-name" class="footer-form-label">Last name</label>' +
+      '                                <input type="text" id="last-name" name="last_name" class="footer-form-input" placeholder="Last name" required>' +
+      '                            </div>' +
+      '                        </div>' +
+      '                        <div class="footer-form-group footer-form-group--full">' +
+      '                            <label for="email-address" class="footer-form-label">E-mail address</label>' +
+      '                            <input type="email" id="email-address" name="email" class="footer-form-input" placeholder="E-mail address" required>' +
+      '                        </div>' +
+      '                        <div class="footer-form-consent">' +
+      '                            <input type="checkbox" id="privacy-consent" name="privacy_consent" class="footer-form-checkbox" required>' +
+      '                            <label for="privacy-consent" class="footer-form-consent-label">By submitting this form I agree with the privacy terms and conditions.</label>' +
+      '                        </div>' +
+      '                        <button type="submit" class="footer-form-submit" aria-label="Subscribe to newsletter">' +
+      '                            Subscribe' +
+      '                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>' +
+      '                        </button>' +
+      '                    </form>' +
+      '                    <p id="newsletter-success" class="footer-form-success hidden" role="status">Successfully subscribed to our newsletter!</p>' +
+      '                </div>' +
+      '            </div>' +
+      '        </div>' +
+      '        <!-- Copyright Bar -->' +
+      '        <div class="footer-copyright">' +
+      '            <p>&copy; 2026 Nepalese Society of Student Researchers. All rights reserved.</p>' +
       '        </div>' +
       '    </footer>';
   }

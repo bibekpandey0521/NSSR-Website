@@ -1336,94 +1336,418 @@ a:hover img,
 
 
 /* ==========================================================================
-   Footer
+   FOOTER — Split Curved Layout
    ========================================================================== */
 
 .site-footer {
-  padding-block: var(--space-9);
-  color: var(--text-on-inverse);
-  background: var(--nssr-dark);
-  border-top: 1px solid var(--border-hairline-inverse);
-}
-
-.site-footer a {
-  color: var(--text-on-inverse);
-  text-decoration: none;
-  transition: color var(--transition-base), opacity var(--transition-base);
-}
-
-.site-footer a:hover {
-  color: var(--accent-subtle-bg-strong);
-  text-decoration: underline;
-}
-
-.site-footer h3 {
-  color: var(--text-on-inverse);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--heading-tracking-snug);
-}
-
-.site-footer img {
-  /* The logo is a light-on-dark mark; dim it back to sit on the dark panel. */
-  opacity: 0.92;
-  filter: brightness(0) invert(1);
-}
-
-.site-footer .text-gray-400 { color: var(--text-inverse-muted); }
-
-/* The newsletter submit button sits on the dark footer and shares one row with a
-   text input, so it uses the compact box. The doubled selector (0,2,0) both
-   beats the base .btn-primary rule and outranks the Tailwind Play CDN utilities
-   the CDN injects at runtime. */
-.site-footer .btn-primary,
-.site-footer .cta-btn {
-  padding: 10px 18px;
-  /* Keep the compact box but never drop below the 44px touch minimum. */
-  min-height: 44px;
-  font-size: var(--font-size-sm);
-  letter-spacing: 0.02em;
-  color: #ffffff !important;
-  background-color: #1d4ed8;
-  border: 1px solid transparent;
-  border-radius: 10px;
-}
-
-.site-footer .btn-primary *,
-.site-footer .cta-btn * { color: #ffffff !important; }
-
-.site-footer .btn-primary:hover,
-.site-footer .cta-btn:hover { background-color: #1e40af; }
-
-/* --- Newsletter form --------------------------------------------------------
-   Lives in a four-column footer grid, so between the lg breakpoint (1024px)
-   and ~1200px each column is only ~230px wide. A flex input defaults to
-   `min-width: auto`, i.e. its intrinsic size attribute, so the row refuses to
-   shrink and pushes the whole document into horizontal scroll. `min-width: 0`
-   is what actually lets the field give way; `width: 100%` alone does not. */
-.newsletter-form {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  overflow: hidden;
+  background: #1d4ed8; /* Fallback for very narrow screens */
+  margin: 0;
+  padding: 0;
+  border: none;
+  position: relative;
 }
 
-.newsletter-form__input {
-  flex: 1 1 160px;
-  min-width: 0;
+/* Left Panel - Blue (55%) */
+.footer-left {
+  flex: 0 0 55%;
+  min-width: 320px;
+  background: #1d4ed8;
+  color: #ffffff;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-left-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .footer-left-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-left {
+    flex: 1 0 100%;
+    min-width: 0;
+  }
+}
+
+/* Brand Column */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer-logo {
+  width: 120px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+
+.footer-address {
+  font-style: normal;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Source Sans 3", sans-serif;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 16px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-socials a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+  color: #ffffff;
+}
+
+/* Navigation Column */
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-nav-group {
+  flex: 1;
+  min-width: 160px;
+}
+
+.footer-nav-title {
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 16px 0;
+}
+
+.footer-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-nav-list a {
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.footer-nav-list a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.footer-nav-list a:hover {
+  opacity: 0.85;
+}
+
+.footer-nav-list a:hover::after {
   width: 100%;
-  padding: 10px 12px;
-  font-size: var(--font-size-md);
-  color: #1d1d1f;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-hairline-strong);
-  border-radius: 8px;
 }
 
-.newsletter-form__input::placeholder { color: var(--text-quaternary); }
+/* Right Panel - White (45%) with Curve */
+.footer-right {
+  flex: 0 0 45%;
+  min-width: 320px;
+  background: #ffffff;
+  color: #0f172a;
+  border-top-left-radius: 1000px;
+  border-bottom-left-radius: 1000px;
+  margin-left: -80px;
+  padding-left: 80px;
+  padding-right: 60px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-.newsletter-form__submit {
-  flex: 0 1 auto;
-  min-width: 0;
+@media (max-width: 1280px) {
+  .footer-right {
+    margin-left: -60px;
+    padding-left: 60px;
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer-right {
+    flex: 1 0 100%;
+    min-width: 0;
+    border-radius: 0;
+    margin-left: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-right {
+    padding: 32px 24px;
+  }
+}
+
+.footer-right-content {
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.footer-newsletter-title {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  margin: 0 0 12px 0;
+}
+
+.footer-newsletter-description {
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #64748b;
+  margin: 0 0 32px 0;
+}
+
+/* Newsletter Form */
+.footer-newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .footer-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-form-group--full {
+  grid-column: 1 / -1;
+}
+
+.footer-form-label {
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.footer-form-input {
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid #1d4ed8;
+  border-radius: 4px;
+  padding: 14px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.footer-form-input:focus {
+  outline: none;
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+}
+
+.footer-form-input::placeholder {
+  color: #94a3b8;
+}
+
+.footer-form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.footer-form-checkbox {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  margin-top: 2px;
+  accent-color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.footer-form-consent-label {
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #475569;
+  cursor: pointer;
+}
+
+.footer-form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 16px 36px;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  background: #0f172a;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 8px;
+}
+
+.footer-form-submit:hover {
+  background: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.3);
+}
+
+.footer-form-submit:active {
+  transform: translateY(0);
+}
+
+.footer-form-submit i {
+  font-size: 0.85rem;
+  transition: transform 0.2s ease;
+}
+
+.footer-form-submit:hover i {
+  transform: translateX(4px);
+}
+
+.footer-form-success {
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 0.9rem;
+  color: #147a52;
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: #e6f5ee;
+  border: 1px solid #147a52;
+  border-radius: 4px;
+}
+
+/* Copyright Bar */
+.footer-copyright {
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 16px 0;
+  background: #1d4ed8;
+  order: 3;
+}
+
+@media (max-width: 768px) {
+  .footer-copyright {
+    order: 3;
+  }
+}
+
+.footer-copyright p {
+  margin: 0;
+  text-align: center;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive stacking for very small screens */
+@media (max-width: 768px) {
+  .site-footer {
+    flex-direction: column;
+  }
+  
+  .footer-left {
+    flex: 1 0 100%;
+    order: 1;
+  }
+  
+  .footer-right {
+    flex: 1 0 100%;
+    order: 2;
+  }
+  
+  .footer-copyright {
+    order: 3;
+  }
+}
+
+/* Print styles */
+@media print {
+  .site-footer {
+    display: none !important;
+  }
 }
 
 
@@ -3050,24 +3374,6 @@ html, body { overflow-x: hidden; width: 100%; }
     color: var(--text-secondary) !important;
   }
   .team-section { grid-template-columns: 1fr !important; }
-}
-
-/* --- Footer responsive --- */
-@media (max-width: 992px) {
-  .site-footer .grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-  .site-footer .md\:col-span-2 { grid-column: span 2 !important; }
-}
-@media (max-width: 640px) {
-  .site-footer .grid {
-    grid-template-columns: 1fr !important;
-  }
-  .site-footer .md\:col-span-2 { grid-column: span 1 !important; }
-  .site-footer .flex { flex-wrap: wrap; }
-  .site-footer .newsletter-form { flex-direction: column; }
-  .site-footer .newsletter-form__input,
-  .site-footer .newsletter-form__submit { width: 100%; }
 }
 
 /* --- Event detail view responsive --- */
