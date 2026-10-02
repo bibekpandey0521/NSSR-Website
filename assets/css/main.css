@@ -324,7 +324,7 @@ img, svg, video, canvas, picture {
 html body a {
   color: #1d4ed8;
   text-decoration: none;
-  transition: color var(--transition-base);
+  transition: color var(--transition-premium);
 }
 
 html body a:hover { color: #1e40af; }
@@ -387,7 +387,7 @@ hr {
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-md);
   transform: translateY(-160%);
-  transition: transform var(--transition-base);
+  transition: transform var(--transition-premium);
 }
 
 .skip-link:focus-visible {
@@ -517,7 +517,7 @@ body.nav-open { overflow: hidden; }
   -webkit-backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-nav));
   backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-nav));
   border-bottom: 1px solid var(--border-hairline);
-  transition: background-color var(--transition-base), box-shadow var(--transition-base);
+  transition: background-color var(--transition-premium), box-shadow var(--transition-premium);
 }
 
 /* Fallback for engines without backdrop-filter. */
@@ -602,7 +602,7 @@ body.nav-open { overflow: hidden; }
   background: none;
   border: 0;
   border-radius: var(--radius-pill);
-  transition: color var(--transition-base), background-color var(--transition-base);
+  transition: color var(--transition-premium), background-color var(--transition-premium);
 }
 
 .nav-link:hover {
@@ -635,8 +635,8 @@ body.nav-open { overflow: hidden; }
   background: var(--accent-primary);
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-accent);
-  transition: background-color var(--transition-base), transform var(--transition-base),
-    box-shadow var(--transition-base);
+  transition: background-color var(--transition-premium), transform var(--transition-premium),
+    box-shadow var(--transition-premium);
 }
 
 .nav-cta:hover {
@@ -672,7 +672,7 @@ body.nav-open { overflow: hidden; }
   background: none;
   border: 0;
   border-radius: var(--radius-circle);
-  transition: color var(--transition-base), background-color var(--transition-base);
+  transition: color var(--transition-premium), background-color var(--transition-premium);
 }
 
 .dropdown-arrow-btn:hover {
@@ -686,7 +686,7 @@ body.nav-open { overflow: hidden; }
   border-right: 1.5px solid currentColor;
   border-bottom: 1.5px solid currentColor;
   transform: translateY(-2px) rotate(45deg);
-  transition: transform var(--transition-base);
+  transition: transform var(--transition-premium);
 }
 
 .nav-dropdown-item.is-open .dropdown-caret { transform: translateY(1px) rotate(225deg); }
@@ -710,8 +710,8 @@ body.nav-open { overflow: hidden; }
   opacity: 0;
   visibility: hidden;
   transform: translateY(8px);
-  transition: opacity var(--transition-base), transform var(--transition-base),
-    visibility var(--transition-base);
+  transition: opacity var(--transition-premium), transform var(--transition-premium),
+    visibility var(--transition-premium);
 }
 
 /* Desktop: hover + keyboard focus open the menu. */
@@ -751,7 +751,7 @@ body.nav-open { overflow: hidden; }
   text-decoration: none;
   color: var(--text-secondary);
   border-radius: var(--radius-sm);
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  transition: background-color var(--transition-premium), color var(--transition-premium);
 }
 
 .dropdown-link:hover {
@@ -786,7 +786,7 @@ body.nav-open { overflow: hidden; }
   height: 2px;
   background: var(--text-primary);
   border-radius: 2px;
-  transition: transform var(--transition-base), opacity var(--transition-fast);
+  transition: transform var(--transition-premium), opacity var(--transition-premium);
 }
 
 .nav-toggle.is-active .hamburger-line:nth-child(1) {
@@ -825,8 +825,8 @@ body.nav-open { overflow: hidden; }
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
-    transition: opacity var(--transition-base), transform var(--transition-base),
-      visibility var(--transition-base);
+    transition: opacity var(--transition-premium), transform var(--transition-premium),
+      visibility var(--transition-premium);
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
@@ -1424,12 +1424,13 @@ a:hover img,
   background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
   font-size: 16px;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: background-color var(--transition-premium), transform var(--transition-premium), opacity var(--transition-premium);
 }
 
 .footer-socials a:hover {
   background: rgba(255, 255, 255, 0.18);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  opacity: 0.8;
   color: #ffffff;
 }
 
@@ -1470,7 +1471,7 @@ a:hover img,
   font-weight: 600;
   color: #ffffff;
   text-decoration: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity var(--transition-premium), transform var(--transition-premium);
   position: relative;
 }
 
@@ -1482,7 +1483,7 @@ a:hover img,
   width: 0;
   height: 2px;
   background: #ffffff;
-  transition: width 0.3s ease;
+  transition: width var(--transition-premium);
 }
 
 .footer-nav-list a:hover {
@@ -1615,7 +1616,7 @@ a:hover img,
   padding: 14px 16px;
   width: 100%;
   box-sizing: border-box;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color var(--transition-premium), box-shadow var(--transition-premium);
 }
 
 .footer-form-input:focus {
@@ -1644,6 +1645,7 @@ a:hover img,
   border: 1px solid #1d4ed8;
   border-radius: 3px;
   cursor: pointer;
+  transition: border-color var(--transition-premium), background-color var(--transition-premium);
 }
 
 .footer-form-consent-label {
@@ -1670,14 +1672,14 @@ a:hover img,
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color var(--transition-premium), transform var(--transition-premium), box-shadow var(--transition-premium);
   margin-top: 8px;
 }
 
 .footer-form-submit:hover {
   background: #000000;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.4);
 }
 
 .footer-form-submit:active {
@@ -1686,7 +1688,7 @@ a:hover img,
 
 .footer-form-submit i {
   font-size: 0.85rem;
-  transition: transform 0.2s ease;
+  transition: transform var(--transition-premium);
 }
 
 .footer-form-submit:hover i {
@@ -1832,7 +1834,7 @@ a:hover img,
 }
 
 /* Image motion without desaturating the photography. */
-.hover-color-img { transition: transform 0.5s ease; }
+.hover-color-img { transition: transform var(--transition-premium); }
 .group:hover .hover-color-img { transform: scale(1.05); }
 
 /* Animation: Ken Burns (subtle zoom). */
@@ -1877,7 +1879,7 @@ a:hover img,
   width: 30px !important;
   height: 2px !important;
   border-radius: 0 !important;
-  transition: all 0.4s ease !important;
+  transition: all var(--transition-premium) !important;
 }
 
 .swiper-pagination-bullet-active {
@@ -2300,8 +2302,8 @@ html body button.btn-hero-outline {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color var(--transition-base), border-color var(--transition-base),
-    color var(--transition-base), transform var(--transition-base);
+  transition: background-color var(--transition-premium), border-color var(--transition-premium),
+    color var(--transition-premium), transform var(--transition-premium);
 }
 
 html body a.btn-hero-outline :is(span, svg, i, b, strong, em, small),
@@ -2397,6 +2399,7 @@ html body button.btn-hero-outline:active {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform var(--transition-premium);
 }
 
 .hero-media__scrim {
@@ -2406,6 +2409,7 @@ html body button.btn-hero-outline:active {
     rgba(2, 6, 23, 0.9) 0%,
     rgba(15, 23, 42, 0.55) 52%,
     rgba(15, 23, 42, 0.2) 100%);
+  transition: opacity var(--transition-premium);
 }
 
 /* In normal flow: this is what gives the box its height. */
@@ -2705,7 +2709,7 @@ a.btn-blue > *,
   color: var(--accent-primary);
 }
 
-.event-card__cta .icon-inline { width: 13px; height: 13px; transition: transform var(--transition-base); }
+.event-card__cta .icon-inline { width: 13px; height: 13px; transition: transform var(--transition-premium); }
 .event-card:hover .event-card__cta .icon-inline { transform: translateX(3px); }
 
 /* --- Status pills ----------------------------------------------------------- */
@@ -2913,8 +2917,8 @@ a.btn-blue > *,
   border: 0;
   border-radius: var(--radius-pill);
   cursor: pointer;
-  transition: color var(--transition-base), background-color var(--transition-base),
-    box-shadow var(--transition-base);
+  transition: color var(--transition-premium), background-color var(--transition-premium),
+    box-shadow var(--transition-premium);
 }
 
 .events-tab:hover { color: var(--text-primary); }
@@ -3748,22 +3752,22 @@ html, body { overflow-x: hidden; width: 100%; }
    gap: 4px;
  }
 
- .team-nav-btn {
-   display: block;
-   width: 100%;
-   padding: 14px 16px 14px 4px;
-   font-family: "Source Sans 3", var(--font-sans);
-   font-size: 0.95rem;
-   font-weight: 400;
-   line-height: 1.4;
-   color: var(--text-secondary);
-   background: transparent;
-   border: none;
-   border-left: 3px solid transparent;
-   text-align: left;
-   cursor: pointer;
-   transition: color var(--transition-fast), border-color var(--transition-fast);
- }
+.team-nav-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 16px 14px 4px;
+    font-family: "Source Sans 3", var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-left: 3px solid transparent;
+    text-align: left;
+    cursor: pointer;
+    transition: color var(--transition-premium), border-color var(--transition-premium);
+  }
 
  .team-nav-btn:hover {
    color: var(--text-primary);
@@ -3864,13 +3868,13 @@ html, body { overflow-x: hidden; width: 100%; }
    background: transparent;
  }
 
- .team-card__avatar img {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-   filter: grayscale(0%);
-   transition: filter 0.4s ease, transform 0.4s ease;
- }
+.team-card__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0%);
+    transition: filter var(--transition-premium), transform var(--transition-premium);
+  }
 
  .team-card:hover .team-card__avatar img {
    filter: grayscale(100%);
@@ -3920,24 +3924,24 @@ html, body { overflow-x: hidden; width: 100%; }
    max-width: 200px;
  }
 
- .team-card__social-link {
-   display: inline-flex;
-   align-items: center;
-   justify-content: center;
-   width: 40px;
-   height: 40px;
-   border-radius: 50%;
-   color: #94a3b8;
-   background: transparent;
-   font-size: 16px;
-   transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
- }
+.team-card__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #94a3b8;
+    background: transparent;
+    font-size: 16px;
+    transition: color var(--transition-premium), background-color var(--transition-premium), transform var(--transition-premium);
+  }
 
- .team-card__social-link:hover {
-   color: var(--nssr-blue);
-   background: #eff6ff;
-   transform: scale(1.05);
- }
+  .team-card__social-link:hover {
+    color: var(--nssr-blue);
+    background: #eff6ff;
+    transform: scale(1.05);
+  }
 
  .team-card__social-link:focus-visible {
    outline: 2px solid var(--nssr-blue);
@@ -4018,12 +4022,12 @@ html, body { overflow-x: hidden; width: 100%; }
    background: transparent;
  }
 
- .editorial-photo-row__image img {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-   transition: transform 0.6s ease;
- }
+.editorial-photo-row__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-premium);
+  }
 
  .editorial-photo-row:hover .editorial-photo-row__image img {
    transform: scale(1.03);
@@ -4073,29 +4077,29 @@ html, body { overflow-x: hidden; width: 100%; }
    max-width: 55ch;
  }
 
- .editorial-photo-row__cta {
-   display: inline-flex;
-   align-items: center;
-   gap: 8px;
-   font-family: "Source Sans 3", var(--font-sans);
-   font-size: 0.85rem;
-   font-weight: 600;
-   letter-spacing: 0.05em;
-   text-transform: uppercase;
-   color: #1d4ed8;
-   text-decoration: none;
-   transition: gap 0.2s ease, color 0.2s ease;
- }
+.editorial-photo-row__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Source Sans 3", var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #1d4ed8;
+    text-decoration: none;
+    transition: gap var(--transition-premium), color var(--transition-premium);
+  }
 
  .editorial-photo-row__cta:hover {
    color: #1e40af;
    gap: 12px;
  }
 
- .editorial-photo-row__cta i {
-   font-size: 0.75rem;
-   transition: transform 0.2s ease;
- }
+.editorial-photo-row__cta i {
+    font-size: 0.75rem;
+    transition: transform var(--transition-premium);
+  }
 
  .editorial-photo-row__cta:hover i {
    transform: translateX(2px);
@@ -4142,31 +4146,31 @@ html, body { overflow-x: hidden; width: 100%; }
    cursor: zoom-in;
  }
 
- .editorial-gallery-item img {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-   transition: transform 0.5s ease;
- }
+.editorial-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-premium);
+  }
 
  .editorial-gallery-item:hover img {
    transform: scale(1.05);
  }
 
- .editorial-gallery-item__caption {
-   position: absolute;
-   bottom: 0;
-   left: 0;
-   right: 0;
-   padding: 24px 16px 16px;
-   background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
-   color: #ffffff;
-   font-family: "Source Sans 3", var(--font-sans);
-   font-size: 0.85rem;
-   font-weight: 500;
-   opacity: 0;
-   transition: opacity 0.3s ease;
- }
+.editorial-gallery-item__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px 16px 16px;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
+    color: #ffffff;
+    font-family: "Source Sans 3", var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity var(--transition-premium);
+  }
 
  .editorial-gallery-item:hover .editorial-gallery-item__caption {
    opacity: 1;
