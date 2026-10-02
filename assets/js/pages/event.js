@@ -301,27 +301,27 @@
             if (keys.length === 0) {
                 return '<p class="framework-card__body">No proceedings available in this category yet.</p>';
             }
-            return keys.map(key => {
+            return keys.map((key, index) => {
                 const data = eventsData[key];
                 const status = statusMeta(data.status);
+                const isLast = index === keys.length - 1;
+                const reverseClass = index % 2 === 1 ? ' editorial-photo-row--reverse' : '';
+                const lastClass = isLast ? '' : '';
                 return `
-                <article class="event-card-stanford" tabindex="0" role="link"
+                <article class="editorial-photo-row${reverseClass}${lastClass ? ' editorial-photo-row--last' : ''}" tabindex="0" role="link"
                          onclick="window.location.hash='${escapeHtml(key)}'"
                          onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.location.hash='${escapeHtml(key)}'; }">
-                    <a href="#${escapeHtml(key)}" class="event-card-stanford__link">
-                        <div class="event-card-stanford__media">
-                            <img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}" loading="lazy">
+                    <div class="editorial-photo-row__image">
+                        <img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}" loading="lazy">
+                    </div>
+                    <div class="editorial-photo-row__content">
+                        <div class="editorial-photo-row__meta">
+                            <span class="editorial-photo-row__tag">${escapeHtml(data.categoryType || '')}</span>
+                            <span class="editorial-photo-row__date">${escapeHtml(data.date || '')}</span>
                         </div>
-                        <div class="event-card-stanford__content">
-                            <div class="event-card-stanford__meta">
-                                <span class="event-card-stanford__category">${escapeHtml(data.categoryType || '')}</span>
-                                <span class="event-card-stanford__date">${escapeHtml(data.date || '')}</span>
-                            </div>
-                            <h3 class="event-card-stanford__title">${escapeHtml(data.title)}</h3>
-                        </div>
-                    </a>
-                    <div class="event-card-stanford__footer">
-                        <span class="status-pill ${status.cls}">${escapeHtml(status.label)}</span>
+                        <h2 class="editorial-photo-row__title">${escapeHtml(data.title)}</h2>
+                        <p class="editorial-photo-row__excerpt">${escapeHtml(data.excerpt || '')}</p>
+                        <a href="#${escapeHtml(key)}" class="editorial-photo-row__cta">Read more <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </article>`;
             }).join('');

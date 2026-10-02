@@ -38,19 +38,19 @@
   --nssr-dark-2: #172554;
 
   /* --- Neutral surfaces ------------------------------------------------- */
-  --bg-primary: #fbfbfd;
+  --bg-primary: #ffffff;
   --bg-surface: #ffffff;
-  --bg-surface-sunken: #f5f5f7;
+  --bg-surface-sunken: #f8fafc;
   --bg-surface-inverse: var(--nssr-dark);
   --bg-glass: rgba(255, 255, 255, 0.72);
   --bg-glass-strong: rgba(255, 255, 255, 0.86);
   --bg-overlay: rgba(15, 23, 42, 0.55);
 
   /* --- Text ------------------------------------------------------------- */
-  --text-primary: #1d1d1f;
-  --text-secondary: #515154;
-  --text-tertiary: #6e6e73;
-  --text-quaternary: #86868b;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-quaternary: #94a3b8;
   --text-on-accent: #ffffff;
   --text-on-inverse: #f5f5f7;
   --text-inverse-muted: rgba(245, 245, 247, 0.68);
@@ -81,12 +81,12 @@
   --focus-ring-width: 2px;
 
   /* --- Typography ------------------------------------------------------- */
-  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+  --font-sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
     'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter',
+  --font-display: "Source Serif 4", -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter',
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   /* Editorial serif accent retained for brand/hero display type. */
-  --font-serif-brand: 'Merriweather', Georgia, 'Times New Roman', serif;
+  --font-serif-brand: "Source Serif 4", Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
 
   --font-size-2xs: 0.6875rem;  /* 11px */
@@ -239,7 +239,7 @@ html body {
   line-height: var(--leading-relaxed);
   letter-spacing: var(--body-tracking-normal);
   color: var(--text-primary);
-  background-color: var(--bg-primary);
+  background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -248,7 +248,7 @@ html body {
 
 body h1, body h2, body h3, body h4, body h5, body h6 {
   margin: 0;
-  font-family: var(--font-display);
+  font-family: "Source Serif 4", Georgia, serif;
   font-weight: var(--font-weight-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--heading-tracking-tight);
@@ -3382,161 +3382,453 @@ html, body { overflow-x: hidden; width: 100%; }
 }
 
 /* ==========================================================================
-   PREMIUM TEAM COMPONENTS (team.html)
+   MIT / STANFORD ACADEMIC AESTHETIC — team.html
    ========================================================================== */
 
-/* --- Team Hero --- */
-.team-hero {
-  padding-top: 120px;
-  padding-bottom: 80px;
-}
+ /* --- Team Hero --- */
+ .team-hero {
+   padding-top: 120px;
+   padding-bottom: 80px;
+   background: #020617;
+ }
 
-@media (max-width: 768px) {
-  .team-hero { padding-top: 80px; padding-bottom: 56px; }
-}
+ @media (max-width: 768px) {
+   .team-hero { padding-top: 80px; padding-bottom: 56px; }
+ }
 
-/* --- Team Sidebar Navigation --- */
-.team-nav-btn {
-  background: transparent;
-  border: none;
-  border-radius: var(--radius-md);
-  transition: background-color var(--transition-fast), color var(--transition-fast);
-}
+ /* --- Team Sidebar Navigation (Stark, Borderless) --- */
+ .team-sidebar {
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+ }
 
-.team-nav-btn:hover {
-  background: var(--accent-subtle-bg);
-  color: var(--nssr-blue);
-}
+ .team-nav-btn {
+   display: block;
+   width: 100%;
+   padding: 14px 16px 14px 4px;
+   font-family: "Source Sans 3", var(--font-sans);
+   font-size: 0.95rem;
+   font-weight: 400;
+   line-height: 1.4;
+   color: var(--text-secondary);
+   background: transparent;
+   border: none;
+   border-left: 3px solid transparent;
+   text-align: left;
+   cursor: pointer;
+   transition: color var(--transition-fast), border-color var(--transition-fast);
+ }
 
-.team-nav-btn.active {
-  background: rgba(29, 78, 216, 0.05);
-  color: var(--nssr-blue);
-  font-weight: var(--font-weight-semibold);
-}
+ .team-nav-btn:hover {
+   color: var(--text-primary);
+   border-left-color: #cbd5e1;
+ }
 
-/* --- Team Grid --- */
-.team-section {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-}
+ .team-nav-btn.active {
+   color: var(--text-primary);
+   font-weight: 700;
+   border-left-color: var(--nssr-blue);
+ }
 
-@media (min-width: 768px) {
-  .team-section { grid-template-columns: repeat(2, 1fr); }
-}
+ @media (max-width: 992px) {
+   .team-sidebar {
+     flex-direction: row;
+     overflow-x: auto;
+     white-space: nowrap;
+     gap: 8px;
+     padding-bottom: 16px;
+     margin-bottom: 32px;
+     border-bottom: 1px solid #e2e8f0;
+     -webkit-overflow-scrolling: touch;
+     scrollbar-width: none;
+   }
+   .team-sidebar::-webkit-scrollbar { display: none; }
+   .team-nav-btn {
+     flex-shrink: 0;
+     padding: 10px 20px;
+     border-left: none;
+     border-bottom: 3px solid transparent;
+     border-radius: 0;
+     white-space: nowrap;
+   }
+   .team-nav-btn:hover { border-bottom-color: #cbd5e1; }
+   .team-nav-btn.active { border-bottom-color: var(--nssr-blue); }
+ }
 
-@media (min-width: 1280px) {
-  .team-section { grid-template-columns: repeat(2, 1fr); }
-}
+ /* --- Editorial Grid (Boxless, Hairline Separators) --- */
+ .editorial-grid {
+   display: grid;
+   grid-template-columns: 1fr;
+   gap: 48px 32px;
+ }
 
-/* --- Premium Team Card --- */
-.team-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 28px 24px;
-  background: transparent;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 12px;
-  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
-}
+ @media (min-width: 768px) {
+   .editorial-grid { grid-template-columns: repeat(2, 1fr); }
+ }
 
-.team-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
-  border-color: rgba(29, 78, 216, 0.2);
-}
+ .editorial-grid > * {
+   border-top: 1px solid #e2e8f0;
+   padding-top: 48px;
+ }
 
-.team-card__avatar {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: var(--space-4);
-  flex-shrink: 0;
-  background: var(--bg-surface-sunken);
-}
+ .editorial-grid > *:first-child,
+ .editorial-grid > *:nth-child(2) {
+   border-top: none;
+   padding-top: 0;
+ }
 
-.team-card__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--transition-slow);
-}
+ @media (max-width: 767px) {
+   .editorial-grid > *:nth-child(2) {
+     border-top: 1px solid #e2e8f0;
+     padding-top: 48px;
+   }
+   .editorial-grid > *:first-child {
+     border-top: none;
+     padding-top: 0;
+   }
+ }
 
-.team-card:hover .team-card__avatar img {
-  transform: scale(1.05);
-}
+ /* --- Academic Team Card (Boxless, Large Avatar, Grayscale Hover) --- */
+ .team-card {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+   padding: 0;
+   background: transparent;
+   border: none;
+   border-radius: 0;
+   box-shadow: none;
+   transition: none;
+ }
 
-.team-card__content {
-  width: 100%;
-}
+ .team-card:hover {
+   transform: none;
+   box-shadow: none;
+   border-color: transparent;
+ }
 
-.team-card__name {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--nssr-dark);
-  margin-bottom: 4px;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-}
+ .team-card__avatar {
+   width: 160px;
+   height: 160px;
+   border-radius: 50%;
+   overflow: hidden;
+   margin-bottom: 24px;
+   flex-shrink: 0;
+   background: transparent;
+ }
 
-.team-card__role {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--nssr-blue);
-  margin-bottom: 8px;
-}
+ .team-card__avatar img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   filter: grayscale(0%);
+   transition: filter 0.4s ease, transform 0.4s ease;
+ }
 
-.team-card__affiliation {
-  font-size: 0.9rem;
-  color: #475569;
-  line-height: 1.5;
-  margin-bottom: 0;
-}
+ .team-card:hover .team-card__avatar img {
+   filter: grayscale(100%);
+   transform: scale(1.02);
+ }
 
-.team-card__social {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-3);
-  margin-top: var(--space-3);
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--border-hairline);
-}
+ .team-card__content {
+   width: 100%;
+ }
 
-.team-card__social-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  color: var(--text-tertiary);
-  background: transparent;
-  font-size: 18px;
-  transition: color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast);
-}
+ .team-card__name {
+   font-family: "Source Serif 4", Georgia, serif;
+   font-size: 1.5rem;
+   font-weight: 700;
+   line-height: 1.3;
+   letter-spacing: -0.01em;
+   color: #0f172a;
+   margin-bottom: 6px;
+ }
 
-.team-card__social-link:hover {
-  color: var(--nssr-blue);
-  background: var(--accent-subtle-bg);
-  transform: scale(1.1);
-}
+ .team-card__role {
+   font-family: "Source Sans 3", var(--font-sans);
+   font-size: 0.85rem;
+   font-weight: 600;
+   letter-spacing: 0.05em;
+   text-transform: uppercase;
+   color: #475569;
+   margin-bottom: 4px;
+ }
 
-.team-card__social-link:focus-visible {
-  outline: 2px solid var(--nssr-blue);
-  outline-offset: 2px;
-}
+ .team-card__affiliation {
+   font-family: "Source Sans 3", var(--font-sans);
+   font-size: 0.85rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: #64748b;
+   margin-bottom: 20px;
+ }
 
-/* Mobile adjustments */
-@media (max-width: 640px) {
-  .team-card { padding: 24px 20px; }
-  .team-card__avatar { width: 80px; height: 80px; }
-  .team-card__name { font-size: 1.25rem; }
-  .team-card__role { font-size: 0.7rem; }
-  .team-card__affiliation { font-size: 0.85rem; }
-  .team-card__social-link { width: 32px; height: 32px; font-size: 16px; }
-}
+ .team-card__social {
+   display: flex;
+   justify-content: center;
+   gap: 16px;
+   padding-top: 16px;
+   border-top: 1px solid #e2e8f0;
+   width: 100%;
+   max-width: 200px;
+ }
+
+ .team-card__social-link {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   color: #94a3b8;
+   background: transparent;
+   font-size: 16px;
+   transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+ }
+
+ .team-card__social-link:hover {
+   color: var(--nssr-blue);
+   background: #eff6ff;
+   transform: scale(1.05);
+ }
+
+ .team-card__social-link:focus-visible {
+   outline: 2px solid var(--nssr-blue);
+   outline-offset: 2px;
+ }
+
+ /* Mobile adjustments */
+ @media (max-width: 640px) {
+   .team-card__avatar { width: 140px; height: 140px; }
+   .team-card__name { font-size: 1.35rem; }
+   .team-card__role { font-size: 0.78rem; }
+   .team-card__affiliation { font-size: 0.8rem; }
+   .team-card__social { gap: 12px; }
+   .team-card__social-link { width: 36px; height: 36px; font-size: 14px; }
+ }
+
+/* --- Representatives Empty State --- */
+  .reps-empty {
+    padding: 64px 32px;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .reps-empty i {
+    font-size: 2.5rem;
+    color: var(--nssr-blue);
+    margin-bottom: 16px;
+  }
+
+  .reps-empty h4 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+
+  .reps-empty p {
+    font-family: "Source Sans 3", var(--font-sans);
+    font-size: 0.95rem;
+    color: #64748b;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+/* ==========================================================================
+   EDITORIAL PHOTO ROW — Event & Outreach Split Layout
+   ========================================================================== */
+
+ .editorial-photo-row {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 48px;
+   align-items: center;
+   padding-bottom: 64px;
+   margin-bottom: 64px;
+   border-bottom: 1px solid #e2e8f0;
+ }
+
+ .editorial-photo-row:last-child {
+   border-bottom: none;
+   padding-bottom: 0;
+   margin-bottom: 0;
+ }
+
+ .editorial-photo-row--reverse {
+   direction: rtl;
+ }
+
+ .editorial-photo-row--reverse > * {
+   direction: ltr;
+ }
+
+ .editorial-photo-row__image {
+   position: relative;
+   aspect-ratio: 4 / 3;
+   overflow: hidden;
+   background: transparent;
+ }
+
+ .editorial-photo-row__image img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   transition: transform 0.6s ease;
+ }
+
+ .editorial-photo-row:hover .editorial-photo-row__image img {
+   transform: scale(1.03);
+ }
+
+ .editorial-photo-row__content {
+   padding: 8px 0;
+ }
+
+ .editorial-photo-row__meta {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 16px;
+   margin-bottom: 12px;
+   font-family: "Source Sans 3", var(--font-sans);
+   font-size: 0.75rem;
+   font-weight: 600;
+   letter-spacing: 0.08em;
+   text-transform: uppercase;
+   color: #64748b;
+ }
+
+ .editorial-photo-row__tag {
+   color: #1d4ed8;
+ }
+
+ .editorial-photo-row__date {
+   color: #94a3b8;
+ }
+
+ .editorial-photo-row__title {
+   font-family: "Source Serif 4", Georgia, serif;
+   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+   font-weight: 700;
+   line-height: 1.2;
+   letter-spacing: -0.02em;
+   color: #0f172a;
+   margin: 0 0 16px 0;
+ }
+
+ .editorial-photo-row__excerpt {
+   font-family: "Source Sans 3", var(--font-sans);
+   font-size: 1rem;
+   line-height: 1.7;
+   color: #475569;
+   margin: 0 0 24px 0;
+   max-width: 55ch;
+ }
+
+ .editorial-photo-row__cta {
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+   font-family: "Source Sans 3", var(--font-sans);
+   font-size: 0.85rem;
+   font-weight: 600;
+   letter-spacing: 0.05em;
+   text-transform: uppercase;
+   color: #1d4ed8;
+   text-decoration: none;
+   transition: gap 0.2s ease, color 0.2s ease;
+ }
+
+ .editorial-photo-row__cta:hover {
+   color: #1e40af;
+   gap: 12px;
+ }
+
+ .editorial-photo-row__cta i {
+   font-size: 0.75rem;
+   transition: transform 0.2s ease;
+ }
+
+ .editorial-photo-row__cta:hover i {
+   transform: translateX(2px);
+ }
+
+ @media (max-width: 768px) {
+   .editorial-photo-row {
+     grid-template-columns: 1fr;
+     gap: 24px;
+     padding-bottom: 48px;
+     margin-bottom: 48px;
+   }
+
+   .editorial-photo-row--reverse {
+     direction: ltr;
+   }
+
+   .editorial-photo-row__image {
+     aspect-ratio: 16 / 10;
+   }
+
+   .editorial-photo-row__title {
+     font-size: clamp(1.5rem, 4vw, 2rem);
+   }
+
+   .editorial-photo-row__excerpt {
+     font-size: 0.95rem;
+   }
+ }
+
+ /* Gallery grid for multiple photos (science-beyond-classroom) */
+ .editorial-gallery-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+   gap: 24px;
+   margin-top: 32px;
+ }
+
+ .editorial-gallery-item {
+   position: relative;
+   aspect-ratio: 4 / 3;
+   overflow: hidden;
+   background: transparent;
+   cursor: zoom-in;
+ }
+
+ .editorial-gallery-item img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   transition: transform 0.5s ease;
+ }
+
+ .editorial-gallery-item:hover img {
+   transform: scale(1.05);
+ }
+
+ .editorial-gallery-item__caption {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   padding: 24px 16px 16px;
+   background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
+   color: #ffffff;
+   font-family: "Source Sans 3", var(--font-sans);
+   font-size: 0.85rem;
+   font-weight: 500;
+   opacity: 0;
+   transition: opacity 0.3s ease;
+ }
+
+ .editorial-gallery-item:hover .editorial-gallery-item__caption {
+   opacity: 1;
+ }
+
+ @media (max-width: 640px) {
+   .editorial-gallery-grid {
+     grid-template-columns: 1fr;
+   }
+ }

@@ -87,7 +87,7 @@
             {
                 name: "Asst. Prof. Dr. Bishnu Hari Subedi",
                 role: "Advisor",
-                inst: "Cental Department of Mathematics,Tribhuvan University",
+                inst: "Central Department of Mathematics,Tribhuvan University",
                 image: "assets/images/pp/bishnu.webp"
             },
             {
@@ -163,12 +163,12 @@
         ];
 
         // --- SORTING LOGIC ---
-        
+
         // 1. Sort Advisors: Professor first, then Assistant Professor, then alphabetically
         advisors.sort((a, b) => {
             const rankA = a.name.startsWith("Prof.") ? 1 : (a.name.startsWith("Asst. Prof.") ? 2 : 3);
             const rankB = b.name.startsWith("Prof.") ? 1 : (b.name.startsWith("Asst. Prof.") ? 2 : 3);
-            
+
             if (rankA !== rankB) {
                 return rankA - rankB; // Lower number (higher rank) comes first
             }
@@ -185,9 +185,9 @@
             const subtitle = member.dept || member.inst || member.college || '';
             const isExec = member.email || member.linkedin;
             const isAdvisor = !isExec;
-            
+
             const socialLinks = isExec ? `
-                <div class="team-card__social flex gap-3 pt-3 border-t border-slate-100">
+                <div class="team-card__social">
                     ${member.linkedin ? `<a href="${member.linkedin}" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="${member.name} on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>` : ''}
                     ${member.email ? `<a href="mailto:${member.email}" class="team-card__social-link" aria-label="Email ${member.name}"><i class="fa-solid fa-envelope"></i></a>` : ''}
                 </div>
@@ -199,7 +199,7 @@
                     <img src="${member.image}" alt="${member.name}" loading="lazy">
                 </div>
                 <div class="team-card__content">
-                    <h4 class="team-card__name" style="font-family: 'Source Serif 4', serif;">${member.name}</h4>
+                    <h4 class="team-card__name">${member.name}</h4>
                     <p class="team-card__role">${member.role}</p>
                     <p class="team-card__affiliation">${subtitle}</p>
                     ${socialLinks}
@@ -211,17 +211,17 @@
         function renderTeam() {
             document.getElementById('content-leadership').innerHTML = executiveBoard.map(generatePremiumCard).join('');
             document.getElementById('content-advisory').innerHTML = advisors.map(generatePremiumCard).join('');
-            
+
             // Render Representatives into the inner grid, leaving the button below it untouched
             const repsGrid = document.getElementById('reps-grid');
             if (collegeRepresentatives.length > 0) {
                 repsGrid.innerHTML = collegeRepresentatives.map(generatePremiumCard).join('');
             } else {
                 repsGrid.innerHTML = `
-                    <div class="md:col-span-2 border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center rounded-lg">
-                        <i class="fa-solid fa-building-columns text-2xl text-blue-600 mb-4"></i>
-                        <h4 class="font-bold text-lg text-slate-900">Representative directory coming soon</h4>
-                        <p class="text-slate-500 text-sm mt-2">College representatives will be listed here as the NSSR network grows.</p>
+                    <div class="reps-empty">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <h4>Representative directory coming soon</h4>
+                        <p>College representatives will be listed here as the NSSR network grows.</p>
                     </div>`;
             }
         }
@@ -232,7 +232,7 @@
             document.querySelectorAll('.team-section').forEach(el => {
                 el.classList.add('hidden');
             });
-            
+
             // Reset all sidebar buttons styling
             document.querySelectorAll('#team-nav button').forEach(btn => {
                 btn.classList.remove('active');
@@ -240,7 +240,7 @@
 
             // Show selected content
             document.getElementById(`content-${sectionId}`).classList.remove('hidden');
-            
+
             // Highlight active button
             const activeBtn = document.getElementById(`btn-${sectionId}`);
             activeBtn.classList.add('active');
