@@ -482,7 +482,7 @@
       '        <div class="footer-right">' +
       '            <div class="container mx-auto px-6 py-16 lg:px-12 lg:py-24">' +
       '                <div class="footer-right-content">' +
-      '                    <h2 class="footer-newsletter-title">Subscribe to our newsletter</h2>' +
+      '                    <h2 class="footer-newsletter-title">Academic Dispatch</h2>' +
       '                    <p class="footer-newsletter-description">Stay up-to-date with the latest research opportunities, events, and insights from NSSR.</p>' +
       '                    <form id="newsletter-form" class="footer-newsletter-form" novalidate>' +
       '                        <div class="footer-form-row">' +
