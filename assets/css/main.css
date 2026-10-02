@@ -1343,18 +1343,18 @@ a:hover img,
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  background: #1d4ed8; /* Fallback for very narrow screens */
+  background: #0f172a; /* Premium Stanford/MIT Navy */
   margin: 0;
   padding: 0;
   border: none;
   position: relative;
 }
 
-/* Left Panel - Blue (55%) */
+/* Left Panel - Deep Academic Slate (55%) */
 .footer-left {
   flex: 0 0 55%;
   min-width: 320px;
-  background: #1d4ed8;
+  background: #0f172a;
   color: #ffffff;
   padding: 0;
   position: relative;
@@ -1425,8 +1425,8 @@ a:hover img,
 }
 
 .footer-socials a:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
   color: #ffffff;
 }
 
@@ -1448,7 +1448,7 @@ a:hover img,
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: #94a3b8; /* Sophisticated muted slate instead of bright blue */
   margin: 0 0 16px 0;
 }
 
