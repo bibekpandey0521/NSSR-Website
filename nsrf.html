@@ -10,7 +10,7 @@
     <!-- Unified NSSR design system -->
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- End design system -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@300;400;700;900&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@300;400;600;700&family=Source+Serif+4:ital,wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="bg-white">
     <div id="nav-placeholder"></div>
@@ -58,9 +58,9 @@
             <path d="m8.6 11.9 2.4 2.4 4.4-4.6"/>
         </symbol>
     </svg>
-    <header class="hero-clear pb-24 bg-slate-900 text-white relative overflow-hidden">
+    <header class="hero-clear pb-24 bg-slate-950 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-25"><img src="assets/images/IMG_20260902_144525.jpg" class="w-full h-full object-cover" alt="NSRF fellowship participants"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-900"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 to-slate-950"></div>
         <div class="container mx-auto px-6 relative z-10 max-w-5xl">
             <span class="font-oswald text-blue-400 uppercase tracking-[.3em] text-xs font-bold">12 Weeks &middot; Training &middot; Research &middot; Publication</span>
             <h1 class="text-4xl md:text-6xl font-black mt-5 mb-6">NSSR Summer <span class="italic font-light text-blue-300">Research Fellowship</span></h1>
@@ -69,73 +69,157 @@
     </header>
     <main class="py-20 md:py-28">
         <div class="container mx-auto px-6 max-w-6xl">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                <div class="phase-card p-7 rounded-2xl"><span class="font-oswald text-xs font-bold text-blue-600 uppercase tracking-widest">Phase 1 &middot; Weeks 1-3</span><h2 class="font-bold text-slate-900 text-lg mt-3 mb-3">Research Foundations</h2><p class="text-xs text-slate-600 leading-relaxed">Literature navigation, reference tools, critical reading, and LaTeX writing close with proposal presentations and group placement.</p></div>
-                <div class="phase-card p-7 rounded-2xl"><span class="font-oswald text-xs font-bold text-blue-600 uppercase tracking-widest">Phase 2 &middot; Weeks 4-5</span><h2 class="font-bold text-slate-900 text-lg mt-3 mb-3">Group Development</h2><p class="text-xs text-slate-600 leading-relaxed">Fellows work with a dedicated mentor to finalize a topic and literature review, producing a joint proposal and paper outline.</p></div>
-                <div class="phase-card p-7 rounded-2xl"><span class="font-oswald text-xs font-bold text-blue-600 uppercase tracking-widest">Phase 3 &middot; Weeks 6-11</span><h2 class="font-bold text-slate-900 text-lg mt-3 mb-3">Research Implementation</h2><p class="text-xs text-slate-600 leading-relaxed">Groups execute approved research with weekly meetings, progress reports, and rotating presentation duties.</p></div>
-                <div class="phase-card p-7 rounded-2xl"><span class="font-oswald text-xs font-bold text-blue-600 uppercase tracking-widest">Phase 4 &middot; Week 12</span><h2 class="font-bold text-slate-900 text-lg mt-3 mb-3">Final Symposium</h2><p class="text-xs text-slate-600 leading-relaxed">Fellows present completed research to faculty, mentors, and partners. Certificates are awarded and qualifying groups receive publication guidance.</p></div>
+            <!-- Phase Timeline - Editorial Strip -->
+            <div class="editorial-strip mb-16">
+                <div class="editorial-strip__item">
+                    <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Phase 1 &middot; Weeks 1-3</span>
+                    <h3 class="text-xl font-black mt-3 mb-3 font-serif">Research Foundations</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Literature navigation, reference tools, critical reading, and LaTeX writing close with proposal presentations and group placement.</p>
+                </div>
+                <div class="editorial-strip__item">
+                    <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Phase 2 &middot; Weeks 4-5</span>
+                    <h3 class="text-xl font-black mt-3 mb-3 font-serif">Group Development</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Fellows work with a dedicated mentor to finalize a topic and literature review, producing a joint proposal and paper outline.</p>
+                </div>
+                <div class="editorial-strip__item">
+                    <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Phase 3 &middot; Weeks 6-11</span>
+                    <h3 class="text-xl font-black mt-3 mb-3 font-serif">Research Implementation</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Groups execute approved research with weekly meetings, progress reports, and rotating presentation duties.</p>
+                </div>
+                <div class="editorial-strip__item">
+                    <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Phase 4 &middot; Week 12</span>
+                    <h3 class="text-xl font-black mt-3 mb-3 font-serif">Final Symposium</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">Fellows present completed research to faculty, mentors, and partners. Certificates are awarded and qualifying groups receive publication guidance.</p>
+                </div>
             </div>
-            <section class="mb-16"><div class="text-center mb-10"><span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Research community</span><h2 class="text-3xl md:text-5xl font-black mt-3">Meet the NSRF mentors</h2><p class="max-w-2xl mx-auto text-slate-500 text-sm leading-relaxed mt-4">The fellowship is supported by mentors working across mathematics, physics, biology, materials, economics, and machine learning.</p></div><div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
-                <div class="mentor-card text-center bg-slate-50 border border-slate-100 rounded-xl p-4"><img src="assets/images/mentor/manish_pandey.jpg" class="w-20 h-20 mx-auto rounded-full object-cover mb-3" alt="Manish Pandey"><p class="text-xs font-bold text-slate-800">Manish Pandey</p><p class="text-[9px] text-blue-600 uppercase tracking-widest mt-1">Plasma Physics</p></div>
-                <div class="mentor-card text-center bg-slate-50 border border-slate-100 rounded-xl p-4"><img src="assets/images/mentor/Dhirendra.jpg" class="w-20 h-20 mx-auto rounded-full object-cover mb-3" alt="Dhirendra Pd. Upadhya"><p class="text-xs font-bold text-slate-800">Dhirendra Pd. Upadhya</p><p class="text-[9px] text-blue-600 uppercase tracking-widest mt-1">Biophysics</p></div>
-                <div class="mentor-card text-center bg-slate-50 border border-slate-100 rounded-xl p-4"><img src="assets/images/mentor/om jha.jpg" class="w-20 h-20 mx-auto rounded-full object-cover mb-3" alt="Om Jha"><p class="text-xs font-bold text-slate-800">Om Jha</p><p class="text-[9px] text-blue-600 uppercase tracking-widest mt-1">Materials Science</p></div>
-                <div class="mentor-card text-center bg-slate-50 border border-slate-100 rounded-xl p-4"><img src="assets/images/mentor/subash.jpg" class="w-20 h-20 mx-auto rounded-full object-cover mb-3" alt="Shubash Bhandari"><p class="text-xs font-bold text-slate-800">Shubash Bhandari</p><p class="text-[9px] text-blue-600 uppercase tracking-widest mt-1">Astrophysics</p></div>
-                <div class="mentor-card text-center bg-slate-50 border border-slate-100 rounded-xl p-4"><img src="assets/images/mentor/sadhana.jpeg" class="w-20 h-20 mx-auto rounded-full object-cover mb-3" alt="Sadhana Adhikari"><p class="text-xs font-bold text-slate-800">Sadhana Adhikari</p><p class="text-[9px] text-blue-600 uppercase tracking-widest mt-1">Economics</p></div>
-                <div class="mentor-card text-center bg-slate-50 border border-slate-100 rounded-xl p-4"><img src="assets/images/mentor/miraj.jpeg" class="w-20 h-20 mx-auto rounded-full object-cover mb-3" alt="Miraj Pathak"><p class="text-xs font-bold text-slate-800">Miraj Pathak</p><p class="text-[9px] text-blue-600 uppercase tracking-widest mt-1">Number Theory</p></div>
-                <div class="mentor-card text-center bg-slate-50 border border-slate-100 rounded-xl p-4"><img src="assets/images/mentor/rijan.jpg" class="w-20 h-20 mx-auto rounded-full object-cover mb-3" alt="Rijan Bhandari"><p class="text-xs font-bold text-slate-800">Rijan Bhandari</p><p class="text-[9px] text-blue-600 uppercase tracking-widest mt-1">AI & ML</p></div>
-            </div></section>
-            <section class="mb-16 bg-blue-50 border border-blue-100 rounded-2xl p-8 md:p-10"><div class="grid lg:grid-cols-[.85fr_1.15fr] gap-10 items-start"><div><span class="font-oswald text-blue-700 uppercase tracking-widest text-xs font-bold">Beyond the mentors</span><h2 class="text-3xl md:text-4xl font-black mt-3 mb-4">Advisors and field experts</h2><p class="text-sm text-slate-600 leading-relaxed">NSRF is supported by NSSR's broader advisors team and invited experts who help the fellowship run smoothly. They provide program oversight, review research directions, and support mentors and fellows with field-specific guidance.</p></div><div class="space-y-4">
-                        <div class="deboxed-card flex items-start gap-4">
-                            <svg class="icon-box" aria-hidden="true" focusable="false"><use href="#i-compass"></use></svg>
-                            <div>
-                                <h3 class="font-bold text-sm mb-2">Program guidance</h3>
-                                <p class="text-xs text-slate-600 leading-relaxed">Advisors help coordinate the fellowship structure, milestones, symposium preparation, and overall research quality.</p>
+
+            <!-- Mentors Grid -->
+            <section class="mb-16">
+                <div class="text-center mb-10">
+                    <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Research community</span>
+                    <h2 class="text-3xl md:text-5xl font-black mt-3">Meet the NSRF mentors</h2>
+                    <p class="max-w-2xl mx-auto text-slate-500 text-sm leading-relaxed mt-4">The fellowship is supported by mentors working across mathematics, physics, biology, materials, economics, and machine learning.</p>
+                </div>
+                <div class="editorial-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 24px;">
+                    <article class="team-card">
+                        <div class="team-card__avatar"><img src="assets/images/mentor/manish_pandey.jpg" alt="Manish Pandey" loading="lazy"></div>
+                        <div class="team-card__content"><h4 class="team-card__name">Manish Pandey</h4><p class="team-card__role">Plasma Physics</p></div>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__avatar"><img src="assets/images/mentor/Dhirendra.jpg" alt="Dhirendra Pd. Upadhya" loading="lazy"></div>
+                        <div class="team-card__content"><h4 class="team-card__name">Dhirendra Pd. Upadhya</h4><p class="team-card__role">Biophysics</p></div>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__avatar"><img src="assets/images/mentor/om jha.jpg" alt="Om Jha" loading="lazy"></div>
+                        <div class="team-card__content"><h4 class="team-card__name">Om Jha</h4><p class="team-card__role">Materials Science</p></div>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__avatar"><img src="assets/images/mentor/subash.jpg" alt="Shubash Bhandari" loading="lazy"></div>
+                        <div class="team-card__content"><h4 class="team-card__name">Shubash Bhandari</h4><p class="team-card__role">Astrophysics</p></div>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__avatar"><img src="assets/images/mentor/sadhana.jpeg" alt="Sadhana Adhikari" loading="lazy"></div>
+                        <div class="team-card__content"><h4 class="team-card__name">Sadhana Adhikari</h4><p class="team-card__role">Economics</p></div>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__avatar"><img src="assets/images/mentor/miraj.jpeg" alt="Miraj Pathak" loading="lazy"></div>
+                        <div class="team-card__content"><h4 class="team-card__name">Miraj Pathak</h4><p class="team-card__role">Number Theory</p></div>
+                    </article>
+                    <article class="team-card">
+                        <div class="team-card__avatar"><img src="assets/images/mentor/rijan.jpg" alt="Rijan Bhandari" loading="lazy"></div>
+                        <div class="team-card__content"><h4 class="team-card__name">Rijan Bhandari</h4><p class="team-card__role">AI & ML</p></div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Advisors Section -->
+            <section class="mb-16">
+                <div class="editorial-row">
+                    <div>
+                        <span class="font-oswald text-blue-700 uppercase tracking-widest text-xs font-bold">Beyond the mentors</span>
+                        <h2 class="text-3xl md:text-4xl font-black mt-3 mb-4">Advisors and field experts</h2>
+                        <p class="text-sm text-slate-600 leading-relaxed">NSRF is supported by NSSR's broader advisors team and invited experts who help the fellowship run smoothly. They provide program oversight, review research directions, and support mentors and fellows with field-specific guidance.</p>
+                    </div>
+                    <div>
+                        <div class="space-y-6">
+                            <div class="editorial-photo-row" style="border-bottom: 1px solid #e2e8f0; padding-bottom: 32px; margin-bottom: 32px;">
+                                <div class="editorial-photo-row__content">
+                                    <svg class="icon-box" aria-hidden="true" focusable="false" style="width: 22px; height: 22px; color: #1d4ed8;"><use href="#i-compass"></use></svg>
+                                    <h3 class="font-bold text-sm mb-2 font-serif">Program guidance</h3>
+                                    <p class="text-xs text-slate-600 leading-relaxed">Advisors help coordinate the fellowship structure, milestones, symposium preparation, and overall research quality.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="deboxed-card flex items-start gap-4">
-                            <svg class="icon-box" aria-hidden="true" focusable="false"><use href="#i-microscope"></use></svg>
-                            <div>
-                                <h3 class="font-bold text-sm mb-2">Field expertise</h3>
-                                <p class="text-xs text-slate-600 leading-relaxed">Experts across the fellowship fields help connect students with appropriate questions, methods, resources, and research standards.</p>
+                            <div class="editorial-photo-row" style="border-bottom: 1px solid #e2e8f0; padding-bottom: 32px; margin-bottom: 32px;">
+                                <div class="editorial-photo-row__content">
+                                    <svg class="icon-box" aria-hidden="true" focusable="false" style="width: 22px; height: 22px; color: #1d4ed8;"><use href="#i-microscope"></use></svg>
+                                    <h3 class="font-bold text-sm mb-2 font-serif">Field expertise</h3>
+                                    <p class="text-xs text-slate-600 leading-relaxed">Experts across the fellowship fields help connect students with appropriate questions, methods, resources, and research standards.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="deboxed-card flex items-start gap-4">
-                            <svg class="icon-box" aria-hidden="true" focusable="false"><use href="#i-mentors"></use></svg>
-                            <div>
-                                <h3 class="font-bold text-sm mb-2">Mentor support</h3>
-                                <p class="text-xs text-slate-600 leading-relaxed">The advisors team supports mentors with feedback and coordination so fellows receive consistent guidance throughout the program.</p>
+                            <div class="editorial-photo-row" style="border-bottom: 1px solid #e2e8f0; padding-bottom: 32px; margin-bottom: 32px;">
+                                <div class="editorial-photo-row__content">
+                                    <svg class="icon-box" aria-hidden="true" focusable="false" style="width: 22px; height: 22px; color: #1d4ed8;"><use href="#i-mentors"></use></svg>
+                                    <h3 class="font-bold text-sm mb-2 font-serif">Mentor support</h3>
+                                    <p class="text-xs text-slate-600 leading-relaxed">The advisors team supports mentors with feedback and coordination so fellows receive consistent guidance throughout the program.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="deboxed-card flex items-start gap-4">
-                            <svg class="icon-box" aria-hidden="true" focusable="false"><use href="#i-shield"></use></svg>
-                            <div>
-                                <h3 class="font-bold text-sm mb-2">Research standards</h3>
-                                <p class="text-xs text-slate-600 leading-relaxed">Advisors uphold research quality, ethics, and standards across all fellowship activities.</p>
+                            <div class="editorial-photo-row" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                                <div class="editorial-photo-row__content">
+                                    <svg class="icon-box" aria-hidden="true" focusable="false" style="width: 22px; height: 22px; color: #1d4ed8;"><use href="#i-shield"></use></svg>
+                                    <h3 class="font-bold text-sm mb-2 font-serif">Research standards</h3>
+                                    <p class="text-xs text-slate-600 leading-relaxed">Advisors uphold research quality, ethics, and standards across all fellowship activities.</p>
+                                </div>
                             </div>
-                        </div>
-                    </div></div></section>
-            <div class="grid lg:grid-cols-2 gap-12 items-start">
-                <div><h2 class="text-3xl font-black mb-6">What fellows gain</h2>
-                    <div class="space-y-4">
-                        <div class="deboxed-card flex items-start gap-4">
-                            <svg class="icon-box" aria-hidden="true" focusable="false"><use href="#i-certificate"></use></svg>
-                            <p class="text-xs text-slate-600 leading-relaxed">NSRF Fellowship Certificate at the closing symposium</p>
-                        </div>
-                        <div class="deboxed-card flex items-start gap-4">
-                            <svg class="icon-box" aria-hidden="true" focusable="false"><use href="#i-proposal"></use></svg>
-                            <p class="text-xs text-slate-600 leading-relaxed">Training in proposal writing, from defining a research question to preparing a clear, structured proposal</p>
-                        </div>
-                        <div class="deboxed-card flex items-start gap-4">
-                            <svg class="icon-box" aria-hidden="true" focusable="false"><use href="#i-team"></use></svg>
-                            <p class="text-xs text-slate-600 leading-relaxed">Collaborative research experience with defined team roles</p>
-                        </div>
-                        <div class="deboxed-card flex items-start gap-4">
-                            <svg class="icon-box" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg>
-                            <p class="text-xs text-slate-600 leading-relaxed">Publication opportunities for selected projects</p>
                         </div>
                     </div>
-                    <div class="mt-8 flex flex-wrap gap-3"><a href="mailto:info@nssrnepal.org?subject=NSRF Application" class="btn-primary">Apply for NSRF</a><a href="mailto:info@nssrnepal.org?subject=NSRF Inquiry" class="btn-secondary">Inquire About NSRF</a></div></div>
-                <div><div class="rounded-2xl overflow-hidden aspect-video bg-slate-100 mb-8"><img src="assets/images/nsr.png" class="w-full h-full object-cover" alt="NSRF Fellowship"></div><h2 class="font-oswald text-sm font-bold uppercase tracking-widest mb-4">Research fields explored</h2><div class="flex flex-wrap gap-2"><span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-2 rounded-full">Number Theory</span><span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-2 rounded_full">Astrophysics</span><span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-2 rounded-full">Materials Science</span><span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-2 rounded-full">Biophysics</span><span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-2 rounded-full">Plasma Physics</span><span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-2 rounded_full">AI & ML</span><span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-2 rounded_full">Economics</span></div></div>
+                </div>
+            </section>
+
+            <!-- What Fellows Gain + CTA -->
+            <div class="editorial-row">
+                <div>
+                    <h2 class="text-3xl font-black mb-6 font-serif">What fellows gain</h2>
+                    <div class="space-y-6">
+                        <div class="editorial-photo-row" style="border-bottom: 1px solid #e2e8f0; padding-bottom: 32px; margin-bottom: 32px;">
+                            <div class="editorial-photo-row__content">
+                                <svg class="icon-box" aria-hidden="true" focusable="false" style="width: 22px; height: 22px; color: #1d4ed8;"><use href="#i-certificate"></use></svg>
+                                <p class="text-xs text-slate-600 leading-relaxed">NSRF Fellowship Certificate at the closing symposium</p>
+                            </div>
+                        </div>
+                        <div class="editorial-photo-row" style="border-bottom: 1px solid #e2e8f0; padding-bottom: 32px; margin-bottom: 32px;">
+                            <div class="editorial-photo-row__content">
+                                <svg class="icon-box" aria-hidden="true" focusable="false" style="width: 22px; height: 22px; color: #1d4ed8;"><use href="#i-proposal"></use></svg>
+                                <p class="text-xs text-slate-600 leading-relaxed">Training in proposal writing, from defining a research question to preparing a clear, structured proposal</p>
+                            </div>
+                        </div>
+                        <div class="editorial-photo-row" style="border-bottom: 1px solid #e2e8f0; padding-bottom: 32px; margin-bottom: 32px;">
+                            <div class="editorial-photo-row__content">
+                                <svg class="icon-box" aria-hidden="true" focusable="false" style="width: 22px; height: 22px; color: #1d4ed8;"><use href="#i-team"></use></svg>
+                                <p class="text-xs text-slate-600 leading-relaxed">Collaborative research experience with defined team roles</p>
+                            </div>
+                        </div>
+                        <div class="editorial-photo-row" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                            <div class="editorial-photo-row__content">
+                                <svg class="icon-box" aria-hidden="true" focusable="false" style="width: 22px; height: 22px; color: #1d4ed8;"><use href="#i-book"></use></svg>
+                                <p class="text-xs text-slate-600 leading-relaxed">Publication opportunities for selected projects</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex flex-wrap gap-3"><a href="mailto:info@nssrnepal.org?subject=NSRF Application" class="btn-primary">Apply for NSRF</a><a href="mailto:info@nssrnepal.org?subject=NSRF Inquiry" class="btn-secondary">Inquire About NSRF</a></div>
+                </div>
+                <div>
+                    <div class="aspect-video mb-8" style="background: transparent; border: 1px solid #e2e8f0;"><img src="assets/images/nsr.png" class="w-full h-full object-cover" alt="NSRF Fellowship"></div>
+                    <h2 class="font-oswald text-sm font-bold uppercase tracking-widest mb-4">Research fields explored</h2>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-2 text-xs font-semibold" style="color: #1d4ed8; border: 1px solid #e2e8f0; background: transparent; border-radius: 4px;">Number Theory</span>
+                        <span class="px-3 py-2 text-xs font-semibold" style="color: #1d4ed8; border: 1px solid #e2e8f0; background: transparent; border-radius: 4px;">Astrophysics</span>
+                        <span class="px-3 py-2 text-xs font-semibold" style="color: #1d4ed8; border: 1px solid #e2e8f0; background: transparent; border-radius: 4px;">Materials Science</span>
+                        <span class="px-3 py-2 text-xs font-semibold" style="color: #1d4ed8; border: 1px solid #e2e8f0; background: transparent; border-radius: 4px;">Biophysics</span>
+                        <span class="px-3 py-2 text-xs font-semibold" style="color: #1d4ed8; border: 1px solid #e2e8f0; background: transparent; border-radius: 4px;">Plasma Physics</span>
+                        <span class="px-3 py-2 text-xs font-semibold" style="color: #1d4ed8; border: 1px solid #e2e8f0; background: transparent; border-radius: 4px;">AI & ML</span>
+                        <span class="px-3 py-2 text-xs font-semibold" style="color: #1d4ed8; border: 1px solid #e2e8f0; background: transparent; border-radius: 4px;">Economics</span>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

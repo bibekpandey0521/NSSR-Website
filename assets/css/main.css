@@ -157,6 +157,9 @@
   --shadow-accent: 0 12px 28px -10px rgba(0, 74, 173, 0.4);
   --shadow-nav: 0 1px 0 var(--border-hairline), 0 8px 24px -18px rgba(15, 23, 42, 0.4);
 
+  /* --- Premium Transition --- */
+  --transition-premium: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
   /* --- Vibrancy (Apple glassmorphism) ---------------------------------- */
   --blur-nav: 20px;
   --blur-saturation: 180%;
@@ -234,11 +237,12 @@ html {
 html body {
   min-height: 100%;
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: var(--font-size-base);
-  line-height: var(--leading-relaxed);
-  letter-spacing: var(--body-tracking-normal);
-  color: var(--text-primary);
+  line-height: 1.6;
+  letter-spacing: -0.003em;
+  color: #475569;
   background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -249,10 +253,11 @@ html body {
 body h1, body h2, body h3, body h4, body h5, body h6 {
   margin: 0;
   font-family: "Source Serif 4", Georgia, serif;
-  font-weight: var(--font-weight-bold);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--heading-tracking-tight);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   text-wrap: balance;
+  color: #0f172a;
   /* NO `color` HERE, DELIBERATELY.
      A declaration on the element itself always beats inheritance, so pinning
      the heading colour here silently overrode the `text-white` that every dark
@@ -265,6 +270,19 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
      surfaces, and a hero's own `text-white` reaches the heading as intended.
      A belt-and-braces rule further down re-asserts white on known dark
      surfaces, so the invariant does not rest on a wrapper class being present. */
+}
+
+body h1 { font-size: var(--font-size-5xl); }
+body h2 { font-size: var(--font-size-4xl); }
+body h3 { font-size: var(--font-size-3xl); }
+body h4 { font-size: var(--font-size-2xl); }
+body h5 { font-size: var(--font-size-xl); }
+body h6 { font-size: var(--font-size-lg); }
+
+@media (min-width: 768px) {
+  body h1 { font-size: var(--font-size-6xl); }
+  body h2 { font-size: var(--font-size-5xl); }
+  body h3 { font-size: var(--font-size-4xl); }
 }
 
 body h1 { font-size: var(--font-size-4xl); }
@@ -283,6 +301,11 @@ p {
   margin: 0;
   max-width: var(--content-measure);
   text-wrap: pretty;
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: #475569;
 }
 
 ul, ol {
@@ -299,12 +322,12 @@ img, svg, video, canvas, picture {
 }
 
 html body a {
-  color: var(--accent-primary);
+  color: #1d4ed8;
   text-decoration: none;
   transition: color var(--transition-base);
 }
 
-html body a:hover { color: var(--accent-primary-hover); }
+html body a:hover { color: #1e40af; }
 
 body button, body input, body select, body textarea {
   margin: 0;
@@ -961,66 +984,37 @@ body.nav-open { overflow: hidden; }
 
 
 /* ==========================================================================
-   Buttons — enforced high-contrast Apple / Meta treatment
-   --------------------------------------------------------------------------
-   WHY THE `!important` HERE IS LOAD-BEARING, NOT COSMETIC:
-
-   `html body a { color: var(--accent-primary) }` in section 2 has specificity
-   (0,0,3) — three type selectors. Tailwind's `.text-white` is only (0,1,0).
-   A class selector cannot outrank a three-element selector, so every solid
-   blue button was being repainted with the *brand blue link colour* on top of
-   its blue background. The result was the "blank blue button": a filled blue
-   pill with invisible blue-on-blue text.
-
-   `!important` is the correct tool here because it outranks the element rule
-   from any origin, including the Tailwind Play CDN preflight that this site
-   injects at runtime and which no author stylesheet can otherwise out-specify.
-   These classes are the one place where a *guaranteed* colour contrast is
-   required for legibility, so the guarantee is worth the specificity cost.
+   5. PREMIUM COMPONENTS — Zero-Box Policy
    ========================================================================== */
 
-/* --- Shared button box ------------------------------------------------------ */
+/* --- Buttons: Solid blue, sharp 4px radius, premium transition --- */
 .btn-primary,
-.btn-secondary,
 .cta-btn,
-.btn-outline,
-.btn-ghost,
 a.btn-blue {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  font-family: var(--font-sans);
-  font-weight: 600;
-  line-height: 1.2;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color var(--transition-base), color var(--transition-base),
-    border-color var(--transition-base), transform var(--transition-base),
-    box-shadow var(--transition-base);
-}
-
-/* --- Primary: solid blue, white label --------------------------------------- */
-.btn-primary,
-.cta-btn,
-a.btn-blue {
   padding: 14px 28px;
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.03em;
+  line-height: 1.2;
   color: #ffffff !important;
   background-color: #1d4ed8;
   border: 1px solid transparent;
-  border-radius: 10px;
-  box-shadow: 0 8px 20px -10px rgba(29, 78, 216, 0.65);
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-premium);
+  box-shadow: none;
 }
 
-/* Children must not fall back to the inherited link blue. */
 .btn-primary *,
 .cta-btn *,
-a.btn-blue * {
-  color: #ffffff !important;
-}
+a.btn-blue * { color: #ffffff !important; }
 
 .btn-primary svg,
 .cta-btn svg,
@@ -1035,8 +1029,8 @@ a.btn-blue svg {
 a.btn-blue:hover {
   color: #ffffff !important;
   background-color: #1e40af;
-  transform: translateY(-1px);
-  box-shadow: 0 14px 28px -12px rgba(29, 78, 216, 0.75);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -8px rgba(29, 78, 216, 0.4);
 }
 
 .btn-primary:active,
@@ -1046,7 +1040,6 @@ a.btn-blue:active {
   transform: translateY(0);
 }
 
-/* Keyboard focus must stay visible on top of the saturated fill. */
 .btn-primary:focus-visible,
 .cta-btn:focus-visible,
 a.btn-blue:focus-visible {
@@ -1055,58 +1048,74 @@ a.btn-blue:focus-visible {
   box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.55);
 }
 
-/* --- Secondary: white outline ----------------------------------------------- */
+/* --- Secondary: outline style --- */
 .btn-secondary,
 .btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
   padding: 14px 28px;
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.03em;
-  color: #1d1d1f !important;
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.16);
-  border-radius: 10px;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  line-height: 1.2;
+  color: #0f172a !important;
+  background-color: transparent;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-premium);
+  box-shadow: none;
 }
 
 .btn-secondary *,
-.btn-outline * { color: #1d1d1f !important; }
+.btn-outline * { color: #0f172a !important; }
 
 .btn-secondary:hover,
 .btn-outline:hover {
-  color: #1d1d1f !important;
-  background-color: #f5f5f7;
-  border-color: rgba(0, 0, 0, 0.28);
+  color: #0f172a !important;
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
 }
 
 .btn-secondary:focus-visible,
 .btn-outline:focus-visible {
-  outline: 2px solid var(--focus-ring-color);
+  outline: 2px solid #1d4ed8;
   outline-offset: 2px;
 }
 
-/* --- Ghost: low-emphasis tertiary action ------------------------------------ */
+/* --- Ghost: minimal --- */
 .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
   padding: 14px 28px;
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.9rem;
+  font-weight: 600;
   letter-spacing: 0.03em;
-  color: var(--text-secondary);
+  line-height: 1.2;
+  color: #475569;
   background-color: transparent;
-  border: 1px solid var(--border-hairline-strong);
-  border-radius: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-premium);
 }
 
 .btn-ghost:hover {
-  color: var(--text-primary);
-  background-color: var(--bg-surface-sunken);
+  color: #0f172a;
+  background-color: #f8fafc;
 }
 
-/* --- Size & shape modifiers ------------------------------------------------- */
-/* Written as compound selectors (0,2,0) on purpose. The Tailwind Play CDN
-   injects its utilities at runtime, after this stylesheet, so a single-class
-   modifier would lose to `.px-8` / `.rounded-full` purely on source order.
-   Pairing each modifier with its base class makes the override deterministic
-   instead of accidental. */
+/* Size modifiers */
 .btn-primary.btn-lg,
 .cta-btn.btn-lg,
 a.btn-blue.btn-lg,
@@ -1129,51 +1138,95 @@ a.btn-blue.btn-sm,
   letter-spacing: 0.05em;
 }
 
-/* Pill-shaped buttons, used by the compact "Apply Now" calls to action. */
-.btn-primary.btn-pill,
-.cta-btn.btn-pill,
-a.btn-blue.btn-pill,
-.btn-secondary.btn-pill,
-.btn-outline.btn-pill,
-.btn-ghost.btn-pill { border-radius: var(--radius-pill); }
-
-/* Softer-square buttons, used by the large hero calls to action. */
+/* Sharp variant (4px radius is default, so this is for emphasis) */
 .btn-primary.btn-sharp,
 .cta-btn.btn-sharp,
 a.btn-blue.btn-sharp,
 .btn-secondary.btn-sharp,
 .btn-outline.btn-sharp,
-.btn-ghost.btn-sharp { border-radius: var(--radius-sm); }
+.btn-ghost.btn-sharp { border-radius: 4px; }
 
-
-/* ==========================================================================
-   Cards & surfaces — 16px radius, hairline border, layered ambient shadow
-   ========================================================================== */
-
+/* --- Editorial Cards: Zero-box, hairline separators --- */
 .card {
-  padding: var(--space-6);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-base), box-shadow var(--transition-base),
-    border-color var(--transition-base);
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  transition: none;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  border-color: var(--border-accent);
-  box-shadow: var(--shadow-md);
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
 }
 
-.card-elevated { box-shadow: var(--shadow-md); }
-.card-elevated:hover { box-shadow: var(--shadow-lg); }
+/* --- Zero-box utility for any card-like element --- */
+.deboxed,
+.deboxed-card,
+.phase-card,
+.step-card,
+.mentor-card,
+.research-card,
+.outreach-card,
+.story-card,
+.initiative-card,
+.pathway-card,
+.framework-card,
+.event-card,
+.event-card-stanford {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  transition: none !important;
+}
 
-.card-glass {
-  background: var(--bg-glass);
-  -webkit-backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-overlay));
-  backdrop-filter: saturate(var(--blur-saturation)) blur(var(--blur-overlay));
-  box-shadow: var(--shadow-sm);
+.deboxed:hover,
+.deboxed-card:hover,
+.phase-card:hover,
+.step-card:hover,
+.mentor-card:hover,
+.research-card:hover,
+.outreach-card:hover,
+.story-card:hover,
+.initiative-card:hover,
+.pathway-card:hover,
+.framework-card:hover,
+.event-card:hover,
+.event-card-stanford:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+/* --- Image hover zoom (premium) --- */
+img {
+  transition: var(--transition-premium);
+}
+
+a:hover img,
+.group:hover img,
+.editorial-photo-row:hover .editorial-photo-row__image img,
+.editorial-gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+/* --- Hairline section separators --- */
+.section-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 4rem 0;
+  border: none;
+}
+
+.section-divider-strong {
+  height: 2px;
+  background: #0f172a;
+  margin: 4rem 0;
+  border: none;
 }
 
 /* --- Icon tiles (shared by feature/gain cards) ------------------------------ */
@@ -1506,125 +1559,105 @@ a.btn-blue.btn-sharp,
 
 /* --- nsrf.html ------------------------------------------------------------ */
 .phase-card {
-  border: 1px solid #e2e8f0;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.phase-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--nssr-blue);
-  box-shadow: 0 18px 25px -12px rgba(15, 23, 42, 0.2);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 
 .mentor-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.mentor-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 22px -12px rgba(15, 23, 42, 0.25);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 
 
 /* --- research-pathways.html ------------------------------------------------ */
 .step-card {
-  border: 1px solid #e2e8f0;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.step-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--nssr-blue);
-  box-shadow: 0 18px 25px -12px rgba(15, 23, 42, 0.2);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 
 
 /* --- research.html --------------------------------------------------------- */
 .research-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.research-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 30px -12px rgba(15, 23, 42, 0.2);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 
 
 /* --- outreach.html --------------------------------------------------------- */
 .outreach-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.outreach-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 30px -12px rgba(15, 23, 42, 0.2);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 
 
 /* --- science-beyond-classroom.html & student-empowerment.html --------------- */
-/* The brief for these two pages maps the amber accent onto the brand blue, so
-   the Tailwind amber utilities are overridden to keep the palette consistent. */
-.text-amber-400, .text-amber-500, .text-amber-600 { color: #2563eb !important; }
-.bg-amber-50 { background-color: #eff6ff !important; }
-.bg-amber-500 { background-color: #2563eb !important; color: #ffffff !important; }
-.hover\:bg-amber-400:hover { background-color: #3b82f6 !important; }
-
 .story-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.story-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 18px 25px -12px rgba(15, 23, 42, 0.2);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 
 .initiative-card {
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.initiative-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--nssr-blue);
-  box-shadow: 0 18px 25px -12px rgba(15, 23, 42, 0.2);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 
 
 /* --- membership.html ------------------------------------------------------- */
 .pathway-card {
-  transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-  border: 1px solid #e2e8f0;
-}
-
-.pathway-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--nssr-blue);
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 
 .benefit-icon {
-  color: var(--nssr-blue);
-  background: rgba(0, 74, 173, 0.1);
+  color: #1d4ed8;
+  background: transparent;
 }
 
 
 /* --- team.html ------------------------------------------------------------- */
-.team-card { transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1); }
-
-.grayscale-img {
-  filter: grayscale(0%);
-  transition: filter 0.5s ease;
+.team-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 
-.group:hover .grayscale-img { filter: grayscale(0%); }
-
-.social-link { transition: all 0.3s ease; }
-.social-link:hover { color: var(--nssr-blue); transform: scale(1.1); }
-
-@media (max-width: 768px) {
-  /* Make social links visible on mobile since there is no hover. */
-  .mobile-social-visible { transform: translateY(0) !important; opacity: 1 !important; }
-  .grayscale-img { filter: grayscale(0%); }
-}
+.social-link { transition: var(--transition-premium); }
+.social-link:hover { color: #1d4ed8; transform: scale(1.05); }
 
 
 /* --- blog.html ------------------------------------------------------------- */
@@ -1642,27 +1675,31 @@ a.btn-blue.btn-sharp,
 #progress-bar {
   height: 100%;
   width: 0%;
-  background: var(--nssr-blue);
+  background: #1d4ed8;
   transition: width 0.1s;
 }
 
 .blog-card {
-  transition: all 0.4s ease;
-  border-bottom: 1px solid #f1f5f9;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 
 .blog-card:hover {
-  background-color: #fafafa;
-  padding-left: 0.5rem;
-  border-bottom-color: var(--nssr-blue);
+  background-color: transparent;
+  padding-left: 0;
+  border-color: transparent;
 }
 
 .reading-container { max-width: 760px; margin: 0 auto; }
-#detail-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; color: #334155; }
-#detail-content h3 { font-size: 1.75rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--nssr-dark); }
+#detail-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; color: #475569; font-family: "Source Sans 3", sans-serif; }
+#detail-content h3 { font-size: 1.75rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #0f172a; font-family: "Source Serif 4", Georgia, serif; }
 
 #detail-content blockquote {
-  border-left: 4px solid var(--nssr-blue);
+  border-left: 4px solid #1d4ed8;
   padding-left: 1.5rem;
   font-style: italic;
   margin: 2rem 0;
@@ -2223,48 +2260,39 @@ a.btn-blue > *,
   gap: 28px;
 }
 
-/* --- Card ------------------------------------------------------------------ */
+/* --- Card (Legacy - replaced by editorial-photo-row) --- */
 .event-card {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background: var(--bg-surface);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 16px;
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-  text-align: left;
-  transition: transform var(--transition-base), box-shadow var(--transition-base),
-    border-color var(--transition-base);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transition: none;
 }
 
 .event-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-accent);
-  box-shadow: var(--shadow-lg);
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
 }
 
 .event-card__media {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: var(--bg-surface-sunken);
+  background: transparent;
 }
 
 .event-card__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
+  transition: var(--transition-premium);
 }
 
-.event-card:hover .event-card__media img { transform: scale(1.05); }
+.event-card:hover .event-card__media img { transform: scale(1.03); }
 
-/* Category tag, overlaid so it never competes with the title for space. */
 .event-card__tag {
-  position: absolute;
-  top: var(--space-3);
-  left: var(--space-3);
   display: inline-flex;
   align-items: center;
   padding: 5px 11px;
@@ -2273,12 +2301,10 @@ a.btn-blue > *,
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--accent-subtle-text);
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid var(--border-accent);
-  border-radius: var(--radius-pill);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  color: #1d4ed8;
+  background: transparent;
+  border: none;
+  border-radius: 0;
 }
 
 .event-card__body {
@@ -2286,39 +2312,35 @@ a.btn-blue > *,
   flex-direction: column;
   flex: 1 1 auto;
   gap: var(--space-3);
-  padding: 22px 24px 20px;
+  padding: 0;
 }
 
 .event-card__title {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.28;
-  letter-spacing: var(--heading-tracking-snug);
-  color: var(--text-primary);
-  transition: color var(--transition-base);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  transition: var(--transition-premium);
 }
 
-.event-card:hover .event-card__title { color: var(--accent-primary); }
+.event-card:hover .event-card__title { color: #1d4ed8; }
 
 .event-card__excerpt {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-family: "Source Sans 3", sans-serif;
   font-size: var(--font-size-md);
-  line-height: var(--leading-relaxed);
-  color: var(--text-secondary);
+  line-height: 1.6;
+  color: #475569;
 }
 
-/* Date / time metadata row. */
 .event-card__meta {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2) var(--space-5);
   margin-top: auto;
   padding-top: var(--space-4);
-  border-top: 1px solid var(--border-hairline);
+  border-top: 1px solid #e2e8f0;
 }
 
 .event-meta-item {
@@ -2397,22 +2419,22 @@ a.btn-blue > *,
   border: 1px solid var(--border-hairline);
 }
 
-/* --- Featured / upcoming split card ------------------------------------------ */
+/* --- Featured / upcoming split card (Zero-Box) --------------------------------- */
 .event-featured {
   display: flex;
   overflow: hidden;
-  background: var(--bg-surface);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 12px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   box-shadow: none;
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
+  transition: none;
   max-width: 900px;
   margin: 0 auto;
 }
 
 .event-featured:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-xl);
+  transform: none;
+  box-shadow: none;
 }
 
 .event-featured__media {
@@ -2420,13 +2442,18 @@ a.btn-blue > *,
   min-width: 240px;
   max-width: 240px;
   height: 180px;
-  background: var(--bg-surface-sunken);
+  background: transparent;
 }
 
 .event-featured__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: var(--transition-premium);
+}
+
+.event-featured:hover .event-featured__media img {
+  transform: scale(1.03);
 }
 
 .event-featured__body {
@@ -2438,40 +2465,46 @@ a.btn-blue > *,
 }
 
 .event-featured__title {
-  font-family: var(--font-serif-brand);
+  font-family: "Source Serif 4", Georgia, serif;
   font-size: clamp(1.5rem, 2.6vw, 2rem);
   font-weight: 900;
   line-height: 1.16;
   letter-spacing: -0.02em;
-  color: var(--text-primary);
+  color: #0f172a;
 }
 
 .event-featured__excerpt {
+  font-family: "Source Sans 3", sans-serif;
   font-size: var(--font-size-base);
-  line-height: var(--leading-relaxed);
-  color: var(--text-secondary);
+  line-height: 1.6;
+  color: #475569;
 }
 
-/* Compact featured row - shown on archive page */
+/* Compact featured row - shown on archive page (Zero-Box) */
 .event-featured--compact-row {
   max-width: 900px;
   margin: 0 auto 32px;
   display: flex;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 12px;
+  border: none;
+  border-radius: 0;
   overflow: hidden;
 }
 
 .event-featured--compact-row .event-featured__media {
   flex: 0 0 240px;
   height: 180px;
-  background: var(--bg-surface-sunken);
+  background: transparent;
 }
 
 .event-featured--compact-row .event-featured__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: var(--transition-premium);
+}
+
+.event-featured--compact-row:hover .event-featured__media img {
+  transform: scale(1.03);
 }
 
 .event-featured--compact-row .event-featured__body {
@@ -2487,7 +2520,7 @@ a.btn-blue > *,
   flex-wrap: wrap;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
-  color: var(--text-secondary);
+  color: #64748b;
 }
 
 .event-featured__actions {
@@ -2633,24 +2666,22 @@ a.btn-blue > *,
   color: var(--text-secondary);
 }
 
-/* --- Value card ------------------------------------------------------------- */
+/* --- Value card (Zero-Box) ---------------------------------------------------- */
 .framework-card {
   display: flex;
   flex-direction: column;
-  padding: 32px;
-  background: #f8fafc;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-top: 3px solid #1d4ed8;
-  border-radius: 16px;
-  transition: transform var(--transition-base), box-shadow var(--transition-base),
-    border-color var(--transition-base);
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-top: 2px solid #0f172a;
+  border-radius: 0;
+  transition: none;
 }
 
 .framework-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(29, 78, 216, 0.22);
-  border-top-color: #1d4ed8;
+  transform: none;
+  box-shadow: none;
+  border-color: #0f172a;
 }
 
 .framework-card__kicker {
@@ -2658,39 +2689,42 @@ a.btn-blue > *,
   align-items: center;
   gap: var(--space-2);
   font-size: var(--font-size-2xs);
-  font-weight: var(--font-weight-bold);
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: #2563eb;
+  color: #1d4ed8;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .framework-card__kicker .icon-inline { width: 15px; height: 15px; }
 
 .framework-card__title {
   margin: var(--space-3) 0 var(--space-3);
+  font-family: "Source Serif 4", Georgia, serif;
   font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: var(--heading-tracking-snug);
-  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0f172a;
 }
 
 .framework-card__body {
+  font-family: "Source Sans 3", sans-serif;
   font-size: var(--font-size-md);
-  line-height: var(--leading-relaxed);
-  color: var(--text-secondary);
+  line-height: 1.6;
+  color: #475569;
 }
 
-/* The dark ethics card keeps the same geometry but inverts the surface. */
+/* Dark variant */
 .framework-card--dark {
   color: #ffffff;
-  background: #0f172a;
-  border-color: rgba(255, 255, 255, 0.12);
-  border-top-color: #60a5fa;
+  background: transparent;
+  border-color: #ffffff;
+  border-top-color: #ffffff;
 }
 
 .framework-card--dark:hover {
-  border-color: rgba(96, 165, 250, 0.4);
-  border-top-color: #60a5fa;
+  border-color: #ffffff;
+  border-top-color: #ffffff;
 }
 
 .framework-card--dark .framework-card__kicker { color: #93c5fd; }
@@ -3287,18 +3321,18 @@ html, body { overflow-x: hidden; width: 100%; }
   gap: 16px 12px !important;
 }
 
-/* --- Stanford-Style Borderless Event Cards --- */
+/* --- Stanford-Style Borderless Event Cards (Zero-Box) --- */
 .event-card-stanford {
-  background: var(--bg-surface);
+  background: transparent;
   border: none;
   border-radius: 0;
   box-shadow: none;
   overflow: hidden;
-  transition: transform var(--transition-base);
+  transition: none;
 }
 
 .event-card-stanford:hover {
-  transform: translateY(-4px);
+  transform: none;
 }
 
 .event-card-stanford__link {
@@ -3311,14 +3345,14 @@ html, body { overflow-x: hidden; width: 100%; }
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: var(--bg-surface-sunken);
+  background: transparent;
 }
 
 .event-card-stanford__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
+  transition: var(--transition-premium);
 }
 
 .event-card-stanford:hover .event-card-stanford__media img {
@@ -3338,31 +3372,31 @@ html, body { overflow-x: hidden; width: 100%; }
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--nssr-blue);
+  color: #1d4ed8;
 }
 
 .event-card-stanford__category::after {
   content: '·';
   margin-left: var(--space-3);
-  color: var(--border-hairline-strong);
+  color: #e2e8f0;
 }
 
 .event-card-stanford__date {
-  color: var(--text-tertiary);
+  color: #94a3b8;
 }
 
 .event-card-stanford__title {
-  font-family: var(--font-serif-brand);
+  font-family: "Source Serif 4", Georgia, serif;
   font-size: var(--font-size-xl);
   font-weight: 900;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: var(--nssr-dark);
-  transition: color var(--transition-base);
+  color: #0f172a;
+  transition: var(--transition-premium);
 }
 
 .event-card-stanford:hover .event-card-stanford__title {
-  color: var(--nssr-blue);
+  color: #1d4ed8;
 }
 
 .event-card-stanford__footer {
@@ -3370,8 +3404,8 @@ html, body { overflow-x: hidden; width: 100%; }
   align-items: center;
   justify-content: space-between;
   padding: var(--space-3) var(--space-4);
-  border-top: 1px solid var(--border-hairline);
-  background: var(--bg-surface-sunken);
+  border-top: 1px solid #e2e8f0;
+  background: transparent;
 }
 
 /* Mobile responsive */
