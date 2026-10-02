@@ -1348,6 +1348,9 @@ a:hover img,
   padding: 0;
   border: none;
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Left Panel - Deep Academic Slate (55%) */
@@ -1492,7 +1495,7 @@ a:hover img,
 
 /* Right Panel - White (45%) with Curve */
 .footer-right {
-  flex: 0 0 45%;
+  flex: 1 1 45% !important;
   min-width: 320px;
   background: #ffffff;
   color: #0f172a;
@@ -1508,6 +1511,8 @@ a:hover img,
   display: flex;
   flex-direction: column;
   justify-content: center;
+  right: 0;
+  margin-right: 0;
 }
 
 @media (max-width: 1280px) {
@@ -1605,7 +1610,7 @@ a:hover img,
   line-height: 1.5;
   color: #0f172a;
   background: #ffffff;
-  border: 1px solid #1d4ed8;
+  border: 1px solid #cbd5e1; /* Light gray border by default */
   border-radius: 4px;
   padding: 14px 16px;
   width: 100%;
@@ -1615,7 +1620,7 @@ a:hover img,
 
 .footer-form-input:focus {
   outline: none;
-  border-color: #1d4ed8;
+  border-color: #1d4ed8; /* Blue border only on focus */
   box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
 }
 
@@ -1702,9 +1707,9 @@ a:hover img,
 /* Copyright Bar */
 .footer-copyright {
   width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 16px 0;
-  background: #1d4ed8;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px 0;
+  background: #0b1120; /* Slightly darker than main slate for depth */
   order: 3;
 }
 
