@@ -2633,6 +2633,41 @@ a.btn-blue > *,
   }
 }
 
+/* --- Premium Horizontal Logo Grid (index.html Collaborators) ------------------- */
+.premium-logo-grid {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 64px 80px !important;
+  padding: 16px 0 !important;
+}
+
+.premium-logo-grid img {
+  max-width: 130px !important;
+  height: auto !important;
+  display: block !important;
+  filter: grayscale(100%) !important;
+  opacity: 0.6 !important;
+  transition: all 0.3s ease !important;
+}
+
+.premium-logo-grid img:hover {
+  filter: grayscale(0%) !important;
+  opacity: 1 !important;
+  transform: scale(1.05) !important;
+}
+
+@media (max-width: 768px) {
+  .premium-logo-grid {
+    gap: 40px 48px !important;
+  }
+  .premium-logo-grid img {
+    max-width: 100px !important;
+  }
+}
+
 /* --- Section heading shared by the grid and timeline ------------------------- */
 .events-section-head {
   display: flex;
