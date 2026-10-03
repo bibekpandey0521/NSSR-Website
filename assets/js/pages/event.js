@@ -295,7 +295,7 @@
         }
 
         // ---------------------------------------------------------------
-        // UNIFIED ARCHIVE ROW RENDERER (Premium horizontal image layout)
+        // PREMIUM EDITORIAL CARD GRID RENDERER
         // ---------------------------------------------------------------
         function generateHTMLForArchive(keys) {
             if (keys.length === 0) {
@@ -314,26 +314,20 @@
                 const excerpt = data.excerpt || '';
                 
                 return `
-                <article class="archive-row" tabindex="0" role="link"
+                <article class="editorial-card" tabindex="0" role="link"
                          onclick="window.location.hash='${escapeHtml(key)}'"
                          onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.location.hash='${escapeHtml(key)}'; }">
-                    <!-- Left Column: Image -->
-                    <div class="archive-image">
+                    <div class="card-image-wrapper">
                         <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(title)}" loading="lazy">
                     </div>
-                    <!-- Right Column: Content -->
-                    <div class="archive-content">
-                        <div class="archive-meta">
-                            <span class="archive-tag">${escapeHtml(categoryType)}</span>
-                            <span class="archive-date">${escapeHtml(dateStr)}</span>
-                            ${category ? `<span class="archive-category">${escapeHtml(category)}</span>` : ''}
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span>${escapeHtml(dateStr)}</span> &bull; <span>${escapeHtml(categoryType)}</span>
+                            ${category ? ` &bull; <span>${escapeHtml(category)}</span>` : ''}
                         </div>
-                        <h3 class="archive-title">${escapeHtml(title)}</h3>
-                        <div class="archive-details">
-                            ${mentorStr ? `<span class="archive-detail-item"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>${escapeHtml(mentorStr)}</span>` : ''}
-                            ${venueStr ? `<span class="archive-detail-item"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>${escapeHtml(venueStr)}</span>` : ''}
-                        </div>
-                        <p class="archive-excerpt">${escapeHtml(excerpt)}</p>
+                        <h3 class="card-title">${escapeHtml(title)}</h3>
+                        <p class="card-excerpt">${escapeHtml(excerpt)}</p>
+                        <a href="#${escapeHtml(key)}" class="card-action">View Details <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </article>`;
             }).join('');
@@ -346,8 +340,8 @@
             const workshops = keys.filter(k => eventsData[k].categoryType === "Workshops");
             const onlineTalks = keys.filter(k => eventsData[k].categoryType === "Online Talks");
 
-            document.getElementById('workshops-container').innerHTML = generateHTMLForArchive(workshops);
-            document.getElementById('online-container').innerHTML = generateHTMLForArchive(onlineTalks);
+            document.getElementById('workshops-container').innerHTML = `<div class="archive-card-grid">${generateHTMLForArchive(workshops)}</div>`;
+            document.getElementById('online-container').innerHTML = `<div class="archive-card-grid">${generateHTMLForArchive(onlineTalks)}</div>`;
 
             // The featured card always shows the most recently added event, so
             // the top of the page stays a single "what's happening" statement.
