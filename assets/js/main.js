@@ -552,6 +552,10 @@
     if (!form || !success) return;
 
     form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        form.reportValidity(); // Show native browser validation UI
+        return;
+      }
       event.preventDefault();
       success.classList.remove('hidden');
       form.reset();
