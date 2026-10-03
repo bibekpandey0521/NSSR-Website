@@ -295,69 +295,45 @@
         }
 
         // ---------------------------------------------------------------
-        // ARCHIVE GRID RENDERER (for Online Talks - editorial photo rows)
+        // UNIFIED ARCHIVE ROW RENDERER (Premium horizontal image layout)
         // ---------------------------------------------------------------
-        function generateHTMLForGrid(keys) {
+        function generateHTMLForArchive(keys) {
             if (keys.length === 0) {
                 return '<p class="framework-card__body">No proceedings available in this category yet.</p>';
             }
             return keys.map((key, index) => {
                 const data = eventsData[key];
-                const status = statusMeta(data.status);
                 const isLast = index === keys.length - 1;
-                const reverseClass = index % 2 === 1 ? ' editorial-photo-row--reverse' : '';
-                const lastClass = isLast ? '' : '';
-                return `
-                <article class="editorial-photo-row${reverseClass}${lastClass ? ' editorial-photo-row--last' : ''}" tabindex="0" role="link"
-                         onclick="window.location.hash='${escapeHtml(key)}'"
-                         onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.location.hash='${escapeHtml(key)}'; }">
-                    <div class="editorial-photo-row__image">
-                        <img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}" loading="lazy">
-                    </div>
-                    <div class="editorial-photo-row__content">
-                        <div class="editorial-photo-row__meta">
-                            <span class="editorial-photo-row__tag">${escapeHtml(data.categoryType || '')}</span>
-                            <span class="editorial-photo-row__date">${escapeHtml(data.date || '')}</span>
-                        </div>
-                        <h2 class="editorial-photo-row__title">${escapeHtml(data.title)}</h2>
-                        <p class="editorial-photo-row__excerpt">${escapeHtml(data.excerpt || '')}</p>
-                        <a href="#${escapeHtml(key)}" class="editorial-photo-row__cta">Read more <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </article>`;
-            }).join('');
-        }
-
-        // ---------------------------------------------------------------
-        // WORKSHOP AGENDA RENDERER (Premium box-less horizontal rows)
-        // ---------------------------------------------------------------
-        function generateHTMLForAgenda(keys) {
-            if (keys.length === 0) {
-                return '<p class="framework-card__body">No workshops available yet.</p>';
-            }
-            return keys.map((key, index) => {
-                const data = eventsData[key];
-                const isLast = index === keys.length - 1;
-                const lastClass = isLast ? '' : '';
-                // Parse date for time display
                 const dateStr = data.date || '';
                 const mentorStr = data.Mentor || '';
                 const venueStr = data.Venue || '';
+                const categoryType = data.categoryType || '';
+                const category = data.category || '';
+                const imageUrl = data.image || '';
+                const title = data.title || '';
+                const excerpt = data.excerpt || '';
+                
                 return `
-                <article class="workshop-agenda__item${lastClass ? '' : ''}" tabindex="0" role="link"
+                <article class="archive-row" tabindex="0" role="link"
                          onclick="window.location.hash='${escapeHtml(key)}'"
                          onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.location.hash='${escapeHtml(key)}'; }">
-                    <div class="workshop-agenda__grid">
-                        <div class="workshop-agenda__time">
-                            ${escapeHtml(dateStr)}
+                    <!-- Left Column: Image -->
+                    <div class="archive-image">
+                        <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(title)}" loading="lazy">
+                    </div>
+                    <!-- Right Column: Content -->
+                    <div class="archive-content">
+                        <div class="archive-meta">
+                            <span class="archive-tag">${escapeHtml(categoryType)}</span>
+                            <span class="archive-date">${escapeHtml(dateStr)}</span>
+                            ${category ? `<span class="archive-category">${escapeHtml(category)}</span>` : ''}
                         </div>
-                        <div class="workshop-agenda__content">
-                            <h3 class="workshop-agenda__title">${escapeHtml(data.title)}</h3>
-                            <div class="workshop-agenda__meta">
-                                ${mentorStr ? `<span class="workshop-agenda__meta-item"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>${escapeHtml(mentorStr)}</span>` : ''}
-                                ${venueStr ? `<span class="workshop-agenda__meta-item"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>${escapeHtml(venueStr)}</span>` : ''}
-                            </div>
-                            <p class="workshop-agenda__excerpt">${escapeHtml(data.excerpt || '')}</p>
+                        <h3 class="archive-title">${escapeHtml(title)}</h3>
+                        <div class="archive-details">
+                            ${mentorStr ? `<span class="archive-detail-item"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>${escapeHtml(mentorStr)}</span>` : ''}
+                            ${venueStr ? `<span class="archive-detail-item"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>${escapeHtml(venueStr)}</span>` : ''}
                         </div>
+                        <p class="archive-excerpt">${escapeHtml(excerpt)}</p>
                     </div>
                 </article>`;
             }).join('');
@@ -370,8 +346,8 @@
             const workshops = keys.filter(k => eventsData[k].categoryType === "Workshops");
             const onlineTalks = keys.filter(k => eventsData[k].categoryType === "Online Talks");
 
-            document.getElementById('workshops-container').innerHTML = `<div class="workshop-agenda">${generateHTMLForAgenda(workshops)}</div>`;
-            document.getElementById('online-container').innerHTML = generateHTMLForGrid(onlineTalks);
+            document.getElementById('workshops-container').innerHTML = generateHTMLForArchive(workshops);
+            document.getElementById('online-container').innerHTML = generateHTMLForArchive(onlineTalks);
 
             // The featured card always shows the most recently added event, so
             // the top of the page stays a single "what's happening" statement.
