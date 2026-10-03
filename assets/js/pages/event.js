@@ -295,7 +295,7 @@
         }
 
         // ---------------------------------------------------------------
-        // ARCHIVE GRID RENDERER
+        // ARCHIVE GRID RENDERER (for Online Talks - editorial photo rows)
         // ---------------------------------------------------------------
         function generateHTMLForGrid(keys) {
             if (keys.length === 0) {
@@ -327,6 +327,42 @@
             }).join('');
         }
 
+        // ---------------------------------------------------------------
+        // WORKSHOP AGENDA RENDERER (Premium box-less horizontal rows)
+        // ---------------------------------------------------------------
+        function generateHTMLForAgenda(keys) {
+            if (keys.length === 0) {
+                return '<p class="framework-card__body">No workshops available yet.</p>';
+            }
+            return keys.map((key, index) => {
+                const data = eventsData[key];
+                const isLast = index === keys.length - 1;
+                const lastClass = isLast ? '' : '';
+                // Parse date for time display
+                const dateStr = data.date || '';
+                const mentorStr = data.Mentor || '';
+                const venueStr = data.Venue || '';
+                return `
+                <article class="workshop-agenda__item${lastClass ? '' : ''}" tabindex="0" role="link"
+                         onclick="window.location.hash='${escapeHtml(key)}'"
+                         onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.location.hash='${escapeHtml(key)}'; }">
+                    <div class="workshop-agenda__grid">
+                        <div class="workshop-agenda__time">
+                            ${escapeHtml(dateStr)}
+                        </div>
+                        <div class="workshop-agenda__content">
+                            <h3 class="workshop-agenda__title">${escapeHtml(data.title)}</h3>
+                            <div class="workshop-agenda__meta">
+                                ${mentorStr ? `<span class="workshop-agenda__meta-item"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>${escapeHtml(mentorStr)}</span>` : ''}
+                                ${venueStr ? `<span class="workshop-agenda__meta-item"><svg class="icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>${escapeHtml(venueStr)}</span>` : ''}
+                            </div>
+                            <p class="workshop-agenda__excerpt">${escapeHtml(data.excerpt || '')}</p>
+                        </div>
+                    </div>
+                </article>`;
+            }).join('');
+        }
+
         function renderUI() {
             const feedOrder = new Map(NSSR_EVENT_FEED.map((event, index) => [event.id, index]));
             const keys = Object.keys(eventsData).sort((first, second) => (feedOrder.get(first) ?? Number.MAX_SAFE_INTEGER) - (feedOrder.get(second) ?? Number.MAX_SAFE_INTEGER));
@@ -334,7 +370,7 @@
             const workshops = keys.filter(k => eventsData[k].categoryType === "Workshops");
             const onlineTalks = keys.filter(k => eventsData[k].categoryType === "Online Talks");
 
-            document.getElementById('workshops-container').innerHTML = generateHTMLForGrid(workshops);
+            document.getElementById('workshops-container').innerHTML = `<div class="workshop-agenda">${generateHTMLForAgenda(workshops)}</div>`;
             document.getElementById('online-container').innerHTML = generateHTMLForGrid(onlineTalks);
 
             // The featured card always shows the most recently added event, so
