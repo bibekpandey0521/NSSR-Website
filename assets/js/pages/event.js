@@ -319,7 +319,7 @@
                         </div>
                         <h3 class="card-title">${escapeHtml(data.title)}</h3>
                         <p class="card-excerpt">${escapeHtml(data.excerpt || '')}</p>
-                        <a href="#${escapeHtml(key)}" class="card-cta">Read more <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="#${escapeHtml(key)}" class="card-cta">READ MORE</a>
                     </div>
                 </article>`;
             }).join('');

@@ -4084,15 +4084,14 @@ html, body { overflow-x: hidden; width: 100%; }
   font-weight: 700 !important;
   color: #1d4ed8 !important;
   text-decoration: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  transition: gap 0.2s ease, color 0.2s ease !important;
+  display: inline-block !important;
+  transition: color 0.2s ease !important;
 }
 
 .editorial-card:hover .card-action {
-  gap: 12px !important;
   color: #0f172a !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
 }
 
 /* Mobile Responsive */
@@ -4674,9 +4673,7 @@ html, body { overflow-x: hidden; width: 100%; }
 }
 
 .card-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display: inline-block;
   font-family: var(--font-sans);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -4684,21 +4681,13 @@ html, body { overflow-x: hidden; width: 100%; }
   text-transform: uppercase;
   color: var(--accent-primary);
   text-decoration: none;
-  transition: gap var(--transition-premium), color var(--transition-premium);
+  transition: color var(--transition-premium);
 }
 
 .card-cta:hover {
-  color: var(--accent-primary-hover);
-  gap: 12px;
-}
-
-.card-cta i {
-  font-size: 0.75rem;
-  transition: transform var(--transition-premium);
-}
-
-.card-cta:hover i {
-  transform: translateX(2px);
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* Responsive */
