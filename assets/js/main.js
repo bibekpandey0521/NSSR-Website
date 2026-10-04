@@ -60,6 +60,7 @@
         { label: 'Student Empowerment Initiative', href: 'student-empowerment.html' }
       ]
     },
+    { label: 'Gallery', href: 'gallery.html' },
     { label: 'Events', href: 'event.html' },
     { label: 'Join Us', href: 'membership.html', variant: 'cta' }
   ];
@@ -67,6 +68,7 @@
   var FOOTER_LINKS = [
     { label: 'Research', href: 'research.html' },
     { label: 'Outreach', href: 'outreach.html' },
+    { label: 'Gallery', href: 'gallery.html' },
     { label: 'Events Directory', href: 'event.html' },
     { label: 'Our Team', href: 'team.html' },
     { label: 'Membership', href: 'membership.html' }

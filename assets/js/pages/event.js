@@ -301,27 +301,24 @@
             if (keys.length === 0) {
                 return '<p class="framework-card__body">No proceedings available in this category yet.</p>';
             }
-            return keys.map((key, index) => {
+            return keys.map((key) => {
                 const data = eventsData[key];
                 const status = statusMeta(data.status);
-                const isLast = index === keys.length - 1;
-                const reverseClass = index % 2 === 1 ? ' editorial-photo-row--reverse' : '';
-                const lastClass = isLast ? '' : '';
                 return `
-                <article class="editorial-photo-row${reverseClass}${lastClass ? ' editorial-photo-row--last' : ''}" tabindex="0" role="link"
+                <article class="archive-card" tabindex="0" role="link"
                          onclick="window.location.hash='${escapeHtml(key)}'"
                          onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); window.location.hash='${escapeHtml(key)}'; }">
-                    <div class="editorial-photo-row__image">
+                    <div class="card-img">
                         <img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}" loading="lazy">
                     </div>
-                    <div class="editorial-photo-row__content">
-                        <div class="editorial-photo-row__meta">
-                            <span class="editorial-photo-row__tag">${escapeHtml(data.categoryType || '')}</span>
-                            <span class="editorial-photo-row__date">${escapeHtml(data.date || '')}</span>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-tag">${escapeHtml(data.categoryType || '')}</span>
+                            <span class="card-date">${escapeHtml(data.date || '')}</span>
                         </div>
-                        <h2 class="editorial-photo-row__title">${escapeHtml(data.title)}</h2>
-                        <p class="editorial-photo-row__excerpt">${escapeHtml(data.excerpt || '')}</p>
-                        <a href="#${escapeHtml(key)}" class="editorial-photo-row__cta">Read more <i class="fa-solid fa-arrow-right"></i></a>
+                        <h3 class="card-title">${escapeHtml(data.title)}</h3>
+                        <p class="card-excerpt">${escapeHtml(data.excerpt || '')}</p>
+                        <a href="#${escapeHtml(key)}" class="card-cta">Read more <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </article>`;
             }).join('');

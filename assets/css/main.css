@@ -4223,6 +4223,240 @@ html, body { overflow-x: hidden; width: 100%; }
   }
 
 /* ==========================================================================
+   PREMIUM CARD GRID — Event Archive Horizontal Cards
+   ========================================================================== */
+
+.premium-card-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: 40px !important;
+  align-items: start !important;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.archive-card {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  transition: none !important;
+}
+
+.archive-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.card-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: transparent;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-premium);
+}
+
+.archive-card:hover .card-img img {
+  transform: scale(1.04);
+}
+
+.card-content {
+  padding: 0;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--heading-tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.card-tag {
+  color: var(--accent-primary);
+}
+
+.card-date {
+  color: var(--text-quaternary);
+}
+
+.card-title {
+  font-family: var(--font-serif-brand);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0 0 12px 0;
+  transition: color var(--transition-premium);
+}
+
+.archive-card:hover .card-title {
+  color: var(--accent-primary);
+}
+
+.card-excerpt {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-md);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0 0 16px 0;
+  max-width: 55ch;
+}
+
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--body-tracking-caps);
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: gap var(--transition-premium), color var(--transition-premium);
+}
+
+.card-cta:hover {
+  color: var(--accent-primary-hover);
+  gap: 12px;
+}
+
+.card-cta i {
+  font-size: 0.75rem;
+  transition: transform var(--transition-premium);
+}
+
+.card-cta:hover i {
+  transform: translateX(2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .premium-card-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  
+  .card-img {
+    aspect-ratio: 16 / 10;
+    margin-bottom: 16px;
+  }
+  
+  .card-title {
+    font-size: clamp(1.125rem, 3.5vw, 1.375rem);
+  }
+  
+  .card-excerpt {
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* ==========================================================================
+   CREATIVE PHOTO WALL — Masonry Layout
+   ========================================================================== */
+
+.creative-photo-wall {
+  padding: var(--space-10) 0 var(--space-12);
+}
+
+.wall-header {
+  margin-bottom: var(--space-10);
+}
+
+.wall-title {
+  font-family: var(--font-serif-brand);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.wall-subtitle {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  max-width: 55ch;
+  margin: 0 auto;
+}
+
+.masonry-grid {
+  column-count: 3;
+  column-gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5vw;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  overflow: hidden;
+  background: var(--bg-surface-sunken);
+  cursor: zoom-in;
+  transition: transform var(--transition-premium);
+}
+
+.masonry-item:hover {
+  transform: translateY(-4px);
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(40%);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.masonry-item:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.03);
+}
+
+/* Responsive masonry */
+@media (max-width: 1024px) {
+  .masonry-grid {
+    column-count: 2;
+    column-gap: 12px;
+    padding: 0 4vw;
+  }
+}
+
+@media (max-width: 640px) {
+  .masonry-grid {
+    column-count: 1;
+    column-gap: 0;
+    padding: 0 4vw;
+  }
+  
+  .masonry-item {
+    margin-bottom: 12px;
+  }
+  
+  .creative-photo-wall {
+    padding: var(--space-8) 0 var(--space-10);
+  }
+}
+
+/* ==========================================================================
    RESEARCH SPOTLIGHT — Sticky Scroll Creative Section
    ========================================================================== */
 
@@ -4445,15 +4679,46 @@ html, body { overflow-x: hidden; width: 100%; }
 }
 
 @media (max-width: 640px) {
-  .research-spotlight {
-    padding: 80px 0;
-  }
-  
-  .spotlight-grid {
-    padding: 0 16px;
-  }
-  
-  .spotlight-heading {
-    font-size: clamp(2rem, 8vw, 2.5rem);
-  }
+   .research-spotlight {
+     padding: 80px 0;
+   }
+   
+   .spotlight-grid {
+     padding: 0 16px;
+   }
+   
+   .spotlight-heading {
+     font-size: clamp(2rem, 8vw, 2.5rem);
+   }
+ }
+
+/* ==========================================================================
+   COLLABORATING PARTNERS LOGO GRID
+   ========================================================================== */
+
+.partner-logo-flex-grid {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 48px 64px !important;
+  padding: 40px 0 !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+}
+
+.partner-logo-flex-grid img {
+  max-width: 120px !important;
+  max-height: 80px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  filter: grayscale(0%) !important;
+  opacity: 1 !important;
+  transition: transform 0.3s ease !important;
+}
+
+.partner-logo-flex-grid img:hover {
+  transform: scale(1.05) !important;
 }
