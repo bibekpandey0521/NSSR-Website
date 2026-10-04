@@ -36,9 +36,9 @@
     <div id="footer-placeholder"></div>
 
     <!-- Lightbox -->
-    <div id="lightbox" onclick="closeLightbox()" class="fixed inset-0 z-[2000] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer">
-        <button class="absolute top-6 right-6 text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
-        <img id="lightbox-img" onclick="event.stopPropagation()" src="" class="max-w-full max-h-[85vh] transform scale-95 transition-transform duration-300">
+    <div id="gallery-lightbox" class="fixed inset-0 z-[2000] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer">
+        <span class="lightbox-close absolute top-6 right-6 text-white text-4xl cursor-pointer">&times;</span>
+        <img id="lightbox-img" src="" alt="Popup Image" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl transform scale-95 transition-transform duration-300">
     </div>
 
     <script src="assets/js/main.js" defer></script>
@@ -151,28 +151,42 @@
             const grid = document.getElementById('masonry-grid');
             if (grid) {
                 grid.innerHTML = galleryImages.map(img => `
-                    <div class="masonry-item" onclick="openLightbox('${img.src}')">
+                    <div class="masonry-item">
                         <img src="${img.src}" alt="${img.alt}" loading="lazy">
                     </div>
                 `).join('');
             }
+
+            // Lightbox logic
+            const lightbox = document.getElementById('gallery-lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+            // Select all images in your gallery grid
+            const galleryImagesElements = document.querySelectorAll('.masonry-item img');
+
+            if (lightbox && lightboxImg && galleryImagesElements.length > 0) {
+                galleryImagesElements.forEach(img => {
+                    img.addEventListener('click', (e) => {
+                        e.preventDefault(); // Stop any default link behavior
+                        lightboxImg.src = img.src; // Force the modal image source to match the clicked image
+                        lightbox.classList.remove('hidden'); // Show the modal
+                        document.body.style.overflow = 'hidden';
+                    });
+                });
+
+                // Close logic
+                const closeLightbox = () => {
+                    lightbox.classList.add('hidden');
+                    setTimeout(() => { lightboxImg.src = ''; }, 300); // Clear source after fading out
+                    document.body.style.overflow = 'auto';
+                };
+
+                if(closeBtn) closeBtn.addEventListener('click', closeLightbox);
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) closeLightbox(); // Close if clicking the dark background
+                });
+            }
         });
-
-        function openLightbox(src) {
-            const lb = document.getElementById('lightbox');
-            const lbImg = document.getElementById('lightbox-img');
-            if (!lb || !lbImg) return;
-            lbImg.src = src;
-            lb.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            const lb = document.getElementById('lightbox');
-            if (!lb) return;
-            lb.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
     </script>
 </body>
 </html>
