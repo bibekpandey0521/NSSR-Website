@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | NSSR</title>
+    <link rel="icon" type="image/png" href="assets/images/bluelogonobg.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@300;400;600;700&family=Source+Serif+4:ital,wght@300;400;600;700&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white">
+    <div id="nav-placeholder"></div>
+
+    <header class="hero-clear pb-24 bg-slate-950 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(37,99,235,.35),_transparent_48%),linear-gradient(135deg,#0f172a,#172554)]"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <span class="font-oswald text-blue-400 uppercase tracking-[.35em] text-xs font-bold">Visual Archive</span>
+            <h1 class="text-4xl md:text-7xl font-black mt-5 mb-6">Moments in <span class="italic font-light text-blue-300">Focus</span></h1>
+            <p class="max-w-2xl mx-auto text-slate-300 leading-relaxed">A curated collection of NSSR events, workshops, outreach programs, and community moments captured across Nepal.</p>
+        </div>
+    </header>
+
+    <section class="creative-photo-wall py-20 md:py-28">
+        <div class="wall-header text-center max-w-3xl mx-auto mb-16 px-6">
+            <h2 class="wall-title font-serif font-black text-3xl md:text-5xl text-slate-900 mb-4">Visual Archive</h2>
+            <p class="wall-subtitle text-slate-600 text-lg leading-relaxed">Exploring NSSR's impact through the lens — workshops, talks, outreach, and community.</p>
+        </div>
+
+        <div class="masonry-grid" id="masonry-grid">
+            <!-- Images will be injected by JavaScript -->
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" onclick="closeLightbox()" class="fixed inset-0 z-[2000] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer">
+        <button class="absolute top-6 right-6 text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
+        <img id="lightbox-img" onclick="event.stopPropagation()" src="" class="max-w-full max-h-[85vh] transform scale-95 transition-transform duration-300">
+    </div>
+
+    <script src="assets/js/main.js" defer></script>
+    <script>
+        // Gallery images data
+        const galleryImages = [
+            { src: "Photos/IMG_20260902_144525.jpg", alt: "NSSR workshop session" },
+            { src: "Photos/IMG_20260902_144529.jpg", alt: "Students at NSSR event" },
+            { src: "Photos/IMG_20260902_144532.jpg", alt: "NSSR team with participants" },
+            { src: "Photos/IMG_20260902_144533.jpg", alt: "Workshop in progress" },
+            { src: "Photos/IMG_20260902_144617.jpg", alt: "Research presentation" },
+            { src: "Photos/IMG_20260902_144629.jpg", alt: "Collaborative discussion" },
+            { src: "Photos/IMG_20260902_144630.jpg", alt: "Student researcher presenting" },
+            { src: "Photos/IMG_20260902_144631.jpg", alt: "Interactive session" },
+            { src: "Photos/IMG_20260902_144659.jpg", alt: "Group photo at event" },
+            { src: "Photos/IMG_20260902_144700.jpg", alt: "Mentor guiding students" },
+            { src: "Photos/IMG_20260902_144731.jpg", alt: "Hands-on workshop activity" },
+            { src: "Photos/IMG_20260902_144733.jpg", alt: "Research collaboration" },
+            { src: "Photos/IMG_20260902_144734.jpg", alt: "Student engagement" },
+            { src: "Photos/IMG_20260902_144738.jpg", alt: "Academic discussion" },
+            { src: "Photos/IMG_20260902_144745.jpg", alt: "Workshop participants" },
+            { src: "Photos/IMG_20260902_144747.jpg", alt: "Session in progress" },
+            { src: "Photos/IMG_20260902_144748.jpg", alt: "Interactive learning" },
+            { src: "Photos/IMG_20260902_144931.jpg", alt: "Research showcase" },
+            { src: "Photos/IMG_20260902_144933.jpg", alt: "Community building" },
+            { src: "Photos/IMG_20260902_144936.jpg", alt: "Event conclusion" },
+            { src: "Photos/Photooooo/IMG_1889.jpeg", alt: "Outreach program" },
+            { src: "Photos/Photooooo/IMG_1888.jpeg", alt: "Science demonstration" },
+            { src: "Photos/Photooooo/IMG_1887.jpeg", alt: "Student experiment" },
+            { src: "Photos/Photooooo/IMG_1886.jpeg", alt: "Lab activity" },
+            { src: "Photos/Photooooo/IMG_1885.jpeg", alt: "Physics experiment" },
+            { src: "Photos/Photooooo/IMG_1884.jpeg", alt: "Chemistry lab" },
+            { src: "Photos/Photooooo/IMG_1883.jpeg", alt: "Biology activity" },
+            { src: "Photos/Photooooo/IMG_1882.jpeg", alt: "Student engagement" },
+            { src: "Photos/Photooooo/IMG_1881.jpeg", alt: "Group activity" },
+            { src: "Photos/Photooooo/IMG_1880.jpeg", alt: "Learning session" },
+            { src: "Photos/Photooooo/IMG_1879.jpeg", alt: "Science workshop" },
+            { src: "Photos/Photooooo/IMG_1878.jpeg", alt: "Student participation" },
+            { src: "Photos/Photooooo/IMG_1877.jpeg", alt: "Hands-on science" },
+            { src: "Photos/Photooooo/IMG_1876.jpeg", alt: "Educational activity" },
+            { src: "Photos/Photooooo/IMG_1875.jpeg", alt: "Interactive learning" },
+            { src: "Photos/Photooooo/IMG_1874.jpeg", alt: "Science exploration" },
+            { src: "Photos/Photooooo/IMG_1873.jpeg", alt: "Student researchers" },
+            { src: "Photos/Photooooo/IMG_1867.jpeg", alt: "Workshop activity" },
+            { src: "Photos/Photooooo/IMG_1866.jpeg", alt: "Group discussion" },
+            { src: "Photos/Photooooo/IMG_1865.jpeg", alt: "Research presentation" },
+            { src: "Photos/Photooooo/IMG_1864.jpeg", alt: "Academic event" },
+            { src: "Photos/Photooooo/IMG_1863.jpeg", alt: "Student showcase" },
+            { src: "Photos/Photooooo/IMG_1862.jpeg", alt: "Collaborative work" },
+            { src: "Photos/Photooooo/IMG_1860.jpeg", alt: "Learning moment" },
+            { src: "Photos/Photooooo/IMG_1859.jpeg", alt: "Science activity" },
+            { src: "Photos/Photooooo/IMG_1858.jpeg", alt: "Student project" },
+            { src: "Photos/Photooooo/IMG_1857.jpeg", alt: "Workshop session" },
+            { src: "Photos/Photooooo/IMG_1856.jpeg", alt: "Interactive demo" },
+            { src: "Photos/Photooooo/IMG_1855.jpeg", alt: "Educational program" },
+            { src: "Photos/Photooooo/IMG_1854.jpeg", alt: "Student engagement" },
+            { src: "Photos/Photooooo/IMG_1853.jpeg", alt: "Science learning" },
+            { src: "Photos/Photooooo/IMG_1852.jpeg", alt: "Research activity" },
+            { src: "Photos/Photooooo/IMG_1851.jpeg", alt: "Group learning" },
+            { src: "Photos/Photooooo/IMG_1850.jpeg", alt: "Workshop moment" },
+            { src: "Photos/Photooooo/IMG_1849.jpeg", alt: "Academic activity" },
+            { src: "Photos/Photooooo/IMG_1848.jpeg", alt: "Student participation" },
+            { src: "Photos/Photooooo/IMG_1846.jpeg", alt: "Science workshop" },
+            { src: "Photos/Photooooo/IMG_1845.jpeg", alt: "Interactive session" },
+            { src: "Photos/Photooooo/IMG_1844.jpeg", alt: "Learning activity" },
+            { src: "Photos/Photooooo/IMG_1843.jpeg", alt: "Student researchers" },
+            { src: "Photos/Photooooo/IMG_1842.jpeg", alt: "Collaborative project" },
+            { src: "Photos/Photooooo/IMG_1841.jpeg", alt: "Research discussion" },
+            { src: "Photos/Photooooo/IMG_1837.jpeg", alt: "Workshop activity" },
+            { src: "Photos/Photooooo/IMG_1836.jpeg", alt: "Group work" },
+            { src: "Photos/Photooooo/IMG_1835.jpeg", alt: "Science demonstration" },
+            { src: "Photos/Photooooo/IMG_1834.jpeg", alt: "Student experiment" },
+            { src: "Photos/Photooooo/IMG_1833.jpeg", alt: "Lab activity" },
+            { src: "Photos/Photooooo/IMG_1832.jpeg", alt: "Interactive learning" },
+            { src: "Photos/Photooooo/IMG_1831.jpeg", alt: "Science exploration" },
+            { src: "Photos/Photooooo/IMG_1830.jpeg", alt: "Educational moment" },
+            { src: "Photos/Photooooo/IMG_1829.jpeg", alt: "Student engagement" },
+            { src: "Photos/Photooooo/IMG_1828.jpeg", alt: "Workshop session" },
+            { src: "Photos/Photooooo/IMG_1827.jpeg", alt: "Research activity" },
+            { src: "Photos/Photooooo/IMG_1826.jpeg", alt: "Group discussion" },
+            { src: "Photos/Photooooo/IMG_1825.jpeg", alt: "Learning session" },
+            { src: "Photos/Photooooo/IMG_1824.jpeg", alt: "Academic program" },
+            { src: "Photos/Photooooo/IMG_1823.jpeg", alt: "Student showcase" },
+            { src: "Photos/Photooooo/IMG_1822.jpeg", alt: "Collaborative work" },
+            { src: "Photos/Photooooo/IMG_1821.jpeg", alt: "Science activity" },
+            { src: "Photos/Photooooo/IMG_1820.jpeg", alt: "Workshop moment" },
+            { src: "Photos/Photooooo/IMG_1819.jpeg", alt: "Interactive demo" },
+            { src: "Photos/Photooooo/IMG_1818.jpeg", alt: "Educational event" },
+            { src: "Photos/Photos by Khwopa/IMG_0889.JPG", alt: "Khwopa College event" },
+            { src: "Photos/Photos by Khwopa/IMG_0888.JPG", alt: "University workshop" },
+            { src: "Photos/Photos by Khwopa/IMG_0887.JPG", alt: "Academic session" },
+            { src: "Photos/Photos by Khwopa/IMG_0883.JPG", alt: "Student activity" },
+            { src: "Photos/Photos by Khwopa/IMG_0882.JPG", alt: "Research presentation" },
+            { src: "Photos/Photos by Khwopa/IMG_0881.JPG", alt: "Workshop participants" },
+            { src: "Photos/Photos by Khwopa/IMG_0880.JPG", alt: "Group photo" },
+            { src: "Photos/Photos by Khwopa/IMG_0879.JPG", alt: "University event" },
+            { src: "Photos/Photos by Khwopa/IMG_0878.JPG", alt: "Academic discussion" },
+            { src: "Photos/Photos by Khwopa/IMG_0877.JPG", alt: "Student researchers" },
+            { src: "Photos/Photos by Khwopa/IMG_0876.JPG", alt: "Collaborative work" },
+            { src: "Photos/Photos by Khwopa/IMG_0875.JPG", alt: "Interactive session" },
+            { src: "Photos/Photos by Khwopa/IMG_0873.JPG", alt: "University workshop" },
+            { src: "Photos/Photos by Khwopa/IMG_0872.JPG", alt: "Student engagement" },
+            { src: "Photos/Photos by Khwopa/IMG_0870.JPG", alt: "Research activity" },
+            { src: "Photos/Photos by Khwopa/IMG_0867.JPG", alt: "Academic program" },
+            { src: "Photos/Photos by Khwopa/IMG_0866.JPG", alt: "Student participation" },
+            { src: "Photos/Photos by Khwopa/IMG_0865.JPG", alt: "University event" }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('masonry-grid');
+            if (grid) {
+                grid.innerHTML = galleryImages.map(img => `
+                    <div class="masonry-item" onclick="openLightbox('${img.src}')">
+                        <img src="${img.src}" alt="${img.alt}" loading="lazy">
+                    </div>
+                `).join('');
+            }
+        });
+
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            if (!lb || !lbImg) return;
+            lbImg.src = src;
+            lb.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            if (!lb) return;
+            lb.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
