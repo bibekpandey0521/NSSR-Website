@@ -36,9 +36,9 @@
     <div id="footer-placeholder"></div>
 
     <!-- Lightbox -->
-    <div id="gallery-lightbox" class="lightbox fixed inset-0 z-[2000] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer">
-        <span class="lightbox-close absolute top-6 right-6 text-white text-4xl cursor-pointer">&times;</span>
-        <img id="lightbox-img" src="" alt="Gallery Preview" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl transform scale-95 transition-transform duration-300">
+    <div id="gallery-lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Gallery Preview">
     </div>
 
     <script src="assets/js/main.js" defer></script>
@@ -177,8 +177,7 @@
                     
                     if (img && img.src) {
                         lightboxImg.src = img.src; 
-                        lightbox.classList.add('active'); 
-                        lightbox.classList.remove('hidden');
+                        lightbox.classList.add('active');
                         document.body.style.overflow = 'hidden';
                     } else {
                         console.error('Lightbox Error: Could not find an <img> tag inside the clicked gallery item.');
@@ -189,7 +188,6 @@
             // Close Lightbox Logic
             const closeLightbox = () => {
                 lightbox.classList.remove('active');
-                lightbox.classList.add('hidden');
                 setTimeout(() => { lightboxImg.src = ''; }, 300);
                 document.body.style.overflow = 'auto';
             };
