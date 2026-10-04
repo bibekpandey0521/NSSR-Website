@@ -4179,6 +4179,9 @@ html, body { overflow-x: hidden; width: 100%; }
 
 /* --- Team Page Grid Alignment Fix --- */
   .team-tab-content.editorial-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+    gap: 64px 32px !important;
     margin: 0 !important;
     max-width: none !important;
     justify-items: start !important;
