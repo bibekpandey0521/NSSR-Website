@@ -161,29 +161,36 @@
             const lightbox = document.getElementById('gallery-lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const closeBtn = document.querySelector('.lightbox-close');
-            // Select all images in your gallery grid
-            const galleryImagesElements = document.querySelectorAll('.masonry-item img');
+            
+            // Target the wrapping containers instead of the images directly
+            const galleryItems = document.querySelectorAll('.masonry-item');
 
-            if (lightbox && lightboxImg && galleryImagesElements.length > 0) {
-                galleryImagesElements.forEach(img => {
-                    img.addEventListener('click', (e) => {
-                        e.preventDefault(); // Stop any default link behavior
-                        lightboxImg.src = img.src; // Force the modal image source to match the clicked image
-                        lightbox.classList.remove('hidden'); // Show the modal
-                        document.body.style.overflow = 'hidden';
+            if (lightbox && lightboxImg && galleryItems.length > 0) {
+                galleryItems.forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault(); // Stop the plus icon link from jumping to top of page
+                        
+                        // Find the actual image inside the clicked container
+                        const img = item.querySelector('img');
+                        
+                        if (img && img.src) {
+                            lightboxImg.src = img.src; // Pass the real image source
+                            lightbox.classList.remove('hidden'); // Open the modal
+                            document.body.style.overflow = 'hidden';
+                        }
                     });
                 });
 
                 // Close logic
                 const closeLightbox = () => {
                     lightbox.classList.add('hidden');
-                    setTimeout(() => { lightboxImg.src = ''; }, 300); // Clear source after fading out
+                    setTimeout(() => { lightboxImg.src = ''; }, 300); // Clear after fade out
                     document.body.style.overflow = 'auto';
                 };
-
-                if(closeBtn) closeBtn.addEventListener('click', closeLightbox);
+                
+                if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
                 lightbox.addEventListener('click', (e) => {
-                    if (e.target === lightbox) closeLightbox(); // Close if clicking the dark background
+                    if (e.target !== lightboxImg) closeLightbox(); // Close if clicking background
                 });
             }
         });
