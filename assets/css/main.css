@@ -1248,8 +1248,10 @@ img {
 a:hover img,
 .group:hover img,
 .editorial-photo-row:hover .editorial-photo-row__image img,
-.editorial-gallery-item:hover img {
-  transform: scale(1.03);
+.editorial-gallery-item:hover img,
+.editorial-photo-row__image:hover img,
+.spotlight-block__media:hover img {
+  transform: scale(1.04);
 }
 
 /* --- Hairline section separators --- */

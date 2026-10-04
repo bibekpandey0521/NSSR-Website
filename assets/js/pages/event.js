@@ -24,15 +24,15 @@
                 title: "Pathways: Research, Leadership and Global Opportunities",
                 id: "NSSR-012",
                 date: "30 March 2026",
-                categoryType: "Workshops", // Custom Field for Filtering
+                categoryType: "Workshops",
                 category: "Physics",
-                image: "assets/images/events/aspire.png",
-                excerpt: "Foundational concepts in quantum mechanics,quibits, superposition, entanglement and measurement",
+                image: "assets/images/aspire/asp4.jpeg",
+                excerpt: "Foundational concepts in quantum mechanics, qubits, superposition, entanglement and measurement",
                 report: "report/Research_Pathways.pdf",
                 status:"Completed",
                 Mentor:"Dr. Pukar Malla, Dr. Arjun Acharya, Meena Sonea",
                 Venue:"Tri-chandra College, Ghantaghar",
-                gallery: ["assets/images/aspire/asp1.jpeg", "assets/images/aspire/asp2.jpeg", "assets/images/aspire/asp4.jpeg", "assets/images/aspire/asp5.jpeg","assets/images/aspire/asp6.jpeg"],
+                gallery: ["assets/images/aspire/asp1.jpeg", "assets/images/aspire/asp2.jpeg", "assets/images/aspire/asp4.jpeg", "assets/images/aspire/asp5.jpeg", "assets/images/aspire/asp6.jpeg"],
                 body: `
         <p class="mb-4">The Nepalese Society of Student Researchers (NSSR), in collaboration with Aspire Institute and Tri-Chandra Multiple Campus, successfully organized the national-level event entitled Pathways: Research, Leadership, & Global Opportunities, Connecting Local Potential to Global Possibilities on March 30, 2026 with approximatedly 65 students.
 			The program aimed to inspire undergraduate and graduate students by providing insights into research opportunities in Nepal, leadership development, innovation, and international fellowships.
@@ -58,7 +58,7 @@
                 status:"Complete",
                 Venue: "School of Engineering, Far Western University",
                 Mentor:"Manish Pandey, Shaleen Kumar Dhital, Mahesh Prasad Awasthi",
-                image: "assets/images/events/6.png",
+                image: "assets/images/events/1.jpeg",
                 excerpt: "5-Day intensive writing and formatting workshop for academic research.",
                 report: "report/MAT.pdf",
                 gallery: ["assets/images/events/1.jpeg", "assets/images/events/2.jpeg", "assets/images/events/5.jpeg", "assets/images/events/22.jpeg"],
@@ -85,10 +85,10 @@
                 status:"Complete",
                 Venue: "Online",
                 Mentor:"Manish Pandey, Janak Singh Dhami",
-                image: "assets/images/Mat/Mat1.png",
+                image: "assets/images/Mat/Mat2.png",
                 excerpt: "A 5-Day Online MATLAB Workshop on Symbolic Math and Simulink Basics.",
                 report: "report/MAT.pdf",
-                gallery: ["assets/images/Mat/Mat2.png", "assets/images/Mat/Mat3.png", "assets/images/Mat/Mat4.png", "assets/images/Mat/Mat5.png"],
+                gallery: ["assets/images/Mat/Mat1.png", "assets/images/Mat/Mat2.png", "assets/images/Mat/Mat3.png", "assets/images/Mat/Mat4.png", "assets/images/Mat/Mat5.png"],
                 body: `
         <p class="mb-4">The Nepalese Society of Student Researchers (NSSR) successfully conducted a 5-Day Online MATLAB Workshop for Researchers: Symbolic Math and Simulink Basics. The workshop aimed to strengthen computational and research skills among students and early-career researchers by providing hands-on training in MATLAB, Symbolic Math Toolbox, and Simulink.</p>
 
@@ -107,13 +107,13 @@
                 date: "28 Nov - 14 Dec 2025",
                 categoryType: "Workshops",
                 category: "Physics",
-                image: "assets/images/events/crash.png",
+                image: "assets/images/Qc/image1.JPG",
                 excerpt: "Foundational concepts: qubits, superposition, entanglement, and measurement.",
                 report: "report/NSRF_Proceedings.pdf",
                 status:"Completed",
                 Mentor:"Yuechi-Pata Magar, Tara Bhadur Rana, Om Jha, Manish Pandey",
                 Venue:"St. Xavier's College, Maitighar",
-                gallery: ["assets/images/Qc/image1.JPG", "assets/images/Qc/image6.JPG", "assets/images/Qc/image7.JPG"],
+                gallery: ["assets/images/Qc/image1.JPG", "assets/images/Qc/image2.JPG", "assets/images/Qc/image3.JPG", "assets/images/Qc/image5.JPG", "assets/images/Qc/image6.JPG", "assets/images/Qc/image7.JPG", "assets/images/Qc/image9.JPG"],
                 body: `
         <p class="mb-4">The United Nations (UN) designated the year 2025 as the International Year of Quantum Science and Technology. The centenary celebration aims to raise awareness among students about the profound contributions and future possibilities in quantum mechanics.</p>
         <p class="mb-4">With this goal, this crash course seeks to inspire and ignite young minds by introducing the basics of quantum mechanics and quantum computing.</p>
@@ -133,7 +133,7 @@
                 date: "31 May 2026",
                 categoryType: "Online Talks",
                 category: "Physics",
-                image: "assets/images/events/exp.png",
+                image: "assets/images/expe/exp1.jpg",
                 excerpt: "How Large Research Facilities Advance Science and Create Global Research Opportunities.",
                 report: "report/NSRF_Schedule.pdf",
                 status:"Completed",
@@ -183,10 +183,10 @@
                 status:"Completed",
                 Venue: "Online",
                 Mentor:"Pratishna KC",
-                image: "assets/images/bio/pc6.jpeg",
+                image: "assets/images/bio/pc.jpeg",
                 excerpt: "Solving methodology and finding early biology literature.",
                 report: "report/MAT.pdf",
-                gallery: ["assets/images/bio/pc6.jpeg", "assets/images/bio/pc6.jpeg"],
+                gallery: ["assets/images/bio/pc.jpeg", "assets/images/bio/pc2.jpeg", "assets/images/bio/pc4.jpeg", "assets/images/bio/pc5.jpeg", "assets/images/bio/pc6.jpeg"],
                 body: `
         <p class="mb-4">The Nepalese Society of Student Researchers (NSSR) successfully organized an insightful online session titled “Getting Into Research” with the objective of encouraging and guiding students toward academic research and scientific inquiry. The session was delivered by Ms. Pratishna KC, a student researcher from Caldwell University, USA.</p>
         <p>Ms. KC discussed key aspects of research development, including understanding research methodology, improving academic writing skills, seeking mentorship, and exploring research opportunities at national and international levels.</p>
@@ -380,8 +380,8 @@
                     <div><h5 class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Status</h5><p class="font-bold text-xs text-green-600 uppercase font-bold">${data.status}</p></div>`;
 
                 document.getElementById('detail-gallery').innerHTML = data.gallery.map(img => `
-                    <div class="aspect-square bg-slate-100 overflow-hidden cursor-zoom-in rounded-md shadow-sm border border-slate-200" onclick="openLightbox('${img}')">
-                        <img src="${img}" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                    <div class="aspect-square bg-slate-100 overflow-hidden cursor-zoom-in" onclick="openLightbox('${img}')">
+                        <img src="${img}" class="w-full h-full object-cover" loading="lazy">
                     </div>`).join('');
 
                 document.getElementById('report-download-area').innerHTML = `
