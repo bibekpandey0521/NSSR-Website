@@ -282,7 +282,7 @@
                         <h3 class="text-slate-900 font-black text-2xl mb-2">${escapeHtml(data.title)}</h3>
                         <p class="text-slate-600 text-sm mb-6">${escapeHtml(data.excerpt || '')}</p>
                         <div class="event-featured__meta-compat" style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;">
-                            <span class="text-xs font-semibold text-nssrBlue uppercase tracking-widest">${escapeHtml(status.label)}</span>
+                            <span class="status-badge ${status.cls}">${escapeHtml(status.label)}</span>
                             <span class="text-xs font-semibold text-nssrBlue uppercase tracking-widest">${escapeHtml(data.categoryType || '')}</span>
                             <span class="text-xs font-semibold text-nssrBlue uppercase tracking-widest">${escapeHtml(data.date || '')}</span>
                         </div>
@@ -295,9 +295,9 @@
         }
 
         // ---------------------------------------------------------------
-        // ARCHIVE GRID RENDERER
+        // PREMIUM EDITORIAL CARD GRID RENDERER
         // ---------------------------------------------------------------
-        function generateHTMLForGrid(keys) {
+        function generateHTMLForArchive(keys) {
             if (keys.length === 0) {
                 return '<p class="framework-card__body">No proceedings available in this category yet.</p>';
             }
@@ -315,6 +315,7 @@
                         <div class="card-meta">
                             <span class="card-tag">${escapeHtml(data.categoryType || '')}</span>
                             <span class="card-date">${escapeHtml(data.date || '')}</span>
+                            <span class="status-badge ${status.cls}">${escapeHtml(status.label)}</span>
                         </div>
                         <h3 class="card-title">${escapeHtml(data.title)}</h3>
                         <p class="card-excerpt">${escapeHtml(data.excerpt || '')}</p>
@@ -331,8 +332,8 @@
             const workshops = keys.filter(k => eventsData[k].categoryType === "Workshops");
             const onlineTalks = keys.filter(k => eventsData[k].categoryType === "Online Talks");
 
-            document.getElementById('workshops-container').innerHTML = generateHTMLForGrid(workshops);
-            document.getElementById('online-container').innerHTML = generateHTMLForGrid(onlineTalks);
+            document.getElementById('workshops-container').innerHTML = `<div class="archive-card-grid">${generateHTMLForArchive(workshops)}</div>`;
+            document.getElementById('online-container').innerHTML = `<div class="archive-card-grid">${generateHTMLForArchive(onlineTalks)}</div>`;
 
             // The featured card always shows the most recently added event, so
             // the top of the page stays a single "what's happening" statement.
