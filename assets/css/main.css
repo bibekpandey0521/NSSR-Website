@@ -5101,9 +5101,15 @@ html, body { overflow-x: hidden; width: 100%; }
   border-radius: 0.5rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   transform: scale(0.95);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
 }
 
 .lightbox.active img {
   transform: scale(1);
+  opacity: 1;
+}
+
+.lightbox img[src*="via.placeholder.com"] {
+  opacity: 1;
 }

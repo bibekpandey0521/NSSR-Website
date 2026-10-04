@@ -183,6 +183,12 @@
                 }
             });
 
+            // Handle image load error in lightbox - show placeholder
+            lightboxImg.addEventListener('error', () => {
+                console.error('Failed to load lightbox image:', lightboxImg.src);
+                lightboxImg.src = 'https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Image+Not+Found';
+            });
+
             // Close Lightbox Logic
             const closeLightbox = () => {
                 lightbox.classList.remove('active');
