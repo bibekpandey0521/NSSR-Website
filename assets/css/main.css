@@ -4177,7 +4177,15 @@ html, body { overflow-x: hidden; width: 100%; }
    .team-nav-btn.active { border-bottom-color: var(--nssr-blue); }
  }
 
-/* --- Editorial Grid (Boxless, Hairline Separators) --- */
+/* --- Team Page Grid Alignment Fix --- */
+  .team-tab-content.editorial-grid {
+    margin: 0 !important;
+    max-width: none !important;
+    justify-items: start !important;
+    text-align: left !important;
+  }
+
+  /* --- Editorial Grid (Boxless, Hairline Separators) --- */
   .editorial-grid {
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;

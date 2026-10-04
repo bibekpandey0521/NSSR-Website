@@ -209,8 +209,8 @@
 
         // 3. RENDERER
         function renderTeam() {
-            document.getElementById('content-leadership').innerHTML = executiveBoard.map(generatePremiumCard).join('');
-            document.getElementById('content-advisory').innerHTML = advisors.map(generatePremiumCard).join('');
+            document.getElementById('tab-leadership').innerHTML = executiveBoard.map(generatePremiumCard).join('');
+            document.getElementById('tab-advisory').innerHTML = advisors.map(generatePremiumCard).join('');
 
             // Render Representatives into the inner grid, leaving the button below it untouched
             const repsGrid = document.getElementById('reps-grid');
@@ -227,24 +227,36 @@
         }
 
         // 4. TAB NAVIGATION LOGIC
-        function showSection(sectionId) {
-            // Hide all content sections
-            document.querySelectorAll('.team-section').forEach(el => {
-                el.classList.add('hidden');
+        function initTabNavigation() {
+            const tabLinks = document.querySelectorAll('#team-nav .tab-link');
+            const tabContents = document.querySelectorAll('.team-tab-content');
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    // Remove active state from all links
+                    tabLinks.forEach(l => l.classList.remove('active'));
+                    // Hide all tab contents
+                    tabContents.forEach(tab => {
+                        tab.classList.remove('active');
+                        tab.style.display = 'none';
+                    });
+
+                    // Activate clicked link and corresponding tab
+                    this.classList.add('active');
+                    const targetId = this.getAttribute('data-target');
+                    const targetTab = document.getElementById(targetId);
+                    if (targetTab) {
+                        targetTab.classList.add('active');
+                        targetTab.style.display = 'grid';
+                    }
+                });
             });
-
-            // Reset all sidebar buttons styling
-            document.querySelectorAll('#team-nav button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Show selected content
-            document.getElementById(`content-${sectionId}`).classList.remove('hidden');
-
-            // Highlight active button
-            const activeBtn = document.getElementById(`btn-${sectionId}`);
-            activeBtn.classList.add('active');
         }
 
-        // 5. INITIAL LOAD
-        window.addEventListener('load', renderTeam);
+        // Initialize tab navigation and render on load
+        document.addEventListener('DOMContentLoaded', () => {
+            initTabNavigation();
+            renderTeam();
+        });
