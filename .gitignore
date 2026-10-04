@@ -1,5 +1,9 @@
 # Markdown files
 *.md
 
-# Specific file
+# Specific files
 Baiscipermission.html
+BasicRolePermissionFlow.html
+BasicRolePermissionFlow.md
+*permission*.html
+*permission*.md
