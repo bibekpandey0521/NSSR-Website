@@ -4177,38 +4177,24 @@ html, body { overflow-x: hidden; width: 100%; }
    .team-nav-btn.active { border-bottom-color: var(--nssr-blue); }
  }
 
- /* --- Editorial Grid (Boxless, Hairline Separators) --- */
- .editorial-grid {
-   display: grid;
-   grid-template-columns: 1fr;
-   gap: 48px 32px;
- }
+/* --- Editorial Grid (Boxless, Hairline Separators) --- */
+  .editorial-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+    gap: 64px 32px !important;
+    justify-items: center;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
- @media (min-width: 768px) {
-   .editorial-grid { grid-template-columns: repeat(2, 1fr); }
- }
-
- .editorial-grid > * {
-   border-top: 1px solid #e2e8f0;
-   padding-top: 48px;
- }
-
- .editorial-grid > *:first-child,
- .editorial-grid > *:nth-child(2) {
-   border-top: none;
-   padding-top: 0;
- }
-
- @media (max-width: 767px) {
-   .editorial-grid > *:nth-child(2) {
-     border-top: 1px solid #e2e8f0;
-     padding-top: 48px;
-   }
-   .editorial-grid > *:first-child {
-     border-top: none;
-     padding-top: 0;
-   }
- }
+  /* Mobile: single column */
+  @media (max-width: 768px) {
+    .editorial-grid {
+      grid-template-columns: 1fr !important;
+      gap: 48px !important;
+    }
+  }
 
  /* --- Academic Team Card (Boxless, Large Avatar, Grayscale Hover) --- */
  .team-card {
@@ -4230,20 +4216,20 @@ html, body { overflow-x: hidden; width: 100%; }
    border-color: transparent;
  }
 
- .team-card__avatar {
-   width: 160px;
-   height: 160px;
-   border-radius: 50%;
-   overflow: hidden;
-   margin-bottom: 24px;
-   flex-shrink: 0;
-   background: transparent;
- }
+.team-card__avatar {
+    width: 140px !important;
+    height: 140px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    margin: 0 auto 20px auto !important;
+    flex-shrink: 0;
+    background: transparent;
+  }
 
 .team-card__avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
     filter: grayscale(0%);
     transition: filter var(--transition-premium), transform var(--transition-premium);
   }
