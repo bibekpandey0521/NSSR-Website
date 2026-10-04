@@ -152,7 +152,7 @@
             if (grid) {
                 grid.innerHTML = galleryImages.map(img => `
                     <div class="masonry-item">
-                        <img src="${img.src}" alt="${img.alt}" loading="lazy">
+                        <img src="${img.src}" alt="${img.alt}" loading="lazy" onload="this.classList.add('loaded')" onerror="this.src='https://via.placeholder.com/400x300/0f172a/ffffff?text=Image+Not+Found'; this.classList.add('loaded'); console.error('Failed to load:', '${img.src}');">
                     </div>
                 `).join('');
             }
@@ -176,6 +176,7 @@
                     const img = galleryContainer.querySelector('img');
                     
                     if (img && img.src) {
+                        console.log('Opening lightbox with:', img.src);
                         lightboxImg.src = img.src; 
                         lightbox.classList.add('active');
                         document.body.style.overflow = 'hidden';
@@ -183,6 +184,12 @@
                         console.error('Lightbox Error: Could not find an <img> tag inside the clicked gallery item.');
                     }
                 }
+            });
+
+            // Handle image load error in lightbox
+            lightboxImg.addEventListener('error', () => {
+                console.error('Failed to load image:', lightboxImg.src);
+                lightboxImg.alt = 'Image not found';
             });
 
             // Close Lightbox Logic

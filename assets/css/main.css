@@ -4762,6 +4762,16 @@ html, body { overflow-x: hidden; width: 100%; }
   transform: scale(1.03);
 }
 
+/* Loading state for masonry images */
+.masonry-item img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.masonry-item img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
 /* Responsive masonry */
 @media (max-width: 1024px) {
   .masonry-grid {
