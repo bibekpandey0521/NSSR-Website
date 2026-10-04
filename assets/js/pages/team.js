@@ -196,7 +196,7 @@
             return `
             <article class="team-card">
                 <div class="team-card__avatar">
-                    <img src="${member.image}" alt="${member.name}" loading="lazy">
+                    <img src="${member.image}" alt="${member.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/140x140/0f172a/ffffff?text=Photo'">
                 </div>
                 <div class="team-card__content">
                     <h4 class="team-card__name">${member.name}</h4>
