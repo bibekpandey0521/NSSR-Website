@@ -5057,18 +5057,6 @@ html, body { overflow-x: hidden; width: 100%; }
   gap: 12px;
 }
 
-.spotlight-arrow {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  stroke: currentColor;
-  transition: transform var(--transition-premium);
-}
-
-.spotlight-block:hover .spotlight-arrow {
-  transform: translateX(4px);
-}
-
 /* --- Light section theme: every text/divider token that assumed the navy
        field is re-pointed at ink + brand blue. Higher specificity than the
        base spotlight rules, so it wins wherever they are declared. --------- */
@@ -5123,10 +5111,6 @@ html, body { overflow-x: hidden; width: 100%; }
   
   .spotlight-block:hover .spotlight-block__body {
     transform: translateX(0);
-  }
-  
-  .spotlight-block:hover .spotlight-arrow {
-    transform: translateX(4px);
   }
 }
 
