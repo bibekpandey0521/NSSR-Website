@@ -1019,23 +1019,6 @@ body.nav-open { overflow: hidden; }
   }
 }
 
-/* --- Dropdown disclosure: no caret glyph (design choice) -------------------
-   The chevron read as a generic/AI-style arrow. The label itself now toggles
-   the menu (see initDropdowns in main.js), so the glyph is removed entirely;
-   the button stays in the DOM on mobile as an invisible, reachable tap target
-   and collapses to zero width on desktop so the label keeps its spacing. */
-.dropdown-caret { display: none !important; }
-
-@media (min-width: 1025px) {
-  .dropdown-arrow-btn {
-    width: 0 !important;
-    min-width: 0 !important;
-    margin-left: 0 !important;
-    padding: 0 !important;
-    overflow: hidden;
-  }
-}
-
 @media (max-width: 480px) {
   .nav-brand-logo { width: 28px; height: 28px; }
 
