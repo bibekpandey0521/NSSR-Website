@@ -38,7 +38,7 @@
     <!-- Lightbox -->
     <div id="gallery-lightbox" class="lightbox">
         <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="" alt="Gallery Preview">
+        <img id="lightbox-img" alt="Gallery Preview">
     </div>
 
     <script src="assets/js/main.js" defer></script>
@@ -160,45 +160,50 @@
             // Lightbox logic - Bulletproof event delegation
             const lightbox = document.getElementById('gallery-lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
-            const closeBtn = document.querySelector('.lightbox-close');
 
             if (!lightbox || !lightboxImg) return;
 
             // Listen to all clicks on the page
             document.addEventListener('click', (e) => {
-                // Check if the click happened inside a gallery item
-                const galleryContainer = e.target.closest('.masonry-item, .gallery-item, .portfolio-wrap, .portfolio-item');
-                
-                if (galleryContainer) {
+                // Look for any gallery container clicked
+                const galleryItem = e.target.closest('.masonry-item, .gallery-item, .portfolio-wrap, .portfolio-item');
+
+                if (galleryItem) {
                     e.preventDefault();
-                    
-                    // Find the actual image tag inside this specific container
-                    const img = galleryContainer.querySelector('img');
-                    
-                    if (img && img.src) {
-                        lightboxImg.src = img.src; 
+                    let imageSource = '';
+
+                    // Check 1: Does the container have an href pointing to the image? (Best quality)
+                    if (galleryItem.tagName.toLowerCase() === 'a' && galleryItem.href) {
+                        imageSource = galleryItem.href;
+                    }
+                    // Check 2: Look for an <img> tag inside the container
+                    else {
+                        const img = galleryItem.querySelector('img');
+                        if (img && img.src) {
+                            imageSource = img.src;
+                        }
+                    }
+
+                    // If we found a source, show the clear image
+                    if (imageSource && !imageSource.endsWith('#')) {
+                        lightboxImg.src = imageSource;
                         lightbox.classList.add('active');
                         document.body.style.overflow = 'hidden';
                     }
                 }
             });
 
-            // Handle image load error in lightbox - show placeholder
-            lightboxImg.addEventListener('error', () => {
-                console.error('Failed to load lightbox image:', lightboxImg.src);
-                lightboxImg.src = 'https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Image+Not+Found';
-            });
-
-            // Close Lightbox Logic
+            // Close when clicking the dark background or close button
             const closeLightbox = () => {
                 lightbox.classList.remove('active');
                 setTimeout(() => { lightboxImg.src = ''; }, 300);
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = '';
             };
 
-            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
             lightbox.addEventListener('click', (e) => {
-                if (e.target !== lightboxImg) closeLightbox(); 
+                if (e.target !== lightboxImg) {
+                    closeLightbox();
+                }
             });
         });
     </script>
