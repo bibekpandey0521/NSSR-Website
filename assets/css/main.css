@@ -4211,8 +4211,9 @@ html, body { overflow-x: hidden; width: 100%; }
     /* Automatically fits as many 220px columns as possible horizontally */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
     gap: 56px 32px !important;
-    align-items: start !important;
+    align-items: stretch !important; /* CRITICAL: Forces all cards in a row to be the exact same height */
     width: 100% !important;
+    grid-auto-rows: minmax(1fr, 1fr) !important; /* CRITICAL: Ensures all rows (including wrap rows) have equal height */
   }
 
   .team-grid .team-card {
@@ -4298,6 +4299,7 @@ html, body { overflow-x: hidden; width: 100%; }
 
  .team-card__content {
    width: 100%;
+   flex: 1; /* expands to fill remaining space, pushing social icons to bottom of equal-height cards */
  }
 
 .team-card__name {
