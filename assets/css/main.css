@@ -5321,6 +5321,199 @@ html, body { overflow-x: hidden; width: 100%; }
 }
 
 /* ==========================================================================
+   WORKSHOP SHOWCASE — creative overlapping collage (workshop.html)
+   ---------------------------------------------------------------------------
+   Left column reuses the editorial type stack (.feature-meta / .feature-title
+   / .feature-desc) plus theme chips and a rule link. Right column is an
+   absolutely composed collage inside a fixed 4:3 frame: one large plate, two
+   slides tucked over its right edge, a close-up crossing its bottom corner,
+   and a glass caption pill. Plates rotate a degree or two and straighten on
+   hover. Below 1024px it collapses into a plain stacked grid.
+   ========================================================================== */
+.workshop-showcase {
+  position: relative;
+  background: #ffffff;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  padding: clamp(72px, 9vw, 128px) 0;
+}
+
+.showcase-container {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.5fr);
+  align-items: center;
+  gap: clamp(40px, 5vw, 80px);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.showcase-text { max-width: 46ch; }
+
+.session-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+}
+
+.session-themes li {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.75);
+  background: #f1f5f9;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 999px;
+  padding: 9px 16px;
+}
+
+.showcase-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--nssr-blue, #1d4ed8);
+  text-decoration: none;
+}
+
+.showcase-link::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--transition-premium);
+}
+
+.showcase-link:hover::after { width: 44px; }
+
+.workshop-collage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  min-width: 0;
+}
+
+/* thin editorial frame floating behind the plates */
+.workshop-collage::before {
+  content: "";
+  position: absolute;
+  inset: -18px -14px 26px 34px;
+  border: 1px solid rgba(0, 74, 173, 0.3);
+  pointer-events: none;
+}
+
+.collage-plate {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-ink, #0f172a);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: var(--radius-md, 12px);
+  box-shadow: 0 28px 56px -34px rgba(15, 23, 42, 0.65);
+  transition: transform var(--transition-premium),
+    box-shadow var(--transition-premium);
+}
+
+.collage-plate img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  transition: transform var(--transition-premium);
+}
+
+.plate-a { left: 0; top: 0; width: 60%; height: 72%; z-index: 1; }
+.plate-b { left: 4%; bottom: 0; width: 46%; height: 36%; z-index: 3; transform: rotate(-1.6deg); }
+.plate-c { right: 0; top: 5%; width: 44%; height: 46%; z-index: 2; }
+.plate-d { right: 3%; bottom: 2%; width: 40%; height: 40%; z-index: 4; transform: rotate(1.4deg); }
+
+.collage-plate:hover {
+  z-index: 6;
+  transform: translateY(-6px) rotate(0deg);
+  box-shadow: 0 34px 60px -30px rgba(15, 23, 42, 0.7);
+}
+
+.collage-plate:hover img { transform: scale(1.05); }
+
+.collage-caption {
+  position: absolute;
+  left: 4%;
+  bottom: 12%;
+  z-index: 7;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink, #0f172a);
+  box-shadow: 0 16px 30px -22px rgba(15, 23, 42, 0.6);
+}
+
+@media (max-width: 1024px) {
+  .showcase-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 24px;
+  }
+
+  .showcase-text { max-width: 60ch; }
+
+  .workshop-collage {
+    aspect-ratio: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .workshop-collage::before { display: none; }
+
+  .collage-plate {
+    position: static !important;
+    inset: auto !important;
+    width: auto !important;
+    height: auto !important;
+    transform: none !important;
+    aspect-ratio: 4 / 3;
+  }
+
+  .collage-plate:hover { transform: translateY(-4px) !important; }
+
+  .plate-a {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+  }
+
+  .collage-caption {
+    position: static;
+    justify-self: start;
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .workshop-showcase { padding: 64px 0; }
+
+  .showcase-container {
+    padding: 0 16px;
+    gap: 32px;
+  }
+
+  .workshop-collage { gap: 10px; }
+}
+
+/* ==========================================================================
    COLLABORATING PARTNERS LOGO GRID
    ========================================================================== */
 
