@@ -5321,14 +5321,13 @@ html, body { overflow-x: hidden; width: 100%; }
 }
 
 /* ==========================================================================
-   WORKSHOP SHOWCASE — creative overlapping collage (workshop.html)
+   WORKSHOP SHOWCASE (workshop.html)
    ---------------------------------------------------------------------------
    Left column reuses the editorial type stack (.feature-meta / .feature-title
-   / .feature-desc) plus theme chips and a rule link. Right column is an
-   absolutely composed collage inside a fixed 4:3 frame: one large plate, two
-   slides tucked over its right edge, a close-up crossing its bottom corner,
-   and a glass caption pill. Plates rotate a degree or two and straighten on
-   hover. Below 1024px it collapses into a plain stacked grid.
+   / .feature-desc) plus theme chips and a rule link. Right column reuses the
+   strict .feature-photo-grid from the editorial feature (one large plate
+   spanning both rows, stacked secondaries) — no absolute positioning, so the
+   plates can never overlap.
    ========================================================================== */
 .workshop-showcase {
   position: relative;
@@ -5395,70 +5394,38 @@ html, body { overflow-x: hidden; width: 100%; }
 
 .showcase-link:hover::after { width: 44px; }
 
-.workshop-collage {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  min-width: 0;
+/* Strict 3-piece asymmetric grid — large spans both rows on the left, two
+   smalls stack on the right. Sharp edges: no radius, no border. */
+.workshop-showcase .feature-photo-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  grid-template-rows: 1fr 1fr !important;
+  gap: 16px !important;
+  height: 600px !important;
+  width: 100% !important;
 }
 
-/* thin editorial frame floating behind the plates */
-.workshop-collage::before {
-  content: "";
-  position: absolute;
-  inset: -18px -14px 26px 34px;
-  border: 1px solid rgba(0, 74, 173, 0.3);
-  pointer-events: none;
+.workshop-showcase .feature-photo-grid .photo-large {
+  grid-column: 1 / 2 !important;
+  grid-row: 1 / 3 !important;
 }
 
-.collage-plate {
-  position: absolute;
-  margin: 0;
-  overflow: hidden;
-  background: var(--color-ink, #0f172a);
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  border-radius: var(--radius-md, 12px);
-  box-shadow: 0 28px 56px -34px rgba(15, 23, 42, 0.65);
-  transition: transform var(--transition-premium),
-    box-shadow var(--transition-premium);
+.workshop-showcase .feature-photo-grid .photo-small {
+  grid-column: 2 / 3 !important;
 }
 
-.collage-plate img {
-  display: block;
-  width: 100%;
-  height: 100%;
+.workshop-showcase .feature-photo-grid div,
+.workshop-showcase .feature-photo-grid img {
+  border-radius: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+.workshop-showcase .feature-photo-grid img {
+  width: 100% !important;
+  height: 100% !important;
   object-fit: cover !important;
-  transition: transform var(--transition-premium);
-}
-
-.plate-a { left: 0; top: 0; width: 60%; height: 72%; z-index: 1; }
-.plate-b { left: 4%; bottom: 0; width: 46%; height: 36%; z-index: 3; transform: rotate(-1.6deg); }
-.plate-c { right: 0; top: 5%; width: 44%; height: 46%; z-index: 2; }
-.plate-d { right: 3%; bottom: 2%; width: 40%; height: 40%; z-index: 4; transform: rotate(1.4deg); }
-
-.collage-plate:hover {
-  z-index: 6;
-  transform: translateY(-6px) rotate(0deg);
-  box-shadow: 0 34px 60px -30px rgba(15, 23, 42, 0.7);
-}
-
-.collage-plate:hover img { transform: scale(1.05); }
-
-.collage-caption {
-  position: absolute;
-  left: 4%;
-  bottom: 12%;
-  z-index: 7;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  border-radius: 999px;
-  padding: 10px 18px;
-  font-family: var(--font-sans);
-  font-size: var(--font-size-2xs);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-ink, #0f172a);
-  box-shadow: 0 16px 30px -22px rgba(15, 23, 42, 0.6);
+  display: block !important;
 }
 
 @media (max-width: 1024px) {
@@ -5470,36 +5437,6 @@ html, body { overflow-x: hidden; width: 100%; }
 
   .showcase-text { max-width: 60ch; }
 
-  .workshop-collage {
-    aspect-ratio: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-
-  .workshop-collage::before { display: none; }
-
-  .collage-plate {
-    position: static !important;
-    inset: auto !important;
-    width: auto !important;
-    height: auto !important;
-    transform: none !important;
-    aspect-ratio: 4 / 3;
-  }
-
-  .collage-plate:hover { transform: translateY(-4px) !important; }
-
-  .plate-a {
-    grid-column: 1 / -1;
-    aspect-ratio: 16 / 9;
-  }
-
-  .collage-caption {
-    position: static;
-    justify-self: start;
-    grid-column: 1 / -1;
-  }
 }
 
 @media (max-width: 640px) {
@@ -5510,7 +5447,6 @@ html, body { overflow-x: hidden; width: 100%; }
     gap: 32px;
   }
 
-  .workshop-collage { gap: 10px; }
 }
 
 /* ==========================================================================
