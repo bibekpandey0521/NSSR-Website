@@ -321,7 +321,9 @@
       var menu = item.querySelector('.nav-dropdown-menu');
       if (!button || !menu) return;
 
-      button.addEventListener('click', function (event) {
+      var label = item.querySelector('.dropdown-trigger-wrapper .nav-link');
+
+      function toggleDropdown(event) {
         event.preventDefault();
         event.stopPropagation();
 
@@ -337,7 +339,19 @@
         item.classList.toggle('is-open', willOpen);
         menu.classList.toggle('is-open', willOpen);
         button.setAttribute('aria-expanded', String(willOpen));
-      });
+      }
+
+      button.addEventListener('click', toggleDropdown);
+
+      // The caret glyph is hidden by design, so on the mobile drawer (no hover)
+      // the label owns the toggle. Desktop keeps pure hover/focus behaviour.
+      var isMobileNav = window.matchMedia('(max-width: 1024px)');
+      if (label) {
+        label.addEventListener('click', function (event) {
+          if (!isMobileNav.matches) return;
+          toggleDropdown(event);
+        });
+      }
     });
   }
 
