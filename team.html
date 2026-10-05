@@ -37,13 +37,13 @@
             <aside class="w-full md:w-1/4 shrink-0">
                 <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-8 font-serif" style="font-family: 'Source Serif 4', serif;">Team</h2>
                 <nav class="team-sidebar" id="team-nav">
-                    <button data-target="tab-leadership" class="tab-link team-nav-btn active">
+                    <button type="button" data-tab="leadership" class="tab-link team-nav-btn active">
                         Leadership
                     </button>
-                    <button data-target="tab-advisory" class="tab-link team-nav-btn">
+                    <button type="button" data-tab="advisory" class="tab-link team-nav-btn">
                         Advisory Board
                     </button>
-                    <button data-target="tab-representatives" class="tab-link team-nav-btn">
+                    <button type="button" data-tab="representatives" class="tab-link team-nav-btn">
                         College Representatives
                     </button>
                 </nav>
@@ -52,27 +52,268 @@
             <!-- Right Content Area -->
             <main class="w-full md:w-3/4">
                 <!-- Leadership Tab -->
-                <div id="tab-leadership" class="team-tab-content active editorial-grid">
-                    <!-- JS Injected Cards -->
+                <div id="leadership" class="team-tab-content active">
+                    <div class="team-grid">
+                    <!-- Manish Pandey -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/manish_pandey.jpg" alt="Manish Pandey" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Manish Pandey</h4>
+                            <p class="team-card__role">President/Founder</p>
+                            <p class="team-card__affiliation">Physics, St. Xavier's College</p>
+                            <div class="team-card__social">
+                                <a href="https://www.linkedin.com/in/manish-pandey-24864m/" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="Manish Pandey on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="mailto:manish24864pandey@gmail.com" class="team-card__social-link" aria-label="Email Manish Pandey"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Sudiksha Bhattarai -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/sudiksha.jpg" alt="Sudiksha Bhattarai" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Sudiksha Bhattarai</h4>
+                            <p class="team-card__role">Vice President/Founder</p>
+                            <p class="team-card__affiliation">Microbiology, Tri-Chandra Multiple Campus</p>
+                            <div class="team-card__social">
+                                <a href="https://www.linkedin.com/in/sudiksha-bhattarai-035191231/" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="Sudiksha Bhattarai on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="mailto:bhattaraisudiksha1@gmail.com" class="team-card__social-link" aria-label="Email Sudiksha Bhattarai"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Om Jha -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/om jha.jpg" alt="Om Jha" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Om Jha</h4>
+                            <p class="team-card__role">Treasurer</p>
+                            <p class="team-card__affiliation">Physics, St. Xavier's College</p>
+                            <div class="team-card__social">
+                                <a href="https://www.linkedin.com/in/om-jha-1913b6279/" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="Om Jha on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="mailto:omzha24680@gmail.com" class="team-card__social-link" aria-label="Email Om Jha"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Sugyani Bishwokarma -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/Sugyani.jpg" alt="Sugyani Bishwokarma" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Sugyani Bishwokarma</h4>
+                            <p class="team-card__role">Secretary</p>
+                            <p class="team-card__affiliation">Physics, Tri-Chandra Multiple Campus</p>
+                            <div class="team-card__social">
+                                <a href="https://www.linkedin.com/in/sugyani-biswokarma-9566102b7/" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="Sugyani Bishwokarma on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="mailto:biswokarmasugyani62@gmail.com" class="team-card__social-link" aria-label="Email Sugyani Bishwokarma"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Shaleen Kumar Dhital -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/Shaleen.jpg" alt="Shaleen Kumar Dhital" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Shaleen Kumar Dhital</h4>
+                            <p class="team-card__role">Research Head/Founder</p>
+                            <p class="team-card__affiliation">Physics, Tri-Chandra Multiple Campus</p>
+                            <div class="team-card__social">
+                                <a href="https://www.linkedin.com/in/shaleen-dhital-097636255/" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="Shaleen Kumar Dhital on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="mailto:dronadhital@gmail.com" class="team-card__social-link" aria-label="Email Shaleen Kumar Dhital"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Dhirendra Prasad Upadhyay -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/Dhirendra.jpg" alt="Dhirendra Prasad Upadhyay" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Dhirendra Prasad Upadhyay</h4>
+                            <p class="team-card__role">Event Head</p>
+                            <p class="team-card__affiliation">Physics, Tri-Chandra Multiple Campus</p>
+                            <div class="team-card__social">
+                                <a href="https://www.linkedin.com/in/dhirendra-prasad-upadhyay-311a28316/" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="Dhirendra Prasad Upadhyay on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="mailto:dhirendraup07@gmail.com" class="team-card__social-link" aria-label="Email Dhirendra Prasad Upadhyay"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Dikshya Sharma -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/Dikshya_sharma.jpg" alt="Dikshya Sharma" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Dikshya Sharma</h4>
+                            <p class="team-card__role">HR Manager</p>
+                            <p class="team-card__affiliation">Physics, Tri-Chandra Multiple Campus</p>
+                            <div class="team-card__social">
+                                <a href="https://www.linkedin.com/in/dikshyasharma2004/" target="_blank" rel="noopener noreferrer" class="team-card__social-link" aria-label="Dikshya Sharma on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="mailto:Kandeldikshya398@gmail.com" class="team-card__social-link" aria-label="Email Dikshya Sharma"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                    </div>
                 </div>
 
                 <!-- Advisory Tab -->
-                <div id="tab-advisory" class="team-tab-content editorial-grid" style="display: none;">
-                    <!-- JS Injected Cards -->
+                <div id="advisory" class="team-tab-content">
+                    <div class="team-grid">
+                    <!-- Prof. Dr. Hari Prasad Lamichhane -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/hari_p_lamichhane.jpeg" alt="Prof. Dr. Hari Prasad Lamichhane" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Prof. Dr. Hari Prasad Lamichhane</h4>
+                            <p class="team-card__role">Advisor</h4>
+                            <p class="team-card__affiliation">Central Department of Physics, Tribhuvan University</p>
+                        </div>
+                    </article>
+                    <!-- Prof. Dr. Raju Bhai Tyata -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/profdr.jpeg" alt="Prof. Dr. Raju Bhai Tyata" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Prof. Dr. Raju Bhai Tyata</h4>
+                            <p class="team-card__role">Advisor</h4>
+                            <p class="team-card__affiliation">R & D unit Head, Khwopa College of Engineering</p>
+                        </div>
+                    </article>
+                    <!-- Prof. Dr. Rameshwar Adhikari -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/rameshwar.jpeg" alt="Prof. Dr. Rameshwar Adhikari" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Prof. Dr. Rameshwar Adhikari</h4>
+                            <p class="team-card__role">Advisor</h4>
+                            <p class="team-card__affiliation">Central Department of Chemistry, Tribhuvan University</p>
+                        </div>
+                    </article>
+                    <!-- Asst. Prof. Dr. Arjun Acharya -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/AA.webp" alt="Asst. Prof. Dr. Arjun Acharya" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Asst. Prof. Dr. Arjun Acharya</h4>
+                            <p class="team-card__role">Advisor</h4>
+                            <p class="team-card__affiliation">Tri-Chandra Multiple Campus, Tribhuvan University</p>
+                        </div>
+                    </article>
+                    <!-- Asst. Prof. Dr. Basu Dev Ghimire -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/bdg.png" alt="Asst. Prof. Dr. Basu Dev Ghimire" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Asst. Prof. Dr. Basu Dev Ghimire</h4>
+                            <p class="team-card__role">Advisor</h4>
+                            <p class="team-card__affiliation">Head of Department, Physics, St.Xavier's College</p>
+                        </div>
+                    </article>
+                    <!-- Asst. Prof. Dr. Bishnu Hari Subedi -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/bishnu.webp" alt="Asst. Prof. Dr. Bishnu Hari Subedi" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Asst. Prof. Dr. Bishnu Hari Subedi</h4>
+                            <p class="team-card__role">Advisor</h4>
+                            <p class="team-card__affiliation">Central Department of Mathematics, Tribhuvan University</p>
+                        </div>
+                    </article>
+                    <!-- Asst. Prof. Dr. Drabindra Pandit -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/DP.png" alt="Asst. Prof. Dr. Drabindra Pandit" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Asst. Prof. Dr. Drabindra Pandit</h4>
+                            <p class="team-card__role">Advisor</h4>
+                            <p class="team-card__affiliation">Head of Research, St.Xavier's College</p>
+                        </div>
+                    </article>
+                    <!-- Asst. Prof. Dr. Sanju Shrestha -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/sanju_shrestha.jpg" alt="Asst. Prof. Dr. Sanju Shrestha" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Asst. Prof. Dr. Sanju Shrestha</h4>
+                            <p class="team-card__role">Advisor</h4>
+                            <p class="team-card__affiliation">Central Department of Physics, Tribhuvan University</p>
+                        </div>
+                    </article>
+                    <!-- Dr. Manoj Kumar Yadav -->
+                    <article class="team-card">
+                        <div class="team-card__avatar">
+                            <img src="assets/images/pp/Manoj_Kumar_Yadav.webp" alt="Dr. Manoj Kumar Yadav" loading="lazy">
+                        </div>
+                        <div class="team-card__content">
+                            <h4 class="team-card__name">Dr. Manoj Kumar Yadav</h4>
+                            <p class="team-card__role">Advisor</h4>
+                            <p class="team-card__affiliation">Rajarshi Janak University, Janakpurdham, Nepal</p>
+                        </div>
+                    </article>
+                    </div>
                 </div>
 
                 <!-- College Representatives Tab -->
-                <div id="tab-representatives" class="team-tab-content" style="display: none;">
-                    <div id="reps-grid" class="editorial-grid">
-                        <!-- JS Injected Cards -->
-                    </div>
-                    
-                    <!-- MMIHS Logo -->
-                    <div class="mt-12 pt-8 border-t border-slate-200 text-center">
-                        <a href="MMIHS logo.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 text-slate-600 hover:text-nssrBlue transition-colors">
-                            <i class="fa-solid fa-file-pdf text-2xl text-red-600"></i>
-                            <span class="font-medium">MMIHS Logo (PDF)</span>
-                        </a>
+                <div id="representatives" class="team-tab-content">
+                    <div id="reps-grid" class="team-grid">
+                        <!-- Dhurbaraj Singh -->
+                        <article class="team-card">
+                            <div class="team-card__avatar">
+                                <img src="assets/images/college_representative/dhruv.jpeg" alt="Dhurbaraj Singh" loading="lazy">
+                            </div>
+                            <div class="team-card__content">
+                                <h4 class="team-card__name">Dhurbaraj Singh</h4>
+                                <p class="team-card__role">College Representative</h4>
+                                <p class="team-card__affiliation">Graduate School of Engineering, Mid-West University</p>
+                            </div>
+                        </article>
+                        <!-- Bikash Kadayat -->
+                        <article class="team-card">
+                            <div class="team-card__avatar">
+                                <img src="assets/images/college_representative/bikash.jpeg" alt="Bikash Kadayat" loading="lazy">
+                            </div>
+                            <div class="team-card__content">
+                                <h4 class="team-card__name">Bikash Kadayat</h4>
+                                <p class="team-card__role">College Representative</h4>
+                                <p class="team-card__affiliation">Tech AI College, Kathmandu</p>
+                            </div>
+                        </article>
+                        <!-- Raunak Regmi -->
+                        <article class="team-card">
+                            <div class="team-card__avatar">
+                                <img src="assets/images/college_representative/raunak.jpeg" alt="Raunak Regmi" loading="lazy">
+                            </div>
+                            <div class="team-card__content">
+                                <h4 class="team-card__name">Raunak Regmi</h4>
+                                <p class="team-card__role">College Representative</h4>
+                                <p class="team-card__affiliation">Sunway College Kathmandu</p>
+                            </div>
+                        </article>
+                        <!-- Puja Bhatt -->
+                        <article class="team-card">
+                            <div class="team-card__avatar">
+                                <img src="assets/images/college_representative/puja.jpeg" alt="Puja Bhatt" loading="lazy">
+                            </div>
+                            <div class="team-card__content">
+                                <h4 class="team-card__name">Puja Bhatt</h4>
+                                <p class="team-card__role">College Representative</h4>
+                                <p class="team-card__affiliation">Brixton College, Mahendranagar</p>
+                            </div>
+                        </article>
                     </div>
                     
                     <!-- Join Community Link (Below College Reps) -->

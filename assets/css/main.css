@@ -4177,6 +4177,24 @@ html, body { overflow-x: hidden; width: 100%; }
    .team-nav-btn.active { border-bottom-color: var(--nssr-blue); }
  }
 
+/* --- Team Page Grid (Enforced Horizontal Layout) --- */
+  .team-grid {
+    display: grid !important;
+    /* Automatically fits as many 220px columns as possible horizontally */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+    gap: 56px 32px !important;
+    align-items: start !important;
+    width: 100% !important;
+  }
+
+  .team-grid .team-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
 /* --- Team Page Grid Alignment Fix --- */
   .team-tab-content.editorial-grid {
     display: grid !important;
@@ -5124,3 +5142,48 @@ html, body { overflow-x: hidden; width: 100%; }
 .lightbox img[src*="via.placeholder.com"] {
   opacity: 1;
 }
+
+/* ==========================================================================
+   GALLERY LIGHTBOX — Image Clarity Overrides
+   ---------------------------------------------------------------------------
+   Scoped to #gallery-lightbox on purpose: the bare id `lightbox-img` is also
+   used by event.html, outreach.html, student-empowerment.html and
+   science-beyond-classroom.html, which run a separate Tailwind-based lightbox
+   (z-[2000] / max-w-full / scale-95). An unscoped `#lightbox-img` rule would
+   silently restyle all of them.
+   ========================================================================== */
+#gallery-lightbox {
+  background-color: rgba(15, 23, 42, 0.95) !important; /* The dark overlay */
+}
+
+#gallery-lightbox #lightbox-img {
+  display: block !important;
+  max-width: 90vw !important;
+  max-height: 85vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  filter: none !important; /* Removes any grayscale or blur */
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 100000 !important;
+}
+
+/* ==========================================================================
+   Team Page — Tab Visibility Lock
+   ---------------------------------------------------------------------------
+   Ownership: .team-tab-content controls visibility; the inner .team-grid
+   controls layout. These MUST stay separate elements, otherwise
+   `.team-tab-content.active { display: block !important }` (0,2,0) would
+   override `.team-grid { display: grid !important }` (0,1,0) and collapse
+   the cards back into a single vertical column.
+   ========================================================================== */
+.team-tab-content {
+  display: none !important;
+}
+
+.team-tab-content.active {
+  display: block !important;
+  /* Use block here, the inner .team-grid will handle the actual grid layout */
+}
+
