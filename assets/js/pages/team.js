@@ -60,4 +60,9 @@
         }
 
         // Initialize tab navigation on load
-        document.addEventListener('DOMContentLoaded', initTabNavigation);
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initTabNavigation);
+        } else {
+            // DOMContentLoaded already fired
+            initTabNavigation();
+        }

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteering | NSSR</title>
+    <link rel="icon" type="image/png" href="assets/images/bluelogonobg.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { nssrBlue: '#004AAD', nssrDark: '#0f172a' },
+                    fontFamily: { sans: ['"Source Sans 3"', 'sans-serif'], serif: ['"Source Serif 4"', 'serif'], oswald: ['Oswald', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@300;400;600;700&family=Source+Serif+4:ital,wght@300;400;600;700&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body class="w-full overflow-x-hidden bg-white">
+    <div id="nav-placeholder"></div>
+
+    <main class="w-full">
+
+    <!-- HERO SECTION -->
+    <header class="nssr-hero nssr-premium-blue--strong">
+        <div class="nssr-hero__overlay"></div>
+        <div class="nssr-hero__content">
+            <span class="nssr-hero__eyebrow" style="color: var(--nssr-blue-soft);">Community & Collaboration</span>
+            <h1 class="nssr-hero__heading">Volunteer <span class="heading-accent">With Us</span></h1>
+            <p class="nssr-hero__description">Create meaningful change through student and community-led volunteering initiatives across Nepal.</p>
+        </div>
+    </header>
+
+    <!-- VOLUNTEER OPPORTUNITIES -->
+    <section class="w-full py-20 bg-white volunteer-programs">
+        <div class="w-full max-w-7xl mx-auto px-6 lg:px-20">
+            <header class="volunteer-programs__header">
+                <span class="volunteer-programs__eyebrow">Current Opportunities</span>
+                <h2 class="volunteer-programs__title">Active Volunteer Programs</h2>
+            </header>
+            <div class="volunteer-programs__grid">
+                <!-- Opportunity 1 -->
+                <article class="volunteer-card">
+                    <div class="volunteer-card__badge volunteer-card__badge--ongoing">Ongoing</div>
+                    <h3 class="volunteer-card__title">Science Beyond the Classroom</h3>
+                    <p class="volunteer-card__description">Support our talk session series bringing young researchers into schools across Nepal. Help with event coordination, student engagement, and logistics.</p>
+                    <ul class="volunteer-card__meta">
+                        <li><i class="fa-solid fa-calendar" aria-hidden="true"></i><span>Ongoing (Monthly sessions)</span></li>
+                        <li><i class="fa-solid fa-map-marker-alt" aria-hidden="true"></i><span>Schools nationwide</span></li>
+                        <li><i class="fa-solid fa-users" aria-hidden="true"></i><span>5–10 volunteers per session</span></li>
+                    </ul>
+                    <a href="mailto:info@nssrnepal.org?subject=Volunteer: Science Beyond the Classroom" class="volunteer-card__cta">
+                        Express Interest <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+
+                <!-- Opportunity 2 -->
+                <article class="volunteer-card">
+                    <div class="volunteer-card__badge volunteer-card__badge--upcoming">Upcoming</div>
+                    <h3 class="volunteer-card__title">Student Empowerment Initiative</h3>
+                    <p class="volunteer-card__description">Join hands-on science launches at rural schools. Assist with experiments, equipment setup, and student mentorship during one-day events.</p>
+                    <ul class="volunteer-card__meta">
+                        <li><i class="fa-solid fa-calendar" aria-hidden="true"></i><span>Launch events (Quarterly)</span></li>
+                        <li><i class="fa-solid fa-map-marker-alt" aria-hidden="true"></i><span>Rural districts</span></li>
+                        <li><i class="fa-solid fa-users" aria-hidden="true"></i><span>15–20 volunteers per launch</span></li>
+                    </ul>
+                    <a href="mailto:info@nssrnepal.org?subject=Volunteer: Student Empowerment Initiative" class="volunteer-card__cta volunteer-card__cta--amber">
+                        Express Interest <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+
+                <!-- Opportunity 3 -->
+                <article class="volunteer-card">
+                    <div class="volunteer-card__badge volunteer-card__badge--recurring">Recurring</div>
+                    <h3 class="volunteer-card__title">Event Support & Operations</h3>
+                    <p class="volunteer-card__description">Help run NSSR workshops, symposiums, and the annual NSRF symposium. Roles include registration, AV support, photography, and attendee coordination.</p>
+                    <ul class="volunteer-card__meta">
+                        <li><i class="fa-solid fa-calendar" aria-hidden="true"></i><span>Per event basis</span></li>
+                        <li><i class="fa-solid fa-map-marker-alt" aria-hidden="true"></i><span>Kathmandu & major cities</span></li>
+                        <li><i class="fa-solid fa-users" aria-hidden="true"></i><span>8–12 volunteers per event</span></li>
+                    </ul>
+                    <a href="mailto:info@nssrnepal.org?subject=Volunteer: Event Support" class="volunteer-card__cta volunteer-card__cta--green">
+                        Express Interest <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW TO PARTICIPATE -->
+    <section class="w-full py-20 bg-slate-50">
+        <div class="w-full max-w-7xl mx-auto px-6 lg:px-20">
+            <div class="text-center mb-16">
+                <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold mb-4 block">Get Involved</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-black text-slate-900">How to Participate</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-envelope-open-text text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Express Interest</h3>
+                    <p class="text-slate-600">Email us at <a href="mailto:info@nssrnepal.org" class="text-blue-600 hover:underline">info@nssrnepal.org</a> with the program name in the subject line.</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-handshake text-2xl text-amber-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Brief Orientation</h3>
+                    <p class="text-slate-600">Our team will share a brief orientation covering expectations, schedule, and role-specific guidance.</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-certificate text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Volunteer & Grow</h3>
+                    <p class="text-slate-600">Participate in the activity, gain experience, and receive a volunteer certificate for your contribution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAST ACTIVITIES -->
+    <section class="w-full py-20 bg-white">
+        <div class="w-full max-w-7xl mx-auto px-6 lg:px-20">
+            <div class="text-center mb-16">
+                <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold mb-4 block">Impact Stories</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-black text-slate-900">Past Volunteer Activities</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <article class="flex gap-6 p-6 border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div class="w-32 h-32 md:w-40 md:h-40 flex-shrink-0 overflow-hidden rounded-lg bg-slate-100">
+                        <img src="assets/images/SEI/out1.png" alt="SBC volunteer session" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <span class="font-oswald text-blue-600 uppercase tracking-wider text-xs font-bold mb-1">Science Beyond the Classroom</span>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-2">Bagishwori Secondary School — Kathmandu</h3>
+                        <p class="text-slate-600 text-sm">12 volunteers facilitated a hands-on physics demonstration for 200+ students. Activities included optics experiments and career guidance.</p>
+                        <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+                            <span><i class="fa-solid fa-calendar mr-1"></i> August 2024</span>
+                            <span><i class="fa-solid fa-users mr-1"></i> 12 volunteers</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="flex gap-6 p-6 border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div class="w-32 h-32 md:w-40 md:h-40 flex-shrink-0 overflow-hidden rounded-lg bg-slate-100">
+                        <img src="assets/images/SEI/out2.png" alt="SEI rural launch" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <span class="font-oswald text-amber-600 uppercase tracking-wider text-xs font-bold mb-1">Student Empowerment Initiative</span>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-2">Shree Janata Secondary School — Dhading</h3>
+                        <p class="text-slate-600 text-sm">18 volunteers conducted chemistry and biology lab sessions for grades 9-10. Equipment donated to the school for ongoing use.</p>
+                        <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+                            <span><i class="fa-solid fa-calendar mr-1"></i> November 2024</span>
+                            <span><i class="fa-solid fa-users mr-1"></i> 18 volunteers</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="flex gap-6 p-6 border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div class="w-32 h-32 md:w-40 md:h-40 flex-shrink-0 overflow-hidden rounded-lg bg-slate-100">
+                        <img src="assets/images/SEI/out3.png" alt="NSRF symposium volunteers" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <span class="font-oswald text-green-600 uppercase tracking-wider text-xs font-bold mb-1">NSRF Symposium 2024</span>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-2">Kathmandu University — Dhulikhel</h3>
+                        <p class="text-slate-600 text-sm">10 volunteers managed registration, AV support, and attendee coordination for the 3-day research symposium with 150+ participants.</p>
+                        <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+                            <span><i class="fa-solid fa-calendar mr-1"></i> June 2024</span>
+                            <span><i class="fa-solid fa-users mr-1"></i> 10 volunteers</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="flex gap-6 p-6 border border-slate-100 hover:border-blue-200 transition-colors">
+                    <div class="w-32 h-32 md:w-40 md:h-40 flex-shrink-0 overflow-hidden rounded-lg bg-slate-100">
+                        <img src="assets/images/SEI/out4.png" alt="Workshop volunteer" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <span class="font-oswald text-purple-600 uppercase tracking-wider text-xs font-bold mb-1">LaTeX Workshop Support</span>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-2">St. Xavier's College — Kathmandu</h3>
+                        <p class="text-slate-600 text-sm">8 volunteers assisted with participant onboarding, technical troubleshooting, and session documentation for the 3-day workshop.</p>
+                        <div class="flex items-center gap-4 mt-3 text-xs text-slate-400">
+                            <span><i class="fa-solid fa-calendar mr-1"></i> January 2025</span>
+                            <span><i class="fa-solid fa-users mr-1"></i> 8 volunteers</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- VOLUNTEER IMPACT -->
+    <section class="w-full py-20 bg-slate-900 text-white">
+        <div class="w-full max-w-7xl mx-auto px-6 lg:px-20">
+            <div class="text-center mb-16">
+                <span class="font-oswald text-blue-400 uppercase tracking-widest text-xs font-bold mb-4 block">Volunteer Impact</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-black">Your Time Creates Change</h2>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl md:text-5xl font-black font-oswald text-blue-400 mb-2">150+</div>
+                    <div class="text-slate-300 uppercase tracking-wide text-xs font-semibold">Volunteers Engaged</div>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-black font-oswald text-amber-400 mb-2">25+</div>
+                    <div class="text-slate-300 uppercase tracking-wide text-xs font-semibold">Activities Completed</div>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-black font-oswald text-green-400 mb-2">12</div>
+                    <div class="text-slate-300 uppercase tracking-wide text-xs font-semibold">Districts Reached</div>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-black font-oswald text-purple-400 mb-2">5,000+</div>
+                    <div class="text-slate-300 uppercase tracking-wide text-xs font-semibold">Students Impacted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="w-full py-20 bg-white">
+        <div class="w-full max-w-3xl mx-auto px-6 lg:px-20 text-center">
+            <h2 class="text-3xl md:text-4xl font-serif font-black text-slate-900 mb-6">Ready to Volunteer?</h2>
+            <p class="text-slate-600 leading-relaxed mb-8 max-w-xl mx-auto">Join a community of students and researchers creating tangible impact across Nepal. Your skills, time, and enthusiasm make a difference.</p>
+            <a href="mailto:info@nssrnepal.org?subject=Volunteer Inquiry" class="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition-colors">
+                Get Started <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    </main>
+    <div id="footer-placeholder"></div>
+    <script src="assets/js/main.js" defer></script>
+</body>
+</html>

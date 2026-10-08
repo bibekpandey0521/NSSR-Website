@@ -37,6 +37,14 @@
   --nssr-dark: #0f172a;
   --nssr-dark-2: #172554;
 
+  /* --- Premium Blue Palette (institutional/tech) ------------------------ */
+  --nssr-navy-deep: #07142f;
+  --nssr-navy: #0d2147;
+  --nssr-navy-elevated: #112a5e;
+  --nssr-blue-primary: #155eef;
+  --nssr-blue-bright: #3b82f6;
+  --nssr-blue-pale: #eaf2ff;
+
   /* --- Neutral surfaces ------------------------------------------------- */
   --bg-primary: #ffffff;
   --bg-surface: #ffffff;
@@ -181,8 +189,33 @@
   --nav-height-compact: 56px;
   --container-max: 1160px;
   --container-max-wide: 1280px;
+  --container-max-xl: 1440px;
+  --container-max-full: 1600px;
   --container-gutter: var(--space-5);
   --content-measure: 68ch;   /* readable line length for body copy */
+
+  /* --- Responsive Spacing (fluid) ---------------------------------------- */
+  --space-inline-sm: clamp(16px, 3vw, 32px);
+  --space-inline-md: clamp(24px, 4vw, 48px);
+  --space-inline-lg: clamp(32px, 5vw, 64px);
+  --space-inline-xl: clamp(48px, 6vw, 96px);
+
+  --space-block-sm: clamp(32px, 5vw, 64px);
+  --space-block-md: clamp(48px, 6vw, 96px);
+  --space-block-lg: clamp(64px, 8vw, 128px);
+  --space-block-xl: clamp(96px, 10vw, 160px);
+
+  /* --- Fluid Typography --------------------------------------------------- */
+  --text-display: clamp(2.5rem, 5vw, 5rem);
+  --text-display-sm: clamp(2rem, 4vw, 4rem);
+  --text-heading-1: clamp(2rem, 3.5vw, 3.2rem);
+  --text-heading-2: clamp(1.75rem, 3vw, 2.8rem);
+  --text-heading-3: clamp(1.35rem, 2.5vw, 2rem);
+  --text-body-lg: clamp(1.05rem, 1.2vw, 1.125rem);
+  --text-body: clamp(1rem, 1vw, 1.125rem);
+  --text-body-sm: clamp(0.875rem, 0.9vw, 1rem);
+  --text-caption: clamp(0.75rem, 0.8vw, 0.875rem);
+  --text-label: clamp(0.6875rem, 0.7vw, 0.75rem);
 
   --z-base: 1;
   --z-sticky: 100;
@@ -1870,7 +1903,321 @@ a:hover img,
 
 
 /* ==========================================================================
-   5. PAGE STYLES
+    HERO SYSTEM — Unified, premium institutional hero components
+    --------------------------------------------------------------------------
+    `.nssr-hero` itself is NOT restyled here: it is an existing class on
+    index.html's full-bleed hero (see "STANFORD-STYLE COMPONENTS" below) and
+    changing its box model would re-compose that page. The layout shell for the
+    BEM parts below lives on `.nssr-premium-blue*`, which is used only by
+    volunteering.html.
+    ========================================================================== */
+
+/* Hero background image layer */
+ .nssr-hero__media {
+   position: absolute;
+   inset: 0;
+   z-index: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+ }
+
+/* Hero overlay — single, consistent dark scrim for text contrast */
+.nssr-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+/* ==========================================================================
+   PREMIUM BLUE BACKGROUND SYSTEM — Institutional/tech depth
+   ========================================================================== */
+
+/* Layout shell for a `.nssr-hero__*` banner: it must establish a positioning
+   context for `.nssr-hero__overlay` / `__content` and centre its content.
+   Scoped to these classes on purpose so index.html's existing `.nssr-hero`
+   keeps its own full-bleed, bottom-aligned composition. */
+.nssr-premium-blue,
+.nssr-premium-blue--strong,
+.nssr-premium-blue--subtle,
+.nssr-premium-blue--with-media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-block: var(--space-block-lg);
+}
+
+@media (max-width: 768px) {
+  .nssr-premium-blue,
+  .nssr-premium-blue--strong,
+  .nssr-premium-blue--subtle,
+  .nssr-premium-blue--with-media {
+    min-height: auto;
+    padding-block: var(--space-block-md);
+  }
+}
+
+/* Base premium blue background — deep navy with subtle tonal depth */
+.nssr-premium-blue {
+  background-color: var(--nssr-navy-deep);
+  background-image:
+    /* Subtle radial highlight behind content focal area */
+    radial-gradient(ellipse 80% 60% at 50% 40%,
+      rgba(21, 94, 239, 0.18) 0%,
+      rgba(13, 33, 71, 0) 60%),
+    /* Very subtle horizontal tonal shift */
+    linear-gradient(180deg,
+      var(--nssr-navy-deep) 0%,
+      var(--nssr-navy) 45%,
+      var(--nssr-navy-elevated) 55%,
+      var(--nssr-navy) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* Variant: stronger focal highlight for primary heroes */
+.nssr-premium-blue--strong {
+  background-image:
+    radial-gradient(ellipse 90% 70% at 50% 35%,
+      rgba(21, 94, 239, 0.22) 0%,
+      rgba(13, 33, 71, 0) 55%),
+    linear-gradient(180deg,
+      var(--nssr-navy-deep) 0%,
+      var(--nssr-navy) 40%,
+      var(--nssr-navy-elevated) 60%,
+      var(--nssr-navy) 100%);
+}
+
+/* Variant: softer, more restrained for secondary sections */
+.nssr-premium-blue--subtle {
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% 45%,
+      rgba(21, 94, 239, 0.12) 0%,
+      rgba(13, 33, 71, 0) 65%),
+    linear-gradient(180deg,
+      var(--nssr-navy-deep) 0%,
+      var(--nssr-navy) 50%,
+      var(--nssr-navy) 100%);
+}
+
+/* Variant: with background image — image provides texture, gradient provides depth */
+.nssr-premium-blue--with-media {
+  background-image:
+    radial-gradient(ellipse 85% 65% at 50% 40%,
+      rgba(21, 94, 239, 0.15) 0%,
+      rgba(13, 33, 71, 0) 60%),
+    linear-gradient(180deg,
+      rgba(7, 20, 47, 0.95) 0%,
+      rgba(13, 33, 71, 0.85) 50%,
+      rgba(17, 42, 94, 0.9) 100%);
+}
+
+/* Text color utilities for premium blue backgrounds */
+.nssr-premium-blue .text-on-premium-blue,
+.nssr-premium-blue--strong .text-on-premium-blue,
+.nssr-premium-blue--subtle .text-on-premium-blue,
+.nssr-premium-blue--with-media .text-on-premium-blue {
+  color: #ffffff;
+}
+
+.nssr-premium-blue .text-on-premium-blue-muted,
+.nssr-premium-blue--strong .text-on-premium-blue-muted,
+.nssr-premium-blue--subtle .text-on-premium-blue-muted,
+.nssr-premium-blue--with-media .text-on-premium-blue-muted {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.nssr-premium-blue .text-on-premium-blue-subtle,
+.nssr-premium-blue--strong .text-on-premium-blue-subtle,
+.nssr-premium-blue--subtle .text-on-premium-blue-subtle,
+.nssr-premium-blue--with-media .text-on-premium-blue-subtle {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.nssr-premium-blue .text-on-premium-blue-accent,
+.nssr-premium-blue--strong .text-on-premium-blue-accent,
+.nssr-premium-blue--subtle .text-on-premium-blue-accent,
+.nssr-premium-blue--with-media .text-on-premium-blue-accent {
+  color: var(--nssr-blue-soft);
+}
+
+/* Ensure headings inherit correct colors on premium blue */
+.nssr-premium-blue h1,
+.nssr-premium-blue--strong h1,
+.nssr-premium-blue--subtle h1,
+.nssr-premium-blue--with-media h1,
+.nssr-premium-blue h2,
+.nssr-premium-blue--strong h2,
+.nssr-premium-blue--subtle h2,
+.nssr-premium-blue--with-media h2,
+.nssr-premium-blue h3,
+.nssr-premium-blue--strong h3,
+.nssr-premium-blue--subtle h3,
+.nssr-premium-blue--with-media h3 {
+  color: #ffffff;
+}
+
+/* Respect prefers-reduced-motion for any background animations */
+@media (prefers-reduced-motion: reduce) {
+  .nssr-premium-blue,
+  .nssr-premium-blue--strong,
+  .nssr-premium-blue--subtle,
+  .nssr-premium-blue--with-media {
+    background-attachment: scroll;
+  }
+}
+
+ /* Hero content wrapper — centered, max-width constrained */
+ .nssr-hero__content {
+   position: relative;
+   z-index: 2;
+   width: 100%;
+   max-width: 720px;
+   margin-inline: auto;
+   padding: var(--space-8) var(--container-gutter);
+   text-align: center;
+   color: #ffffff;
+ }
+
+ .nssr-hero__content--left {
+   text-align: left;
+   align-items: flex-start;
+ }
+
+ /* Hero eyebrow / kicker */
+ .nssr-hero__eyebrow {
+   display: inline-flex;
+   align-items: center;
+   gap: var(--space-2);
+   font-family: var(--font-sans);
+   font-weight: var(--font-weight-bold);
+   font-size: var(--font-size-2xs);
+   line-height: var(--leading-snug);
+   text-transform: uppercase;
+   letter-spacing: var(--heading-tracking-wide);
+   color: #7dd3fc; /* NSSR light blue accent */
+   margin-bottom: var(--space-4);
+ }
+
+ .nssr-hero__eyebrow i { font-size: 0.9em; }
+
+/* Hero heading — editorial serif, white with optional accent span */
+.nssr-hero__heading {
+  font-family: var(--font-serif-brand);
+  font-size: var(--text-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+
+.nssr-hero__heading .heading-accent {
+  color: #7dd3fc;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Hero description — readable light text */
+.nssr-hero__description {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 56ch;
+  margin: 0 auto var(--space-6);
+  font-weight: 300;
+}
+
+.nssr-hero__content--left .nssr-hero__description {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+ /* Hero CTA group — aligned with content */
+ .nssr-hero__actions {
+   display: flex;
+   flex-wrap: wrap;
+   gap: var(--space-3);
+   justify-content: center;
+   margin-top: var(--space-2);
+ }
+
+ .nssr-hero__content--left .nssr-hero__actions {
+   justify-content: flex-start;
+ }
+
+/* Mobile: stack buttons vertically */
+@media (max-width: 640px) {
+  .nssr-hero__actions:not(.nssr-hero__actions--home) {
+    flex-direction: column;
+    width: 100%;
+  }
+  .nssr-hero__actions:not(.nssr-hero__actions--home) .btn-primary,
+  .nssr-hero__actions:not(.nssr-hero__actions--home) .btn-secondary,
+  .nssr-hero__actions:not(.nssr-hero__actions--home) .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Scroll indicator */
+ .nssr-hero__scroll {
+   position: absolute;
+   bottom: var(--space-6);
+   left: var(--container-gutter);
+   z-index: 2;
+   display: none;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: var(--space-1);
+   color: rgba(255, 255, 255, 0.4);
+   font-size: var(--font-size-2xs);
+   text-transform: uppercase;
+   letter-spacing: 0.3em;
+ }
+
+ @media (min-width: 768px) {
+   .nssr-hero__scroll { display: flex; }
+ }
+
+ .nssr-hero__scroll-line {
+   width: 1px;
+   height: 48px;
+   background: linear-gradient(to top, #60a5fa, transparent);
+ }
+
+ /* Ensure buttons in hero have proper contrast */
+ .nssr-hero .btn-primary,
+ .nssr-hero .btn-secondary,
+ .nssr-hero .btn-outline {
+   font-weight: 600;
+ }
+
+ .nssr-hero .btn-secondary,
+ .nssr-hero .btn-outline {
+   color: #ffffff !important;
+   border-color: rgba(255, 255, 255, 0.3);
+   background: rgba(255, 255, 255, 0.1);
+ }
+
+ .nssr-hero .btn-secondary:hover,
+ .nssr-hero .btn-outline:hover {
+   color: #ffffff !important;
+   background: rgba(255, 255, 255, 0.2);
+   border-color: rgba(255, 255, 255, 0.5);
+ }
+
+ .nssr-hero .btn-secondary *,
+ .nssr-hero .btn-outline * { color: #ffffff !important; }
+
+
+ /* ==========================================================================
+    5. PAGE STYLES
    --------------------------------------------------------------------------
    Refinements extracted from the former per-page inline <style> blocks, all
    folded into this single file. Class names are page-specific (phase-card,
@@ -2006,6 +2353,190 @@ a:hover img,
   box-shadow: none;
   padding: 0;
   transition: none;
+}
+
+
+/* --- volunteering.html — Volunteer Programs Grid --- */
+.volunteer-programs {
+  padding-block: var(--space-10);
+}
+
+.volunteer-programs__header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.volunteer-programs__eyebrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-2xs);
+  line-height: var(--leading-snug);
+  text-transform: uppercase;
+  letter-spacing: var(--heading-tracking-wide);
+  color: var(--nssr-blue);
+  margin-bottom: var(--space-3);
+}
+
+.volunteer-programs__title {
+  font-family: var(--font-serif-brand);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--nssr-dark);
+}
+
+.volunteer-programs__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-7);
+  align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+  .volunteer-programs__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 640px) {
+  .volunteer-programs__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}
+
+.volunteer-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  transition: border-color 200ms var(--ease-standard), transform 200ms var(--ease-standard), box-shadow 200ms var(--ease-standard);
+}
+
+.volunteer-card:hover {
+  border-color: var(--nssr-blue);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.volunteer-card__badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-2xs);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--space-4);
+  width: fit-content;
+}
+
+.volunteer-card__badge--ongoing {
+  background: #eef4ff;
+  color: #155eef;
+  border: 1px solid #dbe8ff;
+}
+
+.volunteer-card__badge--upcoming {
+  background: #fff7ed;
+  color: #b45309;
+  border: 1px solid #ffedd5;
+}
+
+.volunteer-card__badge--recurring {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #dcfce7;
+}
+
+.volunteer-card__title {
+  font-family: var(--font-serif-brand);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--nssr-dark);
+  margin: 0 0 var(--space-3);
+}
+
+.volunteer-card__description {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: 1.65;
+  color: #475569;
+  margin: 0 0 var(--space-4);
+  flex: 1;
+}
+
+.volunteer-card__meta {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.volunteer-card__meta li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  color: #64748b;
+}
+
+.volunteer-card__meta i {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  color: var(--nssr-blue);
+  font-size: 0.85em;
+}
+
+.volunteer-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--nssr-blue);
+  text-decoration: none;
+  transition: gap 150ms var(--ease-standard), color 150ms var(--ease-standard);
+  margin-top: auto;
+}
+
+.volunteer-card__cta:hover {
+  color: var(--nssr-blue-strong);
+  gap: 12px;
+}
+
+.volunteer-card__cta--amber:hover {
+  color: #b45309;
+}
+
+.volunteer-card__cta--green:hover {
+  color: #166534;
+}
+
+.volunteer-card__cta i {
+  flex-shrink: 0;
+  transition: transform 150ms var(--ease-standard);
+}
+
+.volunteer-card__cta:hover i {
+  transform: translateX(3px);
 }
 
 
