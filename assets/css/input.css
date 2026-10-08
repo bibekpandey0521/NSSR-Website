@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+/* Paths are relative to this file (assets/css/), so the site root is ../../ */
+@source "../../*.html";
+@source "../../assets/js/**/*.js";

@@ -57,7 +57,8 @@
       label: 'Outreach',
       children: [
         { label: 'Science Beyond the Classroom', href: 'science-beyond-classroom.html' },
-        { label: 'Student Empowerment Initiative', href: 'student-empowerment.html' }
+        { label: 'Student Empowerment Initiative', href: 'student-empowerment.html' },
+        { label: 'Volunteering', href: 'volunteering.html' }
       ]
     },
     { label: 'Workshops', href: 'workshop.html' },
@@ -69,6 +70,7 @@
   var FOOTER_LINKS = [
     { label: 'Research', href: 'research.html' },
     { label: 'Outreach', href: 'outreach.html' },
+    { label: 'Volunteering', href: 'volunteering.html' },
     { label: 'Workshops', href: 'workshop.html' },
     { label: 'Gallery', href: 'gallery.html' },
     { label: 'Events Directory', href: 'event.html' },
@@ -490,6 +492,7 @@
       '                                <li><a href="science-beyond-classroom.html">Science Beyond the Classroom</a></li>' +
       '                                <li><a href="student-empowerment.html">Student Empowerment Initiative</a></li>' +
       '                                <li><a href="outreach.html">Outreach Programs</a></li>' +
+      '                                <li><a href="volunteering.html">Volunteering</a></li>' +
       '                            </ul>' +
       '                        </div>' +
       '                    </nav>' +
