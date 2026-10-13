@@ -641,9 +641,6 @@ body.nav-open { overflow: hidden; }
   line-height: var(--leading-snug);
   letter-spacing: var(--heading-tracking-snug);
   color: var(--nssr-blue);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* --- Primary menu ---------------------------------------------------------- */
@@ -1774,7 +1771,7 @@ a:hover img,
   border-radius: 50px;
   cursor: pointer;
   transition: background-color var(--transition-premium), transform var(--transition-premium), box-shadow var(--transition-premium);
-  margin-top: 8px;
+  margin-top: 20px;
 }
 
 .footer-form-submit:hover {
@@ -3047,6 +3044,27 @@ html body button.btn-hero-outline:active {
   min-height: 600px;
 }
 
+/* index.html hero copy rhythm + paragraph contrast.
+   The global `body h1 { margin: 0 }` and `p { margin: 0; color: #475569 }`
+   resets in this file are unlayered, so they outrank the Tailwind margin and
+   colour utilities used in the markup (`.mb-6`, `.mb-10`, `.text-gray-300`).
+   The stack therefore rendered flush and the intro paragraph came out dark on
+   a dark image. Scoped to the home hero's `.container` (volunteering.html's
+   `.nssr-hero` has no `.container` child) so nothing else is affected. */
+.nssr-hero > .container h1 {
+  margin-bottom: 1.5rem;
+}
+
+.nssr-hero > .container p {
+  margin-bottom: 2.5rem;
+  color: #e2e8f0;
+}
+
+@media (min-width: 768px) {
+  .nssr-hero > .container h1 { margin-bottom: 2rem; }
+  .nssr-hero > .container p { margin-bottom: 3.5rem; }
+}
+
 
 /* ==========================================================================
     9. BUTTON FIXES — pseudo-element z-index guards
@@ -4022,10 +4040,71 @@ html, body { overflow-x: hidden; width: 100%; }
   }
 }
 
+/* --- Research Focus Cards --- */
+.research-focus-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  transition: border-color var(--transition-premium), background var(--transition-premium);
+  min-height: 280px;
+  background: transparent;
+}
+
+.research-focus-card:hover {
+  border-color: var(--nssr-blue);
+}
+
+.research-focus-card .icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.research-focus-card h4 {
+  font-family: var(--font-serif-brand);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 8px;
+}
+
+.research-focus-card p {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+
 @media (max-width: 640px) {
-  .pillars-grid {
-    grid-template-columns: 1fr !important;
+  .research-focus-card {
+    min-height: 240px;
   }
+}
+
+@media (max-width: 1024px) {
+  .research-focus-card {
+    min-height: 260px;
+  }
+}
+
+/* --- Research Focus Grid --- */
+@media (max-width: 1024px) {
+  .research-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .research-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
   .pillar-item {
     padding: 16px 0 0 0 !important;
   }
@@ -4164,6 +4243,17 @@ html, body { overflow-x: hidden; width: 100%; }
     grid-template-columns: 1fr 1fr;
     align-items: start;
   }
+}
+
+/* science-beyond-classroom.html: each .editorial-row now wraps a single,
+   full-width responsive grid rather than holding the columns directly. The
+   two-column track above would confine that lone child to half the
+   container, squeezing the page into a narrow column with empty space
+   beside it. Neutralise the track for this page only so the inner grids can
+   use the full container width. */
+.page-sbc .editorial-row {
+  grid-template-columns: 1fr;
+  align-items: stretch;
 }
 
 .deboxed-card {
@@ -4672,11 +4762,24 @@ html, body { overflow-x: hidden; width: 100%; }
    background: #020617;
  }
 
- @media (max-width: 768px) {
-   .team-hero { padding-top: 80px; padding-bottom: 56px; }
- }
+@media (max-width: 768px) {
+  .team-hero { padding-top: 80px; padding-bottom: 56px; }
+}
 
- /* --- Team Sidebar Navigation (Stark, Borderless) --- */
+/* Breathing room between the hero heading and its description. The design
+   system's `body h1 { margin: 0 }` reset is unlayered, so it outranks the
+   Tailwind `mb-6` utility in the markup (utilities live in a cascade layer);
+   that is why the two were touching. This scoped, unlayered rule restores the
+   intended spacing without touching heading size, colour, or italic styling. */
+.team-hero h1 {
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .team-hero h1 { margin-bottom: 2rem; }
+}
+
+/* --- Team Sidebar Navigation (Stark, Borderless) --- */
  .team-sidebar {
    display: flex;
    flex-direction: column;
@@ -6107,3 +6210,681 @@ html, body { overflow-x: hidden; width: 100%; }
   /* Use block here, the inner .team-grid will handle the actual grid layout */
 }
 
+
+/* Hero improvements for research-pathways.html */
+.page-research-pathways .hero-clear .container,
+.page-research-pathways header .container {
+  max-width: 960px;
+}
+
+.page-research-pathways .hero-clear h1,
+body.research-pathways header h1 {
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.page-research-pathways .hero-clear p,
+body.research-pathways header p {
+  color: rgba(226, 232, 240, 0.95);
+  line-height: 1.75;
+  margin-top: 1.5rem;
+}
+
+/* Hero improvements for workshop.html */
+.page-workshop .hero-clear .container,
+.page-workshop header .container {
+  max-width: 960px;
+}
+
+.page-workshop .hero-clear h1,
+body.workshop header h1 {
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.page-workshop .hero-clear p,
+body.workshop header p {
+  color: rgba(226, 232, 240, 0.95);
+  line-height: 1.75;
+  margin-top: 1.5rem;
+}
+
+/* Target hero styling for research-pathways */
+body:has(header.hero-clear) header.hero-clear .container,
+.research-pathways header.hero-clear .container {
+  max-width: 960px;
+  text-align: left;
+}
+
+.research-pathways header.hero-clear h1 {
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+}
+
+.research-pathways header.hero-clear p {
+  color: rgba(226, 232, 240, 0.95);
+  line-height: 1.75;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  max-width: 700px;
+  margin-top: 1.5rem;
+}
+
+/* Target workshop */
+.workshop header.hero-clear .container {
+  max-width: 960px;
+  text-align: center;
+}
+
+.workshop header.hero-clear h1 {
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+}
+
+.workshop header.hero-clear p {
+  color: rgba(226, 232, 240, 0.95);
+  line-height: 1.75;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5rem;
+}
+
+/* Page-specific hero tweaks */
+.research-pathways header.hero-clear { padding-bottom: 5rem; }
+.research-pathways header.hero-clear h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+.research-pathways header.hero-clear p { max-width: 720px; }
+
+.workshop header.hero-clear { padding-bottom: 5rem; }
+.workshop header.hero-clear h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+.workshop header.hero-clear p { max-width: 760px; }
+
+/* Fix gallery layout on student-empowerment */
+body:has(.editorial-gallery-grid) .editorial-row:has(.editorial-gallery-grid) {
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 1.8fr);
+  align-items: start;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.editorial-row:has(.editorial-gallery-grid) .editorial-gallery-grid {
+  margin-top: 0;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+@media (max-width: 1024px) {
+  .editorial-row:has(.editorial-gallery-grid) {
+    grid-template-columns: 1fr;
+  }
+  .editorial-row:has(.editorial-gallery-grid) .editorial-gallery-grid {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .editorial-row:has(.editorial-gallery-grid) .editorial-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Gallery row - explicit */
+.editorial-row.gallery-row {
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 1.8fr);
+  align-items: start;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.editorial-row.gallery-row .gallery-content .editorial-gallery-grid {
+  margin-top: 0;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.editorial-row.gallery-row .gallery-heading {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+  .editorial-row.gallery-row {
+    grid-template-columns: 1fr;
+  }
+  .editorial-row.gallery-row .gallery-heading {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .editorial-row.gallery-row .gallery-content .editorial-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Five supports section fixes */
+.editorial-row.supports-row {
+  grid-template-columns: minmax(260px, 1fr) minmax(0, 2fr);
+  align-items: start;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.supports-heading {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.supports-heading h2 {
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.supports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(1rem, 2vw, 1.25rem);
+}
+
+.supports-grid .deboxed-card {
+  min-width: 0; /* prevent overflow */
+}
+
+.supports-grid .deboxed-card h3 {
+  line-height: 1.3;
+  word-break: normal;
+}
+
+.supports-grid .deboxed-card p {
+  line-height: 1.6;
+}
+
+@media (min-width: 1366px) {
+  .supports-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .editorial-row.supports-row {
+    grid-template-columns: 1fr;
+  }
+  .supports-heading {
+    margin-bottom: 1.25rem;
+  }
+  .supports-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .supports-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Impact stats section - ensure responsive and clean */
+.impact-stats-section .grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.impact-stats-section .grid > div {
+  min-width: 0;
+}
+
+.impact-stats-section .text-4xl {
+  font-size: clamp(1.875rem, 3vw, 2.5rem);
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.impact-stats-section .editorial-strip__item:last-child .grid {
+  width: 100%;
+}
+
+/* Deboxed cards - ensure consistent text wrapping */
+.deboxed-card h3,
+.deboxed-card p {
+  min-width: 0;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+/* Ensure no horizontal overflow on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Hero mobile spacing improvements */
+@media (max-width: 640px) {
+  .research-pathways header.hero-clear,
+  .workshop header.hero-clear {
+    padding-top: calc(var(--nav-height, 80px) + 48px) !important;
+    padding-bottom: 3.5rem !important;
+  }
+  .research-pathways header.hero-clear h1,
+  .workshop header.hero-clear h1 {
+    font-size: clamp(2.25rem, 8vw, 3.25rem);
+  }
+}
+
+/* Fix NSRF hero text contrast */
+.nsrf-hero-fix header.hero-clear p,
+body.nsrf header.hero-clear p,
+.nsrf header p {
+  color: rgba(226, 232, 240, 0.98) !important;
+}
+
+/* Reduce spacing between headings and descriptions */
+h1 + p,
+h2 + p,
+h3 + p,
+h4 + p {
+  margin-top: 0.75rem !important;
+}
+
+.editorial-strip__item h3 + p,
+.editorial-strip__item h2 + p {
+  margin-top: 0.5rem !important;
+}
+
+.text-center h2 + p,
+.text-center .max-w-2xl + p {
+  margin-top: 0.75rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 0.5rem !important;
+}
+
+.mb-4,
+.mb-5,
+.mb-6 {
+  margin-bottom: 0.75rem !important;
+}
+
+/* Fix Five supports grid to prevent word breaks and improve width */
+.editorial-row.supports-row .supports-grid {
+  width: 100%;
+}
+
+.supports-grid .deboxed-card h3 {
+  word-break: normal !important;
+  overflow-wrap: break-word;
+  hyphens: none;
+}
+
+@media (max-width: 640px) {
+  .supports-grid .deboxed-card {
+    padding-top: 1rem !important;
+  }
+}
+
+/* Fix NSRF container max-widths to avoid content looking small */
+body.nsrf .container,
+.nsrf .container {
+  max-width: 1280px !important;
+  width: 100%;
+}
+
+body.nsrf .hero-clear .container,
+.nsrf header.hero-clear .container {
+  max-width: 1280px !important;
+}
+
+body.nsrf .editorial-grid {
+  max-width: 100%;
+}
+
+/* Prevent excessive vertical gaps in editorial-strip items */
+.editorial-strip__item {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+.editorial-strip__item:first-child {
+  padding-top: 0 !important;
+}
+.editorial-strip__item:last-child {
+  padding-bottom: 0 !important;
+}
+
+/* Improve body text readability globally on dark backgrounds with slate-300 */
+.text-slate-300 {
+  color: rgba(226, 232, 240, 0.98) !important;
+}
+
+.text-slate-400,
+.text-slate-500 {
+  color: rgb(100, 116, 139) !important;
+}
+
+/* More specific fixes for NSRF page scaling - ensure normal font sizes */
+.nsrf main,
+body.nsrf main {
+  font-size: 1rem;
+}
+
+.nsrf .hero-clear h1,
+body.nsrf .hero-clear h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.05;
+}
+
+.nsrf .hero-clear p,
+body.nsrf .hero-clear p {
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.75;
+}
+
+.nsrf .editorial-grid .team-card__name {
+  font-size: 1rem;
+}
+
+.nsrf .editorial-grid .team-card__role {
+  font-size: 0.875rem;
+}
+
+/* Fix the max-w-5xl restriction on NSRF hero */
+.nsrf header.hero-clear .container,
+body.nsrf header.hero-clear .container {
+  max-width: 1280px !important;
+}
+
+.nsrf header.hero-clear p,
+body.nsrf header.hero-clear p {
+  max-width: 768px !important;
+}
+
+/* Correct editorial grid sizing for NSRF */
+body.nsrf .editorial-grid {
+  max-width: 1280px !important;
+  width: 100%;
+}
+
+/* Also fix overall main container max-widths for student-empowerment */
+body.student-empowerment main > .container,
+.student-empowerment main > .container {
+  max-width: 1280px !important;
+}
+
+/* Fix spacing in Five supports - reduce gaps */
+.supports-grid {
+  gap: clamp(0.75rem, 1.5vw, 1rem) !important;
+}
+
+/* Reduce vertical spacing in support cards */
+.supports-grid .deboxed-card {
+  padding-top: 1rem !important;
+  padding-bottom: 0.5rem !important;
+}
+.supports-grid .deboxed-card i {
+  margin-bottom: 0.75rem !important;
+}
+.supports-grid .deboxed-card h3 {
+  margin-bottom: 0.375rem !important;
+}
+
+/* Fix mentor section on NSRF - ensure readable and proper spacing */
+.nsrf .team-card {
+  width: 100%;
+  max-width: 280px;
+}
+
+.nsrf .team-card__content {
+  padding: 1rem 0 0.5rem !important;
+}
+
+/* Ensure body text in main content is readable */
+main p {
+  color: #334155; /* slate-700 */
+}
+
+.hero-clear p {
+  color: rgba(226, 232, 240, 0.98);
+}
+
+.supports-grid .deboxed-card h3 {
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  white-space: normal !important;
+  hyphens: none !important;
+}
+
+/* Improve overall container max-widths for better use of space */
+.container {
+  max-width: 1280px !important;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1400px !important;
+  }
+}
+
+/* Ensure editorial strip items use full width on mobile appropriately */
+@media (max-width: 640px) {
+  .editorial-strip {
+    gap: 1rem !important;
+  }
+  .editorial-strip__item {
+    padding: 0.75rem 0 !important;
+  }
+}
+
+/* Fix partner logos for mobile - only affects index.html collaborator section */
+@media (max-width: 480px) {
+  .partner-logo-flex-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px 16px !important;
+    padding: 20px 8px !important;
+    width: 100% !important;
+  }
+  
+  .partner-logo-flex-grid img {
+    max-width: 100% !important;
+    max-height: 60px !important;
+    height: 60px !important;
+    width: 100% !important;
+    object-fit: contain !important;
+    justify-self: center !important;
+    align-self: center !important;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .partner-logo-flex-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 24px 20px !important;
+    padding: 24px 12px !important;
+  }
+  
+  .partner-logo-flex-grid img {
+    max-width: 90% !important;
+    max-height: 70px !important;
+    height: 70px !important;
+    width: auto !important;
+    object-fit: contain !important;
+    justify-self: center !important;
+    align-self: center !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .partner-logo-flex-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 32px 24px !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .partner-logo-flex-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 48px 64px !important;
+    max-width: 1000px !important;
+  }
+}
+
+/* Partner logo mobile fix - specific to index collaborator section */
+.collaborators .partner-logo-flex-grid {
+  width: 100%;
+}
+
+/* Fix research spotlight - light section lead contrast and spacing */
+.research-spotlight .spotlight-lead {
+  color: #475569 !important; /* slate-600 */
+  max-width: 32ch !important;
+  line-height: 1.7 !important;
+  font-size: 1rem !important;
+}
+
+.research-spotlight .spotlight-sticky {
+  top: 100px !important;
+  padding-top: 20px !important;
+}
+
+.research-spotlight .spotlight-block {
+  padding: 32px 0 !important;
+  gap: 24px !important;
+}
+
+@media (max-width: 1024px) {
+  .research-spotlight {
+    padding: 80px 0 !important;
+  }
+  .spotlight-grid {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+    padding: 0 24px !important;
+  }
+  .spotlight-sticky {
+    position: static !important;
+    top: auto !important;
+    padding-top: 0 !important;
+  }
+  .spotlight-lead {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .research-spotlight {
+    padding: 60px 0 !important;
+  }
+  .spotlight-grid {
+    gap: 32px !important;
+    padding: 0 16px !important;
+  }
+  .spotlight-block {
+    grid-template-columns: 1fr !important;
+    padding: 24px 0 !important;
+    gap: 16px !important;
+  }
+}
+
+/* Reduce spacing in main sections across pages - conservative fixes */
+main.py-20,
+main.py-28 {
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+
+@media (max-width: 768px) {
+  main.py-20,
+  main.py-28 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .py-24 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  .py-16 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
+/* Fix deboxed card spacing - reduce excessive gaps */
+.deboxed-card {
+  padding-top: 1rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+.deboxed-card h2,
+.deboxed-card h3 {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.2 !important;
+}
+
+.deboxed-card p {
+  margin-top: 0.375rem !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.6 !important;
+}
+
+/* Improve container widths for better use of space */
+main > .container,
+section > .container {
+  max-width: 1280px !important;
+}
+
+/* Fix editorial-row spacing */
+.editorial-row {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+  gap: 1.5rem !important;
+}
+
+/* Fix framework cards and other cards spacing */
+.framework-card,
+.team-card,
+.step-card {
+  gap: 0.5rem !important;
+}
+
+.framework-card__title,
+.team-card__name {
+  margin-bottom: 0.25rem !important;
+}
+
+.framework-card__body,
+.team-card__role {
+  margin-top: 0.25rem !important;
+}
+
+/* Reduce hero bottom padding */
+.hero-clear {
+  padding-bottom: 4rem !important;
+}
+
+@media (max-width: 768px) {
+  .hero-clear {
+    padding-bottom: 2.5rem !important;
+  }
+}
+
+}
+
+/* Industry Practice clarity - subtle refinement */
+.industry-practice .framework-intro p,
+#industry-practice .framework-intro p {
+  color: #475569;
+  line-height: 1.7;
+}

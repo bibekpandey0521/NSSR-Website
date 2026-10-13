@@ -572,17 +572,67 @@
     var success = document.getElementById('newsletter-success');
     if (!form || !success) return;
 
+    // Set custom validity messages for field-specific validation
+    var firstNameInput = document.getElementById('first-name');
+    var lastNameInput = document.getElementById('last-name');
+    var emailInput = document.getElementById('email-address');
+    var consentInput = document.getElementById('privacy-consent');
+
+    if (firstNameInput) {
+      firstNameInput.setCustomValidity('First name is required');
+    }
+    if (lastNameInput) {
+      lastNameInput.setCustomValidity('Last name is required');
+    }
+    if (emailInput) {
+      emailInput.setCustomValidity('Please enter a valid email address');
+    }
+
     form.addEventListener('submit', function (event) {
+      // Reset custom validity messages
+      if (firstNameInput) firstNameInput.setCustomValidity('');
+      if (lastNameInput) lastNameInput.setCustomValidity('');
+      if (emailInput) emailInput.setCustomValidity('');
+
       if (!form.checkValidity()) {
-        form.reportValidity(); // Show native browser validation UI
+        event.preventDefault();
+        form.reportValidity();
         return;
       }
+
+      // Additional consent check with custom message
+      if (consentInput && !consentInput.checked) {
+        event.preventDefault();
+        consentInput.setCustomValidity('By submitting this form I agree with the privacy terms and conditions.');
+        consentInput.reportValidity();
+        return;
+      }
+
       event.preventDefault();
       success.classList.remove('hidden');
       form.reset();
+      // Reset custom validity after reset
+      setTimeout(function () {
+        if (firstNameInput) firstNameInput.setCustomValidity('First name is required');
+        if (lastNameInput) lastNameInput.setCustomValidity('Last name is required');
+        if (emailInput) emailInput.setCustomValidity('Please enter a valid email address');
+      }, 100);
       window.setTimeout(function () {
         success.classList.add('hidden');
       }, 5000);
+    });
+
+    // Prevent clicks inside form from triggering accidental submission
+    form.addEventListener('click', function (event) {
+      // Allow clicks on inputs, labels, and the button itself
+      var target = event.target;
+      if (target.tagName === 'INPUT' || target.tagName === 'LABEL' || target.className.includes('footer-form-submit')) {
+        return;
+      }
+      // Prevent click on empty form areas from submitting
+      if (target.form === form && !target.className.includes('footer-form-group')) {
+        event.preventDefault();
+      }
     });
   }
 
