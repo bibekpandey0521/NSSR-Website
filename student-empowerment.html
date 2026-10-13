@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Empowerment Initiative | NSSR</title>
     <link rel="icon" type="image/png" href="assets/images/bluelogonobg.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Unified NSSR design system -->
+    <link rel="stylesheet" href="assets/css/tailwind.css">    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">    <!-- Unified NSSR design system -->
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- End design system -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@300;400;600;700&family=Source+Serif+4:ital,wght@300;400;600;700&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
-</head>
-<body class="bg-white">
+    <link rel="stylesheet" href="assets/vendor/fonts/fonts.css"></head>
+<body class="bg-white student-empowerment">
     <!-- LIGHTBOX -->
     <div id="lightbox" onclick="closeLightbox()" class="fixed inset-0 z-[2000] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 cursor-pointer">
         <button class="absolute top-6 right-6 text-white text-3xl"><i class="fa-solid fa-xmark"></i></button>
@@ -22,7 +19,7 @@
     <div id="nav-placeholder"></div>
 
     <header class="hero-clear bg-slate-900 text-white">
-        <div class="container mx-auto px-6 max-w-6xl">
+        <div class="container mx-auto px-6">
             <div class="hero-media">
                 <img src="assets/images/SEI/out1.png" class="hero-media__img" alt="Students taking part in an NSSR outreach session">
                 <div class="hero-media__scrim"></div>
@@ -39,7 +36,7 @@
 
     <main>
         <section class="py-20 md:py-28">
-            <div class="container mx-auto px-6 max-w-6xl">
+<div class="container mx-auto px-6">
                 <div class="editorial-row">
                     <div>
                         <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Why SEI exists</span>
@@ -79,41 +76,41 @@
                     </div>
                 </div>
 
-                <div class="editorial-row mb-20">
-                    <div class="text-center mb-10 md:text-left">
+                <div class="editorial-row supports-row mb-20">
+                    <div class="supports-heading">
                         <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">How the program works</span>
                         <h2 class="text-3xl md:text-5xl font-black mt-3">Five practical supports</h2>
                     </div>
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+                    <div class="supports-grid">
                         <div class="deboxed-card">
                             <i class="fa-solid fa-flask text-blue-600 text-xl mb-4"></i>
-                            <h3 class="font-bold text-sm mb-2">Hands-on launch</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">Experiments across Physics, Chemistry, and Biology, plus STEM career awareness.</p>
+                            <h3 class="font-bold text-base md:text-sm mb-2">Hands-on launch</h3>
+                            <p class="text-sm md:text-xs text-slate-600 leading-relaxed">Experiments across Physics, Chemistry, and Biology, plus STEM career awareness.</p>
                         </div>
                         <div class="deboxed-card">
                             <i class="fa-solid fa-video text-blue-600 text-xl mb-4"></i>
-                            <h3 class="font-bold text-sm mb-2">Digital learning</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">Projectors, connectivity, and a shared learning library for ordinary lessons.</p>
+                            <h3 class="font-bold text-base md:text-sm mb-2">Digital learning</h3>
+                            <p class="text-sm md:text-xs text-slate-600 leading-relaxed">Projectors, connectivity, and a shared learning library for ordinary lessons.</p>
                         </div>
                         <div class="deboxed-card">
                             <i class="fa-solid fa-people-arrows text-blue-600 text-xl mb-4"></i>
-                            <h3 class="font-bold text-sm mb-2">Near-peer mentorship</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">Monthly concept clinics led by NSSR student researchers and advisors.</p>
+                            <h3 class="font-bold text-base md:text-sm mb-2">Near-peer mentorship</h3>
+                            <p class="text-sm md:text-xs text-slate-600 leading-relaxed">Monthly concept clinics led by NSSR student researchers and advisors.</p>
                         </div>
                         <div class="deboxed-card">
                             <i class="fa-solid fa-photo-film text-blue-600 text-xl mb-4"></i>
-                            <h3 class="font-bold text-sm mb-2">Content library</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">Syllabus-aligned videos organized by topic for teachers and students.</p>
+                            <h3 class="font-bold text-base md:text-sm mb-2">Content library</h3>
+                            <p class="text-sm md:text-xs text-slate-600 leading-relaxed">Syllabus-aligned videos organized by topic for teachers and students.</p>
                         </div>
                         <div class="deboxed-card">
                             <i class="fa-solid fa-book-open-reader text-blue-600 text-xl mb-4"></i>
-                            <h3 class="font-bold text-sm mb-2">Reference library</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">Guide books, model questions, past papers, and entrance preparation materials.</p>
+                            <h3 class="font-bold text-base md:text-sm mb-2">Reference library</h3>
+                            <p class="text-sm md:text-xs text-slate-600 leading-relaxed">Guide books, model questions, past papers, and entrance preparation materials.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="editorial-strip mb-20">
+                <div class="editorial-strip impact-stats-section mb-20">
                 <div class="editorial-strip__item">
                     <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">Impact we are planning</span>
                     <h2 class="text-3xl md:text-5xl font-black mt-4">A one-year plan for lasting reach.</h2>
@@ -146,29 +143,31 @@
                 </div>
 
                 <!-- Photo Gallery Section -->
-                <div class="editorial-row mb-16">
-                    <div class="text-center mb-10 md:text-left">
+                <div class="editorial-row gallery-row mb-16">
+                    <div class="gallery-heading">
                         <span class="font-oswald text-blue-600 uppercase tracking-widest text-xs font-bold">In the field</span>
                         <h2 class="text-3xl md:text-5xl font-black mt-3">Moments from the launch events.</h2>
                         <p class="text-slate-500 mt-4">Hands-on science reaching students across rural Nepal.</p>
                     </div>
-                    <div class="editorial-gallery-grid">
-                        <article class="editorial-gallery-item" onclick="openLightbox('assets/images/SEI/out1.png')">
-                            <img src="assets/images/SEI/out1.png" alt="Students taking part in an NSSR outreach session" loading="lazy">
-                            <div class="editorial-gallery-item__caption">Students engaging with science experiments</div>
-                        </article>
-                        <article class="editorial-gallery-item" onclick="openLightbox('assets/images/SEI/out2.png')">
-                            <img src="assets/images/SEI/out2.png" alt="Science equipment demonstration" loading="lazy">
-                            <div class="editorial-gallery-item__caption">Equipment demonstration</div>
-                        </article>
-                        <article class="editorial-gallery-item" onclick="openLightbox('assets/images/SEI/out3.png')">
-                            <img src="assets/images/SEI/out3.png" alt="NSSR team with students" loading="lazy">
-                            <div class="editorial-gallery-item__caption">NSSR team with participants</div>
-                        </article>
-                        <article class="editorial-gallery-item" onclick="openLightbox('assets/images/SEI/out4.png')">
-                            <img src="assets/images/SEI/out4.png" alt="Rural school science program in action" loading="lazy">
-                            <div class="editorial-gallery-item__caption">Hands-on lab session</div>
-                        </article>
+                    <div class="gallery-content">
+                        <div class="editorial-gallery-grid">
+                            <article class="editorial-gallery-item" onclick="openLightbox('assets/images/SEI/out1.png')">
+                                <img src="assets/images/SEI/out1.png" alt="Students taking part in an NSSR outreach session" loading="lazy">
+                                <div class="editorial-gallery-item__caption">Students engaging with science experiments</div>
+                            </article>
+                            <article class="editorial-gallery-item" onclick="openLightbox('assets/images/SEI/out2.png')">
+                                <img src="assets/images/SEI/out2.png" alt="Science equipment demonstration" loading="lazy">
+                                <div class="editorial-gallery-item__caption">Equipment demonstration</div>
+                            </article>
+                            <article class="editorial-gallery-item" onclick="openLightbox('assets/images/SEI/out3.png')">
+                                <img src="assets/images/SEI/out3.png" alt="NSSR team with students" loading="lazy">
+                                <div class="editorial-gallery-item__caption">NSSR team with participants</div>
+                            </article>
+                            <article class="editorial-gallery-item" onclick="openLightbox('assets/images/SEI/out4.png')">
+                                <img src="assets/images/SEI/out4.png" alt="Rural school science program in action" loading="lazy">
+                                <div class="editorial-gallery-item__caption">Hands-on lab session</div>
+                            </article>
+                        </div>
                     </div>
                 </div>
 

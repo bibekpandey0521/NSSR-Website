@@ -1,0 +1,231 @@
+/* ==========================================================================
+   NSSR — index.html (home page)
+   --------------------------------------------------------------------------
+   Dedicated, page-scoped stylesheet for the homepage. Loaded AFTER main.css.
+
+   WHY THIS FILE EXISTS
+   The homepage was authored against the Tailwind Play CDN plus a few
+   arbitrary-value utilities. The site now ships a locally compiled, offline
+   `tailwind.css`, and that build does not contain several utilities the
+   homepage relies on:
+       lg:grid-cols-[1fr_1.5fr]   (About outer grid)   -> missing
+       lg:grid-cols-2             (Mission/Vision)     -> missing
+       lg:gap-48                  (Mission/Vision)     -> missing
+   Those classes resolve to nothing, so both grids collapse to a single
+   column even on wide screens. Combined with a content column capped at
+   1160–1200px and headings capped at 36–60px, the whole page reads as a
+   small, left-heavy block floating in a large blank canvas.
+
+   Rather than sprinkle more utility classes that may or may not have been
+   generated, this file defines the real layout and type with explicit,
+   page-scoped classes. Nothing outside `.home-page` is affected, so the
+   rest of the site is untouched.
+   ========================================================================== */
+
+.home-page {
+  --home-max: 1320px;
+  --home-gutter: clamp(20px, 4vw, 48px);
+  --home-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --home-sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --home-ink: #0f172a;
+  --home-body: #475569;
+  --home-muted: #64748b;
+  --home-blue: #004aad;
+  --home-hairline: rgba(15, 23, 42, 0.12);
+}
+
+/* ==========================================================================
+   1. PAGE WIDTH
+   A wider, centred content column so the page uses the viewport instead of
+   sitting in the middle of a large empty canvas.
+   ========================================================================== */
+
+.home-page .container {
+  max-width: var(--home-max);
+}
+
+/* The About section's column is capped by an inline style and the
+   Institutional Framework panel by a slightly narrower rule in main.css;
+   both need `!important` / higher specificity to open up. */
+.home-page .about-section .container {
+  max-width: var(--home-max) !important;
+  padding: clamp(72px, 8vw, 128px) var(--home-gutter) !important;
+}
+
+.home-page .institutional-framework {
+  max-width: var(--home-max);
+  padding: clamp(72px, 8vw, 120px) var(--home-gutter);
+}
+
+.home-page .institutional-framework .container {
+  max-width: var(--home-max);
+}
+
+/* ==========================================================================
+   2. HERO
+   ========================================================================== */
+
+@media (min-width: 993px) {
+  .home-page .nssr-hero {
+    min-height: clamp(640px, 86vh, 940px);
+  }
+}
+
+.home-page .nssr-hero h1 {
+  font-size: clamp(2.75rem, 5.6vw, 5.5rem);
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+}
+
+.home-page .nssr-hero p {
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.7;
+  max-width: 46ch;
+}
+
+/* ==========================================================================
+   3. SECTION HEADINGS + EYEBROWS
+   `body h2` in main.css pins section headings at 36px on desktop; open the
+   scale up so section titles carry their weight on a wide layout.
+   ========================================================================== */
+
+.home-page .research-verticals h2,
+.home-page .recent-proceedings h2 {
+  font-size: clamp(2rem, 3.6vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.home-page .academic-caps {
+  letter-spacing: 0.2em;
+}
+
+/* ==========================================================================
+   3b. ABOUT — "Advancing student-led research in Nepal."
+   The outer 1fr / 1.5fr split and the 2-up Mission/Vision sub-grid are
+   defined here for real (their Tailwind classes were never generated).
+   ========================================================================== */
+
+.home-page .about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(40px, 5vw, 64px);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .home-page .about-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    gap: clamp(56px, 6vw, 96px);
+  }
+}
+
+.home-page .about-subgrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 3vw, 40px);
+}
+
+@media (min-width: 640px) {
+  .home-page .about-subgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(32px, 4vw, 64px);
+  }
+}
+
+/* ==========================================================================
+   3b. PRINCIPLES (Institutional Framework)
+   Strengthen hierarchy and rhythm; keep the editorial hairline cards.
+   ========================================================================== */
+
+.home-page .framework-aside__title {
+  font-size: clamp(2.25rem, 4.4vw, 3.25rem);
+}
+
+.home-page .pillars-grid {
+  gap: clamp(32px, 3.6vw, 52px);
+}
+
+.home-page .pillar-item {
+  padding-top: clamp(22px, 2.4vw, 30px) !important;
+}
+
+.home-page .pillar-item .framework-card__title {
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+}
+
+.home-page .pillar-item .framework-card__body {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--home-body);
+}
+
+/* On small phones the 2x2 pillar grid is too cramped to read. */
+@media (max-width: 560px) {
+  .home-page .pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ==========================================================================
+   4. RESEARCH FOCUS CARDS
+   main.css renders these at 12px body text inside 280px boxes — too small
+   to carry a section. Give them room and readable type.
+   ========================================================================== */
+
+.home-page .research-verticals .text-center {
+  margin-bottom: clamp(48px, 6vw, 88px);
+}
+
+.home-page .research-grid {
+  gap: clamp(16px, 1.6vw, 24px);
+}
+
+.home-page .research-focus-card {
+  min-height: clamp(240px, 22vw, 320px);
+  padding: clamp(26px, 2.4vw, 38px) clamp(18px, 2vw, 28px);
+}
+
+.home-page .research-focus-card .icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 18px;
+}
+
+.home-page .research-focus-card h4 {
+  font-size: clamp(1.1rem, 1.3vw, 1.35rem);
+  margin-bottom: 12px;
+}
+
+.home-page .research-focus-card p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 34ch;
+  color: var(--home-muted);
+}
+
+/* Two-up on tablet instead of main.css's forced single column. */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .home-page .research-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ==========================================================================
+   5. SECONDARY SECTIONS
+   ========================================================================== */
+
+/* Impact strip + dark stats band: give the numerals a little more presence. */
+.home-page .impact-stat__number {
+  font-size: clamp(2.5rem, 4.4vw, 4rem);
+}
+
+.home-page .home-stats .text-4xl {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+}
+
+/* Collaborating partners card — a touch more breathing room. */
+.home-page .collaborators .partner-logo-flex-grid {
+  gap: clamp(28px, 3vw, 48px) clamp(24px, 3vw, 52px);
+}
