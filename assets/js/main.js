@@ -1009,3 +1009,19 @@
     init();
   }
 }());
+
+document.addEventListener('DOMContentLoaded', function () {
+  var tabs = document.querySelectorAll('.nssr-explore .tab-btn');
+  tabs.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var tab = btn.getAttribute('data-tab');
+      tabs.forEach(function (b) {
+        var t = b.getAttribute('data-tab');
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+        var panel = document.getElementById('panel-' + t);
+        if (panel) panel.hidden = (t !== tab);
+      });
+    });
+  });
+});
