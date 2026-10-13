@@ -61,9 +61,14 @@
         { label: 'Volunteering', href: 'volunteering.html' }
       ]
     },
-    { label: 'Workshops', href: 'workshop.html' },
-    { label: 'Gallery', href: 'gallery.html' },
-    { label: 'Events', href: 'event.html' },
+    {
+      label: 'Explore',
+      children: [
+        { label: 'Workshops', href: 'explore.html?category=workshops' },
+        { label: 'Events', href: 'explore.html?category=events' },
+        { label: 'Gallery', href: 'explore.html?category=gallery' }
+      ]
+    },
     { label: 'Join Us', href: 'membership.html', variant: 'cta' }
   ];
 
@@ -71,9 +76,7 @@
     { label: 'Research', href: 'research.html' },
     { label: 'Outreach', href: 'outreach.html' },
     { label: 'Volunteering', href: 'volunteering.html' },
-    { label: 'Workshops', href: 'workshop.html' },
-    { label: 'Gallery', href: 'gallery.html' },
-    { label: 'Events Directory', href: 'event.html' },
+    { label: 'Explore NSSR', href: 'explore.html' },
     { label: 'Our Team', href: 'team.html' },
     { label: 'Membership', href: 'membership.html' }
   ];
