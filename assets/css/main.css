@@ -6918,3 +6918,140 @@ section > .container {
 @media (prefers-reduced-motion: reduce) {
   .tab-panel { animation: none !important; }
 }
+
+/* Student Empowerment page fixes */
+.student-empowerment .student-empowerment-content {
+  max-width: 100%;
+}
+
+/* Fix gallery grid on student-empowerment */
+.student-empowerment .gallery-section {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.student-empowerment .gallery-heading {
+  margin-bottom: 2rem;
+}
+
+.student-empowerment .editorial-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.student-empowerment .editorial-gallery-item {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface-sunken);
+}
+
+.student-empowerment .editorial-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-premium);
+}
+
+.student-empowerment .editorial-gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.student-empowerment .editorial-gallery-item__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity var(--transition-premium);
+}
+
+.student-empowerment .editorial-gallery-item:hover .editorial-gallery-item__caption {
+  opacity: 1;
+}
+
+/* Mobile: single column gallery with larger images */
+@media (max-width: 640px) {
+  .student-empowerment .editorial-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .student-empowerment .editorial-gallery-item {
+    aspect-ratio: 16/10;
+  }
+  
+  .student-empowerment .gallery-heading {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .student-empowerment .gallery-heading h2 {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+}
+
+/* Fix spacing before Partner With Us button */
+.student-empowerment .student-empowerment-content > .text-center {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.student-empowerment .student-empowerment-content > .text-center .btn-primary {
+  padding: 16px 40px;
+  font-size: 1rem;
+}
+
+/* Reduce excessive vertical gaps between editorial rows */
+.student-empowerment .editorial-row {
+  padding: var(--space-6) 0;
+}
+
+@media (max-width: 768px) {
+  .student-empowerment .editorial-row {
+    padding: var(--space-5) 0;
+  }
+  
+  .student-empowerment .editorial-row:not(:first-child) {
+    border-top: 1px solid var(--border-hairline);
+  }
+}
+
+/* Fix supports grid on mobile */
+.student-empowerment .supports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .student-empowerment .supports-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Fix impact stats grid on mobile */
+.student-empowerment .impact-stats-section .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .student-empowerment .impact-stats-section .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Ensure footer has proper spacing */
+.student-empowerment #footer-placeholder {
+  margin-top: 0;
+}
