@@ -77,3 +77,21 @@
     font-size: var(--font-size-xs);
   }
 }
+
+/* Ensure images in explore section tab panels are full color (no grayscale) */
+.nssr-explore .tab-panel img,
+.nssr-explore .tab-panel .tab-panel img,
+#panel-workshops img,
+#panel-events img,
+#panel-gallery img {
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+.nssr-explore .tab-panel article:hover img,
+#panel-workshops article:hover img,
+#panel-events article:hover img,
+#panel-gallery article:hover img {
+  filter: none !important;
+  -webkit-filter: none !important;
+}
