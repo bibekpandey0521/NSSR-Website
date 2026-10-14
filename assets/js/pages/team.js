@@ -12,7 +12,7 @@
         // Board tab with `.active`; this constant is the JavaScript-side
         // fallback so the page still opens on Advisory Board if that markup
         // class is ever lost.
-        var DEFAULT_TAB = 'advisory';
+        var DEFAULT_TAB = 'leadership';
 
         // Tab Navigation Logic
         function initTabNavigation() {
