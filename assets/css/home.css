@@ -224,8 +224,3 @@
 .home-page .home-stats .text-4xl {
   font-size: clamp(2rem, 3vw, 2.75rem);
 }
-
-/* Collaborating partners card — a touch more breathing room. */
-.home-page .collaborators .partner-logo-flex-grid {
-  gap: clamp(28px, 3vw, 48px) clamp(24px, 3vw, 52px);
-}
