@@ -220,7 +220,7 @@
     );
   }
 
-  function renderLink(item, currentPage) {
+  function renderLink(item, currentPage, alignEnd) {
     var active = isActiveItem(item, currentPage);
     var classes = ['nav-link'];
     if (item.variant === 'cta') classes.push('nav-cta');
@@ -240,7 +240,8 @@
       }).join('');
 
       return '' +
-        '        <li class="nav-dropdown-item' + (active ? ' is-active' : '') + '">' +
+        '        <li class="nav-dropdown-item' + (active ? ' is-active' : '') +
+        (alignEnd ? ' nav-dropdown-item--end' : '') + '">' +
         '          <div class="dropdown-trigger-wrapper">' +
         '            <span class="' + classes.join(' ') + '"' + attrs + '>' + escapeHtml(item.label) + '</span>' +
         '            <button class="dropdown-arrow-btn" type="button" aria-expanded="false" aria-controls="' +
@@ -260,8 +261,16 @@
   }
 
   function buildHeaderHTML(currentPage) {
-    var items = NAV_ITEMS.map(function (item) {
-      return renderLink(item, currentPage);
+    // The panel of the right-most dropdown is right-aligned (see
+    // `.nav-dropdown-item--end` in main.css) so its fixed width cannot run off
+    // the right edge of the viewport on narrower desktops.
+    var lastDropdownIndex = -1;
+    NAV_ITEMS.forEach(function (item, index) {
+      if (item.children) lastDropdownIndex = index;
+    });
+
+    var items = NAV_ITEMS.map(function (item, index) {
+      return renderLink(item, currentPage, index === lastDropdownIndex);
     }).join('');
 
     return '' +

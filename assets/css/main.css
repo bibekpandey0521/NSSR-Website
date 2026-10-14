@@ -794,6 +794,31 @@ body.nav-open { overflow: hidden; }
     visibility: visible;
     transform: translateY(0);
   }
+
+  /* The panel is a fixed 250px wide and normally opens left-aligned to its
+     trigger. The right-most trigger ("Explore") sits close enough to the
+     container edge that a left-aligned panel runs past the viewport between
+     ~1025px and ~1408px, so the browser clips it (body has overflow-x:hidden).
+     Right-aligning only that item keeps its panel beneath the trigger without
+     ever crossing the edge. main.js tags the item with `--end`. */
+  .nav-dropdown-item--end .nav-dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+
+  /* Invisible hover bridge across the 8px gap the panel leaves below the
+     trigger. Without it the pointer leaves the 29px trigger into dead space,
+     `:hover` drops, the panel returns to `visibility: hidden`, and — because
+     hidden elements are not hit-testable — the panel can never be re-entered,
+     so the mouse can never reach a dropdown link. */
+  .nav-dropdown-item::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: var(--space-2);
+  }
 }
 
 /* Mobile: explicit toggle only, so hover does not trap the drawer open. */
@@ -845,7 +870,9 @@ body.nav-open { overflow: hidden; }
   gap: 5px;
   width: 44px;
   height: 44px;
-  margin-right: -8px;
+  /* No negative margin: the 44px button box must sit flush with the same
+     container gutter as the brand, so the logo (left) and hamburger (right)
+     share identical 16px insets instead of 16px vs 8px. */
   background: none;
   border: 0;
   border-radius: var(--radius-sm);

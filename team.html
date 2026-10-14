@@ -36,13 +36,13 @@
             <aside class="team-category">
                 <h2 class="team-category__heading">Team</h2>
                 <nav class="team-category-nav" id="team-nav">
-                    <button type="button" data-tab="leadership" class="tab-link team-category-nav__item active">
+                    <button type="button" data-tab="leadership" class="tab-link team-category-nav__item" aria-selected="false">
                         Leadership
                     </button>
-                    <button type="button" data-tab="advisory" class="tab-link team-category-nav__item">
+                    <button type="button" data-tab="advisory" class="tab-link team-category-nav__item active" aria-selected="true">
                         Advisory Board
                     </button>
-                    <button type="button" data-tab="representatives" class="tab-link team-category-nav__item">
+                    <button type="button" data-tab="representatives" class="tab-link team-category-nav__item" aria-selected="false">
                         College Representatives
                     </button>
                 </nav>
@@ -51,7 +51,7 @@
             <!-- Right Content Area -->
             <main class="team-main">
                 <!-- Leadership Tab -->
-                <div id="leadership" class="team-tab-content active">
+                <div id="leadership" class="team-tab-content">
                     <div class="team-grid">
                     <!-- Manish Pandey -->
                     <article class="team-card">
@@ -162,7 +162,7 @@
                 </div>
 
                 <!-- Advisory Tab -->
-                <div id="advisory" class="team-tab-content">
+                <div id="advisory" class="team-tab-content active">
                     <div class="team-grid">
                     <!-- Prof. Dr. Hari Prasad Lamichhane -->
                     <article class="team-card">
