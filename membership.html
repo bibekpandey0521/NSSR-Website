@@ -3,309 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Participation Pathways | NSSR</title>
+    <title>Join Us | NSSR</title>
     <!-- Favicon / Logo in Tab -->
     <link rel="icon" type="image/png" href="assets/images/bluelogonobg.png">
-    
+
     <!-- Dependencies -->
-    <link rel="stylesheet" href="assets/css/tailwind.css">    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">    <!-- Unified NSSR design system -->
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+    <!-- Unified NSSR design system -->
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- End design system -->
-    <link rel="stylesheet" href="assets/vendor/fonts/fonts.css">    
+    <link rel="stylesheet" href="assets/vendor/fonts/fonts.css">
 </head>
 
 <body class="bg-white">
 
     <div id="nav-placeholder"></div>
 
-    <!-- 1. HERO SECTION -->
-    <header class="hero-clear pb-16 md:pb-24 bg-slate-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[url('assets/images/textures/carbon-fibre.png')]"></div>
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <span class="font-oswald text-blue-400 uppercase tracking-widest text-[10px] md:text-xs font-bold mb-4 block">Governance & Engagement Framework</span>
-            <h1 class="text-3xl md:text-6xl font-bold mb-6">Participation <span class="text-blue-400 italic font-light">Pathways</span></h1>
-            <p class="max-w-3xl mx-auto text-gray-400 text-sm md:text-base font-light leading-relaxed">
+    <main>
+
+    <!-- 1. HERO -->
+    <header class="join-hero hero-clear">
+        <div class="join-hero__media" aria-hidden="true">
+            <img src="assets/images/aspire/asp4.jpeg" alt="" class="join-hero__img">
+            <div class="join-hero__scrim"></div>
+        </div>
+        <div class="container join-hero__inner">
+            <span class="join-hero__eyebrow">
+                <i class="fa-solid fa-users" aria-hidden="true"></i> Governance &amp; Engagement Framework
+            </span>
+            <h1 class="join-hero__title">Join Nepal's <span class="join-hero__accent">student research community</span></h1>
+            <p class="join-hero__lead">
                 Discover your path within NSSR. Whether you are stepping in as a Volunteer, representing your academic institution as a College Representative, or driving governance as a General Member, NSSR offers structured avenues for personal growth, scientific impact, and leadership advancement.
             </p>
+            <div class="join-hero__actions">
+                <a href="#opportunities" class="btn-primary btn-lg">
+                    Explore Opportunities <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                </a>
+                <a href="#tracks" class="btn-hero-outline">See Participation Tracks</a>
+            </div>
         </div>
     </header>
 
-    <!-- 2. PARTICIPATION TRACKS OVERVIEW -->
-    <section id="tracks-overview" class="py-12 md:py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-8 md:mb-10">
-                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-slate-900">NSSR Participation Tracks</h2>
-                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4"></div>
-                <p class="text-gray-500 text-sm max-w-2xl mx-auto mt-4">
+    <!-- 2. PARTICIPATION OPPORTUNITIES -->
+    <section id="opportunities" class="join-section" aria-labelledby="opportunities-heading">
+        <div class="container">
+            <header class="join-section__head">
+                <span class="join-eyebrow">Ways to Participate</span>
+                <h2 id="opportunities-heading" class="join-section__title">Find the path that fits you</h2>
+                <p class="join-section__lead">
+                    NSSR offers several ways to get involved. Every option below is an existing NSSR program — pick the one that matches your interests and availability.
+                </p>
+            </header>
+
+            <div class="join-opp-grid">
+                <!-- Research & Learning -->
+                <a href="research.html" class="join-opp-card">
+                    <span class="join-opp-card__icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                    <h3 class="join-opp-card__title">Research &amp; Learning</h3>
+                    <p class="join-opp-card__text">Explore student-led research from across Nepal and find the guidance, mentorship, and skills to pursue your own questions.</p>
+                    <span class="join-opp-card__link">Explore research <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+
+                <!-- NSRF Summer Research Fellowship -->
+                <a href="nsrf.html" class="join-opp-card">
+                    <span class="join-opp-card__icon"><i class="fa-solid fa-flask" aria-hidden="true"></i></span>
+                    <h3 class="join-opp-card__title">NSRF Summer Research Fellowship</h3>
+                    <p class="join-opp-card__text">A 12-week, mentorship-driven fellowship connecting students with experienced mentors across seven research areas.</p>
+                    <span class="join-opp-card__link">View the fellowship <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+
+                <!-- Science Beyond the Classroom -->
+                <a href="science-beyond-classroom.html" class="join-opp-card">
+                    <span class="join-opp-card__icon"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i></span>
+                    <h3 class="join-opp-card__title">Science Beyond the Classroom</h3>
+                    <p class="join-opp-card__text">A nationwide talk-session series bringing young researchers into schools and colleges to make research and scientific thinking accessible.</p>
+                    <span class="join-opp-card__link">Explore the initiative <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+
+                <!-- Student Empowerment Initiative -->
+                <a href="student-empowerment.html" class="join-opp-card">
+                    <span class="join-opp-card__icon"><i class="fa-solid fa-seedling" aria-hidden="true"></i></span>
+                    <h3 class="join-opp-card__title">Student Empowerment Initiative</h3>
+                    <p class="join-opp-card__text">Hands-on science learning and sustained near-peer mentorship for underserved schools across Nepal.</p>
+                    <span class="join-opp-card__link">Explore the initiative <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+
+                <!-- Volunteering & Event Support -->
+                <a href="volunteering.html" class="join-opp-card">
+                    <span class="join-opp-card__icon"><i class="fa-solid fa-hands-helping" aria-hidden="true"></i></span>
+                    <h3 class="join-opp-card__title">Volunteering &amp; Event Support</h3>
+                    <p class="join-opp-card__text">Support NSSR workshops, symposiums, and rural field programs — registration, logistics, mentoring, photography, and more.</p>
+                    <span class="join-opp-card__link">See volunteer programs <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+
+                <!-- Workshops, Events & Gallery -->
+                <a href="explore.html" class="join-opp-card">
+                    <span class="join-opp-card__icon"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></span>
+                    <h3 class="join-opp-card__title">Workshops, Events &amp; Gallery</h3>
+                    <p class="join-opp-card__text">Join NSSR workshops and events throughout the year, and explore the gallery from across our programs.</p>
+                    <span class="join-opp-card__link">Browse workshops &amp; events <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PARTICIPATION TRACKS -->
+    <section id="tracks" class="join-section join-section--muted" aria-labelledby="tracks-heading">
+        <div class="container">
+            <header class="join-section__head">
+                <span class="join-eyebrow">Membership</span>
+                <h2 id="tracks-heading" class="join-section__title">NSSR Participation Tracks</h2>
+                <p class="join-section__lead">
                     NSSR recognizes distinct tracks of participation. Each track carries specific rights, responsibilities, fee obligations, and advancement opportunities.
                 </p>
-            </div>
+            </header>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Track 1: Volunteers -->
-                <div class="pathway-card bg-white p-5 rounded-2xl flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-blue-100 text-blue-700 font-oswald uppercase tracking-wider text-[11px] font-bold px-3 py-1 rounded-full">Entry Level</span>
-                            <span class="text-xs font-semibold text-gray-400"></span>
-                        </div>
-                        <h3 class="font-oswald text-2xl font-bold text-slate-900 mb-2">Volunteer</h3>
-                        <p class="text-xs text-gray-500 mb-4 leading-relaxed">
-                            The primary entry point into NSSR. Volunteers support specific events, campaigns, projects, and departmental activities while acquiring foundational skills.
-                        </p>
+            <div class="join-tracks">
+                <!-- Track 1: Volunteer -->
+                <article class="join-track">
+                    <span class="join-track__tag">Entry Level</span>
+                    <h3 class="join-track__title">Volunteer</h3>
+                    <p class="join-track__text">
+                        The primary entry point into NSSR. Volunteers support specific events, campaigns, projects, and departmental activities while acquiring foundational skills.
+                    </p>
 
-                        <div class="border-t border-slate-100 pt-4 space-y-3 text-xs text-gray-600">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-slate-700">Fee Obligation:</span>
-                                <span class="text-green-600 font-semibold">Exempt (Free)</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-slate-700">Appointing Authority:</span>
-                                <span>HR Department</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-slate-700">GA Voting Rights:</span>
-                                <span class="text-gray-400">Observer Only</span>
-                            </div>
-                        </div>
+                    <dl class="join-track__facts">
+                        <div class="join-track__fact"><dt>Fee Obligation</dt><dd>Exempt (Free)</dd></div>
+                        <div class="join-track__fact"><dt>Appointing Authority</dt><dd>HR Department</dd></div>
+                        <div class="join-track__fact"><dt>GA Voting Rights</dt><dd>Observer Only</dd></div>
+                    </dl>
 
-                        <ul class="text-xs space-y-2.5 my-4 text-gray-600 border-t border-slate-100 pt-3">
-                            <li><i class="fa-solid fa-check text-blue-600 mr-2"></i> Support specific campaigns and workshops</li>
-                            <li><i class="fa-solid fa-check text-blue-600 mr-2"></i> Gain hands-on project management experience</li>
-                            <li><i class="fa-solid fa-check text-blue-600 mr-2"></i> Eligible for 1-month observation for leadership roles</li>
-                        </ul>
+                    <ul class="join-track__list">
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Support specific campaigns and workshops</span></li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Gain hands-on project management experience</span></li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Eligible for 1-month observation for leadership roles</span></li>
+                    </ul>
+
+                    <hr class="join-track__rule">
+                    <p class="join-track__note"><strong>Advancement potential:</strong> May be appointed as College Representative, Sub-Executive, or Team Lead based on performance.</p>
+
+                    <div class="join-track__cta">
+                        <p class="join-track__status">Applications Open Now</p>
+                        <a href="https://forms.gle/n9pDEVRBSb9JSPVS7" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm">
+                            Apply Now
+                        </a>
                     </div>
+                </article>
 
-                    <div class="mt-3 pt-3 border-t border-slate-100">
-                        <span class="text-[11px] text-blue-600 font-bold uppercase tracking-wider block mb-2">Advancement Potential:</span>
-                        <p class="text-[11px] text-gray-500 italic">May be appointed as College Representative, Sub-Executive, or Team Lead based on performance.</p>
-                        <div class="mt-3 text-center">
-                            <p class="text-[11px] text-green-600 font-bold uppercase tracking-widest mb-3">Applications Open Now</p>
-                            <a href="https://forms.gle/n9pDEVRBSb9JSPVS7" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm btn-pill w-full">
-                                Apply Now
-                            </a>
-                        </div>
+                <!-- Track 2: College Representative (featured) -->
+                <article class="join-track join-track--featured">
+                    <span class="join-track__tag">Institutional Presence</span>
+                    <h3 class="join-track__title">College Representative</h3>
+                    <p class="join-track__text">
+                        Serves as the official NSSR ambassador within partner colleges and universities across Nepal, bridging NSSR with academic institutions.
+                    </p>
+
+                    <dl class="join-track__facts">
+                        <div class="join-track__fact"><dt>Fee Obligation</dt><dd>Exempt (1 Academic Year)</dd></div>
+                        <div class="join-track__fact"><dt>Appointing Authority</dt><dd>Outreach Department</dd></div>
+                        <div class="join-track__fact"><dt>Term</dt><dd>1 Academic Year (Renewable)</dd></div>
+                    </dl>
+
+                    <ul class="join-track__list">
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Official institutional representation &amp; authority</span></li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Priority access to NSSR fellowships &amp; workshops</span></li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Certificate of Appreciation upon term completion</span></li>
+                    </ul>
+
+                    <hr class="join-track__rule">
+                    <p class="join-track__note"><strong>Advancement potential:</strong> Direct consideration for departmental Sub-Executive and Executive leadership positions.</p>
+
+                    <div class="join-track__cta">
+                        <p class="join-track__status">Applications Open Now</p>
+                        <a href="https://forms.gle/csSUtYrEL4mw6QnJ8" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm">
+                            Apply Now
+                        </a>
                     </div>
-                </div>
+                </article>
 
-                <!-- Track 2: College Representatives -->
-                <div class="pathway-card bg-slate-900 text-white p-6 rounded-2xl flex flex-col justify-between shadow-xl">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-blue-600 text-white font-oswald uppercase tracking-wider text-[11px] font-bold px-3 py-1 rounded-full">Institutional Presence</span>
-                            <span class="text-xs font-semibold text-gray-400"></span>
-                        </div>
-                        <h3 class="font-oswald text-2xl font-bold mb-2">College Representative</h3>
-                        <p class="text-xs text-gray-300 mb-4 leading-relaxed">
-                            Serves as the official NSSR ambassador within partner colleges and universities across Nepal, bridging NSSR with academic institutions.
-                        </p>
+                <!-- Track 3: General Member -->
+                <article class="join-track">
+                    <span class="join-track__tag">Governance Member</span>
+                    <h3 class="join-track__title">General Member</h3>
+                    <p class="join-track__text">
+                        Formal voting members of NSSR who form the core democratic foundation of the organization and participate in General Assembly decisions.
+                    </p>
 
-                        <div class="border-t border-slate-800 pt-4 space-y-3 text-xs text-gray-300">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-gray-200">Fee Obligation:</span>
-                                <span class="text-blue-400 font-semibold">Exempt (1 Academic Year)</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-gray-200">Appointing Authority:</span>
-                                <span>Outreach Department</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-gray-200">Term:</span>
-                                <span>1 Academic Year (Renewable)</span>
-                            </div>
-                        </div>
+                    <dl class="join-track__facts">
+                        <div class="join-track__fact"><dt>Fee Obligation</dt><dd>NPR 500 / year</dd></div>
+                        <div class="join-track__fact"><dt>Appointing Authority</dt><dd>Executive Committee</dd></div>
+                        <div class="join-track__fact"><dt>GA Voting Rights</dt><dd>Full Voting Rights</dd></div>
+                    </dl>
 
-                        <ul class="text-xs space-y-2.5 my-4 text-gray-300 border-t border-slate-800 pt-3">
-                            <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Official institutional representation & authority</li>
-                            <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Priority access to NSSR fellowships & workshops</li>
-                            <li><i class="fa-solid fa-check text-blue-400 mr-2"></i> Certificate of Appreciation upon term completion</li>
-                        </ul>
+                    <ul class="join-track__list">
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Full voting rights in General Assembly (AGM)</span></li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Eligible to contest Executive positions</span></li>
+                        <li><i class="fa-solid fa-check" aria-hidden="true"></i><span>Access to research groups &amp; publication support</span></li>
+                    </ul>
+
+                    <hr class="join-track__rule">
+                    <p class="join-track__note"><strong>Advancement potential:</strong> Eligible to contest or be elected to Executive Committee leadership roles.</p>
+
+                    <div class="join-track__cta">
+                        <p class="join-track__status join-track__status--closed">Applications Currently Closed</p>
+                        <span class="join-track__disabled" aria-disabled="true">Apply Now</span>
                     </div>
-
-                    <div class="mt-3 pt-3 border-t border-slate-800">
-                        <span class="text-[11px] text-blue-400 font-bold uppercase tracking-wider block mb-2">Advancement Potential:</span>
-                        <p class="text-[11px] text-gray-400 italic">Direct consideration for departmental Sub-Executive and Executive leadership positions.</p>
-                        <div class="mt-3 text-center">
-                            <p class="text-[11px] text-green-400 font-bold uppercase tracking-widest mb-3">Applications Open Now</p>
-                            <a href="https://forms.gle/csSUtYrEL4mw6QnJ8" target="_blank" rel="noopener noreferrer" class="btn-primary btn-sm btn-pill w-full">
-                                Apply Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Track 3: General Members -->
-                <div class="pathway-card bg-white p-6 rounded-2xl flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-slate-100 text-slate-800 font-oswald uppercase tracking-wider text-[11px] font-bold px-3 py-1 rounded-full">Governance Member</span>
-                            <span class="text-xs font-semibold text-gray-400"></span>
-                        </div>
-                        <h3 class="font-oswald text-2xl font-bold text-slate-900 mb-2">General Member</h3>
-                        <p class="text-xs text-gray-500 mb-4 leading-relaxed">
-                            Formal voting members of NSSR who form the core democratic foundation of the organization and participate in General Assembly decisions.
-                        </p>
-
-                        <div class="border-t border-slate-100 pt-4 space-y-3 text-xs text-gray-600">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-slate-700">Fee Obligation:</span>
-                                <span class="text-blue-600 font-semibold">NPR 500 / year</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-slate-700">Appointing Authority:</span>
-                                <span>Executive Committee</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-slate-700">GA Voting Rights:</span>
-                                <span class="text-green-600 font-semibold">Full Voting Rights</span>
-                            </div>
-                        </div>
-
-                        <ul class="text-xs space-y-2.5 my-4 text-gray-600 border-t border-slate-100 pt-3">
-                            <li><i class="fa-solid fa-check text-blue-600 mr-2"></i> Full voting rights in General Assembly (AGM)</li>
-                            <li><i class="fa-solid fa-check text-blue-600 mr-2"></i> Eligible to contest Executive positions</li>
-                            <li><i class="fa-solid fa-check text-blue-600 mr-2"></i> Access to research groups & publication support</li>
-                        </ul>
-                    </div>
-
-                    <div class="mt-3 pt-3 border-t border-slate-100">
-                        <span class="text-[11px] text-blue-600 font-bold uppercase tracking-wider block mb-2">Advancement Potential:</span>
-                        <p class="text-[11px] text-gray-500 italic">Eligible to contest or be elected to Executive Committee leadership roles.</p>
-                        <div class="mt-3 text-center">
-                            <p class="text-[11px] text-slate-500 font-bold uppercase tracking-widest mb-3">Applications Currently Closed</p>
-                            <span class="w-full text-center bg-slate-200 text-slate-500 font-oswald uppercase tracking-widest text-xs py-3 rounded-full inline-block cursor-not-allowed">
-                                Apply Now
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- 3. PROGRESSION & LEADERSHIP ROADMAP -->
-    <section id="progression-flow" class="py-16 md:py-24 bg-slate-50 border-y border-slate-200">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h3 class="font-oswald uppercase tracking-widest text-xs font-bold text-blue-600">Career & Leadership Path</h3>
-                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-slate-900">How You Advance in NSSR</h2>
-                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4"></div>
-                <p class="text-gray-500 text-sm max-w-2xl mx-auto mt-4">
+    <!-- 4. PROGRESSION & LEADERSHIP ROADMAP -->
+    <section id="progression" class="join-section" aria-labelledby="progression-heading">
+        <div class="container">
+            <header class="join-section__head">
+                <span class="join-eyebrow">Career &amp; Leadership Path</span>
+                <h2 id="progression-heading" class="join-section__title">How You Advance in NSSR</h2>
+                <p class="join-section__lead">
                     In accordance with Article 3.7 and Chapter 8, NSSR offers a transparent, merit-based progression pipeline from entry-level participation to executive governance.
                 </p>
-            </div>
+            </header>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
-                
-                <!-- Step 1 -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative">
-                    <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-oswald font-bold flex items-center justify-center text-lg mb-4">1</div>
-                    <h4 class="font-oswald text-lg font-bold text-slate-900 mb-2">Entry & Engagement</h4>
-                    <p class="text-xs font-semibold text-blue-600 mb-2">Volunteer or College Rep</p>
-                    <p class="text-[12px] text-gray-500 leading-relaxed">
-                        Join NSSR through an open call. Support departmental projects, run campus initiatives, and build your track record.
-                    </p>
-                </div>
+            <div class="join-roadmap">
+                <article class="join-step">
+                    <div class="join-step__num">1</div>
+                    <h3 class="join-step__title">Entry &amp; Engagement</h3>
+                    <p class="join-step__kicker">Volunteer or College Rep</p>
+                    <p class="join-step__text">Join NSSR through an open call. Support departmental projects, run campus initiatives, and build your track record.</p>
+                </article>
 
-                <!-- Step 2 -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative">
-                    <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-oswald font-bold flex items-center justify-center text-lg mb-4">2</div>
-                    <h4 class="font-oswald text-lg font-bold text-slate-900 mb-2">Volunteer Observation</h4>
-                    <p class="text-xs font-semibold text-blue-600 mb-2">1-Month Performance Period</p>
-                    <p class="text-[12px] text-gray-500 leading-relaxed">
-                        Applicants for Sub-Executive roles complete a 1-month Volunteer observation period within the target department to demonstrate commitment and skill (Article 8.4).
-                    </p>
-                </div>
+                <article class="join-step">
+                    <div class="join-step__num">2</div>
+                    <h3 class="join-step__title">Volunteer Observation</h3>
+                    <p class="join-step__kicker">1-Month Performance Period</p>
+                    <p class="join-step__text">Applicants for Sub-Executive roles complete a 1-month Volunteer observation period within the target department to demonstrate commitment and skill (Article 8.4).</p>
+                </article>
 
-                <!-- Step 3 -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative">
-                    <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-oswald font-bold flex items-center justify-center text-lg mb-4">3</div>
-                    <h4 class="font-oswald text-lg font-bold text-slate-900 mb-2">Sub-Executive Role</h4>
-                    <p class="text-xs font-semibold text-blue-600 mb-2">Operational Leadership</p>
-                    <p class="text-[12px] text-gray-500 leading-relaxed">
-                        Appointed by Executive Committee for a 1-year tenure. Execute key operational duties within HR, IT, Outreach, Event, or Research departments.
-                    </p>
-                </div>
+                <article class="join-step">
+                    <div class="join-step__num">3</div>
+                    <h3 class="join-step__title">Sub-Executive Role</h3>
+                    <p class="join-step__kicker">Operational Leadership</p>
+                    <p class="join-step__text">Appointed by Executive Committee for a 1-year tenure. Execute key operational duties within HR, IT, Outreach, Event, or Research departments.</p>
+                </article>
 
-                <!-- Step 4 -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative">
-                    <div class="w-10 h-10 rounded-full bg-slate-900 text-white font-oswald font-bold flex items-center justify-center text-lg mb-4">4</div>
-                    <h4 class="font-oswald text-lg font-bold text-slate-900 mb-2">Executive Committee</h4>
-                    <p class="text-xs font-semibold text-blue-600 mb-2">Strategic & Board Governance</p>
-                    <p class="text-[12px] text-gray-500 leading-relaxed">
-                        Elected or appointed as Department Heads, Treasurer, Secretary, Vice President, or President with full EC voting power and policy governance.
-                    </p>
-                </div>
-
+                <article class="join-step join-step--final">
+                    <div class="join-step__num">4</div>
+                    <h3 class="join-step__title">Executive Committee</h3>
+                    <p class="join-step__kicker">Strategic &amp; Board Governance</p>
+                    <p class="join-step__text">Elected or appointed as Department Heads, Treasurer, Secretary, Vice President, or President with full EC voting power and policy governance.</p>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- 4. COMPARISON MATRIX -->
-    <section class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h3 class="font-oswald uppercase tracking-widest text-xs font-bold text-blue-600">Side-by-Side Comparison</h3>
-                <h2 class="text-3xl font-bold mt-2 text-slate-900">Track Features & Rights Matrix</h2>
-                <div class="w-16 h-1 bg-blue-600 mx-auto mt-4"></div>
-            </div>
+    <!-- 5. COMPARISON MATRIX -->
+    <section id="compare" class="join-section join-section--muted" aria-labelledby="compare-heading">
+        <div class="container">
+            <header class="join-section__head">
+                <span class="join-eyebrow">Side-by-Side Comparison</span>
+                <h2 id="compare-heading" class="join-section__title">Track Features &amp; Rights Matrix</h2>
+            </header>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-xs border-collapse border border-slate-200">
+            <div class="join-matrix-scroll">
+                <table class="join-matrix">
                     <thead>
-                        <tr class="bg-slate-900 text-white font-oswald uppercase tracking-wider">
-                            <th class="p-4 border border-slate-700">Feature / Rights</th>
-                            <th class="p-4 border border-slate-700">Volunteer</th>
-                            <th class="p-4 border border-slate-700">College Representative</th>
-                            <th class="p-4 border border-slate-700">General Member</th>
-                            <th class="p-4 border border-slate-700">Executive / Sub-Exec</th>
+                        <tr>
+                            <th scope="col">Feature / Rights</th>
+                            <th scope="col">Volunteer</th>
+                            <th scope="col">College Representative</th>
+                            <th scope="col">General Member</th>
+                            <th scope="col">Executive / Sub-Exec</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-200 text-gray-700">
-                        <tr class="hover:bg-slate-50">
-                            <td class="p-4 font-bold text-slate-900 border border-slate-200">Annual Fee</td>
-                            <td class="p-4 border border-slate-200 text-green-600 font-semibold">Exempt</td>
-                            <td class="p-4 border border-slate-200 text-green-600 font-semibold">Exempt (1 Year)</td>
-                            <td class="p-4 border border-slate-200 font-semibold">NPR 500 / year</td>
-                            <td class="p-4 border border-slate-200 font-semibold">NPR 500 / year</td>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Annual Fee</th>
+                            <td class="is-exempt">Exempt</td>
+                            <td class="is-exempt">Exempt (1 Year)</td>
+                            <td>NPR 500 / year</td>
+                            <td>NPR 500 / year</td>
                         </tr>
-                        <tr class="hover:bg-slate-50">
-                            <td class="p-4 font-bold text-slate-900 border border-slate-200">General Assembly Voting</td>
-                            <td class="p-4 border border-slate-200 text-gray-400">Observer Only</td>
-                            <td class="p-4 border border-slate-200 text-gray-400">Observer Only*</td>
-                            <td class="p-4 border border-slate-200 text-blue-600 font-bold"><i class="fa-solid fa-check mr-1"></i> Full Voting Rights</td>
-                            <td class="p-4 border border-slate-200 text-blue-600 font-bold"><i class="fa-solid fa-check mr-1"></i> Full Voting Rights</td>
+                        <tr>
+                            <th scope="row">General Assembly Voting</th>
+                            <td>Observer Only</td>
+                            <td>Observer Only*</td>
+                            <td class="is-strong"><i class="fa-solid fa-check" aria-hidden="true"></i> Full Voting Rights</td>
+                            <td class="is-strong"><i class="fa-solid fa-check" aria-hidden="true"></i> Full Voting Rights</td>
                         </tr>
-                        <tr class="hover:bg-slate-50">
-                            <td class="p-4 font-bold text-slate-900 border border-slate-200">Appointing Authority</td>
-                            <td class="p-4 border border-slate-200">HR Department</td>
-                            <td class="p-4 border border-slate-200">Outreach Department</td>
-                            <td class="p-4 border border-slate-200">Executive Committee</td>
-                            <td class="p-4 border border-slate-200">General Assembly / EC</td>
+                        <tr>
+                            <th scope="row">Appointing Authority</th>
+                            <td>HR Department</td>
+                            <td>Outreach Department</td>
+                            <td>Executive Committee</td>
+                            <td>General Assembly / EC</td>
                         </tr>
-                        <tr class="hover:bg-slate-50">
-                            <td class="p-4 font-bold text-slate-900 border border-slate-200">Standard Tenure</td>
-                            <td class="p-4 border border-slate-200">Project / Campaign Based</td>
-                            <td class="p-4 border border-slate-200">1 Academic Year</td>
-                            <td class="p-4 border border-slate-200">1 Year (Renewable)</td>
-                            <td class="p-4 border border-slate-200">1 Year (Renewable)</td>
+                        <tr>
+                            <th scope="row">Standard Tenure</th>
+                            <td>Project / Campaign Based</td>
+                            <td>1 Academic Year</td>
+                            <td>1 Year (Renewable)</td>
+                            <td>1 Year (Renewable)</td>
                         </tr>
-                        <tr class="hover:bg-slate-50">
-                            <td class="p-4 font-bold text-slate-900 border border-slate-200">Primary Focus</td>
-                            <td class="p-4 border border-slate-200">Assigned Tasks & Events</td>
-                            <td class="p-4 border border-slate-200">Campus Engagement</td>
-                            <td class="p-4 border border-slate-200">Governance & Research</td>
-                            <td class="p-4 border border-slate-200">Operational & Strategic Leadership</td>
+                        <tr>
+                            <th scope="row">Primary Focus</th>
+                            <td>Assigned Tasks &amp; Events</td>
+                            <td>Campus Engagement</td>
+                            <td>Governance &amp; Research</td>
+                            <td>Operational &amp; Strategic Leadership</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="text-[11px] text-gray-400 italic mt-3">* College Representatives and Volunteers hold observer status unless they separately hold General Membership.</p>
+            <p class="join-matrix__note">* College Representatives and Volunteers hold observer status unless they separately hold General Membership.</p>
         </div>
     </section>
 
+    <!-- 6. CLOSING CALL TO ACTION -->
+    <section class="join-cta" aria-labelledby="join-cta-heading">
+        <div class="container">
+            <h2 id="join-cta-heading" class="join-cta__title">Ready to join NSSR?</h2>
+            <p class="join-cta__text">
+                Applications for the Volunteer and College Representative tracks are open now. If you are unsure which path fits, reach out — we are happy to help.
+            </p>
+            <div class="join-cta__actions">
+                <a href="#tracks" class="btn-primary btn-lg">Apply to a track</a>
+                <a href="mailto:info@nssrnepal.org?subject=Join%20NSSR%20Inquiry" class="btn-hero-outline">Email us</a>
+            </div>
+        </div>
+    </section>
+
+    </main>
 
     <div id="footer-placeholder"></div>
 
