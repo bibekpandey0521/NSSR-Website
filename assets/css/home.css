@@ -76,7 +76,7 @@
 
    Supply the real layout here:
    - make the hero a flex container so the single in-flow child (`.container`,
-     the image/scrim/scroll indicator are absolutely positioned) can centre;
+     the image/scrim are absolutely positioned) can centre;
    - move the breathing band onto that child so the top gap is explicit and
      never depends on the (missing) utility;
    - zero the header's own padding so the responsive `.nssr-hero` paddings in
