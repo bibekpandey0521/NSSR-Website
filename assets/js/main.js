@@ -45,7 +45,7 @@
    */
   var NAV_ITEMS = [
     { label: 'Home', href: 'index.html' },
-    { label: 'Executives', href: 'team.html' },
+    { label: 'Team', href: 'team.html' },
     {
       label: 'Research',
       children: [
