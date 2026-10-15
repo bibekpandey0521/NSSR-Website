@@ -6891,7 +6891,11 @@ body:has(.editorial-gallery-grid) .editorial-row:has(.editorial-gallery-grid) {
 }
 
 @media (max-width: 1024px) {
-  .editorial-row:has(.editorial-gallery-grid) {
+  /* Match the specificity of the base split rule above (body + two :has()
+     classes) so this single-column override actually wins on tablets and
+     phones. The previous selector was less specific, so the two-column track
+     kept applying at mobile widths and squeezed the gallery into slivers. */
+  body:has(.editorial-gallery-grid) .editorial-row:has(.editorial-gallery-grid) {
     grid-template-columns: 1fr;
   }
   .editorial-row:has(.editorial-gallery-grid) .editorial-gallery-grid {
@@ -6902,6 +6906,48 @@ body:has(.editorial-gallery-grid) .editorial-row:has(.editorial-gallery-grid) {
 @media (max-width: 640px) {
   .editorial-row:has(.editorial-gallery-grid) .editorial-gallery-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* science-beyond-classroom.html: on phones the Track Record gallery becomes a
+   single column of large, full-width images with each caption stacked
+   underneath. The shared treatment overlays the caption on the image and only
+   reveals it on hover, so on touch devices the captions are never visible.
+   Scoped to .page-sbc so other pages keep their existing gallery styling. */
+@media (max-width: 768px) {
+  .page-sbc .editorial-row .editorial-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .page-sbc .editorial-row .editorial-gallery-item {
+    aspect-ratio: auto;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-sbc .editorial-row .editorial-gallery-item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 0.75rem;
+  }
+
+  .page-sbc .editorial-row .editorial-gallery-item:hover img {
+    transform: none;
+  }
+
+  .page-sbc .editorial-row .editorial-gallery-item__caption {
+    position: static;
+    opacity: 1;
+    background: none;
+    color: #334155;
+    text-align: center;
+    padding: 0.75rem 0.5rem 0;
+    font-size: 0.9rem;
   }
 }
 
