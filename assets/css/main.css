@@ -4861,6 +4861,24 @@ html, body { overflow-x: hidden; width: 100%; }
   }
 }
 
+/* NSSR phase strip: four columns need ~948px, which overflows the container
+   between 768px and ~1023px (the 4th phase was clipped). Wrap to a 2x2 grid
+   across that range; the divider borders stay on the sub-columns only. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nsrf .editorial-strip {
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+  .nsrf .editorial-strip__item {
+    flex: 1 1 calc(50% - var(--space-8));
+    min-width: 0;
+  }
+  .nsrf .editorial-strip__item:nth-child(odd) {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
 .editorial-row {
   display: grid;
   grid-template-columns: 1fr;
@@ -5296,6 +5314,16 @@ html, body { overflow-x: hidden; width: 100%; }
   padding: 40px 0 !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
+}
+
+/* The archive grids are injected inside a redundant single-item grid wrapper
+   (#workshops-container / #online-container, both .premium-card-grid). As a
+   grid item with `margin: 0 auto`, the archive grid resolved to its min-content
+   (~1040px) and overflowed the wrapper at roughly 769-1070px. Collapsing the
+   wrapper to a plain block lets the grid size to the container so its own
+   `auto-fill` columns resolve responsively at every width. */
+.premium-card-grid:has(> .archive-card-grid) {
+  display: block !important;
 }
 
 .editorial-card {
@@ -7555,6 +7583,13 @@ body.student-empowerment main > .container,
 .nsrf .text-center .max-w-2xl {
   margin-top: 1rem !important;
   margin-bottom: 0 !important;
+  /* The global unlayered `p { margin: 0 }` reset beats Tailwind's layered
+     `.mx-auto`, which left this description flush-left. Restore horizontal
+     auto margins (and the measure the `max-w-2xl` class intends) so it shares
+     the heading's centre axis. */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: var(--container-2xl) !important;
 }
 
 /* ==========================================================================
