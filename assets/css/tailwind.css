@@ -849,8 +849,8 @@
   .bg-\[radial-gradient\(circle_at_top_right\,_rgba\(37\,99\,235\,\.35\)\,_transparent_48\%\)\,linear-gradient\(135deg\,\#0f172a\,\#172554\)\] {
     background-image: radial-gradient(circle at top right, rgba(37,99,235,.35), transparent 48%),linear-gradient(135deg,#0f172a,#172554);
   }
-  .bg-\[url\(\'assets\/images\/textures\/carbon-fibre\.png\'\)\] {
-    background-image: url('assets/images/textures/carbon-fibre.png');
+  .bg-\[url\(\'\.\.\/images\/textures\/carbon-fibre\.png\'\)\] {
+    background-image: url('../images/textures/carbon-fibre.png');
   }
   .bg-\[url\(\'https\:\/\/www\.transparenttextures\.com\/patterns\/carbon-fibre\.png\'\)\] {
     background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
