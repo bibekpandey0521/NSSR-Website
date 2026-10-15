@@ -7803,48 +7803,33 @@ main p {
 }
 
 /* --------------------------------------------------------------------------
-   RESEARCH SPOTLIGHT — desktop card layout (>=1024px)
+   RESEARCH SPOTLIGHT — card grid (tablet and desktop, >=768px)
    --------------------------------------------------------------------------
-   Desktop-only polish layered over the base rules above. It:
-     · tightens the two-column gutter so the intro and the first card share a
-       baseline (the intro's 20px top padding used to push it out of line);
-     · turns the plain border-bottom rows into real cards — surface, hairline
-       border, radius and a restrained shadow — with even internal padding;
-     · restores consistent 20px gaps between cards.
-   The <=1023px presentation is left untouched, so mobile/tablet is unchanged.
+   The right column stops being a single stacked list and becomes a real card
+   grid that fills its container:
+     · `.spotlight-content` is a responsive grid (`auto-fit`), so tablets pick
+       the column count from the width available while wide desktops are pinned
+       to two cards per row by the >=1024px block below;
+     · every `.spotlight-block` is now a self-contained card — image on top,
+       text below — with one shared shape, so rows line up and nothing spills.
+   The <768px presentation (stacked, separated rows) is left untouched.
    Declarations are `!important` because every base rule they beat is too.
    -------------------------------------------------------------------------- */
-@media (min-width: 1024px) {
-  .research-spotlight .spotlight-grid {
-    gap: 56px !important;
-    align-items: start !important;
-  }
-
-  .research-spotlight .spotlight-sticky {
-    padding-top: 0 !important;
-  }
-
-  /* The `<br>` intends two lines, but at the old fixed 56px the first line
-     ("Where curiosity meets") wrapped, stranding "meets" on its own line.
-     Scale the heading with the column so the intended two-line break holds at
-     every desktop width, then let the lead fill the freed column. */
-  .research-spotlight .spotlight-heading {
-    font-size: clamp(2rem, 3.1vw, 2.875rem) !important;
-  }
-
-  .research-spotlight .spotlight-lead {
-    max-width: 100% !important;
-    font-size: 1.0625rem !important;
-  }
-
+@media (min-width: 768px) {
   .research-spotlight .spotlight-content {
-    gap: 20px !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+    gap: 24px !important;
+    align-items: stretch !important;
   }
 
   .research-spotlight .spotlight-block {
-    grid-template-columns: clamp(200px, 22vw, 280px) 1fr !important;
-    gap: 24px !important;
-    padding: 20px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto 1fr !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
     background-color: #ffffff !important;
     border: 1px solid rgba(15, 23, 42, 0.08) !important;
     border-radius: 16px !important;
@@ -7855,12 +7840,25 @@ main p {
   }
 
   .research-spotlight .spotlight-block__media {
-    aspect-ratio: 4 / 3;
-    border-radius: 12px;
+    aspect-ratio: 16 / 9;
+    border-radius: 0;
   }
 
   .research-spotlight .spotlight-block__body {
-    padding-left: 8px;
+    min-width: 0;
+    padding: 20px !important;
+    justify-content: flex-start !important;
+    transition: none;
+  }
+
+  .research-spotlight .spotlight-block__title {
+    font-size: clamp(1.05rem, 1.7vw, 1.3rem) !important;
+    overflow-wrap: break-word;
+  }
+
+  .research-spotlight .spotlight-block__excerpt {
+    max-width: 100% !important;
+    overflow-wrap: break-word;
   }
 
   /* Hover: lift the card surface subtly and drop the sideways text nudge. */
@@ -7872,6 +7870,45 @@ main p {
 
   .research-spotlight .spotlight-block:hover .spotlight-block__body {
     transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   RESEARCH SPOTLIGHT — desktop layout (>=1024px)
+   --------------------------------------------------------------------------
+   Two-column overall layout: the intro keeps the left third and the card grid
+   takes the remaining two thirds, so two equal cards fill each row instead of
+   one narrow column. The intro heading is scaled with its column so the
+   intended two-line break still holds, and the 20px top padding that used to
+   push the intro out of line with the first card is removed.
+   Declarations are `!important` because every base rule they beat is too.
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .research-spotlight .spotlight-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) !important;
+    gap: 56px !important;
+    align-items: start !important;
+  }
+
+  .research-spotlight .spotlight-content {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .research-spotlight .spotlight-sticky {
+    padding-top: 0 !important;
+  }
+
+  /* The `<br>` intends two lines, but at the old fixed 56px the first line
+     ("Where curiosity meets") wrapped, stranding "meets" on its own line.
+     Scale the heading with the column so the intended two-line break holds at
+     every desktop width, then let the lead fill the freed column. */
+  .research-spotlight .spotlight-heading {
+    font-size: clamp(1.5rem, 2.2vw, 2.4rem) !important;
+  }
+
+  .research-spotlight .spotlight-lead {
+    max-width: 100% !important;
+    font-size: 1.0625rem !important;
   }
 }
 
@@ -8132,4 +8169,21 @@ section > .container {
 /* Ensure footer has proper spacing */
 .student-empowerment #footer-placeholder {
   margin-top: 0;
+}
+
+/* ==========================================================================
+   HEADER — desktop nav spacing on narrow desktops
+   ---------------------------------------------------------------------------
+   The desktop menu only appears above 1024px (the drawer takes over at
+   <=1024px), and the seven-item menu (Home / Executives / Research / Outreach /
+   Explore / Blog / Join Us) sits beside the long brand name. Between ~1025px
+   and ~1120px that was just tight enough for the CTA label to wrap onto a
+   second line, so drop the 4px inter-item gap in that band only. Wider
+   desktops keep the original spacing, and every link still carries its own
+   12px side padding, so the labels never touch.
+   ========================================================================== */
+@media (min-width: 1025px) and (max-width: 1120px) {
+  .nav-links {
+    gap: 0;
+  }
 }

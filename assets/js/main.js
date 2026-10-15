@@ -69,6 +69,7 @@
         { label: 'Gallery', href: 'explore.html?category=gallery' }
       ]
     },
+    { label: 'Blog', href: 'blog.html' },
     { label: 'Join Us', href: 'membership.html', variant: 'cta' }
   ];
 
