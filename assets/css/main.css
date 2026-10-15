@@ -2715,6 +2715,34 @@ a:hover img,
   padding-bottom: var(--hero-top-band) !important;
 }
 
+/* Membership hero — finish the left alignment.
+   The container inside `header.hero-clear` is already pinned flush-left (the
+   shared `:has(header.hero-clear) … .container` rule), so the eyebrow and title
+   hug the left edge — but this hero's lead still used `margin: 0 auto` and its
+   action row still used `justify-content: center`, leaving the description and
+   buttons centred while the heading was left. Pull every element onto that same
+   left edge, cap the lead at a comfortable measure (~700px, close to the
+   heading's two balanced lines) and match the outline button's height to the
+   primary's. */
+.join-hero__inner {
+  text-align: left;
+}
+
+.join-hero__lead {
+  margin-left: 0;
+  margin-right: auto;
+  max-width: 700px;
+}
+
+.join-hero__actions {
+  justify-content: flex-start;
+}
+
+.join-hero__actions .btn-hero-outline {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
 /* 2. Shared section shell -------------------------------------------------- */
 .join-section {
   padding-block: var(--space-12);
