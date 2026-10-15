@@ -66,9 +66,36 @@
    2. HERO
    ========================================================================== */
 
-@media (min-width: 993px) {
+/* Navbar → hero transition + vertical balance.
+   The markup asks for a full-height, vertically centred hero
+   (`h-full flex items-center` on the inner container, `min-h-[88svh]` on the
+   header), but those arbitrary-value Tailwind utilities were never compiled
+   into tailwind.css, and `h-full` cannot resolve against a parent that only
+   has `min-height`. The block therefore collapsed to the very top edge and,
+   from 993px up, hugged the sticky navbar with no padding at all.
+
+   Supply the real layout here:
+   - make the hero a flex container so the single in-flow child (`.container`,
+     the image/scrim/scroll indicator are absolutely positioned) can centre;
+   - move the breathing band onto that child so the top gap is explicit and
+     never depends on the (missing) utility;
+   - zero the header's own padding so the responsive `.nssr-hero` paddings in
+     main.css cannot add a second offset. */
+.home-page .nssr-hero {
+  display: flex;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.home-page .nssr-hero > .container {
+  padding-top: var(--hero-top-band);
+  padding-bottom: var(--hero-top-band);
+}
+
+@media (min-width: 768px) {
   .home-page .nssr-hero {
-    min-height: clamp(640px, 86vh, 940px);
+    min-height: var(--hero-min-height);
   }
 }
 

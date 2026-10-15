@@ -187,6 +187,22 @@
   /* --- Layout ----------------------------------------------------------- */
   --nav-height: 64px;
   --nav-height-compact: 56px;
+
+  /* Navbar → hero breathing band.
+     The sticky header occupies flow space (see `.site-header`), so a hero
+     already begins directly below it and this is PURE gap: it must never add
+     `--nav-height` again, or the offset is counted twice and a dead band
+     opens up between the header and the hero copy. Shared by the homepage
+     hero and the Join Us hero so both transition into the page identically. */
+  --hero-top-band: clamp(48px, 7vh, 96px);
+
+  /* Shared minimum hero height for the two full-bleed image heroes
+     (index.html and membership.html). They use the same background image and
+     centre the same kind of copy block, so giving them one height keeps the
+     navbar → eyebrow distance consistent across both pages. Below 768px both
+     heroes are content-sized instead, which keeps the two mobile layouts
+     matching as well. */
+  --hero-min-height: min(760px, 86vh);
   --container-max: 1160px;
   --container-max-wide: 1280px;
   --container-max-xl: 1440px;
@@ -2606,7 +2622,7 @@ a:hover img,
 }
 
 @media (min-width: 768px) {
-  .join-hero { min-height: min(760px, 86vh); }
+  .join-hero { min-height: var(--hero-min-height); }
 }
 
 .join-hero__media { position: absolute; inset: 0; z-index: 0; }
@@ -2682,6 +2698,21 @@ a:hover img,
   .join-hero__actions { flex-direction: column; }
   .join-hero__actions .btn-primary,
   .join-hero__actions .btn-hero-outline { width: 100%; }
+}
+
+/* Navbar → hero transition.
+   The hero carries the shared `.hero-clear` class, which reserves
+   `calc(var(--nav-height) + 76px)` above the content. That double-counts the
+   navbar: the sticky `.site-header` already occupies its own height in normal
+   flow, so the hero starts below it with no overlap and needs no clearance for
+   it. The result was ~64px of dead space plus an asymmetric bottom padding that
+   shoved the (vertically centred) copy down. Anchor the hero to the shared
+   `--hero-top-band` instead, with a matching bottom band so the copy stays
+   centred. `!important` + the two-class selector outranks `.hero-clear` and its
+   responsive `!important` overrides. */
+.join-hero.hero-clear {
+  padding-top: var(--hero-top-band) !important;
+  padding-bottom: var(--hero-top-band) !important;
 }
 
 /* 2. Shared section shell -------------------------------------------------- */
