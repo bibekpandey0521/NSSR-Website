@@ -6117,7 +6117,12 @@ html, body { overflow-x: hidden; width: 100%; }
   background-color: #f8fafc !important;
   color: #0f172a;
   padding: 120px 0;
-  overflow: hidden;
+  /* `clip` (not `hidden`) keeps the section from becoming a scroll container.
+     `overflow: hidden` made this section the sticky scrollport, so the intro
+     column was clamped to it and pushed down by its `top` inset — the cause of
+     the intro sitting below the first card. */
+  overflow: hidden; /* fallback for engines without `clip` */
+  overflow: clip;
 }
 
 .spotlight-grid {
@@ -6308,8 +6313,9 @@ html, body { overflow-x: hidden; width: 100%; }
 
 .research-spotlight .spotlight-block__link:hover { color: #1e40af; }
 
-/* Responsive */
-@media (max-width: 1024px) {
+/* Responsive — collapse below Tailwind's `lg` boundary (1024px) so 1024px
+   still renders the two-column desktop layout, matching the rest of the site. */
+@media (max-width: 1023px) {
   .spotlight-grid {
     grid-template-columns: 1fr;
     gap: 60px;
@@ -7734,7 +7740,7 @@ main p {
   gap: 24px !important;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .research-spotlight {
     padding: 80px 0 !important;
   }
@@ -7765,6 +7771,79 @@ main p {
     grid-template-columns: 1fr !important;
     padding: 24px 0 !important;
     gap: 16px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   RESEARCH SPOTLIGHT — desktop card layout (>=1024px)
+   --------------------------------------------------------------------------
+   Desktop-only polish layered over the base rules above. It:
+     · tightens the two-column gutter so the intro and the first card share a
+       baseline (the intro's 20px top padding used to push it out of line);
+     · turns the plain border-bottom rows into real cards — surface, hairline
+       border, radius and a restrained shadow — with even internal padding;
+     · restores consistent 20px gaps between cards.
+   The <=1023px presentation is left untouched, so mobile/tablet is unchanged.
+   Declarations are `!important` because every base rule they beat is too.
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .research-spotlight .spotlight-grid {
+    gap: 56px !important;
+    align-items: start !important;
+  }
+
+  .research-spotlight .spotlight-sticky {
+    padding-top: 0 !important;
+  }
+
+  /* The `<br>` intends two lines, but at the old fixed 56px the first line
+     ("Where curiosity meets") wrapped, stranding "meets" on its own line.
+     Scale the heading with the column so the intended two-line break holds at
+     every desktop width, then let the lead fill the freed column. */
+  .research-spotlight .spotlight-heading {
+    font-size: clamp(2rem, 3.1vw, 2.875rem) !important;
+  }
+
+  .research-spotlight .spotlight-lead {
+    max-width: 100% !important;
+    font-size: 1.0625rem !important;
+  }
+
+  .research-spotlight .spotlight-content {
+    gap: 20px !important;
+  }
+
+  .research-spotlight .spotlight-block {
+    grid-template-columns: clamp(200px, 22vw, 280px) 1fr !important;
+    gap: 24px !important;
+    padding: 20px !important;
+    background-color: #ffffff !important;
+    border: 1px solid rgba(15, 23, 42, 0.08) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04),
+      0 16px 32px -24px rgba(15, 23, 42, 0.3) !important;
+    transition: border-color var(--transition-premium),
+      box-shadow var(--transition-premium);
+  }
+
+  .research-spotlight .spotlight-block__media {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+  }
+
+  .research-spotlight .spotlight-block__body {
+    padding-left: 8px;
+  }
+
+  /* Hover: lift the card surface subtly and drop the sideways text nudge. */
+  .research-spotlight .spotlight-block:hover {
+    border-color: rgba(15, 23, 42, 0.14) !important;
+    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.05),
+      0 22px 40px -26px rgba(15, 23, 42, 0.38) !important;
+  }
+
+  .research-spotlight .spotlight-block:hover .spotlight-block__body {
+    transform: none;
   }
 }
 
