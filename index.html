@@ -38,12 +38,14 @@
             <img src="assets/images/aspire/asp4.jpeg" 
                  class="w-full h-full object-cover object-center" 
                  alt="NSSR Research">
-            <!-- Stanford-style dark gradient overlay: transparent at top, opaque at bottom -->
-            <div class="absolute inset-0 bg-gradient-to-t from-nssrDark/98 via-nssrDark/70 to-transparent z-10"></div>
+            <!-- Translucent scrim for text legibility. The photograph itself is
+                 never dimmed; the dark gradient lives on this overlay layer
+                 (see `.home-hero__scrim` in home.css). -->
+            <div class="home-hero__scrim absolute inset-0 z-10"></div>
         </div>
         
-        <div class="container mx-auto px-6 relative z-20 h-full flex items-center pt-[calc(var(--nav-height,64px)+72px)] md:pt-[calc(var(--nav-height,64px)+96px)] pb-24">
-            <div class="max-w-4xl w-full animate-fade-in-up">
+        <div class="container mx-auto px-6 relative z-20 h-full flex items-center pb-24">
+            <div class="home-hero__copy max-w-4xl w-full animate-fade-in-up">
                 <span class="academic-caps text-blue-400 mb-4 md:mb-6 block text-[10px]">
                     <i class="fa-solid fa-microscope mr-2"></i> Scientific Inquiry • Kathmandu
                 </span>
@@ -57,7 +59,7 @@
                     The Nepalese Society of Student Researchers is a catalyst for academic excellence, fostering a culture where inquiry meets integrity.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4">
+                <div class="home-hero__actions flex flex-col sm:flex-row gap-4">
                     <a href="membership.html" class="btn-primary btn-lg btn-sharp">
                         Join the Society
                     </a>
