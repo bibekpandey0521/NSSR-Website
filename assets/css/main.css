@@ -327,34 +327,14 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
   line-height: 1.1;
   letter-spacing: -0.025em;
   text-wrap: balance;
+  /* Heading colour is pinned near-black so headings read as headings rather
+     than inheriting the body's grey `#475569` text colour. On dark heroes this
+     is overridden by the belt-and-braces rule further down, which forces white
+     on headings inside known dark-surface wrappers. */
   color: #0f172a;
-  /* NO `color` HERE, DELIBERATELY.
-     A declaration on the element itself always beats inheritance, so pinning
-     the heading colour here silently overrode the `text-white` that every dark
-     hero puts on its wrapper. The result was near-black #1d1d1f headings on a
-     #0f172a background — nine of them across eight pages, all effectively
-     invisible while the accent `<span>` inside stayed bright sky-blue and made
-     it look like only part of the line had rendered.
-
-     Colour is now inherited: `html body` supplies the default for light
-     surfaces, and a hero's own `text-white` reaches the heading as intended.
-     A belt-and-braces rule further down re-asserts white on known dark
-     surfaces, so the invariant does not rest on a wrapper class being present. */
 }
 
-body h1 { font-size: var(--font-size-5xl); }
-body h2 { font-size: var(--font-size-4xl); }
-body h3 { font-size: var(--font-size-3xl); }
-body h4 { font-size: var(--font-size-2xl); }
-body h5 { font-size: var(--font-size-xl); }
-body h6 { font-size: var(--font-size-lg); }
-
-@media (min-width: 768px) {
-  body h1 { font-size: var(--font-size-6xl); }
-  body h2 { font-size: var(--font-size-5xl); }
-  body h3 { font-size: var(--font-size-4xl); }
-}
-
+/* Heading scale: base sizes below, fluid bump to h1/h2 at >=768px. */
 body h1 { font-size: var(--font-size-4xl); }
 body h2 { font-size: var(--font-size-3xl); }
 body h3 { font-size: var(--font-size-2xl); }
@@ -542,17 +522,11 @@ html body :is(.bg-slate-900, .bg-slate-950, .bg-slate-800, .bg-nssrDark, .bg-nss
   padding-inline: var(--container-gutter);
 }
 
-.container-narrow { max-width: 820px; }
-.container-wide { max-width: var(--container-max-wide); }
-
 /* --- Section rhythm (8px grid) --------------------------------------------- */
 .section { padding-block: var(--space-9); }
-.section-sm { padding-block: var(--space-7); }
-.section-lg { padding-block: var(--space-11); }
 
 @media (min-width: 768px) {
   .section { padding-block: var(--space-10); }
-  .section-lg { padding-block: var(--space-12); }
 }
 
 /* --- Editorial grids -------------------------------------------------------- */
@@ -562,29 +536,8 @@ html body :is(.bg-slate-900, .bg-slate-950, .bg-slate-800, .bg-nssrDark, .bg-nss
   gap: var(--space-4);
 }
 
-.cluster {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3);
-}
-
-.grid-auto {
-  display: grid;
-  gap: var(--space-5);
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-
-@media (max-width: 1024px) {
-  .section-lg { padding-block: var(--space-10); }
-}
-
 @media (max-width: 480px) {
-  .section,
-  .section-sm,
-  .section-lg { padding-block: var(--space-8); }
-
-  .cluster { gap: var(--space-2); }
+  .section { padding-block: var(--space-8); }
 }
 
 /* --- Scroll lock while the mobile drawer is open --------------------------- */
@@ -1127,9 +1080,7 @@ body.nav-open { overflow: hidden; }
    ========================================================================== */
 
 /* --- Buttons: Solid blue, sharp 4px radius, premium transition --- */
-.btn-primary,
-.cta-btn,
-a.btn-blue {
+.btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1151,45 +1102,34 @@ a.btn-blue {
   box-shadow: none;
 }
 
-.btn-primary *,
-.cta-btn *,
-a.btn-blue * { color: #ffffff !important; }
+.btn-primary * { color: #ffffff !important; }
 
-.btn-primary svg,
-.cta-btn svg,
-a.btn-blue svg {
+.btn-primary svg {
   fill: currentColor;
   color: #ffffff !important;
   flex: 0 0 auto;
 }
 
-.btn-primary:hover,
-.cta-btn:hover,
-a.btn-blue:hover {
+.btn-primary:hover {
   color: #ffffff !important;
   background-color: #1e40af;
   transform: translateY(-2px);
   box-shadow: 0 12px 24px -8px rgba(29, 78, 216, 0.4);
 }
 
-.btn-primary:active,
-.cta-btn:active,
-a.btn-blue:active {
+.btn-primary:active {
   background-color: #1e3a8a;
   transform: translateY(0);
 }
 
-.btn-primary:focus-visible,
-.cta-btn:focus-visible,
-a.btn-blue:focus-visible {
+.btn-primary:focus-visible {
   outline: 2px solid #ffffff;
   outline-offset: 2px;
   box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.55);
 }
 
 /* --- Secondary: outline style --- */
-.btn-secondary,
-.btn-outline {
+.btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1211,67 +1151,31 @@ a.btn-blue:focus-visible {
   box-shadow: none;
 }
 
-.btn-secondary *,
-.btn-outline * { color: #0f172a !important; }
+.btn-secondary * { color: #0f172a !important; }
 
-.btn-secondary:hover,
-.btn-outline:hover {
+.btn-secondary:hover {
   color: #0f172a !important;
   background-color: #f8fafc;
   border-color: #cbd5e1;
 }
 
-.btn-secondary:focus-visible,
-.btn-outline:focus-visible {
+.btn-secondary:focus-visible {
   outline: 2px solid #1d4ed8;
   outline-offset: 2px;
 }
 
 /* --- Ghost: minimal --- */
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  padding: 14px 28px;
-  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
-    'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  line-height: 1.2;
-  color: #475569;
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: var(--transition-premium);
-}
-
-.btn-ghost:hover {
-  color: #0f172a;
-  background-color: #f8fafc;
-}
 
 /* Size modifiers */
 .btn-primary.btn-lg,
-.cta-btn.btn-lg,
-a.btn-blue.btn-lg,
-.btn-secondary.btn-lg,
-.btn-outline.btn-lg,
-.btn-ghost.btn-lg {
+.btn-secondary.btn-lg {
   padding: 18px 36px;
   font-size: 1rem;
   letter-spacing: 0.04em;
 }
 
 .btn-primary.btn-sm,
-.cta-btn.btn-sm,
-a.btn-blue.btn-sm,
-.btn-secondary.btn-sm,
-.btn-outline.btn-sm,
-.btn-ghost.btn-sm {
+.btn-secondary.btn-sm {
   padding: 10px 18px;
   font-size: var(--font-size-sm);
   letter-spacing: 0.05em;
@@ -1279,11 +1183,7 @@ a.btn-blue.btn-sm,
 
 /* Sharp variant (4px radius is default, so this is for emphasis) */
 .btn-primary.btn-sharp,
-.cta-btn.btn-sharp,
-a.btn-blue.btn-sharp,
-.btn-secondary.btn-sharp,
-.btn-outline.btn-sharp,
-.btn-ghost.btn-sharp { border-radius: 4px; }
+.btn-secondary.btn-sharp { border-radius: 4px; }
 
 /* --- Editorial Cards: Zero-box, hairline separators --- */
 .card {
@@ -1302,18 +1202,8 @@ a.btn-blue.btn-sharp,
 }
 
 /* --- Zero-box utility for any card-like element --- */
-.deboxed,
 .deboxed-card,
-.phase-card,
 .step-card,
-.mentor-card,
-.research-card,
-.outreach-card,
-.story-card,
-.initiative-card,
-.pathway-card,
-.framework-card,
-.event-card,
 .event-card-stanford {
   background: transparent !important;
   border: none !important;
@@ -1323,18 +1213,8 @@ a.btn-blue.btn-sharp,
   transition: none !important;
 }
 
-.deboxed:hover,
 .deboxed-card:hover,
-.phase-card:hover,
 .step-card:hover,
-.mentor-card:hover,
-.research-card:hover,
-.outreach-card:hover,
-.story-card:hover,
-.initiative-card:hover,
-.pathway-card:hover,
-.framework-card:hover,
-.event-card:hover,
 .event-card-stanford:hover {
   transform: none !important;
   box-shadow: none !important;
@@ -1348,27 +1228,12 @@ img {
 
 a:hover img,
 .group:hover img,
-.editorial-photo-row:hover .editorial-photo-row__image img,
 .editorial-gallery-item:hover img,
-.editorial-photo-row__image:hover img,
 .spotlight-block__media:hover img {
   transform: scale(1.04);
 }
 
 /* --- Hairline section separators --- */
-.section-divider {
-  height: 1px;
-  background: #e2e8f0;
-  margin: 4rem 0;
-  border: none;
-}
-
-.section-divider-strong {
-  height: 2px;
-  background: #0f172a;
-  margin: 4rem 0;
-  border: none;
-}
 
 /* --- Icon tiles (shared by feature/gain cards) ------------------------------ */
 /* Inline-SVG stand-in for a Font Awesome glyph.
@@ -1391,7 +1256,6 @@ a:hover img,
 
 /* Blue team/collaboration pictogram, #2563eb, matching the .text-blue-600 icons
    it sits beside. Three figures — two behind, one in front. */
-.icon-team { color: #2563eb; }
 
 /* Hidden definition host for the <symbol> sprite. */
 .icon-sprite {
@@ -1419,112 +1283,42 @@ a:hover img,
 /* A <use> shadow tree has no intrinsic box, so the host must supply one. */
 .icon-box use { color: inherit; }
 
-.icon-tile {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  margin-bottom: var(--space-3);
-  color: #2563eb;
-  background: #eef4ff;
-  border-radius: var(--radius-sm);
-}
-
-.icon-tile svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 /* Font Awesome equivalents inside the same tiles keep the box aligned. */
-.icon-tile > i {
-  color: #2563eb;
-  font-size: 1.25rem;
-  line-height: 1;
-}
 
 
 /* ==========================================================================
    Badges / chips
    ========================================================================== */
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-1) var(--space-3);
-  font-size: var(--font-size-2xs);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--leading-snug);
-  text-transform: uppercase;
-  letter-spacing: var(--heading-tracking-wide);
-  color: var(--accent-subtle-text);
-  background: var(--accent-subtle-bg);
-  border: 1px solid var(--border-accent);
-  border-radius: var(--radius-pill);
-}
-
-.badge-neutral {
-  color: var(--text-secondary);
-  background: var(--bg-surface-sunken);
-  border-color: var(--border-hairline);
-}
-
 
 /* ==========================================================================
-   FOOTER — Split Curved Layout
+   FOOTER
+   Two panels on one row with the copyright bar underneath:
+     .footer-left   navy navigation
+     .footer-right  Academic Dispatch newsletter — pale blue, curved left edge
    ========================================================================== */
 
 .site-footer {
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  background: #0f172a; /* Premium Stanford/MIT Navy */
-  margin: 0;
-  padding: 0;
-  border: none;
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
+  background: #0f172a; /* NSSR navy */
 }
 
-/* Left Panel - Deep Academic Slate (55%) */
+/* --- Left panel: navigation --- */
 .footer-left {
-  flex: 0 0 55%;
-  min-width: 320px;
+  flex: 1 1 55%;
+  min-width: 0;
   background: #0f172a;
   color: #ffffff;
-  padding: 0;
-  position: relative;
-  z-index: 1;
 }
 
 .footer-left-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 80px;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-@media (max-width: 1024px) {
-  .footer-left-grid {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer-left {
-    flex: 1 0 100%;
-    min-width: 0;
-  }
 }
 
 /* Brand Column */
@@ -1635,59 +1429,26 @@ a:hover img,
   width: 100%;
 }
 
-/* Right Panel - White (45%) with Curve */
+/* --- Right panel: Academic Dispatch newsletter (pale blue, curved left edge) --- */
 .footer-right {
-  flex: 1 1 45% !important;
-  min-width: 320px;
-  background: #ffffff;
-  color: #0f172a;
-  border-top-left-radius: 1000px;
-  border-bottom-left-radius: 1000px;
-  margin-left: -80px;
-  padding-left: 80px;
-  padding-right: 60px;
-  padding-top: 60px;
-  padding-bottom: 60px;
-  position: relative;
-  z-index: 2;
+  flex: 1 1 45%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  right: 0;
-  margin-right: 0;
-}
-
-@media (max-width: 1280px) {
-  .footer-right {
-    margin-left: -60px;
-    padding-left: 60px;
-    padding-right: 40px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .footer-right {
-    flex: 1 0 100%;
-    min-width: 0;
-    border-radius: 0;
-    margin-left: 0;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 48px;
-    padding-bottom: 48px;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer-right {
-    padding: 32px 24px;
-  }
+  background: #EEF4FF;
+  color: #0f172a;
+  border-radius: 1000px 0 0 1000px; /* oversized curve on the left edge */
+  margin-left: -80px;               /* the curve overlaps the navy panel */
+  padding: 60px 60px 60px 80px;     /* left padding keeps the content gutter */
+  position: relative;
+  z-index: 1;
 }
 
 .footer-right-content {
+  width: 100%;
   max-width: 480px;
   margin: 0 auto;
-  width: 100%;
 }
 
 .footer-newsletter-title {
@@ -1717,14 +1478,8 @@ a:hover img,
 
 .footer-form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 16px;
-}
-
-@media (max-width: 640px) {
-  .footer-form-row {
-    grid-template-columns: 1fr;
-  }
 }
 
 .footer-form-group {
@@ -1849,17 +1604,10 @@ a:hover img,
 
 /* Copyright Bar */
 .footer-copyright {
-  width: 100%;
+  flex: 1 1 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 20px 0;
-  background: #0b1120; /* Slightly darker than main slate for depth */
-  order: 3;
-}
-
-@media (max-width: 768px) {
-  .footer-copyright {
-    order: 3;
-  }
+  background: #0b1120; /* slightly darker than the navy panels, for depth */
 }
 
 .footer-copyright p {
@@ -1870,24 +1618,46 @@ a:hover img,
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Responsive stacking for very small screens */
-@media (max-width: 768px) {
-  .site-footer {
-    flex-direction: column;
-  }
-  
-  .footer-left {
-    flex: 1 0 100%;
-    order: 1;
-  }
-  
+/* --- Responsive: stack the panels, then tighten spacing on small screens --- */
+@media (max-width: 1024px) {
+  .footer-left,
   .footer-right {
-    flex: 1 0 100%;
-    order: 2;
+    flex: 1 1 100%;
   }
-  
-  .footer-copyright {
-    order: 3;
+
+  .footer-left-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+
+  .footer-right {
+    border-radius: 0; /* a full-width panel needs no curve */
+    margin-left: 0;
+    padding: 48px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-right {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-newsletter-title {
+    font-size: 1.6rem;
+  }
+
+  .footer-form-submit {
+    width: 100%;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 }
 
@@ -1918,9 +1688,7 @@ a:hover img,
   .site-header,
   .nav-menu,
   .nav-link,
-  .btn-primary,
-  .cta-btn,
-  a.btn-blue {
+  .btn-primary {
     transition: none !important;
   }
 }
@@ -1953,14 +1721,6 @@ a:hover img,
     ========================================================================== */
 
 /* Hero background image layer */
- .nssr-hero__media {
-   position: absolute;
-   inset: 0;
-   z-index: 0;
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
- }
 
 /* Hero overlay — single, consistent dark scrim for text contrast */
 .nssr-hero__overlay {
@@ -1978,10 +1738,7 @@ a:hover img,
    context for `.nssr-hero__overlay` / `__content` and centre its content.
    Scoped to these classes on purpose so index.html's existing `.nssr-hero`
    keeps its own full-bleed, bottom-aligned composition. */
-.nssr-premium-blue,
-.nssr-premium-blue--strong,
-.nssr-premium-blue--subtle,
-.nssr-premium-blue--with-media {
+.nssr-premium-blue--strong {
   position: relative;
   display: flex;
   align-items: center;
@@ -1991,32 +1748,13 @@ a:hover img,
 }
 
 @media (max-width: 768px) {
-  .nssr-premium-blue,
-  .nssr-premium-blue--strong,
-  .nssr-premium-blue--subtle,
-  .nssr-premium-blue--with-media {
+  .nssr-premium-blue--strong {
     min-height: auto;
     padding-block: var(--space-block-md);
   }
 }
 
 /* Base premium blue background — deep navy with subtle tonal depth */
-.nssr-premium-blue {
-  background-color: var(--nssr-navy-deep);
-  background-image:
-    /* Subtle radial highlight behind content focal area */
-    radial-gradient(ellipse 80% 60% at 50% 40%,
-      rgba(21, 94, 239, 0.18) 0%,
-      rgba(13, 33, 71, 0) 60%),
-    /* Very subtle horizontal tonal shift */
-    linear-gradient(180deg,
-      var(--nssr-navy-deep) 0%,
-      var(--nssr-navy) 45%,
-      var(--nssr-navy-elevated) 55%,
-      var(--nssr-navy) 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
 
 /* Variant: stronger focal highlight for primary heroes */
 .nssr-premium-blue--strong {
@@ -2032,80 +1770,19 @@ a:hover img,
 }
 
 /* Variant: softer, more restrained for secondary sections */
-.nssr-premium-blue--subtle {
-  background-image:
-    radial-gradient(ellipse 70% 50% at 50% 45%,
-      rgba(21, 94, 239, 0.12) 0%,
-      rgba(13, 33, 71, 0) 65%),
-    linear-gradient(180deg,
-      var(--nssr-navy-deep) 0%,
-      var(--nssr-navy) 50%,
-      var(--nssr-navy) 100%);
-}
 
 /* Variant: with background image — image provides texture, gradient provides depth */
-.nssr-premium-blue--with-media {
-  background-image:
-    radial-gradient(ellipse 85% 65% at 50% 40%,
-      rgba(21, 94, 239, 0.15) 0%,
-      rgba(13, 33, 71, 0) 60%),
-    linear-gradient(180deg,
-      rgba(7, 20, 47, 0.95) 0%,
-      rgba(13, 33, 71, 0.85) 50%,
-      rgba(17, 42, 94, 0.9) 100%);
-}
-
-/* Text color utilities for premium blue backgrounds */
-.nssr-premium-blue .text-on-premium-blue,
-.nssr-premium-blue--strong .text-on-premium-blue,
-.nssr-premium-blue--subtle .text-on-premium-blue,
-.nssr-premium-blue--with-media .text-on-premium-blue {
-  color: #ffffff;
-}
-
-.nssr-premium-blue .text-on-premium-blue-muted,
-.nssr-premium-blue--strong .text-on-premium-blue-muted,
-.nssr-premium-blue--subtle .text-on-premium-blue-muted,
-.nssr-premium-blue--with-media .text-on-premium-blue-muted {
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.nssr-premium-blue .text-on-premium-blue-subtle,
-.nssr-premium-blue--strong .text-on-premium-blue-subtle,
-.nssr-premium-blue--subtle .text-on-premium-blue-subtle,
-.nssr-premium-blue--with-media .text-on-premium-blue-subtle {
-  color: rgba(255, 255, 255, 0.65);
-}
-
-.nssr-premium-blue .text-on-premium-blue-accent,
-.nssr-premium-blue--strong .text-on-premium-blue-accent,
-.nssr-premium-blue--subtle .text-on-premium-blue-accent,
-.nssr-premium-blue--with-media .text-on-premium-blue-accent {
-  color: var(--nssr-blue-soft);
-}
 
 /* Ensure headings inherit correct colors on premium blue */
-.nssr-premium-blue h1,
 .nssr-premium-blue--strong h1,
-.nssr-premium-blue--subtle h1,
-.nssr-premium-blue--with-media h1,
-.nssr-premium-blue h2,
 .nssr-premium-blue--strong h2,
-.nssr-premium-blue--subtle h2,
-.nssr-premium-blue--with-media h2,
-.nssr-premium-blue h3,
-.nssr-premium-blue--strong h3,
-.nssr-premium-blue--subtle h3,
-.nssr-premium-blue--with-media h3 {
+.nssr-premium-blue--strong h3 {
   color: #ffffff;
 }
 
 /* Respect prefers-reduced-motion for any background animations */
 @media (prefers-reduced-motion: reduce) {
-  .nssr-premium-blue,
-  .nssr-premium-blue--strong,
-  .nssr-premium-blue--subtle,
-  .nssr-premium-blue--with-media {
+  .nssr-premium-blue--strong {
     background-attachment: scroll;
   }
 }
@@ -2120,11 +1797,6 @@ a:hover img,
    padding: var(--space-8) var(--container-gutter);
    text-align: center;
    color: #ffffff;
- }
-
- .nssr-hero__content--left {
-   text-align: left;
-   align-items: flex-start;
  }
 
  /* Hero eyebrow / kicker */
@@ -2173,87 +1845,29 @@ a:hover img,
   font-weight: 300;
 }
 
-.nssr-hero__content--left .nssr-hero__description {
-  margin-left: 0;
-  margin-right: auto;
-}
-
- /* Hero CTA group — aligned with content */
- .nssr-hero__actions {
-   display: flex;
-   flex-wrap: wrap;
-   gap: var(--space-3);
-   justify-content: center;
-   margin-top: var(--space-2);
- }
-
- .nssr-hero__content--left .nssr-hero__actions {
-   justify-content: flex-start;
- }
-
-/* Mobile: stack buttons vertically */
-@media (max-width: 640px) {
-  .nssr-hero__actions:not(.nssr-hero__actions--home) {
-    flex-direction: column;
-    width: 100%;
-  }
-  .nssr-hero__actions:not(.nssr-hero__actions--home) .btn-primary,
-  .nssr-hero__actions:not(.nssr-hero__actions--home) .btn-secondary,
-  .nssr-hero__actions:not(.nssr-hero__actions--home) .btn-outline {
-    width: 100%;
-    justify-content: center;
-  }
-}
+/* Hero CTA group — aligned with content */
 
 /* Scroll indicator */
- .nssr-hero__scroll {
-   position: absolute;
-   bottom: var(--space-6);
-   left: var(--container-gutter);
-   z-index: 2;
-   display: none;
-   flex-direction: column;
-   align-items: flex-start;
-   gap: var(--space-1);
-   color: rgba(255, 255, 255, 0.4);
-   font-size: var(--font-size-2xs);
-   text-transform: uppercase;
-   letter-spacing: 0.3em;
- }
-
- @media (min-width: 768px) {
-   .nssr-hero__scroll { display: flex; }
- }
-
- .nssr-hero__scroll-line {
-   width: 1px;
-   height: 48px;
-   background: linear-gradient(to top, #60a5fa, transparent);
- }
 
  /* Ensure buttons in hero have proper contrast */
  .nssr-hero .btn-primary,
- .nssr-hero .btn-secondary,
- .nssr-hero .btn-outline {
+ .nssr-hero .btn-secondary {
    font-weight: 600;
  }
 
- .nssr-hero .btn-secondary,
- .nssr-hero .btn-outline {
+ .nssr-hero .btn-secondary {
    color: #ffffff !important;
    border-color: rgba(255, 255, 255, 0.3);
    background: rgba(255, 255, 255, 0.1);
  }
 
- .nssr-hero .btn-secondary:hover,
- .nssr-hero .btn-outline:hover {
+ .nssr-hero .btn-secondary:hover {
    color: #ffffff !important;
    background: rgba(255, 255, 255, 0.2);
    border-color: rgba(255, 255, 255, 0.5);
  }
 
- .nssr-hero .btn-secondary *,
- .nssr-hero .btn-outline * { color: #ffffff !important; }
+ .nssr-hero .btn-secondary * { color: #ffffff !important; }
 
 
  /* ==========================================================================
@@ -2288,20 +1902,10 @@ a:hover img,
   .nssr-draw-line.is-visible { animation: none; opacity: 1; transform: scale(1); }
 }
 
-/* Image motion without desaturating the photography. */
-.hover-color-img { transition: transform var(--transition-premium); }
-.group:hover .hover-color-img { transform: scale(1.05); }
-
 /* Animation: Ken Burns (subtle zoom). */
 @keyframes ken-burns {
   0% { transform: scale(1); }
   100% { transform: scale(1.15); }
-}
-
-.animate-ken-burns {
-  animation: ken-burns 25s ease-out infinite alternate;
-  will-change: transform;
-  backface-visibility: hidden;
 }
 
 /* Animation: fade in up. */
@@ -2314,53 +1918,7 @@ a:hover img,
   animation: fade-in-up 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
-.delay-300 { animation-delay: 0.3s; }
-.delay-600 { animation-delay: 0.6s; }
-
-/* Only the hero slides get the dark background. */
-.mainSwiper .swiper-slide {
-  background-color: #0f172a;
-  overflow: hidden;
-}
-
-/* Partner/collaborator slides stay white/transparent. */
-.partnerSwiper .swiper-slide { background-color: transparent !important; }
-.partnerSwiper .swiper-wrapper { transition-timing-function: linear !important; }
-
-/* Swiper pagination styling. */
-.swiper-pagination-bullet {
-  background: rgba(255, 255, 255, 0.2) !important;
-  opacity: 1 !important;
-  width: 30px !important;
-  height: 2px !important;
-  border-radius: 0 !important;
-  transition: all var(--transition-premium) !important;
-}
-
-.swiper-pagination-bullet-active {
-  background: #60a5fa !important;
-  width: 60px !important;
-}
-
-
 /* --- nsrf.html ------------------------------------------------------------ */
-.phase-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-  transition: none;
-}
-
-.mentor-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-  transition: none;
-}
 
 
 /* --- research-pathways.html ------------------------------------------------ */
@@ -2375,25 +1933,9 @@ a:hover img,
 
 
 /* --- research.html --------------------------------------------------------- */
-.research-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-  transition: none;
-}
 
 
 /* --- outreach.html --------------------------------------------------------- */
-.outreach-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-  transition: none;
-}
 
 
 /* --- volunteering.html — Volunteer Programs Grid --- */
@@ -2581,23 +2123,6 @@ a:hover img,
 
 
 /* --- science-beyond-classroom.html & student-empowerment.html --------------- */
-.story-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-  transition: none;
-}
-
-.initiative-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-  transition: none;
-}
 
 
 /* --- membership.html (the "Join Us" page) ---------------------------------
@@ -3218,9 +2743,6 @@ a:hover img,
   transition: none;
 }
 
-.social-link { transition: var(--transition-premium); }
-.social-link:hover { color: #1d4ed8; transform: scale(1.05); }
-
 
 /* --- blog.html ------------------------------------------------------------- */
 /* Reading progress bar, pinned above the header. */
@@ -3271,15 +2793,13 @@ a:hover img,
 
 .fade-in { animation: fadeIn 0.6s ease forwards; }
 
+/* Shared entrance animation: used by .fade-in (blog), .tab-content (event) and
+   .tab-panel (index). Defined once here; a previous duplicate further down the
+   file silently shadowed this block. */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-
-/* --- event.html ------------------------------------------------------------ */
-.hero-pt { padding-top: 8rem; }
-@media (min-width: 768px) { .hero-pt { padding-top: 10rem; } }
 
 #event-detail-view { display: none; }
 .fade-up { animation: fadeUp 0.6s forwards; }
@@ -3300,7 +2820,7 @@ a:hover img,
    --------------------
    Section 2 of this file contains:
 
-       html body a        { color: var(--accent-primary) }   /* (0,0,3) */
+       html body a        { color: var(--accent-primary) }   (0,0,3)
        html body a:hover  { color: var(--accent-primary-hover) }
 
    Specificity is compared as (inline, CLASS, TYPE) and the first non-zero
@@ -3336,73 +2856,50 @@ a:hover img,
    button "loses" its text the moment the cursor lands on it.
    ========================================================================== */
 
-/* --- Shared surface selector ------------------------------------------------
-   Repeated per state so the four state blocks below can never drift apart.
-   `.nav-cta` is the nav "JOIN US" pill; the [class~=] selectors catch raw
-   Tailwind blue utilities written straight into markup. */
+
 html body a.btn-primary,
-html body a.cta-btn,
-html body a.btn-blue,
 html body a.nav-cta,
-html body a.btn-ghost-blue,
 html body a[class~="bg-blue-500"],
 html body a[class~="bg-blue-600"],
 html body a[class~="bg-blue-700"],
 html body a[class~="bg-blue-800"],
 html body a[class~="bg-blue-900"],
 html body a[class~="bg-nssrBlue"],
-html body button.btn-primary,
-html body button.cta-btn,
-html body button.btn-blue {
+html body button.btn-primary {
   color: #ffffff !important;
 }
 
 /* Child label/icon wrappers must inherit, not revert to the link blue. */
 html body a.btn-primary :is(span, svg, i, b, strong, em, small),
-html body a.cta-btn :is(span, svg, i, b, strong, em, small),
-html body a.btn-blue :is(span, svg, i, b, strong, em, small),
 html body a.nav-cta :is(span, svg, i, b, strong, em, small),
-html body a.btn-ghost-blue :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-blue-500"] :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-blue-600"] :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-blue-700"] :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-blue-800"] :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-blue-900"] :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-nssrBlue"] :is(span, svg, i, b, strong, em, small),
-html body button.btn-primary :is(span, svg, i, b, strong, em, small),
-html body button.cta-btn :is(span, svg, i, b, strong, em, small),
-html body button.btn-blue :is(span, svg, i, b, strong, em, small) {
+html body button.btn-primary :is(span, svg, i, b, strong, em, small) {
   color: #ffffff !important;
 }
 
 /* Glyphs that are drawn rather than typeset. */
 html body a.btn-primary svg,
-html body a.cta-btn svg,
-html body a.btn-blue svg,
 html body a.nav-cta svg,
-html body a.btn-ghost-blue svg,
-html body button.btn-primary svg,
-html body button.cta-btn svg,
-html body button.btn-blue svg {
+html body button.btn-primary svg {
   fill: currentColor;
   color: #ffffff !important;
 }
 
 /* --- Hover: darker fill, 2px lift, soft blue glow --------------------------- */
 html body a.btn-primary:hover,
-html body a.cta-btn:hover,
-html body a.btn-blue:hover,
 html body a.nav-cta:hover,
-html body a.btn-ghost-blue:hover,
 html body a[class~="bg-blue-500"]:hover,
 html body a[class~="bg-blue-600"]:hover,
 html body a[class~="bg-blue-700"]:hover,
 html body a[class~="bg-blue-800"]:hover,
 html body a[class~="bg-blue-900"]:hover,
 html body a[class~="bg-nssrBlue"]:hover,
-html body button.btn-primary:hover,
-html body button.cta-btn:hover,
-html body button.btn-blue:hover {
+html body button.btn-primary:hover {
   color: #ffffff !important;
   background-color: #1e40af;
   transform: translateY(-2px);
@@ -3410,49 +2907,34 @@ html body button.btn-blue:hover {
 }
 
 html body a.btn-primary:hover :is(span, svg, i, b, strong, em, small),
-html body a.cta-btn:hover :is(span, svg, i, b, strong, em, small),
-html body a.btn-blue:hover :is(span, svg, i, b, strong, em, small),
 html body a.nav-cta:hover :is(span, svg, i, b, strong, em, small),
-html body a.btn-ghost-blue:hover :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-blue-500"]:hover :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-blue-600"]:hover :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-blue-700"]:hover :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-blue-800"]:hover :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-blue-900"]:hover :is(span, svg, i, b, strong, em, small),
 html body a[class~="bg-nssrBlue"]:hover :is(span, svg, i, b, strong, em, small),
-html body button.btn-primary:hover :is(span, svg, i, b, strong, em, small),
-html body button.cta-btn:hover :is(span, svg, i, b, strong, em, small),
-html body button.btn-blue:hover :is(span, svg, i, b, strong, em, small) {
+html body button.btn-primary:hover :is(span, svg, i, b, strong, em, small) {
   color: #ffffff !important;
 }
 
 html body a.btn-primary:hover svg,
-html body a.cta-btn:hover svg,
-html body a.btn-blue:hover svg,
 html body a.nav-cta:hover svg,
-html body a.btn-ghost-blue:hover svg,
-html body button.btn-primary:hover svg,
-html body button.cta-btn:hover svg,
-html body button.btn-blue:hover svg {
+html body button.btn-primary:hover svg {
   fill: currentColor;
   color: #ffffff !important;
 }
 
 /* --- Focus-visible: keep the ring readable against the blue fill ------------ */
 html body a.btn-primary:focus-visible,
-html body a.cta-btn:focus-visible,
-html body a.btn-blue:focus-visible,
 html body a.nav-cta:focus-visible,
-html body a.btn-ghost-blue:focus-visible,
 html body a[class~="bg-blue-500"]:focus-visible,
 html body a[class~="bg-blue-600"]:focus-visible,
 html body a[class~="bg-blue-700"]:focus-visible,
 html body a[class~="bg-blue-800"]:focus-visible,
 html body a[class~="bg-blue-900"]:focus-visible,
 html body a[class~="bg-nssrBlue"]:focus-visible,
-html body button.btn-primary:focus-visible,
-html body button.cta-btn:focus-visible,
-html body button.btn-blue:focus-visible {
+html body button.btn-primary:focus-visible {
   color: #ffffff !important;
   background-color: #1e40af;
   outline: 2px solid #ffffff;
@@ -3461,31 +2943,21 @@ html body button.btn-blue:focus-visible {
 }
 
 html body a.btn-primary:focus-visible :is(span, svg, i, b, strong, em, small),
-html body a.cta-btn:focus-visible :is(span, svg, i, b, strong, em, small),
-html body a.btn-blue:focus-visible :is(span, svg, i, b, strong, em, small),
 html body a.nav-cta:focus-visible :is(span, svg, i, b, strong, em, small),
-html body a.btn-ghost-blue:focus-visible :is(span, svg, i, b, strong, em, small),
-html body button.btn-primary:focus-visible :is(span, svg, i, b, strong, em, small),
-html body button.cta-btn:focus-visible :is(span, svg, i, b, strong, em, small),
-html body button.btn-blue:focus-visible :is(span, svg, i, b, strong, em, small) {
+html body button.btn-primary:focus-visible :is(span, svg, i, b, strong, em, small) {
   color: #ffffff !important;
 }
 
 /* --- Active: pressed in, no lift, deepest fill ------------------------------ */
 html body a.btn-primary:active,
-html body a.cta-btn:active,
-html body a.btn-blue:active,
 html body a.nav-cta:active,
-html body a.btn-ghost-blue:active,
 html body a[class~="bg-blue-500"]:active,
 html body a[class~="bg-blue-600"]:active,
 html body a[class~="bg-blue-700"]:active,
 html body a[class~="bg-blue-800"]:active,
 html body a[class~="bg-blue-900"]:active,
 html body a[class~="bg-nssrBlue"]:active,
-html body button.btn-primary:active,
-html body button.cta-btn:active,
-html body button.btn-blue:active {
+html body button.btn-primary:active {
   color: #ffffff !important;
   background-color: #1e3a8a;
   transform: translateY(0);
@@ -3493,13 +2965,8 @@ html body button.btn-blue:active {
 }
 
 html body a.btn-primary:active :is(span, svg, i, b, strong, em, small),
-html body a.cta-btn:active :is(span, svg, i, b, strong, em, small),
-html body a.btn-blue:active :is(span, svg, i, b, strong, em, small),
 html body a.nav-cta:active :is(span, svg, i, b, strong, em, small),
-html body a.btn-ghost-blue:active :is(span, svg, i, b, strong, em, small),
-html body button.btn-primary:active :is(span, svg, i, b, strong, em, small),
-html body button.cta-btn:active :is(span, svg, i, b, strong, em, small),
-html body button.btn-blue:active :is(span, svg, i, b, strong, em, small) {
+html body button.btn-primary:active :is(span, svg, i, b, strong, em, small) {
   color: #ffffff !important;
 }
 
@@ -3589,9 +3056,6 @@ html body button.btn-hero-outline:active {
 }
 
 /* Sticky sub-navigation inside a page needs the same clearance. */
-.sticky-clear {
-  top: calc(var(--nav-height, 80px) + 24px);
-}
 
 /* --- Overlay media hero (science-beyond-classroom, student-empowerment) ---
    THE BUG THIS COMPONENT REPLACES
@@ -3705,8 +3169,6 @@ html body button.btn-hero-outline:active {
     9. BUTTON FIXES — pseudo-element z-index guards
     ========================================================================== */
 .btn-primary,
-.cta-btn,
-a.btn-blue,
 .btn-hero-outline {
   position: relative;
   z-index: 1;
@@ -3715,18 +3177,12 @@ a.btn-blue,
 
 .btn-primary::before,
 .btn-primary::after,
-.cta-btn::before,
-.cta-btn::after,
-a.btn-blue::before,
-a.btn-blue::after,
 .btn-hero-outline::before,
 .btn-hero-outline::after {
   z-index: -1;
 }
 
 .btn-primary > *,
-.cta-btn > *,
-a.btn-blue > *,
 .btn-hero-outline > * {
   position: relative;
   z-index: 2;
@@ -3848,48 +3304,8 @@ a.btn-blue > *,
 }
 
 /* --- Premium Horizontal Logo Grid (index.html Collaborators) - Scrolling Marquee --- */
-.premium-logo-grid {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  justify-content: flex-start !important;
-  align-items: center !important;
-  gap: 80px !important;
-  padding: 24px 0 !important;
-  overflow-x: auto !important;
-  scroll-behavior: smooth !important;
-  -webkit-overflow-scrolling: touch !important;
-  scrollbar-width: none !important;
-  /* Marquee animation */
-  animation: marquee 30s linear infinite !important;
-}
-
-.premium-logo-grid::-webkit-scrollbar {
-  display: none !important;
-}
-
-.premium-logo-grid img {
-  max-width: 130px !important;
-  height: auto !important;
-  display: block !important;
-  flex-shrink: 0 !important;
-  /* Full color by default */
-  filter: grayscale(0%) !important;
-  opacity: 1 !important;
-  transition: transform 0.3s ease !important;
-}
-
-.premium-logo-grid img:hover {
-  /* Subtle lift on hover */
-  filter: grayscale(0%) !important;
-  opacity: 1 !important;
-  transform: translateY(-3px) !important;
-}
 
 /* Pause animation on hover */
-.premium-logo-grid:hover {
-  animation-play-state: paused !important;
-}
 
 /* Marquee keyframes - seamless loop */
 @keyframes marquee {
@@ -3898,16 +3314,6 @@ a.btn-blue > *,
   }
   100% {
     transform: translateX(-50%);
-  }
-}
-
-@media (max-width: 768px) {
-  .premium-logo-grid {
-    gap: 48px !important;
-    animation-duration: 20s !important;
-  }
-  .premium-logo-grid img {
-    max-width: 100px !important;
   }
 }
 
@@ -3940,152 +3346,8 @@ a.btn-blue > *,
    auto-fit + minmax(320px, 1fr) means the column count is a function of the
    available width rather than a stack of hard-coded breakpoints: 1 column on
    phones, 2 on tablets, 3 from ~1040px, 4 on very wide screens. */
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 28px;
-}
-
-/* --- Card (Legacy - replaced by editorial-photo-row) --- */
-.event-card {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-  transition: none;
-}
-
-.event-card:hover {
-  transform: none;
-  box-shadow: none;
-  border-color: transparent;
-}
-
-.event-card__media {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: transparent;
-}
-
-.event-card__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition-premium);
-}
-
-.event-card:hover .event-card__media img { transform: scale(1.03); }
-
-.event-card__tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 11px;
-  font-size: var(--font-size-2xs);
-  font-weight: var(--font-weight-bold);
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #1d4ed8;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-}
-
-.event-card__body {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  gap: var(--space-3);
-  padding: 0;
-}
-
-.event-card__title {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: #0f172a;
-  transition: var(--transition-premium);
-}
-
-.event-card:hover .event-card__title { color: #1d4ed8; }
-
-.event-card__excerpt {
-  font-family: "Source Sans 3", sans-serif;
-  font-size: var(--font-size-md);
-  line-height: 1.6;
-  color: #475569;
-}
-
-.event-card__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
-  margin-top: auto;
-  padding-top: var(--space-4);
-  border-top: 1px solid #e2e8f0;
-}
-
-.event-meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  color: var(--text-tertiary);
-}
-
-.event-meta-item .icon-inline { width: 14px; height: 14px; color: #2563eb; }
-
-/* --- Card footer ------------------------------------------------------------ */
-.event-card__footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: 14px 24px;
-  background: var(--bg-surface-sunken);
-  border-top: 1px solid var(--border-hairline);
-}
-
-.event-card__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-primary);
-}
-
-.event-card__cta .icon-inline { width: 13px; height: 13px; transition: transform var(--transition-premium); }
-.event-card:hover .event-card__cta .icon-inline { transform: translateX(3px); }
 
 /* --- Status pills ----------------------------------------------------------- */
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 11px;
-  font-size: var(--font-size-2xs);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.4;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  border-radius: var(--radius-pill);
-}
-
-.status-pill::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-}
 
 .status-pill--open {
   color: #147a52;
@@ -4106,22 +3368,6 @@ a.btn-blue > *,
 }
 
 /* --- Featured / upcoming split card (Zero-Box) --------------------------------- */
-.event-featured {
-  display: flex;
-  overflow: hidden;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  transition: none;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.event-featured:hover {
-  transform: none;
-  box-shadow: none;
-}
 
 .event-featured__media {
   flex-shrink: 0;
@@ -4138,32 +3384,12 @@ a.btn-blue > *,
   transition: var(--transition-premium);
 }
 
-.event-featured:hover .event-featured__media img {
-  transform: scale(1.03);
-}
-
 .event-featured__body {
   padding: 32px;
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-.event-featured__title {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
-  font-weight: 900;
-  line-height: 1.16;
-  letter-spacing: -0.02em;
-  color: #0f172a;
-}
-
-.event-featured__excerpt {
-  font-family: "Source Sans 3", sans-serif;
-  font-size: var(--font-size-base);
-  line-height: 1.6;
-  color: #475569;
 }
 
 /* Compact featured row - shown on archive page (Zero-Box) */
@@ -4289,15 +3515,6 @@ a.btn-blue > *,
 /* ==========================================================================
    10. INSTITUTIONAL FRAMEWORK — editorial values grid (index.html)
    ========================================================================== */
-.framework-grid {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 28px;
-}
-
-@media (min-width: 768px) {
-  .framework-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
 
 /* Sticky left column. offset via .sticky-clear so it parks below the header. */
 .framework-aside {
@@ -4353,22 +3570,6 @@ a.btn-blue > *,
 }
 
 /* --- Value card (Zero-Box) ---------------------------------------------------- */
-.framework-card {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  background: transparent;
-  border: none;
-  border-top: 2px solid #0f172a;
-  border-radius: 0;
-  transition: none;
-}
-
-.framework-card:hover {
-  transform: none;
-  box-shadow: none;
-  border-color: #0f172a;
-}
 
 .framework-card__kicker {
   display: flex;
@@ -4399,24 +3600,6 @@ a.btn-blue > *,
   line-height: 1.6;
   color: #475569;
 }
-
-/* Dark variant */
-.framework-card--dark {
-  color: #ffffff;
-  background: transparent;
-  border-color: #ffffff;
-  border-top-color: #ffffff;
-}
-
-.framework-card--dark:hover {
-  border-color: #ffffff;
-  border-top-color: #ffffff;
-}
-
-.framework-card--dark .framework-card__kicker { color: #93c5fd; }
-.framework-card--dark .framework-card__title { color: #ffffff; }
-.framework-card--dark .framework-card__body { color: rgba(226, 232, 240, 0.72); }
-.framework-card--dark .icon-inline { color: #60a5fa; width: 22px; height: 22px; }
 
 /* ==========================================================================
    11. PROCEEDING DIALOG
@@ -4601,7 +3784,9 @@ html, body { overflow-x: hidden; width: 100%; }
 /* --- Hero sections responsive --- */
 @media (max-width: 992px) {
   .hero-clear { padding-top: calc(var(--nav-height, 80px) + 48px) !important; }
-  .nssr-hero { min-height: auto; padding: 120px 20px 80px; }
+  /* `.nssr-hero` keeps the 600px minimum declared in section 12; only the
+     padding is reduced on small screens. */
+  .nssr-hero { padding: 120px 20px 80px; }
 }
 
 @media (max-width: 640px) {
@@ -4615,7 +3800,6 @@ html, body { overflow-x: hidden; width: 100%; }
 /* --- index.html: Institutional Framework (sticky aside + cards) --- */
 @media (max-width: 1024px) {
   .framework-aside { position: static; margin-bottom: var(--space-8); }
-  .framework-grid { grid-template-columns: 1fr; }
 }
 
 /* --- index.html: Institutional Framework NEW 2x2 grid --- */
@@ -4740,6 +3924,12 @@ html, body { overflow-x: hidden; width: 100%; }
     gap: 24px !important;
   }
 }
+
+/* --- index.html: Institutional Framework pillars -> single column on phones --- */
+@media (max-width: 640px) {
+  .pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
   .pillar-item {
     padding: 16px 0 0 0 !important;
   }
@@ -4749,17 +3939,8 @@ html, body { overflow-x: hidden; width: 100%; }
   }
 }
 
-/* --- nsrf.html: What fellows gain + right illustration --- */
-@media (max-width: 992px) {
-  .nsrf-fellows-grid { grid-template-columns: 1fr !important; }
-}
-@media (max-width: 640px) {
-  .nsrf-fellows-grid .grid { grid-template-columns: 1fr !important; }
-}
-
 /* --- event.html: Featured event card (poster + details) --- */
 @media (max-width: 992px) {
-  .event-featured { grid-template-columns: 1fr !important; }
   .event-featured__media { min-height: 240px; }
 }
 
@@ -4796,7 +3977,6 @@ html, body { overflow-x: hidden; width: 100%; }
   #team-nav button:not(.active) {
     color: var(--text-secondary) !important;
   }
-  .team-section { grid-template-columns: 1fr !important; }
 }
 
 /* --- Event detail view responsive --- */
@@ -4806,14 +3986,6 @@ html, body { overflow-x: hidden; width: 100%; }
 }
 
 /* --- Card grids responsive --- */
-@media (max-width: 992px) {
-  .grid-auto { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-}
-@media (max-width: 640px) {
-  .grid-auto { grid-template-columns: 1fr; }
-  .events-grid { grid-template-columns: 1fr; }
-  .framework-grid { grid-template-columns: 1fr; }
-}
 
 /* ==========================================================================
    14. DE-BOXED / EDITORIAL STRIP UTILITIES
@@ -4929,49 +4101,16 @@ html, body { overflow-x: hidden; width: 100%; }
   border-color: transparent !important;
 }
 
-/* Compact featured event card */
-.event-featured--compact {
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.event-featured--compact .event-featured__media {
-  min-height: 180px;
-  max-width: 260px;
-  flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-  .event-featured--compact {
-    grid-template-columns: 1fr !important;
-  }
-  .event-featured--compact .event-featured__media {
-    max-width: 100%;
-    min-height: 200px;
-  }
-}
-
 /* Remove irrelevant tags/pills */
-.hidden-tag {
-  display: none !important;
-}
 
 /* Section divider */
-.section-divider {
-  height: 1px;
-  background: var(--border-hairline);
-  margin: var(--space-8) 0;
-  border: none;
-}
 
 /* --- Section padding responsive --- */
 @media (max-width: 992px) {
   .section { padding-block: var(--space-8); }
-  .section-lg { padding-block: var(--space-10); }
 }
 @media (max-width: 640px) {
   .section { padding-block: var(--space-7); }
-  .section-lg { padding-block: var(--space-8); }
   .container { padding-inline: var(--space-4); }
 }
 
@@ -4981,11 +4120,8 @@ html, body { overflow-x: hidden; width: 100%; }
 
 /* --- Full-bleed Hero (index.html) ---
    Replaces the swiper with a single full-bleed image + gradient overlay.
-   Content sits at bottom-left, Stanford-style. */
-.nssr-hero {
-  min-height: 600px;
-}
-
+   Content sits at bottom-left, Stanford-style. The 600px minimum lives in
+   section 12, together with the other `.nssr-hero` base rules. */
 @media (max-width: 640px) {
   .nssr-hero { min-height: 500px; padding-bottom: 16px; }
 }
@@ -5157,151 +4293,19 @@ html, body { overflow-x: hidden; width: 100%; }
   color: #1d4ed8;
 }
 
-.event-card-stanford__footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-3) var(--space-4);
-  border-top: 1px solid #e2e8f0;
-  background: transparent;
-}
-
 /* Mobile responsive */
 @media (max-width: 640px) {
   .event-card-stanford__content { padding: var(--space-4); }
   .event-card-stanford__title { font-size: var(--font-size-lg); }
-  .event-card-stanford__footer { padding: var(--space-3); }
 }
 
 /* ==========================================================================
    WORKSHOP AGENDA LAYOUT — Premium Box-less Horizontal Rows
    ========================================================================== */
 
-.workshop-agenda {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.workshop-agenda__item {
-  border-top: 1px solid #e2e8f0;
-  padding: 32px 0;
-  transition: background-color 0.3s ease;
-}
-
-.workshop-agenda__item:first-child {
-  border-top: none;
-  padding-top: 0;
-}
-
-.workshop-agenda__item:last-child {
-  padding-bottom: 0;
-}
-
-.workshop-agenda__item:hover {
-  background-color: #fafafa;
-}
-
-.workshop-agenda__grid {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 32px;
-  align-items: start;
-}
-
 /* Left Column: Time/Details */
-.workshop-agenda__time {
-  font-family: "Source Sans 3", sans-serif;
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #1d4ed8;
-  line-height: 1.5;
-  white-space: nowrap;
-}
-
-/* Right Column: Content */
-.workshop-agenda__content {
-  min-width: 0;
-}
-
-.workshop-agenda__title {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  color: #0f172a;
-  margin: 0 0 8px 0;
-  transition: color 0.3s ease;
-}
-
-.workshop-agenda__item:hover .workshop-agenda__title {
-  color: #1d4ed8;
-}
-
-.workshop-agenda__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 12px;
-  font-family: "Source Sans 3", sans-serif;
-  font-size: var(--font-size-sm);
-  color: #64748b;
-}
-
-.workshop-agenda__meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.workshop-agenda__meta-item .icon-inline {
-  width: 14px;
-  height: 14px;
-  color: #1d4ed8;
-  flex-shrink: 0;
-}
-
-.workshop-agenda__excerpt {
-  font-family: "Source Sans 3", sans-serif;
-  font-size: var(--font-size-md);
-  line-height: 1.6;
-  color: #475569;
-  margin: 0;
-  max-width: none;
-}
 
 /* Mobile: collapse to single column */
-@media (max-width: 768px) {
-  .workshop-agenda__grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  
-  .workshop-agenda__time {
-    white-space: normal;
-    font-size: var(--font-size-md);
-    padding-bottom: 8px;
-    border-bottom: 1px solid #e2e8f0;
-  }
-  
-  .workshop-agenda__title {
-    font-size: 1.25rem;
-  }
-  
-  .workshop-agenda__item {
-    padding: 24px 0;
-  }
-  
-  .workshop-agenda__item:first-child {
-    padding-top: 0;
-  }
-  
-  .workshop-agenda__item:last-child {
-    padding-bottom: 0;
-  }
-}
 
 /* ==========================================================================
    PREMIUM EDITORIAL CARD GRID
@@ -5326,35 +4330,9 @@ html, body { overflow-x: hidden; width: 100%; }
   display: block !important;
 }
 
-.editorial-card {
-  display: flex !important;
-  flex-direction: column !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  text-decoration: none !important;
-}
-
 /* Image Container */
-.card-image-wrapper {
-  width: 100% !important;
-  aspect-ratio: 16 / 9 !important;
-  overflow: hidden !important;
-  margin-bottom: 24px !important;
-  background-color: #f1f5f9 !important;
-}
-
-.card-image-wrapper img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
 
 /* Premium Hover Zoom */
-.editorial-card:hover .card-image-wrapper img {
-  transform: scale(1.04) !important;
-}
 
 /* Card Content Typography */
 .card-content {
@@ -5388,22 +4366,6 @@ html, body { overflow-x: hidden; width: 100%; }
   line-height: 1.6 !important;
   margin-bottom: 24px !important;
   flex-grow: 1 !important;
-}
-
-.card-action {
-  font-family: var(--font-sans, sans-serif) !important;
-  font-size: 0.95rem !important;
-  font-weight: 700 !important;
-  color: #1d4ed8 !important;
-  text-decoration: none !important;
-  display: inline-block !important;
-  transition: color 0.2s ease !important;
-}
-
-.editorial-card:hover .card-action {
-  color: #0f172a !important;
-  text-decoration: underline !important;
-  text-underline-offset: 4px !important;
 }
 
 /* Mobile Responsive */
@@ -5442,66 +4404,6 @@ html, body { overflow-x: hidden; width: 100%; }
   .team-hero h1 { margin-bottom: 2rem; }
 }
 
-/* --- Team Sidebar Navigation (Stark, Borderless) --- */
- .team-sidebar {
-   display: flex;
-   flex-direction: column;
-   gap: 4px;
- }
-
-.team-nav-btn {
-    display: block;
-    width: 100%;
-    padding: 14px 16px 14px 4px;
-    font-family: "Source Sans 3", var(--font-sans);
-    font-size: 0.95rem;
-    font-weight: 400;
-    line-height: 1.4;
-    color: var(--text-secondary);
-    background: transparent;
-    border: none;
-    border-left: 3px solid transparent;
-    text-align: left;
-    cursor: pointer;
-    transition: color var(--transition-premium), border-color var(--transition-premium);
-  }
-
- .team-nav-btn:hover {
-   color: var(--text-primary);
-   border-left-color: #cbd5e1;
- }
-
- .team-nav-btn.active {
-   color: var(--text-primary);
-   font-weight: 700;
-   border-left-color: var(--nssr-blue);
- }
-
- @media (max-width: 992px) {
-   .team-sidebar {
-     flex-direction: row;
-     overflow-x: auto;
-     white-space: nowrap;
-     gap: 8px;
-     padding-bottom: 16px;
-     margin-bottom: 32px;
-     border-bottom: 1px solid #e2e8f0;
-     -webkit-overflow-scrolling: touch;
-     scrollbar-width: none;
-   }
-   .team-sidebar::-webkit-scrollbar { display: none; }
-   .team-nav-btn {
-     flex-shrink: 0;
-     padding: 10px 20px;
-     border-left: none;
-     border-bottom: 3px solid transparent;
-     border-radius: 0;
-     white-space: nowrap;
-   }
-   .team-nav-btn:hover { border-bottom-color: #cbd5e1; }
-   .team-nav-btn.active { border-bottom-color: var(--nssr-blue); }
- }
-
 /* --- Team Page Grid (Enforced Horizontal Layout) --- */
   .team-grid {
     display: grid !important;
@@ -5510,7 +4412,6 @@ html, body { overflow-x: hidden; width: 100%; }
     gap: 56px 32px !important;
     align-items: stretch !important; /* CRITICAL: Forces all cards in a row to be the exact same height */
     width: 100% !important;
-    grid-auto-rows: minmax(1fr, 1fr) !important; /* CRITICAL: Ensures all rows (including wrap rows) have equal height */
   }
 
   .team-grid .team-card {
@@ -5673,33 +4574,6 @@ html, body { overflow-x: hidden; width: 100%; }
  }
 
 /* --- Representatives Empty State --- */
-  .reps-empty {
-    padding: 64px 32px;
-    text-align: center;
-    border-top: 1px solid #e2e8f0;
-  }
-
-  .reps-empty i {
-    font-size: 2.5rem;
-    color: var(--nssr-blue);
-    margin-bottom: 16px;
-  }
-
-  .reps-empty h4 {
-    font-family: "Source Serif 4", Georgia, serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 8px;
-  }
-
-  .reps-empty p {
-    font-family: "Source Sans 3", var(--font-sans);
-    font-size: 0.95rem;
-    color: #64748b;
-    max-width: 400px;
-    margin: 0 auto;
-  }
 
 /* ==========================================================================
    EDITORIAL PHOTO ROW — Event & Outreach Split Layout
@@ -5721,102 +4595,8 @@ html, body { overflow-x: hidden; width: 100%; }
    margin-bottom: 0;
  }
 
- .editorial-photo-row--reverse {
-   direction: rtl;
- }
-
- .editorial-photo-row--reverse > * {
-   direction: ltr;
- }
-
- .editorial-photo-row__image {
-   position: relative;
-   aspect-ratio: 4 / 3;
-   overflow: hidden;
-   background: transparent;
- }
-
-.editorial-photo-row__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-premium);
-  }
-
- .editorial-photo-row:hover .editorial-photo-row__image img {
-   transform: scale(1.03);
- }
-
- .editorial-photo-row__content {
+.editorial-photo-row__content {
    padding: 8px 0;
- }
-
- .editorial-photo-row__meta {
-   display: flex;
-   flex-wrap: wrap;
-   gap: 16px;
-   margin-bottom: 12px;
-   font-family: "Source Sans 3", var(--font-sans);
-   font-size: 0.75rem;
-   font-weight: 600;
-   letter-spacing: 0.08em;
-   text-transform: uppercase;
-   color: #64748b;
- }
-
- .editorial-photo-row__tag {
-   color: #1d4ed8;
- }
-
- .editorial-photo-row__date {
-   color: #94a3b8;
- }
-
- .editorial-photo-row__title {
-   font-family: "Source Serif 4", Georgia, serif;
-   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-   font-weight: 700;
-   line-height: 1.2;
-   letter-spacing: -0.02em;
-   color: #0f172a;
-   margin: 0 0 16px 0;
- }
-
- .editorial-photo-row__excerpt {
-   font-family: "Source Sans 3", var(--font-sans);
-   font-size: 1rem;
-   line-height: 1.7;
-   color: #475569;
-   margin: 0 0 24px 0;
-   max-width: 55ch;
- }
-
-.editorial-photo-row__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: "Source Sans 3", var(--font-sans);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #1d4ed8;
-    text-decoration: none;
-    transition: gap var(--transition-premium), color var(--transition-premium);
-  }
-
- .editorial-photo-row__cta:hover {
-   color: #1e40af;
-   gap: 12px;
- }
-
-.editorial-photo-row__cta i {
-    font-size: 0.75rem;
-    transition: transform var(--transition-premium);
-  }
-
- .editorial-photo-row__cta:hover i {
-   transform: translateX(2px);
  }
 
  @media (max-width: 768px) {
@@ -5825,22 +4605,6 @@ html, body { overflow-x: hidden; width: 100%; }
      gap: 24px;
      padding-bottom: 48px;
      margin-bottom: 48px;
-   }
-
-   .editorial-photo-row--reverse {
-     direction: ltr;
-   }
-
-   .editorial-photo-row__image {
-     aspect-ratio: 16 / 10;
-   }
-
-   .editorial-photo-row__title {
-     font-size: clamp(1.5rem, 4vw, 2rem);
-   }
-
-   .editorial-photo-row__excerpt {
-     font-size: 0.95rem;
    }
  }
 
@@ -5977,17 +4741,6 @@ html, body { overflow-x: hidden; width: 100%; }
   letter-spacing: 0.1em;
   margin-left: 12px;
   vertical-align: middle;
-}
-
-.status-completed {
-  background-color: #f1f5f9;
-  color: #64748b;
-}
-
-.status-upcoming {
-  background-color: #eff6ff;
-  color: #1d4ed8;
-  border: 1px solid #bfdbfe;
 }
 
 .card-title {
@@ -6848,39 +5601,22 @@ html, body { overflow-x: hidden; width: 100%; }
   /* Use block here, the inner .team-grid will handle the actual grid layout */
 }
 
-
-/* Hero improvements for research-pathways.html */
-.page-research-pathways .hero-clear .container,
-.page-research-pathways header .container {
-  max-width: 960px;
-}
-
-.page-research-pathways .hero-clear h1,
 body.research-pathways header h1 {
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
 
-.page-research-pathways .hero-clear p,
 body.research-pathways header p {
   color: rgba(226, 232, 240, 0.95);
   line-height: 1.75;
   margin-top: 1.5rem;
 }
 
-/* Hero improvements for workshop.html */
-.page-workshop .hero-clear .container,
-.page-workshop header .container {
-  max-width: 960px;
-}
-
-.page-workshop .hero-clear h1,
 body.workshop header h1 {
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
 
-.page-workshop .hero-clear p,
 body.workshop header p {
   color: rgba(226, 232, 240, 0.95);
   line-height: 1.75;
@@ -7013,39 +5749,6 @@ body:has(.editorial-gallery-grid) .editorial-row:has(.editorial-gallery-grid) {
   }
 }
 
-/* Gallery row - explicit */
-.editorial-row.gallery-row {
-  grid-template-columns: minmax(280px, 1fr) minmax(0, 1.8fr);
-  align-items: start;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-.editorial-row.gallery-row .gallery-content .editorial-gallery-grid {
-  margin-top: 0;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
-}
-
-.editorial-row.gallery-row .gallery-heading {
-  text-align: left;
-  margin-bottom: 0;
-}
-
-@media (max-width: 1024px) {
-  .editorial-row.gallery-row {
-    grid-template-columns: 1fr;
-  }
-  .editorial-row.gallery-row .gallery-heading {
-    margin-bottom: 1rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .editorial-row.gallery-row .gallery-content .editorial-gallery-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Five supports section fixes */
 .editorial-row.supports-row {
   grid-template-columns: minmax(260px, 1fr) minmax(0, 2fr);
@@ -7159,7 +5862,6 @@ img {
 }
 
 /* Fix NSRF hero text contrast */
-.nsrf-hero-fix header.hero-clear p,
 body.nsrf header.hero-clear p,
 .nsrf header p {
   color: rgba(226, 232, 240, 0.98) !important;
@@ -7458,40 +6160,12 @@ body.student-empowerment main > .container,
   width: 100%;
 }
 
-.nsrf .editorial-row .editorial-photo-row__meta {
-  margin-bottom: 0.5rem !important;
-}
-
-.nsrf .editorial-row .editorial-photo-row__title {
-  font-size: 1.125rem !important;
-  margin: 0 0 0.5rem 0 !important;
-  font-weight: 700 !important;
-  color: #0f172a !important;
-}
-
-.nsrf .editorial-row .editorial-photo-row__excerpt {
-  font-size: 0.875rem !important;
-  line-height: 1.6 !important;
-  color: #475569 !important;
-  margin: 0 !important;
-  max-width: 100% !important;
-}
-
-.nsrf .editorial-row .editorial-photo-row__cta {
-  display: none !important;
-}
-
 .nsrf .editorial-row .editorial-photo-row .icon-box {
   flex-shrink: 0;
   width: 20px;
   height: 20px;
   color: #1d4ed8;
   margin-bottom: 0.5rem;
-}
-
-/* Remove the image column in advisors section (not used) */
-.nsrf .editorial-row .editorial-photo-row__image {
-  display: none !important;
 }
 
 /* Two-column layout on desktop */
@@ -7614,6 +6288,74 @@ body.student-empowerment main > .container,
   max-width: 100% !important;
 }
 
+/* ==========================================================================
+   ADVISORS SECTION ("Advisors and field experts") — guidance items
+   --------------------------------------------------------------------------
+   Root cause of the cramped, undersized advisors view:
+     · the four icons were sized by an inline `width/height: 22px` style that
+       fought the shared `.nsrf … .icon-box` rule (20px), so the size had no
+       single source of truth and the icon sat too close to its heading
+       (only 8px reserved under it);
+     · at tablet widths the generic `.nsrf .editorial-row` rule kept a symmetric
+       1fr / 1fr split with a 48px column gap and 32px of intro right-padding,
+       squeezing the intro and the four items into ~300px columns.
+   The rules below are scoped to `.nsrf-advisors` (added to the markup) so the
+   "What fellows gain" row, which shares the generic `.nsrf .editorial-row`
+   rules, is left untouched.
+   ========================================================================== */
+
+/* Vertical rhythm inside each guidance item: icon → heading → description.
+   `.editorial-photo-row__content` is a column flexbox, so its single `gap`
+   owns the spacing. The global `h3 + p` bump is neutralised just below so the
+   heading sits the same distance from the icon as it does from the copy. */
+.nsrf .nsrf-advisors .editorial-row .editorial-photo-row__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.nsrf .nsrf-advisors .editorial-row .editorial-photo-row__content h3 + p {
+  margin-top: 0 !important;
+}
+
+/* Vertical rhythm between the four items. The generic
+   `.nsrf .editorial-row .editorial-photo-row { margin: 0 !important }` reset
+   zeroes the Tailwind `space-y-6` margins, so the four rows collapsed into one
+   another with no gap at all. Re-create the separation on the shared wrapper. */
+.nsrf .nsrf-advisors .editorial-row .space-y-6 {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Clearly visible, consistently sized brand-blue icons (24px sits inside the
+   22–26px desktop/tablet target) with a single source of truth for size. */
+.nsrf .nsrf-advisors .editorial-row .editorial-photo-row .icon-box {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 0;
+  color: #1d4ed8;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Tablet / mini-tablet: hand the guidance column more of the row and pull in
+     the oversized column gap + intro right-padding so neither column is
+     squeezed. */
+  .nsrf .nsrf-advisors .editorial-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) !important;
+    gap: var(--space-5) !important;
+  }
+
+  .nsrf .nsrf-advisors .editorial-row > :first-child {
+    padding-right: 1rem !important;
+  }
+
+  .nsrf .nsrf-advisors .editorial-row > :first-child h2 {
+    font-size: clamp(1.75rem, 3.2vw, 2.125rem) !important;
+  }
+}
+
 /* Mobile adjustments */
 @media (max-width: 640px) {
   .nsrf .editorial-grid {
@@ -7644,14 +6386,7 @@ body.student-empowerment main > .container,
   .nsrf .editorial-row .editorial-photo-row {
     padding: 0.75rem !important;
   }
-  
-  .nsrf .editorial-row .editorial-photo-row__title {
-    font-size: 1rem !important;
-  }
-  
-  .nsrf .editorial-row .editorial-photo-row__excerpt {
-    font-size: 0.8125rem !important;
-  }
+
 }
 
 /* Ensure body text in main content is readable */
@@ -8003,7 +6738,6 @@ section > .container {
 }
 
 /* Fix framework cards and other cards spacing */
-.framework-card,
 .team-card,
 .step-card {
   gap: 0.5rem !important;
@@ -8030,14 +6764,7 @@ section > .container {
   }
 }
 
-}
-
 /* Industry Practice clarity - subtle refinement */
-.industry-practice .framework-intro p,
-#industry-practice .framework-intro p {
-  color: #475569;
-  line-height: 1.7;
-}
 
 /* Explore NSSR tabs */
 .tab-btn {
@@ -8060,10 +6787,6 @@ section > .container {
 }
 .tab-panel {
   animation: fadeIn 0.25s ease;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 @media (prefers-reduced-motion: reduce) {
   .tab-panel { animation: none !important; }
