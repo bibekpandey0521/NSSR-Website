@@ -119,16 +119,17 @@
         }
 
         // 4. PROGRESS BAR LOGIC
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("progress-bar").style.width = scrolled + "%";
-        };
+        window.addEventListener('scroll', function() {
+            const progressBar = document.getElementById('progress-bar');
+            if (!progressBar) return;
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            progressBar.style.width = scrolled + '%';
+        }, { passive: true });
 
         // 5. INITIALIZE
         window.addEventListener('hashchange', handleRouting);
         window.addEventListener('DOMContentLoaded', () => {
             handleRouting();
-            // Note: Components like nav.html are loaded by nav.js automatically
         });

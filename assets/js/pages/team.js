@@ -8,11 +8,10 @@
    toggles the .active class and never writes inline display styles.
    ========================================================================== */
 
-        // The tab shown on first paint. team.html already marks the Advisory
-        // Board tab with `.active`; this constant is the JavaScript-side
-        // fallback so the page still opens on Advisory Board if that markup
-        // class is ever lost.
-        var DEFAULT_TAB = 'leadership';
+        // The tab shown on first paint. team.html already marks the Leadership
+        // tab with `.active`; this constant is the JavaScript-side fallback so
+        // the page still opens on Leadership if that markup class is ever lost.
+        const DEFAULT_TAB = 'leadership';
 
         // Tab Navigation Logic
         function initTabNavigation() {
@@ -61,7 +60,7 @@
             });
 
             // Normalise initial state: exactly one panel marked active.
-            // Honors the active tab declared in the markup (Advisory Board),
+            // Honors the active tab declared in the markup (Leadership),
             // falling back to the page default and only then to the first link.
             const initial = tabLinks.find(l => l.classList.contains('active'));
             const initialTab = initial && initial.getAttribute('data-tab');

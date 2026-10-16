@@ -37,4 +37,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.3 });
     lineObserver.observe(missionBullets);
   }
+
+  // "Explore NSSR" tab switcher (workshops / events / gallery)
+  const tabs = document.querySelectorAll('.nssr-explore .tab-btn');
+  tabs.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const selected = btn.getAttribute('data-tab');
+      tabs.forEach((tab) => {
+        const isActive = tab === btn;
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        const panel = document.getElementById('panel-' + tab.getAttribute('data-tab'));
+        if (panel) panel.hidden = tab.getAttribute('data-tab') !== selected;
+      });
+    });
+  });
 });

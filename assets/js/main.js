@@ -73,21 +73,6 @@
     { label: 'Join Us', href: 'membership.html', variant: 'cta' }
   ];
 
-  var FOOTER_LINKS = [
-    { label: 'Research', href: 'research.html' },
-    { label: 'Outreach', href: 'outreach.html' },
-    { label: 'Volunteering', href: 'volunteering.html' },
-    { label: 'Explore NSSR', href: 'explore.html' },
-    { label: 'Our Team', href: 'team.html' },
-    { label: 'Membership', href: 'membership.html' }
-  ];
-
-  var SOCIAL_LINKS = [
-    { label: 'Facebook', href: 'https://www.facebook.com/nssrnepal', icon: 'fa-facebook-square' },
-    { label: 'Instagram', href: 'https://www.instagram.com/nssrnepal/', icon: 'fa-instagram-square' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/nssrnepal/?viewAsMember=true', icon: 'fa-linkedin' }
-  ];
-
   /* ==========================================================================
      Events feed
      --------------------------------------------------------------------------
@@ -451,16 +436,6 @@
      ========================================================================== */
 
   function buildFooterHTML() {
-    var links = FOOTER_LINKS.map(function (item) {
-      return '<li><a href="' + escapeHtml(item.href) + '">' + escapeHtml(item.label) + '</a></li>';
-    }).join('\n                    ');
-
-    var socials = SOCIAL_LINKS.map(function (item) {
-      return '<a href="' + escapeHtml(item.href) + '" aria-label="NSSR on ' + escapeHtml(item.label) +
-        '" rel="noopener noreferrer" target="_blank">' +
-        '<i class="fab ' + item.icon + '" aria-hidden="true"></i></a>';
-    }).join('\n                        ');
-
     return '' +
       '    <footer class="site-footer">' +
       '        <!-- Left Panel: Blue (55%) -->' +
@@ -727,19 +702,18 @@
      --------------------------------------------------------------------------
      WHY THIS EXISTS
      ---------------
-     Every event record on event.html carries a `report` field that used to point
-     at a `report/` directory that was never committed to this repository:
+     Every event record on event.html carries a `report` field pointing at a PDF
+     in this repository's `report/` directory. Those PDFs are committed, so the
+     guard is a no-op for the current records — it stays in place as a safety net
+     for malformed or placeholder values, e.g.:
 
          report: "report/.pdf"      <- empty filename
-         report: "report/MAT.pdf"   <- no such file, and no such directory
-         report: "report/WC.pdf"    <- ditto
-         report: "report/MAT"       <- no file extension at all
+         report: "report/MAT"       <- no file extension
+         report: "report/"          <- a directory, not a file
 
-     Left alone, clicking "Download Proceeding" navigates the browser to
-     file:///.../report/MAT.pdf and the page dies with ERR_FILE_NOT_FOUND: a
-     dead end for the visitor and a lost session. The links are kept in the data
-     because they are the right shape for the day the proceedings are published;
-     this guard is what makes them safe to leave in place meanwhile.
+     Left alone, such a link navigates the browser to a missing path and the
+     page dies with ERR_FILE_NOT_FOUND: a dead end for the visitor and a lost
+     session. The guard is what keeps those values safe to leave in the data.
 
      WHAT IT DOES
      -------------
@@ -1022,19 +996,3 @@
     init();
   }
 }());
-
-document.addEventListener('DOMContentLoaded', function () {
-  var tabs = document.querySelectorAll('.nssr-explore .tab-btn');
-  tabs.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var tab = btn.getAttribute('data-tab');
-      tabs.forEach(function (b) {
-        var t = b.getAttribute('data-tab');
-        b.classList.toggle('active', b === btn);
-        b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
-        var panel = document.getElementById('panel-' + t);
-        if (panel) panel.hidden = (t !== tab);
-      });
-    });
-  });
-});

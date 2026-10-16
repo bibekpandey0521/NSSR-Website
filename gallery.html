@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery | NSSR</title>
     <link rel="icon" type="image/png" href="assets/images/bluelogonobg.png">
-    <link rel="stylesheet" href="assets/css/tailwind.css">    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/vendor/fonts/fonts.css"></head>
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/vendor/fonts/fonts.css">
+</head>
 <body class="bg-white">
     <div id="nav-placeholder"></div>
 
@@ -39,78 +42,6 @@
     </div>
 
     <script src="assets/js/main.js" defer></script>
-    <script>
-        // Gallery images data - using original Photos/ folder images
-                const galleryImages = [
-            { src: "Photos/IMG_20260902_144525.jpg", alt: "NSSR workshop session" },
-            { src: "Photos/IMG_20260902_144529.jpg", alt: "Students at NSSR event" },
-            { src: "Photos/IMG_20260902_144533.jpg", alt: "Workshop in progress" },
-            { src: "Photos/Photooooo/IMG_1884.jpeg", alt: "Science workshop activity" },
-            { src: "Photos/Photos by Khwopa/IMG_0889.JPG", alt: "Khwopa College event" },
-            { src: "assets/images/latexfolder/latex-main.jpg", alt: "Scientific Writing & LaTeX workshop session" },
-            { src: "Photos/IMG_20260902_144747.jpg", alt: "NSSR team photo" },
-            { src: "Photos/Photooooo/IMG_1855.jpeg", alt: "Educational program" }
-        ];
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const grid = document.getElementById('masonry-grid');
-            if (grid) {
-                grid.innerHTML = galleryImages.map(img => `
-                    <div class="masonry-item">
-                        <img src="${img.src}" alt="${img.alt}" loading="lazy" onload="this.classList.add('loaded')">
-                    </div>
-                `).join('');
-            }
-
-            // Lightbox logic - Bulletproof event delegation
-            const lightbox = document.getElementById('gallery-lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-
-            if (!lightbox || !lightboxImg) return;
-
-            // Listen to all clicks on the page
-            document.addEventListener('click', (e) => {
-                // Look for any gallery container clicked
-                const galleryItem = e.target.closest('.masonry-item, .gallery-item, .portfolio-wrap, .portfolio-item');
-
-                if (galleryItem) {
-                    e.preventDefault();
-                    let imageSource = '';
-
-                    // Check 1: Does the container have an href pointing to the image? (Best quality)
-                    if (galleryItem.tagName.toLowerCase() === 'a' && galleryItem.href) {
-                        imageSource = galleryItem.href;
-                    }
-                    // Check 2: Look for an <img> tag inside the container
-                    else {
-                        const img = galleryItem.querySelector('img');
-                        if (img && img.src) {
-                            imageSource = img.src;
-                        }
-                    }
-
-                    // If we found a source, show the clear image
-                    if (imageSource && !imageSource.endsWith('#')) {
-                        lightboxImg.src = imageSource;
-                        lightbox.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    }
-                }
-            });
-
-            // Close when clicking the dark background or close button
-            const closeLightbox = () => {
-                lightbox.classList.remove('active');
-                setTimeout(() => { lightboxImg.src = ''; }, 300);
-                document.body.style.overflow = '';
-            };
-
-            lightbox.addEventListener('click', (e) => {
-                if (e.target !== lightboxImg) {
-                    closeLightbox();
-                }
-            });
-        });
-    </script>
+    <script src="assets/js/pages/gallery.js" defer></script>
 </body>
 </html>

@@ -393,15 +393,7 @@
             }
         }
 
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
+        // openLightbox() / closeLightbox() are provided globally by assets/js/main.js.
 
         window.addEventListener('hashchange', handleRouting);
         window.addEventListener('load', handleRouting);

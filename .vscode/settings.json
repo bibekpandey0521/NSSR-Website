@@ -1,0 +1,9 @@
+{
+  // Tailwind CSS v4 loads its JavaScript config through the `@config` at-rule
+  // (see assets/css/input.css). VS Code's built-in CSS validator does not know
+  // that at-rule yet and flags it as "Unknown at rule @config". That is a false
+  // positive: the file is the Tailwind build input, not a runtime stylesheet.
+  // This only silences unknown at-rules; genuine CSS syntax errors, unknown
+  // properties and invalid values are still reported.
+  "css.lint.unknownAtRules": "ignore"
+}
